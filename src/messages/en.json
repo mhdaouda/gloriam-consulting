@@ -1,0 +1,25 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Welcome to Gloriam Consulting",
+    "subtitle": "Your Partner in Business Excellence",
+    "description": "We support companies in their transformation and growth"
+  },
+  "services": {
+    "title": "Our Services",
+    "description": "Tailored solutions for your business"
+  },
+  "about": {
+    "title": "About Us",
+    "description": "Discover our story and vision"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with our team"
+  }
+} 
