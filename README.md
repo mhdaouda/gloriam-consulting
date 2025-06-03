@@ -1,22 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gloriam Consulting
 
-## Getting Started
+[English](#english) | [Français](#français)
 
-First, run the development server:
+## English
 
+### Overview
+Official website for Gloriam Consulting, built with Next.js 14+, TypeScript, and Tailwind CSS.
+
+### Features
+- 🌐 Internationalization (English/French)
+- 📱 Responsive design
+- ⚡ Optimized performance
+- 🖼️ Image optimization with next/image
+- 🎨 Modern UI with Tailwind CSS
+- 🔄 Smooth page transitions
+
+### Technologies
+- Next.js 14+
+- TypeScript
+- Tailwind CSS
+- next-intl
+- Framer Motion
+
+### Getting Started
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Français
+
+### Aperçu
+Site web officiel de Gloriam Consulting, développé avec Next.js 14+, TypeScript et Tailwind CSS.
+
+### Fonctionnalités
+- 🌐 Internationalisation (Français/Anglais)
+- 📱 Design adaptatif
+- ⚡ Performance optimisée
+- 🖼️ Optimisation des images avec next/image
+- 🎨 Interface moderne avec Tailwind CSS
+- 🔄 Transitions fluides entre les pages
+
+### Technologies
+- Next.js 14+
+- TypeScript
+- Tailwind CSS
+- next-intl
+- Framer Motion
+
+### Pour commencer
+```bash
+# Installer les dépendances
+npm install
+
+# Lancer le serveur de développement
+npm run dev
+
+# Construire pour la production
+npm run build
+
+# Démarrer le serveur de production
+npm start
+```
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 

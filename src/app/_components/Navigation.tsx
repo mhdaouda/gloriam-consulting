@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import Image from 'next/image';
 
 export default function Navigation({ locale }: { locale: string }) {
   const t = useTranslations('navigation');
@@ -19,78 +20,50 @@ export default function Navigation({ locale }: { locale: string }) {
   ];
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-white shadow-md">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 justify-between">
-          <div className="flex items-center">
-            <Link href={`/${locale}`} className="flex items-center">
-              <span className="text-xl font-bold text-gray-800">Gloriam Consulting</span>
-            </Link>
-          </div>
-
-          {/* Desktop menu */}
-          <div className="hidden items-center space-x-8 sm:flex">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium transition-colors ${
-                  pathname === link.href
-                    ? 'text-blue-600'
-                    : 'text-gray-500 hover:text-gray-900'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+    <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/GClogo.png"
+              alt="Gloriam Consulting Logo"
+              width={40}
+              height={40}
+              className="h-10 w-auto"
+              priority
+            />
+            <span className="ml-2 text-xl font-semibold">Gloriam Consulting</span>
+          </Link>
+          
+          <div className="flex space-x-4">
             <Link
-              href={pathname.replace(/^\/[a-z]{2}/, locale === 'en' ? '/fr' : '/en')}
-              className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
+              href="/about"
+              className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md"
             >
-              {locale === 'en' ? 'FR' : 'EN'}
+              {locale === 'fr' ? 'À propos' : 'About'}
             </Link>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="flex items-center sm:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-500 hover:text-gray-900"
+            <Link
+              href="/services"
+              className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md"
             >
-              {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-            </button>
+              Services
+            </Link>
+            <Link
+              href="/contact"
+              className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md"
+            >
+              Contact
+            </Link>
+            <Link
+              href="/"
+              locale={locale === 'fr' ? 'en' : 'fr'}
+              className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md"
+            >
+              {locale === 'fr' ? 'EN' : 'FR'}
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="sm:hidden">
-          <div className="space-y-1 px-2 pb-3 pt-2">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`block rounded-md px-3 py-2 text-base font-medium ${
-                  pathname === link.href
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href={pathname.replace(/^\/[a-z]{2}/, locale === 'en' ? '/fr' : '/en')}
-              className="block rounded-md bg-blue-500 px-3 py-2 text-base font-medium text-white hover:bg-blue-600"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {locale === 'en' ? 'Français' : 'English'}
-            </Link>
-          </div>
-        </div>
-      )}
     </nav>
   );
 } 
