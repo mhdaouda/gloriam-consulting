@@ -3,12 +3,13 @@
     "home": "Home",
     "services": "Services",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "trust": "They Trust Us"
   },
   "home": {
     "title": "Welcome to Gloriam Consulting",
-    "subtitle": "Your Partner in Business Excellence",
-    "description": "We support companies in their transformation and growth"
+    "subtitle": "Your partner in business excellence",
+    "description": "We help companies in their transformation and growth"
   },
   "services": {
     "title": "Our Services",
@@ -21,5 +22,23 @@
   "contact": {
     "title": "Contact Us",
     "description": "Get in touch with our team"
+  },
+  "trust": {
+    "title": "They Trust Us",
+    "description": "Discover the companies that trust us",
+    "partners": {
+      "title": "Our Partners"
+    },
+    "clients": {
+      "title": "Our Clients"
+    },
+    "stats": {
+      "experience": "Years of Experience",
+      "experienceDesc": "Solid expertise serving our clients",
+      "projects": "Successful Projects",
+      "projectsDesc": "Concrete solutions for tangible results",
+      "satisfaction": "Client Satisfaction",
+      "satisfactionDesc": "A lasting relationship of trust with our clients"
+    }
   }
 } 

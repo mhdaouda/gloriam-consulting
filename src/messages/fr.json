@@ -3,7 +3,8 @@
     "home": "Accueil",
     "services": "Services",
     "about": "À propos",
-    "contact": "Contact"
+    "contact": "Contact",
+    "trust": "Ils nous font confiance"
   },
   "home": {
     "title": "Bienvenue chez Gloriam Consulting",
@@ -21,5 +22,23 @@
   "contact": {
     "title": "Contactez-nous",
     "description": "Prenez contact avec notre équipe"
+  },
+  "trust": {
+    "title": "Ils nous font confiance",
+    "description": "Découvrez les entreprises qui nous font confiance",
+    "partners": {
+      "title": "Nos Partenaires"
+    },
+    "clients": {
+      "title": "Nos Clients"
+    },
+    "stats": {
+      "experience": "Années d'expérience",
+      "experienceDesc": "Une expertise solide au service de nos clients",
+      "projects": "Projets réussis",
+      "projectsDesc": "Des solutions concrètes pour des résultats tangibles",
+      "satisfaction": "Satisfaction client",
+      "satisfactionDesc": "Une relation de confiance durable avec nos clients"
+    }
   }
 } 
