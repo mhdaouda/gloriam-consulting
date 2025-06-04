@@ -86,7 +86,7 @@ export default function Trust() {
               <div className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 via-indigo-50 to-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl border border-blue-100">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-indigo-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                 <Image
-                  src="/gloriam-consulting/images/partners/alten.png"
+                  src="/images/partners/alten.png"
                   alt="Alten Logo"
                   width={200}
                   height={100}
@@ -116,8 +116,8 @@ export default function Trust() {
               <div className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-50 via-blue-50 to-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl border border-indigo-100">
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-100 to-blue-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                 <Image
-                  src="/gloriam-consulting/images/clients/banquepostale.png"
-                  alt="La Banque Postale Logo"
+                  src="/images/clients/banquepostale.png"
+                  alt="Banque Postale Logo"
                   width={200}
                   height={100}
                   className="relative z-10 h-auto w-full object-contain transition-transform duration-300 group-hover:scale-105"

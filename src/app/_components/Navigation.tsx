@@ -76,11 +76,11 @@ export default function Navigation({ locale }: { locale: string }) {
           <motion.div variants={logoVariants}>
             <Link href={`/${locale}`} className="flex items-center group">
               <Image
-                src="/gloriam-consulting/images/GClogo.png"
+                src="/images/GClogo.png"
                 alt="Gloriam Consulting Logo"
-                width={160}
-                height={160}
-                className="h-16 w-auto transition-transform duration-300 group-hover:scale-105"
+                width={150}
+                height={50}
+                className="h-8 w-auto transition-transform duration-300 group-hover:scale-105"
                 priority
               />
               <span className="ml-4 text-2xl font-semibold text-zinc-800 transition-colors duration-300 group-hover:text-zinc-600">

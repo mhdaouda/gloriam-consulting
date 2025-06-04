@@ -40,11 +40,11 @@ export default function About() {
             <div className="relative">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-200 to-purple-200 transform rotate-6 scale-105 opacity-20 group-hover:rotate-4 transition-transform duration-300"></div>
               <Image
-                src="/gloriam-consulting/images/GClogo.png"
+                src="/images/GClogo.png"
                 alt="Gloriam Consulting Logo"
-                width={400}
-                height={400}
-                className="rounded-2xl shadow-xl relative z-10 transform group-hover:scale-105 transition-transform duration-300"
+                width={300}
+                height={300}
+                className="mx-auto h-auto w-64 rounded-lg shadow-xl transition-transform duration-300 hover:scale-105"
               />
             </div>
           </div>
