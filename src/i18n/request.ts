@@ -3,7 +3,7 @@ import {locales} from '@/config';
 
 export default getRequestConfig(async ({requestLocale}) => {
   // Ensure we have a valid locale from the ones we support
-  const locale = typeof requestLocale === 'string' && locales.includes(requestLocale as any) 
+  const locale = typeof requestLocale === 'string' && locales.includes(requestLocale) 
     ? requestLocale 
     : 'fr';
 

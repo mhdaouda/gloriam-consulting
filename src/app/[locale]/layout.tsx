@@ -26,34 +26,32 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as any)) {
+  if (!locales.includes(locale)) {
     notFound();
   }
 
   let messages;
   try {
     messages = (await import(`../../messages/${locale}.json`)).default;
-  } catch (error) {
+  } catch {
     notFound();
   }
 
   return (
-    <html lang={locale}>
-      <body className={inter.className}>
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          <Navigation locale={locale} />
-          <main className="min-h-screen pt-16">
-            {children}
-          </main>
-          <footer className="bg-gray-800 py-8 text-white">
-            <div className="container mx-auto px-4">
-              <p className="text-center">
-                © {new Date().getFullYear()} Gloriam Consulting. All rights reserved.
-              </p>
-            </div>
-          </footer>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <div className={inter.className}>
+        <Navigation locale={locale} />
+        <main className="min-h-screen pt-16">
+          {children}
+        </main>
+        <footer className="bg-gray-800 py-8 text-white">
+          <div className="container mx-auto px-4">
+            <p className="text-center">
+              © {new Date().getFullYear()} Gloriam Consulting. All rights reserved.
+            </p>
+          </div>
+        </footer>
+      </div>
+    </NextIntlClientProvider>
   );
 } 
