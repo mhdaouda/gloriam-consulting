@@ -2,6 +2,9 @@
 
 Site web de Gloriam Consulting, développé avec Next.js et déployé sur GitHub Pages.
 
+## État du déploiement
+[![Deploy Next.js site to Pages](https://github.com/mhdaouda/gloriam-consulting/actions/workflows/nextjs.yml/badge.svg)](https://github.com/mhdaouda/gloriam-consulting/actions/workflows/nextjs.yml)
+
 ## Technologies utilisées
 
 - Next.js 14
