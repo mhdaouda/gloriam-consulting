@@ -47,6 +47,24 @@ export default function Trust() {
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
   const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
 
+  const partners = [
+    { src: "/images/partners/alten.png", alt: "Alten Logo" },
+    { src: "/images/partners/aws.png", alt: "AWS Logo" },
+    { src: "/images/partners/github.jpeg", alt: "GitHub Logo" },
+    { src: "/images/partners/google-logo.png", alt: "Google Logo" },
+    { src: "/images/partners/ibm.png", alt: "IBM Logo" },
+    { src: "/images/partners/microsfot-azure.png", alt: "Microsoft Azure Logo" },
+    { src: "/images/partners/porkbun.svg", alt: "Porkbun Logo" }
+  ];
+
+  const clients = [
+    { src: "/images/clients/banquepostale.png", alt: "Banque Postale Logo" },
+    { src: "/images/clients/NGE.jpeg", alt: "NGE Logo" },
+    { src: "/images/clients/axa.png", alt: "AXA Logo" },
+    { src: "/images/clients/bp2s.png", alt: "BP2S Logo" },
+    { src: "/images/clients/totalenergie.jpeg", alt: "TotalEnergies Logo" }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white">
       <motion.div
@@ -78,22 +96,25 @@ export default function Trust() {
           <h2 className="mb-12 text-center text-3xl font-bold text-zinc-800">
             {t('partners.title')}
           </h2>
-          <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3">
-            <motion.div
-              variants={cardVariants}
-              className="flex items-center justify-center"
-            >
-              <div className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 via-indigo-50 to-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl border border-blue-100">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-indigo-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                <Image
-                  src="/images/partners/alten.png"
-                  alt="Alten Logo"
-                  width={200}
-                  height={100}
-                  className="relative z-10 h-auto w-full object-contain transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-            </motion.div>
+          <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {partners.map((partner, index) => (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                className="flex items-center justify-center"
+              >
+                <div className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 via-indigo-50 to-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl border border-blue-100">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-indigo-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                  <Image
+                    src={partner.src}
+                    alt={partner.alt}
+                    width={200}
+                    height={100}
+                    className="relative z-10 h-auto w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.section>
 
@@ -108,22 +129,25 @@ export default function Trust() {
           <h2 className="mb-12 text-center text-3xl font-bold text-zinc-800">
             {t('clients.title')}
           </h2>
-          <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3">
-            <motion.div
-              variants={cardVariants}
-              className="flex items-center justify-center"
-            >
-              <div className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-50 via-blue-50 to-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl border border-indigo-100">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-100 to-blue-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                <Image
-                  src="/images/clients/banquepostale.png"
-                  alt="Banque Postale Logo"
-                  width={200}
-                  height={100}
-                  className="relative z-10 h-auto w-full object-contain transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-            </motion.div>
+          <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+            {clients.map((client, index) => (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                className="flex items-center justify-center"
+              >
+                <div className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-50 via-blue-50 to-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl border border-indigo-100">
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-100 to-blue-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                  <Image
+                    src={client.src}
+                    alt={client.alt}
+                    width={200}
+                    height={100}
+                    className="relative z-10 h-auto w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.section>
 
