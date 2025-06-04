@@ -1,5 +1,20 @@
 # Gloriam Consulting
 
+Site web de Gloriam Consulting, développé avec Next.js et déployé sur GitHub Pages.
+
+## Technologies utilisées
+
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- next-intl pour l'internationalisation
+
+## Déploiement
+
+Le site est automatiquement déployé sur GitHub Pages via GitHub Actions à chaque push sur la branche main.
+URL du site : https://mhdaouda.github.io/gloriam-consulting
+
 [English](#english) | [Français](#français)
 
 ## English
