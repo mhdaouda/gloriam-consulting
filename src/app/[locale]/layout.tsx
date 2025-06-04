@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import Navigation from '@/app/_components/Navigation';
 import { Inter } from 'next/font/google';
-import { locales } from '@/config';
+import { locales, Locale } from '@/config';
 import { setRequestLocale } from 'next-intl/server';
 import '../globals.css';
 
@@ -26,7 +26,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale)) {
+  if (!locales.includes(locale as Locale)) {
     notFound();
   }
 
