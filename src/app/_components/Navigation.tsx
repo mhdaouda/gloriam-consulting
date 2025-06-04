@@ -76,7 +76,7 @@ export default function Navigation({ locale }: { locale: string }) {
           <motion.div variants={logoVariants}>
             <Link href={`/${locale}`} className="flex items-center group">
               <Image
-                src="/images/GClogo.png"
+                src="/gloriam-consulting/images/GClogo.png"
                 alt="Gloriam Consulting Logo"
                 width={160}
                 height={160}
