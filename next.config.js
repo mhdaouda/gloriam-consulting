@@ -7,7 +7,8 @@ const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
-  }
+  },
+  assetPrefix: 'https://www.gloriam-consulting.com'
 };
 
 module.exports = withNextIntl(nextConfig); 
