@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import Navigation from '@/app/_components/Navigation';
+import CookieConsent from '@/app/_components/CookieConsent';
 import { Inter } from 'next/font/google';
 import { locales, Locale } from '@/config';
 import { setRequestLocale } from 'next-intl/server';
@@ -51,6 +52,7 @@ export default async function LocaleLayout({
             </p>
           </div>
         </footer>
+        <CookieConsent />
       </div>
     </NextIntlClientProvider>
   );
