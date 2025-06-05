@@ -4,7 +4,6 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -18,43 +17,28 @@ const fadeIn = {
 
 export default function Contact() {
   const t = useTranslations('contact');
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'contact@gloriam-consulting.com'
-      };
-
-      await emailjs.send(
-        'YOUR_SERVICE_ID', // Vous devrez remplacer ceci
-        'YOUR_TEMPLATE_ID', // Vous devrez remplacer ceci
-        templateParams,
-        'YOUR_PUBLIC_KEY' // Vous devrez remplacer ceci
-      );
-
-      // Réinitialiser le formulaire
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+      
+      const response = await fetch('https://formsubmit.co/ajax/contact@gloriam-consulting.com', {
+        method: 'POST',
+        body: formData,
       });
 
-      alert('Message envoyé avec succès !');
+      if (response.ok) {
+        setSubmitted(true);
+        form.reset();
+      } else {
+        throw new Error('Erreur lors de l\'envoi');
+      }
     } catch (error) {
       console.error('Erreur:', error);
       alert('Une erreur est survenue lors de l\'envoi du message.');
@@ -63,10 +47,28 @@ export default function Contact() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="rounded-lg bg-white p-8 shadow-lg"
+          >
+            <h2 className="mb-4 text-2xl font-bold text-emerald-600">Message envoyé avec succès !</h2>
+            <p className="mb-6 text-zinc-600">Nous vous répondrons dans les plus brefs délais.</p>
+            <button
+              onClick={() => setSubmitted(false)}
+              className="rounded-lg bg-emerald-600 px-6 py-2 text-white hover:bg-emerald-700"
+            >
+              Envoyer un autre message
+            </button>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24">
@@ -130,6 +132,10 @@ export default function Contact() {
 
           <div className="rounded-2xl bg-gradient-to-br from-emerald-50 via-teal-50 to-white p-8 shadow-lg border border-emerald-100">
             <form onSubmit={handleSubmit} className="space-y-6">
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_subject" value="Nouveau message du site Gloriam Consulting" />
+              <input type="hidden" name="_template" value="table" />
+              
               {[
                 { name: "name", label: "Nom complet", type: "text" },
                 { name: "email", label: "Email", type: "email" },
@@ -146,8 +152,6 @@ export default function Contact() {
                     type={field.type}
                     id={field.name}
                     name={field.name}
-                    value={formData[field.name as keyof typeof formData]}
-                    onChange={handleChange}
                     required
                     className="block w-full rounded-lg border border-emerald-200 bg-white px-4 py-3 text-zinc-700 transition-colors duration-200 focus:border-teal-400 focus:outline-none focus:ring focus:ring-teal-200 focus:ring-opacity-50"
                   />
@@ -164,8 +168,6 @@ export default function Contact() {
                 <textarea
                   id="message"
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
                   required
                   rows={4}
                   className="block w-full rounded-lg border border-emerald-200 bg-white px-4 py-3 text-zinc-700 transition-colors duration-200 focus:border-teal-400 focus:outline-none focus:ring focus:ring-teal-200 focus:ring-opacity-50"
