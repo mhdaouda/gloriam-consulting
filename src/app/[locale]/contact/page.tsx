@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -23,21 +24,27 @@ export default function Contact() {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    setIsSubmitting(true);
 
-      if (!response.ok) {
-        throw new Error('Erreur lors de l\'envoi du message');
-      }
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'contact@gloriam-consulting.com'
+      };
+
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Vous devrez remplacer ceci
+        'YOUR_TEMPLATE_ID', // Vous devrez remplacer ceci
+        templateParams,
+        'YOUR_PUBLIC_KEY' // Vous devrez remplacer ceci
+      );
 
       // Réinitialiser le formulaire
       setFormData({
@@ -51,6 +58,8 @@ export default function Contact() {
     } catch (error) {
       console.error('Erreur:', error);
       alert('Une erreur est survenue lors de l\'envoi du message.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -165,10 +174,11 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="group w-full rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-3 text-white transition-all duration-200 hover:from-emerald-700 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
+                disabled={isSubmitting}
+                className="group w-full rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-3 text-white transition-all duration-200 hover:from-emerald-700 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 disabled:opacity-50"
               >
                 <span className="flex items-center justify-center space-x-2">
-                  <span>Envoyer le message</span>
+                  <span>{isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}</span>
                   <FaPaperPlane className="transform transition-transform duration-200 group-hover:translate-x-1" />
                 </span>
               </button>

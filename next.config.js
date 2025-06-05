@@ -8,15 +8,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  assetPrefix: 'https://www.gloriam-consulting.com',
-  async rewrites() {
-    return [
-      {
-        source: '/logo.svg',
-        destination: '/images/GClogo.svg'
-      }
-    ];
-  }
+  assetPrefix: 'https://www.gloriam-consulting.com'
 };
 
 module.exports = withNextIntl(nextConfig); 
