@@ -20,13 +20,9 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  // Await the params
   const { locale } = await params;
-
-  // Enable static rendering
   setRequestLocale(locale);
 
-  // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as Locale)) {
     notFound();
   }
