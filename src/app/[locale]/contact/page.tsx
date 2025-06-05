@@ -26,7 +26,32 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Erreur lors de l\'envoi du message');
+      }
+
+      // Réinitialiser le formulaire
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+
+      alert('Message envoyé avec succès !');
+    } catch (error) {
+      console.error('Erreur:', error);
+      alert('Une erreur est survenue lors de l\'envoi du message.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -71,7 +96,7 @@ export default function Contact() {
               {
                 Icon: FaEnvelope,
                 title: "Email",
-                content: ["contact@gloriamconsulting.com"],
+                content: ["contact@gloriam-consulting.com"],
                 gradient: "from-emerald-100 to-teal-100",
                 iconColor: "text-emerald-600"
               }
