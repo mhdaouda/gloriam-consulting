@@ -8,6 +8,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  basePath: '/gloriam-consulting',
   assetPrefix: 'https://www.gloriam-consulting.com'
 };
 
