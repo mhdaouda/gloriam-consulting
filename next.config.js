@@ -4,12 +4,10 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   images: {
     unoptimized: true,
   },
-  basePath: '/gloriam-consulting',
-  assetPrefix: 'https://www.gloriam-consulting.com'
+  basePath: '/gloriam-consulting'
 };
 
 module.exports = withNextIntl(nextConfig); 
