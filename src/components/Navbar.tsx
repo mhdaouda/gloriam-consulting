@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { t } from '@/i18n';
 
@@ -12,8 +13,17 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link href={`/${locale}`} className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-zinc-800">Gloriam</span>
-            <span className="text-2xl font-light text-zinc-600">Consulting</span>
+            <Image
+              src="/images/GClogo.svg"
+              alt="Gloriam Consulting"
+              width={40}
+              height={40}
+              className="w-auto h-8"
+            />
+            <div className="flex items-baseline">
+              <span className="text-2xl font-bold text-zinc-800">Gloriam</span>
+              <span className="text-2xl font-light text-zinc-600">Consulting</span>
+            </div>
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
