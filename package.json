@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build && touch out/.nojekyll",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "git checkout deploy && git merge dev && git push origin deploy && git checkout dev"
+    "lint": "next lint"
   },
   "dependencies": {
     "@next/third-parties": "^15.3.3",

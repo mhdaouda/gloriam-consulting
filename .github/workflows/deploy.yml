@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - deploy  # Déclenche le déploiement lors d'un push sur la branche deploy
+      - deploy
 
 # Autorise le workflow à créer un commit sur la branche gh-pages
 permissions:
