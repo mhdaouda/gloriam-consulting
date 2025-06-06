@@ -28,16 +28,16 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center space-x-8">
             <Link href={`/${locale}/services`} className="text-zinc-600 hover:text-zinc-900">
-              {t(locale, 'nav.services')}
+              {t(locale, 'navigation.services')}
             </Link>
             <Link href={`/${locale}/about`} className="text-zinc-600 hover:text-zinc-900">
-              {t(locale, 'nav.about')}
+              {t(locale, 'navigation.about')}
             </Link>
             <Link href={`/${locale}/trust`} className="text-zinc-600 hover:text-zinc-900">
-              {t(locale, 'nav.trust')}
+              {t(locale, 'navigation.trust')}
             </Link>
             <Link href={`/${locale}/contact`} className="text-zinc-600 hover:text-zinc-900">
-              {t(locale, 'nav.contact')}
+              {t(locale, 'navigation.contact')}
             </Link>
             <Link 
               href={locale === 'fr' ? '/en' : '/fr'} 

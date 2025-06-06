@@ -1,7 +1,6 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
 import { 
   FaLightbulb, 
   FaChartBar, 
@@ -56,25 +55,10 @@ export default function Home() {
           style={{ y, opacity }}
           className="relative z-10 container mx-auto text-center"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="mb-12"
-          >
-            <Image
-              src={images.other.gcLogo}
-              alt="Gloriam Consulting"
-              width={200}
-              height={200}
-              className="mx-auto w-48 h-auto mb-8"
-              priority
-            />
-          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
             className="mb-6 text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-800 via-zinc-700 to-zinc-800"
           >
             {t(locale, 'home.title')}
@@ -82,7 +66,7 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
             className="mb-8 text-2xl font-light sm:text-3xl text-zinc-700"
           >
             {t(locale, 'home.subtitle')}
@@ -90,7 +74,7 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
             className="mx-auto max-w-2xl text-lg text-zinc-600"
           >
             {t(locale, 'home.description')}
@@ -98,7 +82,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
             className="mt-10"
           >
             <a

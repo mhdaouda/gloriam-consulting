@@ -2,7 +2,7 @@ export type Locale = 'fr' | 'en';
 
 const translations = {
   fr: {
-    nav: {
+    navigation: {
       services: 'Services',
       about: 'À propos',
       trust: 'Ils nous font confiance',
@@ -36,13 +36,13 @@ const translations = {
       accept: 'Accepter',
     },
     footer: {
-      rights: 'Tous droits réservés.',
-      privacy: 'Politique de confidentialité',
+      allRights: 'Tous droits réservés.',
+      privacyPolicy: 'Politique de confidentialité',
       cookies: 'Cookies',
     },
   },
   en: {
-    nav: {
+    navigation: {
       services: 'Services',
       about: 'About',
       trust: 'They Trust Us',
@@ -76,8 +76,8 @@ const translations = {
       accept: 'Accept',
     },
     footer: {
-      rights: 'All rights reserved.',
-      privacy: 'Privacy Policy',
+      allRights: 'All rights reserved.',
+      privacyPolicy: 'Privacy Policy',
       cookies: 'Cookies',
     },
   },
