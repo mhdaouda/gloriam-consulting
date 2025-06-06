@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { t } from '@/i18n';
 
-export default function CookieConsent() {
+export function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
   const { locale } = useLocaleContext();
 
@@ -18,30 +18,30 @@ export default function CookieConsent() {
   }, []);
 
   const acceptCookies = () => {
-    localStorage.setItem('cookie-consent', 'true');
+    localStorage.setItem('cookie-consent', 'accepted');
     setShowBanner(false);
   };
 
   if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 p-4 shadow-lg z-50">
+      <div className="container mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex flex-col md:flex-row items-center gap-2">
             <p className="text-sm text-zinc-600 text-center md:text-left">
               {t(locale, 'cookies.description')}
             </p>
             <Link
-              href="/cookies"
-              className="text-sm text-emerald-600 hover:text-emerald-700 transition-colors underline"
+              href={`/${locale}/cookies`}
+              className="text-sm text-blue-600 hover:text-blue-800 underline"
             >
-              {t(locale, 'cookies.title')}
+              {t(locale, 'cookies.learnMore')}
             </Link>
           </div>
           <button
             onClick={acceptCookies}
-            className="px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors text-sm whitespace-nowrap"
+            className="px-6 py-2 bg-zinc-800 text-white rounded-full hover:bg-zinc-700 transition-colors"
           >
             {t(locale, 'cookies.accept')}
           </button>

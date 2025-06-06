@@ -4,8 +4,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/gloriam-consulting', // Le nom de votre dépôt
-  assetPrefix: '/gloriam-consulting', // Le nom de votre dépôt sans slash à la fin
+  basePath: '', // Pas de basePath car nous utilisons un domaine personnalisé
+  assetPrefix: '', // Pas de prefix car nous utilisons un domaine personnalisé
   trailingSlash: true, // Ajoute un slash à la fin des URLs
 };
 

@@ -1,187 +1,145 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { images } from '../_lib/images';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { t } from '@/i18n';
 
-const navItemVariants = {
-  hidden: { opacity: 0, y: -10 },
-  visible: { opacity: 1, y: 0 }
-};
-
-const mobileMenuVariants = {
-  hidden: { opacity: 0, height: 0 },
-  visible: { 
-    opacity: 1, 
-    height: 'auto',
-    transition: {
-      duration: 0.3,
-      staggerChildren: 0.1
-    }
-  },
-  exit: { 
-    opacity: 0, 
-    height: 0,
-    transition: {
-      duration: 0.2
-    }
-  }
-};
-
-const logoVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: { 
-    opacity: 1, 
-    x: 0,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
-
 export default function Navigation() {
-  const { locale, changeLocale, availableLocales } = useLocaleContext();
+  const { locale } = useLocaleContext();
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const navigationLinks = [
-    { href: '/', label: t(locale, 'navigation.home') },
-    { href: '/services', label: t(locale, 'navigation.services') },
-    { href: '/about', label: t(locale, 'navigation.about') },
-    { href: '/trust', label: t(locale, 'navigation.trust') },
-    { href: '/contact', label: t(locale, 'navigation.contact') },
-    { 
-      href: '#',
-      label: locale === 'fr' ? 'EN' : 'FR',
-      onClick: () => changeLocale(locale === 'fr' ? 'en' : 'fr')
-    }
-  ];
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
-    <motion.nav
-      initial="hidden"
-      animate="visible"
-      className="fixed left-0 right-0 top-0 z-50 bg-white/80 backdrop-blur-sm shadow-lg"
-    >
+    <nav className="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
       <div className="container mx-auto px-4">
-        <div className="flex h-20 items-center justify-between">
-          <motion.div variants={logoVariants}>
-            <Link href="/" className="flex items-center group">
-              <Image
-                src={images.other.gcLogo}
-                alt="Gloriam Consulting Logo"
-                width={150}
-                height={50}
-                className="h-8 w-auto transition-transform duration-300 group-hover:scale-105"
-                priority
-              />
-              <span className="ml-4 text-2xl font-semibold text-zinc-800 transition-colors duration-300 group-hover:text-zinc-600">
-                Gloriam Consulting
-              </span>
-            </Link>
-          </motion.div>
+        <div className="flex h-16 items-center justify-between">
+          <Link href={`/${locale}`} className="flex items-center space-x-2">
+            <span className="text-2xl font-bold text-zinc-800">Gloriam</span>
+            <span className="text-2xl font-light text-zinc-600">Consulting</span>
+          </Link>
 
-          <div className="hidden space-x-4 md:flex">
-            {navigationLinks.map((item, index) => (
-              <motion.div
-                key={item.href}
-                variants={navItemVariants}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: index * 0.1 }}
-              >
-                {item.onClick ? (
-                  <button
-                    onClick={item.onClick}
-                    className="relative rounded-md px-3 py-2 text-zinc-700 transition-colors duration-300 hover:text-zinc-900 group"
-                  >
-                    {item.label}
-                  </button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className={`relative rounded-md px-3 py-2 text-zinc-700 transition-colors duration-300 hover:text-zinc-900 group ${
-                      pathname === item.href ? 'text-zinc-900 font-medium' : ''
-                    }`}
-                  >
-                    {item.label}
-                    <motion.span
-                      className={`absolute bottom-0 left-0 h-0.5 bg-zinc-800 transition-all duration-300 ${
-                        pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
-                      }`}
-                      layoutId="underline"
-                    />
-                  </Link>
-                )}
-              </motion.div>
-            ))}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Link
+              href={`/${locale}/services`}
+              className={`text-zinc-600 hover:text-zinc-900 ${
+                pathname === `/${locale}/services` ? 'font-semibold' : ''
+              }`}
+            >
+              {t(locale, 'nav.services')}
+            </Link>
+            <Link
+              href={`/${locale}/about`}
+              className={`text-zinc-600 hover:text-zinc-900 ${
+                pathname === `/${locale}/about` ? 'font-semibold' : ''
+              }`}
+            >
+              {t(locale, 'nav.about')}
+            </Link>
+            <Link
+              href={`/${locale}/trust`}
+              className={`text-zinc-600 hover:text-zinc-900 ${
+                pathname === `/${locale}/trust` ? 'font-semibold' : ''
+              }`}
+            >
+              {t(locale, 'nav.trust')}
+            </Link>
+            <Link
+              href={`/${locale}/contact`}
+              className={`text-zinc-600 hover:text-zinc-900 ${
+                pathname === `/${locale}/contact` ? 'font-semibold' : ''
+              }`}
+            >
+              {t(locale, 'nav.contact')}
+            </Link>
+            <Link
+              href={locale === 'fr' ? '/en' : '/fr'}
+              className="text-zinc-600 hover:text-zinc-900 font-medium"
+            >
+              {locale === 'fr' ? 'EN' : 'FR'}
+            </Link>
           </div>
 
-          {/* Menu mobile */}
-          <motion.div 
-            className="md:hidden"
-            variants={navItemVariants}
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="md:hidden text-zinc-600 hover:text-zinc-900"
           >
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="text-zinc-700 hover:text-zinc-900 transition-colors duration-300"
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-            </button>
-          </motion.div>
+              {menuOpen ? (
+                <path d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
 
-        {/* Menu mobile déroulant */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              className="md:hidden overflow-hidden"
-              variants={mobileMenuVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
-              <div className="space-y-1 pb-3 pt-2">
-                {navigationLinks.map((item, index) => (
-                  <motion.div
-                    key={item.href}
-                    variants={navItemVariants}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    {item.onClick ? (
-                      <button
-                        onClick={() => {
-                          item.onClick?.();
-                          setMenuOpen(false);
-                        }}
-                        className="block w-full text-left rounded-md px-3 py-2 text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 transition-all duration-300"
-                      >
-                        {item.label}
-                      </button>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        className={`block rounded-md px-3 py-2 text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 transition-all duration-300 ${
-                          pathname === item.href ? 'bg-zinc-50 text-zinc-900 font-medium' : ''
-                        }`}
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden py-4">
+            <div className="flex flex-col space-y-4">
+              <Link
+                href={`/${locale}/services`}
+                className={`text-zinc-600 hover:text-zinc-900 ${
+                  pathname === `/${locale}/services` ? 'font-semibold' : ''
+                }`}
+                onClick={toggleMenu}
+              >
+                {t(locale, 'nav.services')}
+              </Link>
+              <Link
+                href={`/${locale}/about`}
+                className={`text-zinc-600 hover:text-zinc-900 ${
+                  pathname === `/${locale}/about` ? 'font-semibold' : ''
+                }`}
+                onClick={toggleMenu}
+              >
+                {t(locale, 'nav.about')}
+              </Link>
+              <Link
+                href={`/${locale}/trust`}
+                className={`text-zinc-600 hover:text-zinc-900 ${
+                  pathname === `/${locale}/trust` ? 'font-semibold' : ''
+                }`}
+                onClick={toggleMenu}
+              >
+                {t(locale, 'nav.trust')}
+              </Link>
+              <Link
+                href={`/${locale}/contact`}
+                className={`text-zinc-600 hover:text-zinc-900 ${
+                  pathname === `/${locale}/contact` ? 'font-semibold' : ''
+                }`}
+                onClick={toggleMenu}
+              >
+                {t(locale, 'nav.contact')}
+              </Link>
+              <Link
+                href={locale === 'fr' ? '/en' : '/fr'}
+                className="text-zinc-600 hover:text-zinc-900 font-medium"
+                onClick={toggleMenu}
+              >
+                {locale === 'fr' ? 'EN' : 'FR'}
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
-    </motion.nav>
+    </nav>
   );
 } 

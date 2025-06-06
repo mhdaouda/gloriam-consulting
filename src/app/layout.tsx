@@ -1,14 +1,15 @@
 import { Inter } from 'next/font/google';
 import Navigation from '@/app/_components/Navigation';
-import CookieConsent from '@/app/_components/CookieConsent';
+import { CookieConsent } from '@/app/_components/CookieConsent';
 import { LocaleProvider } from '@/contexts/LocaleContext';
+import { Metadata } from 'next';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Gloriam Consulting',
-  description: 'Cabinet de conseil en stratégie et management',
+  description: 'Votre partenaire en excellence commerciale',
 };
 
 export default function RootLayout({
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={inter.className}>
-        <LocaleProvider>
+        <LocaleProvider locale="fr">
           <Navigation />
           <main className="min-h-screen pt-16">
             {children}
