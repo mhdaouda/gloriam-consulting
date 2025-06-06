@@ -88,7 +88,7 @@ export default function Home() {
               href="#features"
               className="rounded-full bg-zinc-700 px-8 py-3 text-white font-semibold transition-all hover:bg-zinc-600 hover:shadow-xl border border-zinc-600 hover:scale-105"
             >
-              En savoir plus
+              {t('learnMore')}
             </a>
           </motion.div>
         </motion.div>
@@ -124,9 +124,9 @@ export default function Home() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-zinc-800 mb-4">Nos atouts</h2>
+            <h2 className="text-4xl font-bold text-zinc-800 mb-4">{t('features.title')}</h2>
             <p className="text-xl text-zinc-600 max-w-2xl mx-auto">
-              Découvrez ce qui fait notre différence et notre expertise
+              {t('features.subtitle')}
             </p>
           </motion.div>
 
@@ -140,10 +140,10 @@ export default function Home() {
             >
               <FaLightbulb className="w-12 h-12 mb-6 text-blue-600" />
               <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Innovation
+                {t('features.innovation.title')}
               </h3>
               <p className="text-zinc-600 leading-relaxed">
-                Des solutions innovantes et créatives pour transformer votre entreprise
+                {t('features.innovation.description')}
               </p>
               <div className="mt-6 h-1 w-0 bg-gradient-to-r from-blue-400 to-indigo-600 group-hover:w-full transition-all duration-500"></div>
             </motion.div>
@@ -157,15 +157,15 @@ export default function Home() {
             >
               <FaChartBar className="w-12 h-12 mb-6 text-purple-600" />
               <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text text-transparent">
-                Excellence
+                {t('features.excellence.title')}
               </h3>
               <p className="text-zinc-600 leading-relaxed">
-                Une expertise pointue pour des résultats exceptionnels
+                {t('features.excellence.description')}
               </p>
               <div className="mt-6 h-1 w-0 bg-gradient-to-r from-purple-400 to-fuchsia-600 group-hover:w-full transition-all duration-500"></div>
             </motion.div>
 
-            {/* Feature 3 - Partenariat */}
+            {/* Feature 3 - Partnership */}
             <motion.div
               variants={scaleIn}
               whileHover={{ y: -10, scale: 1.02 }}
@@ -174,10 +174,10 @@ export default function Home() {
             >
               <FaHandshake className="w-12 h-12 mb-6 text-emerald-600" />
               <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                Partenariat
+                {t('features.partnership.title')}
               </h3>
               <p className="text-zinc-600 leading-relaxed">
-                Un accompagnement personnalisé pour une réussite durable
+                {t('features.partnership.description')}
               </p>
               <div className="mt-6 h-1 w-0 bg-gradient-to-r from-emerald-400 to-teal-600 group-hover:w-full transition-all duration-500"></div>
             </motion.div>
