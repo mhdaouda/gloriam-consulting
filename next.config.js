@@ -6,8 +6,7 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 const nextConfig = {
   images: {
     unoptimized: true,
-  },
-  basePath: process.env.NODE_ENV === 'development' ? '/gloriam-consulting' : ''
+  }
 };
 
 module.exports = withNextIntl(nextConfig); 
