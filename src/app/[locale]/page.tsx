@@ -7,6 +7,7 @@ import {
   FaChartBar, 
   FaHandshake 
 } from 'react-icons/fa';
+import { images } from '../_lib/images';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -98,7 +99,11 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.05 }}
             transition={{ duration: 1 }}
-            className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-30"
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${images.other.pattern.src})`,
+              opacity: 0.3
+            }}
           />
         </div>
         

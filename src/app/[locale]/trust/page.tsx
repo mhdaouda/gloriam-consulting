@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { FaStar, FaHandshake, FaChartLine } from 'react-icons/fa';
+import { images } from '../../_lib/images';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -48,21 +49,21 @@ export default function Trust() {
   const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
 
   const partners = [
-    { src: "/images/partners/alten.png", alt: "Alten Logo" },
-    { src: "/images/partners/aws.png", alt: "AWS Logo" },
-    { src: "/images/partners/github.jpeg", alt: "GitHub Logo" },
-    { src: "/images/partners/google-logo.png", alt: "Google Logo" },
-    { src: "/images/partners/ibm.png", alt: "IBM Logo" },
-    { src: "/images/partners/microsfot-azure.png", alt: "Microsoft Azure Logo" },
-    { src: "/images/partners/porkbun.svg", alt: "Porkbun Logo" }
+    { src: images.partners.alten, alt: "Alten Logo" },
+    { src: images.partners.aws, alt: "AWS Logo" },
+    { src: images.partners.github, alt: "GitHub Logo" },
+    { src: images.partners.google, alt: "Google Logo" },
+    { src: images.partners.ibm, alt: "IBM Logo" },
+    { src: images.partners.azure, alt: "Microsoft Azure Logo" },
+    { src: images.partners.porkbun, alt: "Porkbun Logo" }
   ];
 
   const clients = [
-    { src: "/images/clients/banquepostale.png", alt: "Banque Postale Logo" },
-    { src: "/images/clients/NGE.jpeg", alt: "NGE Logo" },
-    { src: "/images/clients/axa.png", alt: "AXA Logo" },
-    { src: "/images/clients/bp2s.png", alt: "BP2S Logo" },
-    { src: "/images/clients/totalenergie.jpeg", alt: "TotalEnergies Logo" }
+    { src: images.clients.banquePostale, alt: "Banque Postale Logo" },
+    { src: images.clients.nge, alt: "NGE Logo" },
+    { src: images.clients.axa, alt: "AXA Logo" },
+    { src: images.clients.bp2s, alt: "BP2S Logo" },
+    { src: images.clients.totalEnergie, alt: "TotalEnergies Logo" }
   ];
 
   return (

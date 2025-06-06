@@ -7,7 +7,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/gloriam-consulting'
+  basePath: process.env.NODE_ENV === 'development' ? '/gloriam-consulting' : ''
 };
 
 module.exports = withNextIntl(nextConfig); 

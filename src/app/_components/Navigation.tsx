@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { images } from '../_lib/images';
+import { useLocalePath } from '../_hooks/useLocalePath';
 
 const navItemVariants = {
   hidden: { opacity: 0, y: -10 },
@@ -45,24 +47,16 @@ const logoVariants = {
 
 export default function Navigation({ locale }: { locale: string }) {
   const t = useTranslations('navigation');
-  const currentPath = usePathname();
+  const { getLocalePath, getOtherLocalePath } = useLocalePath();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Fonction pour obtenir le chemin dans l'autre langue
-  const getOtherLocaleHref = () => {
-    const otherLocale = locale === 'fr' ? 'en' : 'fr';
-    const segments = currentPath.split('/');
-    segments[1] = otherLocale;
-    return segments.join('/');
-  };
-
   const navigationLinks = [
-    { href: `/${locale}`, label: t('home') },
-    { href: `/${locale}/services`, label: t('services') },
-    { href: `/${locale}/about`, label: t('about') },
-    { href: `/${locale}/trust`, label: t('trust') },
-    { href: `/${locale}/contact`, label: t('contact') },
-    { href: getOtherLocaleHref(), label: locale === 'fr' ? 'EN' : 'FR' }
+    { href: getLocalePath('', locale), label: t('home') },
+    { href: getLocalePath('services', locale), label: t('services') },
+    { href: getLocalePath('about', locale), label: t('about') },
+    { href: getLocalePath('trust', locale), label: t('trust') },
+    { href: getLocalePath('contact', locale), label: t('contact') },
+    { href: getOtherLocalePath(locale), label: locale === 'fr' ? 'EN' : 'FR' }
   ];
 
   return (
@@ -74,9 +68,9 @@ export default function Navigation({ locale }: { locale: string }) {
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           <motion.div variants={logoVariants}>
-            <Link href={`/${locale}`} className="flex items-center group">
+            <Link href={getLocalePath('', locale)} className="flex items-center group">
               <Image
-                src="/images/GClogo.png"
+                src={images.other.gcLogo}
                 alt="Gloriam Consulting Logo"
                 width={150}
                 height={50}

@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaStar, FaCheck, FaHeart } from 'react-icons/fa';
+import { images } from '../../_lib/images';
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -40,7 +41,7 @@ export default function About() {
             <div className="relative">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-200 to-purple-200 transform rotate-6 scale-105 opacity-20 group-hover:rotate-4 transition-transform duration-300"></div>
               <Image
-                src="/images/GClogo.png"
+                src={images.other.gcLogo}
                 alt="Gloriam Consulting Logo"
                 width={300}
                 height={300}
