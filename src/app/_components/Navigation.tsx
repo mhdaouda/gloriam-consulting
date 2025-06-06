@@ -1,6 +1,5 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -8,7 +7,8 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { images } from '../_lib/images';
-import { useLocalePath } from '../_hooks/useLocalePath';
+import { useLocaleContext } from '@/contexts/LocaleContext';
+import { t } from '@/i18n';
 
 const navItemVariants = {
   hidden: { opacity: 0, y: -10 },
@@ -45,19 +45,22 @@ const logoVariants = {
   }
 };
 
-export default function Navigation({ locale }: { locale: string }) {
-  const t = useTranslations('navigation');
-  const { getLocalePath, getOtherLocalePath } = useLocalePath();
+export default function Navigation() {
+  const { locale, changeLocale, availableLocales } = useLocaleContext();
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
   const navigationLinks = [
-    { href: `/${locale}`, label: t('home') },
-    { href: `/${locale}/services`, label: t('services') },
-    { href: `/${locale}/about`, label: t('about') },
-    { href: `/${locale}/trust`, label: t('trust') },
-    { href: `/${locale}/contact`, label: t('contact') },
-    { href: getOtherLocalePath(locale), label: locale === 'fr' ? 'EN' : 'FR' }
+    { href: '/', label: t(locale, 'navigation.home') },
+    { href: '/services', label: t(locale, 'navigation.services') },
+    { href: '/about', label: t(locale, 'navigation.about') },
+    { href: '/trust', label: t(locale, 'navigation.trust') },
+    { href: '/contact', label: t(locale, 'navigation.contact') },
+    { 
+      href: '#',
+      label: locale === 'fr' ? 'EN' : 'FR',
+      onClick: () => changeLocale(locale === 'fr' ? 'en' : 'fr')
+    }
   ];
 
   return (
@@ -69,7 +72,7 @@ export default function Navigation({ locale }: { locale: string }) {
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           <motion.div variants={logoVariants}>
-            <Link href={`/${locale}`} className="flex items-center group">
+            <Link href="/" className="flex items-center group">
               <Image
                 src={images.other.gcLogo}
                 alt="Gloriam Consulting Logo"
@@ -93,20 +96,29 @@ export default function Navigation({ locale }: { locale: string }) {
                 animate="visible"
                 transition={{ delay: index * 0.1 }}
               >
-                <Link
-                  href={item.href}
-                  className={`relative rounded-md px-3 py-2 text-zinc-700 transition-colors duration-300 hover:text-zinc-900 group ${
-                    pathname === item.href ? 'text-zinc-900 font-medium' : ''
-                  }`}
-                >
-                  {item.label}
-                  <motion.span
-                    className={`absolute bottom-0 left-0 h-0.5 bg-zinc-800 transition-all duration-300 ${
-                      pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
+                {item.onClick ? (
+                  <button
+                    onClick={item.onClick}
+                    className="relative rounded-md px-3 py-2 text-zinc-700 transition-colors duration-300 hover:text-zinc-900 group"
+                  >
+                    {item.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={`relative rounded-md px-3 py-2 text-zinc-700 transition-colors duration-300 hover:text-zinc-900 group ${
+                      pathname === item.href ? 'text-zinc-900 font-medium' : ''
                     }`}
-                    layoutId="underline"
-                  />
-                </Link>
+                  >
+                    {item.label}
+                    <motion.span
+                      className={`absolute bottom-0 left-0 h-0.5 bg-zinc-800 transition-all duration-300 ${
+                        pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
+                      }`}
+                      layoutId="underline"
+                    />
+                  </Link>
+                )}
               </motion.div>
             ))}
           </div>
@@ -142,15 +154,27 @@ export default function Navigation({ locale }: { locale: string }) {
                     variants={navItemVariants}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Link
-                      href={item.href}
-                      className={`block rounded-md px-3 py-2 text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 transition-all duration-300 ${
-                        pathname === item.href ? 'bg-zinc-50 text-zinc-900 font-medium' : ''
-                      }`}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
+                    {item.onClick ? (
+                      <button
+                        onClick={() => {
+                          item.onClick?.();
+                          setMenuOpen(false);
+                        }}
+                        className="block w-full text-left rounded-md px-3 py-2 text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 transition-all duration-300"
+                      >
+                        {item.label}
+                      </button>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className={`block rounded-md px-3 py-2 text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 transition-all duration-300 ${
+                          pathname === item.href ? 'bg-zinc-50 text-zinc-900 font-medium' : ''
+                        }`}
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    )}
                   </motion.div>
                 ))}
               </div>

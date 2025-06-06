@@ -1,10 +1,11 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaStar, FaCheck, FaHeart } from 'react-icons/fa';
-import { images } from '../../_lib/images';
+import { images } from '../_lib/images';
+import { useLocaleContext } from '@/contexts/LocaleContext';
+import { t } from '@/i18n';
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -22,10 +23,9 @@ interface Stat {
 }
 
 export default function About() {
-  const t = useTranslations('about');
-
-  const values = t.raw('values.list') as string[];
-  const stats = t.raw('expertise.stats') as Stat[];
+  const { locale } = useLocaleContext();
+  const values = t(locale, 'about.values.list') as unknown as string[];
+  const stats = t(locale, 'about.expertise.stats') as unknown as Stat[];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24">
@@ -37,10 +37,10 @@ export default function About() {
           className="mb-20 text-center"
         >
           <h1 className="mb-6 text-5xl font-bold sm:text-6xl text-zinc-800">
-            {t('title')}
+            {t(locale, 'about.title')}
           </h1>
           <p className="mx-auto max-w-3xl text-xl text-zinc-600 leading-relaxed">
-            {t('description')}
+            {t(locale, 'about.description')}
           </p>
         </motion.div>
 
@@ -61,27 +61,27 @@ export default function About() {
           <div className="flex flex-col justify-center space-y-8">
             <div className="group">
               <h2 className="mb-4 text-2xl font-semibold text-zinc-800 group-hover:text-zinc-900 transition-colors duration-300">
-                {t('mission.title')}
+                {t(locale, 'about.mission.title')}
               </h2>
               <p className="text-zinc-600 leading-relaxed">
-                {t('mission.description')}
+                {t(locale, 'about.mission.description')}
               </p>
               <div className="h-0.5 w-0 bg-gradient-to-r from-indigo-400 to-purple-600 group-hover:w-full transition-all duration-500"></div>
             </div>
 
             <div className="group">
               <h2 className="mb-4 text-2xl font-semibold text-zinc-800 group-hover:text-zinc-900 transition-colors duration-300">
-                {t('vision.title')}
+                {t(locale, 'about.vision.title')}
               </h2>
               <p className="text-zinc-600 leading-relaxed">
-                {t('vision.description')}
+                {t(locale, 'about.vision.description')}
               </p>
               <div className="h-0.5 w-0 bg-gradient-to-r from-purple-400 to-indigo-600 group-hover:w-full transition-all duration-500"></div>
             </div>
 
             <div className="group">
               <h2 className="mb-4 text-2xl font-semibold text-zinc-800 group-hover:text-zinc-900 transition-colors duration-300">
-                {t('values.title')}
+                {t(locale, 'about.values.title')}
               </h2>
               <ul className="grid grid-cols-2 gap-4 text-zinc-600">
                 {values.map((value: string, index: number) => (
@@ -101,7 +101,7 @@ export default function About() {
 
         <div className="mt-24 rounded-2xl bg-gradient-to-br from-indigo-50 via-purple-50 to-white p-12 shadow-lg">
           <h2 className="mb-12 text-center text-3xl font-bold text-zinc-800">
-            {t('expertise.title')}
+            {t(locale, 'about.expertise.title')}
           </h2>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {stats.map((stat: Stat, index: number) => (

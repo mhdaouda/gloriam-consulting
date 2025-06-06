@@ -1,16 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useLocalePath } from '../_hooks/useLocalePath';
-import { useParams } from 'next/navigation';
+import { useLocaleContext } from '@/contexts/LocaleContext';
+import { t } from '@/i18n';
 
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
-  const t = useTranslations('cookies');
-  const { getLocalePath } = useLocalePath();
-  const { locale } = useParams();
+  const { locale } = useLocaleContext();
 
   useEffect(() => {
     // Vérifie si l'utilisateur a déjà accepté les cookies
@@ -33,20 +30,20 @@ export default function CookieConsent() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-col md:flex-row items-center gap-2">
             <p className="text-sm text-zinc-600 text-center md:text-left">
-              {t('description')}
+              {t(locale, 'cookies.description')}
             </p>
             <Link
-              href={getLocalePath('cookies', locale as string)}
+              href="/cookies"
               className="text-sm text-emerald-600 hover:text-emerald-700 transition-colors underline"
             >
-              {t('title')}
+              {t(locale, 'cookies.title')}
             </Link>
           </div>
           <button
             onClick={acceptCookies}
             className="px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors text-sm whitespace-nowrap"
           >
-            {t('accept')}
+            {t(locale, 'cookies.accept')}
           </button>
         </div>
       </div>

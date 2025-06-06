@@ -1,13 +1,14 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { 
   FaLightbulb, 
   FaChartBar, 
   FaHandshake 
 } from 'react-icons/fa';
-import { images } from '../_lib/images';
+import { images } from './_lib/images';
+import { useLocaleContext } from '@/contexts/LocaleContext';
+import { t } from '@/i18n';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -38,7 +39,7 @@ const scaleIn = {
 };
 
 export default function Home() {
-  const t = useTranslations('home');
+  const { locale } = useLocaleContext();
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   const y = useTransform(scrollY, [0, 300], [0, 100]);
@@ -60,7 +61,7 @@ export default function Home() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="mb-6 text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-800 via-zinc-700 to-zinc-800"
           >
-            {t('title')}
+            {t(locale, 'home.title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -68,7 +69,7 @@ export default function Home() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="mb-8 text-2xl font-light sm:text-3xl text-zinc-700"
           >
-            {t('subtitle')}
+            {t(locale, 'home.subtitle')}
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -76,7 +77,7 @@ export default function Home() {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="mx-auto max-w-2xl text-lg text-zinc-600"
           >
-            {t('description')}
+            {t(locale, 'home.description')}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -88,7 +89,7 @@ export default function Home() {
               href="#features"
               className="rounded-full bg-zinc-700 px-8 py-3 text-white font-semibold transition-all hover:bg-zinc-600 hover:shadow-xl border border-zinc-600 hover:scale-105"
             >
-              {t('learnMore')}
+              {t(locale, 'home.learnMore')}
             </a>
           </motion.div>
         </motion.div>
@@ -124,9 +125,9 @@ export default function Home() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-zinc-800 mb-4">{t('features.title')}</h2>
+            <h2 className="text-4xl font-bold text-zinc-800 mb-4">{t(locale, 'home.features.title')}</h2>
             <p className="text-xl text-zinc-600 max-w-2xl mx-auto">
-              {t('features.subtitle')}
+              {t(locale, 'home.features.subtitle')}
             </p>
           </motion.div>
 
@@ -140,10 +141,10 @@ export default function Home() {
             >
               <FaLightbulb className="w-12 h-12 mb-6 text-blue-600" />
               <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                {t('features.innovation.title')}
+                {t(locale, 'home.features.innovation.title')}
               </h3>
               <p className="text-zinc-600 leading-relaxed">
-                {t('features.innovation.description')}
+                {t(locale, 'home.features.innovation.description')}
               </p>
               <div className="mt-6 h-1 w-0 bg-gradient-to-r from-blue-400 to-indigo-600 group-hover:w-full transition-all duration-500"></div>
             </motion.div>
@@ -157,10 +158,10 @@ export default function Home() {
             >
               <FaChartBar className="w-12 h-12 mb-6 text-purple-600" />
               <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text text-transparent">
-                {t('features.excellence.title')}
+                {t(locale, 'home.features.excellence.title')}
               </h3>
               <p className="text-zinc-600 leading-relaxed">
-                {t('features.excellence.description')}
+                {t(locale, 'home.features.excellence.description')}
               </p>
               <div className="mt-6 h-1 w-0 bg-gradient-to-r from-purple-400 to-fuchsia-600 group-hover:w-full transition-all duration-500"></div>
             </motion.div>
@@ -174,10 +175,10 @@ export default function Home() {
             >
               <FaHandshake className="w-12 h-12 mb-6 text-emerald-600" />
               <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                {t('features.partnership.title')}
+                {t(locale, 'home.features.partnership.title')}
               </h3>
               <p className="text-zinc-600 leading-relaxed">
-                {t('features.partnership.description')}
+                {t(locale, 'home.features.partnership.description')}
               </p>
               <div className="mt-6 h-1 w-0 bg-gradient-to-r from-emerald-400 to-teal-600 group-hover:w-full transition-all duration-500"></div>
             </motion.div>

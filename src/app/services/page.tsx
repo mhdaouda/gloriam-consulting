@@ -1,12 +1,19 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaLightbulb, FaChartLine, FaDigitalTachograph, FaUsers, FaChartBar, FaBullseye, FaHandshake, FaRocket } from 'react-icons/fa';
+import { useLocaleContext } from '@/contexts/LocaleContext';
+import { t } from '@/i18n';
+import { IconType } from 'react-icons';
 
 interface Service {
-  Icon: React.ComponentType;
+  Icon: IconType;
   color: string;
+}
+
+interface ServiceData {
+  title: string;
+  description: string;
 }
 
 const serviceIcons: Service[] = [
@@ -80,12 +87,12 @@ const headerVariants = {
 };
 
 export default function Services() {
-  const t = useTranslations('services');
+  const { locale } = useLocaleContext();
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
-  const services = t.raw('list');
+  const services = t(locale, 'services.list') as unknown as ServiceData[];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white">
@@ -100,10 +107,10 @@ export default function Services() {
           animate="visible"
         >
           <h1 className="mb-6 text-5xl font-bold sm:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-800 via-zinc-600 to-zinc-800">
-            {t('title')}
+            {t(locale, 'services.title')}
           </h1>
           <p className="mx-auto max-w-3xl text-xl text-zinc-600 leading-relaxed">
-            {t('description')}
+            {t(locale, 'services.description')}
           </p>
         </motion.div>
 
@@ -113,7 +120,7 @@ export default function Services() {
           animate="visible"
           className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
-          {services.map((service: { title: string; description: string }, index: number) => {
+          {services.map((service, index) => {
             const ServiceIcon = serviceIcons[index].Icon;
             return (
               <motion.div
@@ -130,7 +137,7 @@ export default function Services() {
                 <div className="relative z-10">
                   <div className="mb-6 text-4xl">
                     <div className={`inline-flex p-3 rounded-lg bg-gradient-to-br ${serviceIcons[index].color} text-white transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                      <ServiceIcon className="w-8 h-8" />
+                      <ServiceIcon size={32} />
                     </div>
                   </div>
                   <h3 className="mb-4 text-xl font-semibold text-zinc-800 transition-colors duration-300 group-hover:text-zinc-900">
