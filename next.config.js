@@ -4,7 +4,7 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',  // Configuration pour l'export statique
+  output: 'export',  // Nécessaire pour la génération statique
   images: {
     unoptimized: true,
   },
