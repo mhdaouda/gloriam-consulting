@@ -49,13 +49,14 @@ export default function Navigation({ locale }: { locale: string }) {
   const t = useTranslations('navigation');
   const { getLocalePath, getOtherLocalePath } = useLocalePath();
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navigationLinks = [
-    { href: getLocalePath('', locale), label: t('home') },
-    { href: getLocalePath('services', locale), label: t('services') },
-    { href: getLocalePath('about', locale), label: t('about') },
-    { href: getLocalePath('trust', locale), label: t('trust') },
-    { href: getLocalePath('contact', locale), label: t('contact') },
+    { href: `/${locale}`, label: t('home') },
+    { href: `/${locale}/services`, label: t('services') },
+    { href: `/${locale}/about`, label: t('about') },
+    { href: `/${locale}/trust`, label: t('trust') },
+    { href: `/${locale}/contact`, label: t('contact') },
     { href: getOtherLocalePath(locale), label: locale === 'fr' ? 'EN' : 'FR' }
   ];
 
@@ -68,7 +69,7 @@ export default function Navigation({ locale }: { locale: string }) {
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           <motion.div variants={logoVariants}>
-            <Link href={getLocalePath('', locale)} className="flex items-center group">
+            <Link href={`/${locale}`} className="flex items-center group">
               <Image
                 src={images.other.gcLogo}
                 alt="Gloriam Consulting Logo"
@@ -94,11 +95,15 @@ export default function Navigation({ locale }: { locale: string }) {
               >
                 <Link
                   href={item.href}
-                  className="relative rounded-md px-3 py-2 text-zinc-700 transition-colors duration-300 hover:text-zinc-900 group"
+                  className={`relative rounded-md px-3 py-2 text-zinc-700 transition-colors duration-300 hover:text-zinc-900 group ${
+                    pathname === item.href ? 'text-zinc-900 font-medium' : ''
+                  }`}
                 >
                   {item.label}
                   <motion.span
-                    className="absolute bottom-0 left-0 h-0.5 w-0 bg-zinc-800 transition-all duration-300 group-hover:w-full"
+                    className={`absolute bottom-0 left-0 h-0.5 bg-zinc-800 transition-all duration-300 ${
+                      pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
                     layoutId="underline"
                   />
                 </Link>
@@ -139,7 +144,9 @@ export default function Navigation({ locale }: { locale: string }) {
                   >
                     <Link
                       href={item.href}
-                      className="block rounded-md px-3 py-2 text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 transition-all duration-300"
+                      className={`block rounded-md px-3 py-2 text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 transition-all duration-300 ${
+                        pathname === item.href ? 'bg-zinc-50 text-zinc-900 font-medium' : ''
+                      }`}
                       onClick={() => setMenuOpen(false)}
                     >
                       {item.label}
