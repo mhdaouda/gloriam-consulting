@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '', // Utilise le basePath seulement en production
   trailingSlash: true, // Ajoute un slash à la fin des URLs
 };
 
