@@ -14,7 +14,7 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between">
           <Link href={`/${locale}`} className="flex items-center space-x-2">
             <Image
-              src="/images/GClogo.svg"
+              src="/images/logoAgrandit.png"
               alt="Gloriam Consulting"
               width={40}
               height={40}

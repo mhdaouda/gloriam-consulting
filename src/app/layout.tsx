@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import { CookieConsent } from '@/app/_components/CookieConsent';
 import { LocaleProvider } from '@/contexts/LocaleContext';
 import { Metadata } from 'next';
+import GoogleAnalytics from '@/app/_components/GoogleAnalytics';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -22,6 +23,7 @@ export default function RootLayout({
         <LocaleProvider locale="fr">
           {children}
           <CookieConsent />
+          <GoogleAnalytics />
         </LocaleProvider>
       </body>
     </html>

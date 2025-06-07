@@ -15,7 +15,7 @@ import bp2s from '../../../public/images/clients/bp2s.png';
 import totalEnergie from '../../../public/images/clients/totalenergie.jpeg';
 
 // Other
-import gcLogo from '../../../public/images/GClogo.svg';
+import gcLogo from '../../../public/images/GClogo.png';
 import pattern from '../../../public/images/pattern.svg';
 
 export const images = {
