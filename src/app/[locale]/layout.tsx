@@ -1,35 +1,22 @@
-import { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
-import { Navbar } from '../_components/Navbar';
-import { Footer } from '../_components/Footer';
+import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
 
-interface LocaleLayoutProps {
-  children: ReactNode;
-  params: {
-    locale: string;
-  };
-}
-
-async function getMessages(locale: string) {
-  try {
-    return (await import(`../_translations/${locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
-}
-
-export default async function LocaleLayout({
+export default function LocaleLayout({
   children,
   params: { locale }
-}: LocaleLayoutProps) {
-  const messages = await getMessages(locale);
+}: {
+  children: React.ReactNode;
+  params: { locale: string };
+}) {
+  if (!['en', 'fr'].includes(locale)) notFound();
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <div className="flex min-h-screen flex-col">
       <Navbar />
-      {children}
+      <main className="flex-1">{children}</main>
       <Footer />
-    </NextIntlClientProvider>
+    </div>
   );
 } 
