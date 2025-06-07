@@ -1,13 +1,16 @@
-'use client';
-
 import { useTranslations } from 'next-intl';
 import { FaCookie, FaShieldAlt, FaCog } from 'react-icons/fa';
+
+export const metadata = {
+  title: 'Cookies Policy - Gloriam Consulting',
+  description: 'Our cookies policy explains how we use cookies and similar technologies on our website.'
+};
 
 export default function Cookies() {
   const t = useTranslations('cookies');
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24 relative">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24 relative cookies-page">
       {/* Pattern background */}
       <div className="absolute inset-0 overflow-hidden">
         <div
@@ -34,7 +37,7 @@ export default function Cookies() {
         </div>
 
         <div className="space-y-16">
-          <section className="space-y-8 transform hover:scale-[1.01] transition-transform duration-300">
+          <section className="space-y-8 hover:scale-[1.01] transition-transform duration-300">
             <div className="flex items-center space-x-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-600">
                 <FaCookie className="h-6 w-6" />
@@ -48,7 +51,7 @@ export default function Cookies() {
             </p>
           </section>
 
-          <section className="space-y-8 transform hover:scale-[1.01] transition-transform duration-300">
+          <section className="space-y-8 hover:scale-[1.01] transition-transform duration-300">
             <div className="flex items-center space-x-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600">
                 <FaShieldAlt className="h-6 w-6" />
@@ -85,7 +88,7 @@ export default function Cookies() {
             </div>
           </section>
 
-          <section className="space-y-8 transform hover:scale-[1.01] transition-transform duration-300">
+          <section className="space-y-8 hover:scale-[1.01] transition-transform duration-300">
             <div className="flex items-center space-x-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
                 <FaCog className="h-6 w-6" />
@@ -109,7 +112,7 @@ export default function Cookies() {
             </div>
           </section>
 
-          <section className="space-y-8 transform hover:scale-[1.01] transition-transform duration-300">
+          <section className="space-y-8 hover:scale-[1.01] transition-transform duration-300">
             <div className="flex items-center space-x-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 text-purple-600">
                 <FaShieldAlt className="h-6 w-6" />

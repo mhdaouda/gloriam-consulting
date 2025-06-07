@@ -26,3 +26,19 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.cookies-page {
+  position: relative;
+}
+
+.cookies-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/pattern.svg');
+  background-size: 200px;
+  background-repeat: repeat;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
