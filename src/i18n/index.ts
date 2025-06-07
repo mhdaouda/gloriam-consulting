@@ -3,6 +3,7 @@ export type Locale = 'fr' | 'en';
 const translations = {
   fr: {
     navigation: {
+      home: 'Accueil',
       services: 'Services',
       about: 'À propos',
       trust: 'Ils nous font confiance',
@@ -43,6 +44,7 @@ const translations = {
   },
   en: {
     navigation: {
+      home: 'Home',
       services: 'Services',
       about: 'About',
       trust: 'They Trust Us',

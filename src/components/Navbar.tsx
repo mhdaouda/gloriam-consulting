@@ -27,6 +27,9 @@ export function Navbar() {
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
+            <Link href={`/${locale}`} className="text-zinc-600 hover:text-zinc-900">
+              {t(locale, 'navigation.home')}
+            </Link>
             <Link href={`/${locale}/services`} className="text-zinc-600 hover:text-zinc-900">
               {t(locale, 'navigation.services')}
             </Link>

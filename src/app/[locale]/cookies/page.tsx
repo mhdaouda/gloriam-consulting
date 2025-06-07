@@ -4,6 +4,10 @@ import { motion } from 'framer-motion';
 import { FaCookie, FaShieldAlt, FaCog } from 'react-icons/fa';
 import { useTranslations } from 'next-intl';
 
+export function generateStaticParams() {
+  return [{ locale: 'fr' }, { locale: 'en' }];
+}
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   visible: {
