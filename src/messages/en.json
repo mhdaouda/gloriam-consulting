@@ -4,7 +4,7 @@
     "services": "Services",
     "about": "About",
     "contact": "Contact",
-    "trust": "They Trust Us"
+    "trust": "Trust"
   },
   "home": {
     "title": "Welcome to Gloriam Consulting",
@@ -175,5 +175,10 @@
       "title": "Contact Us",
       "description": "If you have any questions about our use of cookies, please don't hesitate to contact us."
     }
+  },
+  "footer": {
+    "allRights": "All rights reserved",
+    "privacyPolicy": "Privacy Policy",
+    "cookies": "Cookies"
   }
 } 
