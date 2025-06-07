@@ -2,8 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaCookie, FaShieldAlt, FaCog } from 'react-icons/fa';
-import { useLocaleContext } from '@/contexts/LocaleContext';
-import { t } from '@/i18n';
+import { useTranslations } from 'next-intl';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -25,7 +24,7 @@ const staggerContainer = {
 };
 
 export default function Cookies() {
-  const { locale } = useLocaleContext();
+  const t = useTranslations('cookies');
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24">
@@ -37,10 +36,10 @@ export default function Cookies() {
           className="mb-20 text-center"
         >
           <h1 className="mb-6 text-5xl font-bold sm:text-6xl text-zinc-800">
-            {t(locale, 'cookies.title')}
+            {t('title')}
           </h1>
           <p className="mx-auto max-w-3xl text-xl text-zinc-600 leading-relaxed">
-            {t(locale, 'cookies.description')}
+            {t('description')}
           </p>
         </motion.div>
 
@@ -56,11 +55,11 @@ export default function Cookies() {
                 <FaCookie className="h-6 w-6" />
               </div>
               <h2 className="text-2xl font-semibold text-zinc-800">
-                {t(locale, 'cookies.intro.title')}
+                {t('intro.title')}
               </h2>
             </div>
             <p className="text-zinc-600 leading-relaxed pl-16">
-              {t(locale, 'cookies.intro.description')}
+              {t('intro.description')}
             </p>
           </motion.section>
 
@@ -70,32 +69,32 @@ export default function Cookies() {
                 <FaShieldAlt className="h-6 w-6" />
               </div>
               <h2 className="text-2xl font-semibold text-zinc-800">
-                {t(locale, 'cookies.types.title')}
+                {t('types.title')}
               </h2>
             </div>
             <div className="grid gap-8 md:grid-cols-3 pl-16">
               <div className="rounded-lg bg-white p-6 shadow-lg">
                 <h3 className="mb-4 text-lg font-semibold text-zinc-800">
-                  {t(locale, 'cookies.types.necessary.title')}
+                  {t('types.necessary.title')}
                 </h3>
                 <p className="text-zinc-600">
-                  {t(locale, 'cookies.types.necessary.description')}
+                  {t('types.necessary.description')}
                 </p>
               </div>
               <div className="rounded-lg bg-white p-6 shadow-lg">
                 <h3 className="mb-4 text-lg font-semibold text-zinc-800">
-                  {t(locale, 'cookies.types.analytics.title')}
+                  {t('types.analytics.title')}
                 </h3>
                 <p className="text-zinc-600">
-                  {t(locale, 'cookies.types.analytics.description')}
+                  {t('types.analytics.description')}
                 </p>
               </div>
               <div className="rounded-lg bg-white p-6 shadow-lg">
                 <h3 className="mb-4 text-lg font-semibold text-zinc-800">
-                  {t(locale, 'cookies.types.preferences.title')}
+                  {t('types.preferences.title')}
                 </h3>
                 <p className="text-zinc-600">
-                  {t(locale, 'cookies.types.preferences.description')}
+                  {t('types.preferences.description')}
                 </p>
               </div>
             </div>
@@ -107,19 +106,19 @@ export default function Cookies() {
                 <FaCog className="h-6 w-6" />
               </div>
               <h2 className="text-2xl font-semibold text-zinc-800">
-                {t(locale, 'cookies.control.title')}
+                {t('control.title')}
               </h2>
             </div>
             <div className="space-y-4 pl-16">
               <p className="text-zinc-600 leading-relaxed">
-                {t(locale, 'cookies.control.description')}
+                {t('control.description')}
               </p>
               <div className="rounded-lg bg-white p-6 shadow-lg">
                 <h3 className="mb-4 text-lg font-semibold text-zinc-800">
-                  {t(locale, 'cookies.control.browser.title')}
+                  {t('control.browser.title')}
                 </h3>
                 <p className="text-zinc-600">
-                  {t(locale, 'cookies.control.browser.description')}
+                  {t('control.browser.description')}
                 </p>
               </div>
             </div>
@@ -131,11 +130,11 @@ export default function Cookies() {
                 <FaShieldAlt className="h-6 w-6" />
               </div>
               <h2 className="text-2xl font-semibold text-zinc-800">
-                {t(locale, 'cookies.contact.title')}
+                {t('contact.title')}
               </h2>
             </div>
             <p className="text-zinc-600 leading-relaxed pl-16">
-              {t(locale, 'cookies.contact.description')}
+              {t('contact.description')}
             </p>
           </motion.section>
         </motion.div>
