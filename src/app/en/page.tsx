@@ -9,6 +9,7 @@ import {
 import { images } from '../_lib/images';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { t } from '@/i18n';
+import Link from 'next/link';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -162,9 +163,18 @@ export default function Home() {
               <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text text-transparent">
                 {t(locale, 'home.features.excellence.title')}
               </h3>
-              <p className="text-zinc-600 leading-relaxed">
+              <p className="text-zinc-600 leading-relaxed mb-4">
                 {t(locale, 'home.features.excellence.description')}
               </p>
+              <Link 
+                href="/en/about"
+                className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium transition-colors duration-200"
+              >
+                Learn more
+                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Link>
               <div className="mt-6 h-1 w-0 bg-gradient-to-r from-purple-400 to-fuchsia-600 group-hover:w-full transition-all duration-500"></div>
             </motion.div>
 
@@ -179,9 +189,18 @@ export default function Home() {
               <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                 {t(locale, 'home.features.partnership.title')}
               </h3>
-              <p className="text-zinc-600 leading-relaxed">
+              <p className="text-zinc-600 leading-relaxed mb-4">
                 {t(locale, 'home.features.partnership.description')}
               </p>
+              <Link 
+                href="/en/trust"
+                className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium transition-colors duration-200"
+              >
+                Discover our partners
+                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Link>
               <div className="mt-6 h-1 w-0 bg-gradient-to-r from-emerald-400 to-teal-600 group-hover:w-full transition-all duration-500"></div>
             </motion.div>
           </div>
