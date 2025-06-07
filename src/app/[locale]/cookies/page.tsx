@@ -11,21 +11,6 @@ export default function Cookies() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24 relative cookies-page">
-      {/* Pattern background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: 'url(/images/pattern.svg)',
-            backgroundSize: '200px',
-            backgroundRepeat: 'repeat'
-          }}
-        />
-      </div>
-
-      {/* Gradient overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
-
       <div className="container mx-auto px-4 relative">
         <div className="mb-20 text-center">
           <h1 className="mb-6 text-5xl font-bold sm:text-6xl text-zinc-800">
@@ -129,4 +114,4 @@ export default function Cookies() {
       </div>
     </div>
   );
-}
+} 
