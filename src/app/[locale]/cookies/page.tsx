@@ -1,27 +1,5 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import { FaCookie, FaShieldAlt, FaCog } from 'react-icons/fa';
 import { useTranslations } from 'next-intl';
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 }
-  }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
+import { FaCookie, FaShieldAlt, FaCog } from 'react-icons/fa';
 
 export default function Cookies() {
   const t = useTranslations('cookies');
@@ -29,27 +7,17 @@ export default function Cookies() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
-          className="mb-20 text-center"
-        >
+        <div className="mb-20 text-center">
           <h1 className="mb-6 text-5xl font-bold sm:text-6xl text-zinc-800">
             {t('title')}
           </h1>
           <p className="mx-auto max-w-3xl text-xl text-zinc-600 leading-relaxed">
             {t('description')}
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="space-y-16"
-        >
-          <motion.section variants={fadeInUp} className="space-y-8">
+        <div className="space-y-16">
+          <section className="space-y-8">
             <div className="flex items-center space-x-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-600">
                 <FaCookie className="h-6 w-6" />
@@ -61,9 +29,9 @@ export default function Cookies() {
             <p className="text-zinc-600 leading-relaxed pl-16">
               {t('intro.description')}
             </p>
-          </motion.section>
+          </section>
 
-          <motion.section variants={fadeInUp} className="space-y-8">
+          <section className="space-y-8">
             <div className="flex items-center space-x-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600">
                 <FaShieldAlt className="h-6 w-6" />
@@ -98,9 +66,9 @@ export default function Cookies() {
                 </p>
               </div>
             </div>
-          </motion.section>
+          </section>
 
-          <motion.section variants={fadeInUp} className="space-y-8">
+          <section className="space-y-8">
             <div className="flex items-center space-x-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
                 <FaCog className="h-6 w-6" />
@@ -122,9 +90,9 @@ export default function Cookies() {
                 </p>
               </div>
             </div>
-          </motion.section>
+          </section>
 
-          <motion.section variants={fadeInUp} className="space-y-8">
+          <section className="space-y-8">
             <div className="flex items-center space-x-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 text-purple-600">
                 <FaShieldAlt className="h-6 w-6" />
@@ -136,8 +104,8 @@ export default function Cookies() {
             <p className="text-zinc-600 leading-relaxed pl-16">
               {t('contact.description')}
             </p>
-          </motion.section>
-        </motion.div>
+          </section>
+        </div>
       </div>
     </div>
   );
