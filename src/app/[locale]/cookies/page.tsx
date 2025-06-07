@@ -1,5 +1,9 @@
 import { useTranslations } from 'next-intl';
 
+export function generateStaticParams() {
+  return [{ locale: 'fr' }, { locale: 'en' }];
+}
+
 export default function CookiesPage() {
   const t = useTranslations('cookies');
 
