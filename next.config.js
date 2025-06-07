@@ -1,3 +1,5 @@
+const withNextIntl = require('next-intl/plugin')();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',  // Nécessaire pour la génération statique
@@ -9,4 +11,4 @@ const nextConfig = {
   trailingSlash: true, // Ajoute un slash à la fin des URLs
 };
 
-module.exports = nextConfig; 
+module.exports = withNextIntl(nextConfig); 

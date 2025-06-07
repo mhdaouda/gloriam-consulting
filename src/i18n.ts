@@ -1,4 +1,7 @@
-import { defaultLocale } from './config';
+import {getRequestConfig} from 'next-intl/server';
+import {locales} from './config';
+import type {LocalePrefix} from 'next-intl/dist/types/src/shared/types';
+import {notFound} from 'next/navigation';
 
 // Importation statique des messages
 import fr from './messages/fr.json';
@@ -39,4 +42,14 @@ export function t(locale: Locale, key: string, params: Record<string, string> = 
   });
 
   return translation;
-} 
+}
+
+export default getRequestConfig(async ({locale}) => {
+  // Validate that the incoming `locale` parameter is valid
+  if (!locales.includes(locale as any)) notFound();
+ 
+  return {
+    messages: (await import(`./messages/${locale}.json`)).default,
+    locale: locale as string // Type assertion to ensure locale is string
+  };
+}); 
