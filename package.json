@@ -13,13 +13,14 @@
     "@tailwindcss/typography": "^0.5.16",
     "@types/nodemailer": "^6.4.17",
     "autoprefixer": "^10.4.17",
-    "framer-motion": "^11.0.3",
+    "framer-motion": "^11.18.2",
     "geist": "^1.4.2",
     "next": "^14.1.0",
+    "next-intl": "^4.1.0",
     "postcss": "^8.4.33",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^5.0.1"
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

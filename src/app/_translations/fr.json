@@ -1,0 +1,179 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "services": "Services",
+    "about": "À propos",
+    "contact": "Contact",
+    "trust": "Ils Nous Font Confiance"
+  },
+  "home": {
+    "title": "Bienvenue chez Gloriam Consulting",
+    "subtitle": "Votre partenaire en excellence commerciale",
+    "description": "Nous accompagnons les entreprises dans leur transformation et leur croissance",
+    "learnMore": "En savoir plus",
+    "features": {
+      "title": "Nos atouts",
+      "subtitle": "Découvrez ce qui fait notre différence et notre expertise",
+      "innovation": {
+        "title": "Innovation",
+        "description": "Des solutions innovantes et créatives pour transformer votre entreprise"
+      },
+      "excellence": {
+        "title": "Excellence",
+        "description": "Une expertise pointue pour des résultats exceptionnels"
+      },
+      "partnership": {
+        "title": "Partenariat",
+        "description": "Un accompagnement personnalisé pour une réussite durable"
+      }
+    }
+  },
+  "about": {
+    "title": "À Propos",
+    "description": "Découvrez notre histoire et notre vision",
+    "mission": {
+      "title": "Notre Mission",
+      "description": "Créé en 2023, Gloriam Consulting a pour vocation d'accompagner les entreprises dans leur transformation et leur croissance en apportant des solutions innovantes et sur mesure."
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "description": "Devenir le partenaire de référence en conseil aux entreprises, reconnu pour notre expertise et notre approche personnalisée."
+    },
+    "values": {
+      "title": "Nos Valeurs",
+      "list": [
+        "Excellence et professionnalisme",
+        "Innovation et adaptabilité",
+        "Intégrité et transparence",
+        "Engagement et proximité client"
+      ]
+    },
+    "expertise": {
+      "title": "Notre Expertise",
+      "stats": [
+        {
+          "title": "+1 an d'expérience",
+          "description": "Une année riche en expertise au service de nos clients"
+        },
+        {
+          "title": "100% de projets réussis",
+          "description": "Des solutions concrètes pour des résultats tangibles"
+        },
+        {
+          "title": "Satisfaction client prioritaire",
+          "description": "Une relation de confiance durable avec nos clients"
+        }
+      ]
+    }
+  },
+  "services": {
+    "title": "Nos Services",
+    "description": "Des solutions sur mesure pour votre entreprise",
+    "list": [
+      {
+        "title": "Conseil Stratégique",
+        "description": "Accompagnement dans la définition et l'exécution de votre stratégie d'entreprise"
+      },
+      {
+        "title": "Analyse Financière",
+        "description": "Optimisation de la performance financière et gestion des risques"
+      },
+      {
+        "title": "Transformation Digitale",
+        "description": "Accompagnement dans votre transition numérique et l'adoption des nouvelles technologies"
+      },
+      {
+        "title": "Gestion des Ressources Humaines",
+        "description": "Optimisation de vos processus RH et développement du capital humain"
+      },
+      {
+        "title": "Développement Commercial",
+        "description": "Stratégies de croissance et développement de nouveaux marchés"
+      },
+      {
+        "title": "Optimisation Opérationnelle",
+        "description": "Amélioration des processus et de la productivité"
+      },
+      {
+        "title": "Accompagnement PME",
+        "description": "Solutions sur mesure pour les petites et moyennes entreprises"
+      },
+      {
+        "title": "Innovation & Technologie",
+        "description": "Conseil en innovation et intégration technologique"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "description": "Prenez contact avec notre équipe"
+  },
+  "trust": {
+    "title": "Ils nous font confiance",
+    "description": "Découvrez les entreprises qui nous font confiance",
+    "partners": {
+      "title": "Nos Partenaires"
+    },
+    "clients": {
+      "title": "Nos Clients"
+    },
+    "stats": {
+      "experience": "Années d'expérience",
+      "experienceDesc": "Une expertise solide au service de nos clients",
+      "projects": "Projets réussis",
+      "projectsDesc": "Des solutions concrètes pour des résultats tangibles",
+      "satisfaction": "Satisfaction client",
+      "satisfactionDesc": "Une relation de confiance durable avec nos clients"
+    }
+  },
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "description": "Découvrez comment nous protégeons vos données personnelles",
+    "lastUpdated": "Dernière mise à jour",
+    "content": {
+      "intro": "Cette politique de confidentialité décrit comment Gloriam Consulting collecte, utilise et protège vos informations personnelles.",
+      "collection": "Collecte des Informations",
+      "use": "Utilisation des Informations",
+      "protection": "Protection des Informations",
+      "cookies": "Politique des Cookies",
+      "rights": "Vos Droits",
+      "contact": "Nous Contacter"
+    }
+  },
+  "cookies": {
+    "title": "Politique des Cookies",
+    "description": "En savoir plus sur l'utilisation des cookies sur notre site",
+    "accept": "J'accepte",
+    "intro": {
+      "title": "Qu'est-ce qu'un cookie ?",
+      "description": "Un cookie est un petit fichier texte stocké sur votre ordinateur lors de la visite d'un site web. Les cookies nous aident à améliorer votre expérience sur notre site."
+    },
+    "types": {
+      "title": "Types de cookies que nous utilisons",
+      "necessary": {
+        "title": "Cookies Nécessaires",
+        "description": "Ces cookies sont essentiels au fonctionnement du site et ne peuvent pas être désactivés."
+      },
+      "analytics": {
+        "title": "Cookies Analytiques",
+        "description": "Ces cookies nous permettent d'analyser l'utilisation du site pour en améliorer les performances et l'expérience utilisateur."
+      },
+      "preferences": {
+        "title": "Cookies de Préférences",
+        "description": "Ces cookies permettent de mémoriser vos choix et préférences pour une meilleure expérience."
+      }
+    },
+    "control": {
+      "title": "Comment contrôler les cookies ?",
+      "description": "Vous pouvez contrôler et/ou supprimer les cookies comme vous le souhaitez. Vous pouvez supprimer tous les cookies déjà présents sur votre ordinateur et paramétrer la plupart des navigateurs pour les bloquer.",
+      "browser": {
+        "title": "Paramètres du navigateur",
+        "description": "Chaque navigateur propose des options pour gérer les cookies. Consultez les paramètres de votre navigateur pour plus d'informations."
+      }
+    },
+    "contact": {
+      "title": "Nous contacter",
+      "description": "Pour toute question concernant notre utilisation des cookies, n'hésitez pas à nous contacter."
+    }
+  }
+} 

@@ -1,0 +1,179 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "trust": "They Trust Us"
+  },
+  "home": {
+    "title": "Welcome to Gloriam Consulting",
+    "subtitle": "Your partner in business excellence",
+    "description": "We help companies in their transformation and growth",
+    "learnMore": "Learn More",
+    "features": {
+      "title": "Our Strengths",
+      "subtitle": "Discover what makes our expertise and difference",
+      "innovation": {
+        "title": "Innovation",
+        "description": "Innovative and creative solutions to transform your business"
+      },
+      "excellence": {
+        "title": "Excellence",
+        "description": "Sharp expertise for exceptional results"
+      },
+      "partnership": {
+        "title": "Partnership",
+        "description": "Personalized support for lasting success"
+      }
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "description": "Discover our story and vision",
+    "mission": {
+      "title": "Our Mission",
+      "description": "Created in 2023, Gloriam Consulting aims to support companies in their transformation and growth by providing innovative and tailored solutions."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To become the reference partner in business consulting, recognized for our expertise and personalized approach."
+    },
+    "values": {
+      "title": "Our Values",
+      "list": [
+        "Excellence and professionalism",
+        "Innovation and adaptability",
+        "Integrity and transparency",
+        "Commitment and customer proximity"
+      ]
+    },
+    "expertise": {
+      "title": "Our Expertise",
+      "stats": [
+        {
+          "title": "+1 year of experience",
+          "description": "A year rich in expertise serving our clients"
+        },
+        {
+          "title": "100% successful projects",
+          "description": "Concrete solutions for tangible results"
+        },
+        {
+          "title": "Customer satisfaction priority",
+          "description": "A lasting relationship of trust with our clients"
+        }
+      ]
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "description": "Tailored solutions for your business",
+    "list": [
+      {
+        "title": "Strategic Consulting",
+        "description": "Support in defining and executing your business strategy"
+      },
+      {
+        "title": "Financial Analysis",
+        "description": "Optimization of financial performance and risk management"
+      },
+      {
+        "title": "Digital Transformation",
+        "description": "Support in your digital transition and adoption of new technologies"
+      },
+      {
+        "title": "Human Resources Management",
+        "description": "Optimization of your HR processes and human capital development"
+      },
+      {
+        "title": "Business Development",
+        "description": "Growth strategies and new market development"
+      },
+      {
+        "title": "Operational Optimization",
+        "description": "Process and productivity improvement"
+      },
+      {
+        "title": "SME Support",
+        "description": "Tailored solutions for small and medium-sized enterprises"
+      },
+      {
+        "title": "Innovation & Technology",
+        "description": "Innovation consulting and technology integration"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with our team"
+  },
+  "trust": {
+    "title": "They Trust Us",
+    "description": "Discover the companies that trust us",
+    "partners": {
+      "title": "Our Partners"
+    },
+    "clients": {
+      "title": "Our Clients"
+    },
+    "stats": {
+      "experience": "Years of Experience",
+      "experienceDesc": "Solid expertise serving our clients",
+      "projects": "Successful Projects",
+      "projectsDesc": "Concrete solutions for tangible results",
+      "satisfaction": "Client Satisfaction",
+      "satisfactionDesc": "A lasting relationship of trust with our clients"
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "description": "Learn about how we protect your privacy",
+    "lastUpdated": "Last updated",
+    "content": {
+      "intro": "This privacy policy describes how Gloriam Consulting collects, uses, and protects your personal information.",
+      "collection": "Information Collection",
+      "use": "Information Use",
+      "protection": "Information Protection",
+      "cookies": "Cookies Policy",
+      "rights": "Your Rights",
+      "contact": "Contact Us"
+    }
+  },
+  "cookies": {
+    "title": "Cookie Policy",
+    "description": "Learn more about how we use cookies on our site",
+    "accept": "I Accept",
+    "intro": {
+      "title": "What is a cookie?",
+      "description": "A cookie is a small text file stored on your computer when visiting a website. Cookies help us improve your experience on our site."
+    },
+    "types": {
+      "title": "Types of cookies we use",
+      "necessary": {
+        "title": "Necessary Cookies",
+        "description": "These cookies are essential for the website to function and cannot be disabled."
+      },
+      "analytics": {
+        "title": "Analytics Cookies",
+        "description": "These cookies allow us to analyze site usage to improve performance and user experience."
+      },
+      "preferences": {
+        "title": "Preference Cookies",
+        "description": "These cookies remember your choices and preferences for a better experience."
+      }
+    },
+    "control": {
+      "title": "How to control cookies?",
+      "description": "You can control and/or delete cookies as you wish. You can delete all cookies already on your computer and set most browsers to block them.",
+      "browser": {
+        "title": "Browser Settings",
+        "description": "Each browser offers options to manage cookies. Check your browser settings for more information."
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "If you have any questions about our use of cookies, please don't hesitate to contact us."
+    }
+  }
+} 
