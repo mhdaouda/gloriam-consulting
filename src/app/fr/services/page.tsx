@@ -2,10 +2,11 @@
 
 import { useTranslations } from '../../_hooks/useTranslations';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { IconType } from 'react-icons';
 import { FaLightbulb, FaChartLine, FaDigitalTachograph, FaUsers, FaChartBar, FaBullseye, FaHandshake, FaRocket } from 'react-icons/fa';
 
 interface Service {
-  Icon: React.ComponentType;
+  Icon: IconType;
   color: string;
 }
 
@@ -130,7 +131,7 @@ export default function Services() {
                 <div className="relative z-10">
                   <div className="mb-6 text-4xl">
                     <div className={`inline-flex p-3 rounded-lg bg-gradient-to-br ${serviceIcons[index].color} text-white transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                      <ServiceIcon className="w-8 h-8" />
+                      {<ServiceIcon size={32} />}
                     </div>
                   </div>
                   <h3 className="mb-4 text-xl font-semibold text-zinc-800 transition-colors duration-300 group-hover:text-zinc-900">
