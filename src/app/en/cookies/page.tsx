@@ -1,10 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-
-export function generateStaticParams() {
-  return [{ locale: 'fr' }, { locale: 'en' }];
-}
+import { useTranslations } from '../../_hooks/useTranslations';
 
 export default function CookiesPage() {
   const t = useTranslations('cookies');
