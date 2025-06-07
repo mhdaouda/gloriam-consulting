@@ -2,8 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 import { FaCookie, FaShieldAlt, FaCog } from 'react-icons/fa';
-import Image from 'next/image';
-import pattern from '../../../public/images/pattern.svg';
 
 export default function Cookies() {
   const t = useTranslations('cookies');
@@ -15,7 +13,7 @@ export default function Cookies() {
         <div
           className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: `url(${pattern.src})`,
+            backgroundImage: 'url(/images/pattern.svg)',
             backgroundSize: '200px',
             backgroundRepeat: 'repeat'
           }}
