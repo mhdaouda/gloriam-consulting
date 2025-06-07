@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { FaCookie, FaShieldAlt, FaCog } from 'react-icons/fa';
 import Image from 'next/image';
-import pattern from '@/public/images/pattern.svg';
+import pattern from '../../../public/images/pattern.svg';
 
 export default function Cookies() {
   const t = useTranslations('cookies');
