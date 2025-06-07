@@ -3,6 +3,7 @@
 import { useTranslations } from '../../_hooks/useTranslations';
 import { motion } from 'framer-motion';
 import { FaCookie, FaShieldAlt, FaCog, FaQuestionCircle } from 'react-icons/fa';
+import { images } from '../../_lib/images';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -31,8 +32,23 @@ export default function CookiesPage() {
   const t = useTranslations('cookies');
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24 relative">
+      {/* Pattern background */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.05 }}
+        transition={{ duration: 1 }}
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(${images.other.pattern.src})`,
+          backgroundSize: '200px',
+          backgroundRepeat: 'repeat',
+          opacity: 0.3
+        }}
+      />
+      
+      {/* Main content */}
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: -20 }}
