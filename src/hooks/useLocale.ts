@@ -1,28 +1,22 @@
 import { useState, useEffect } from 'react';
-import { Locale, messages } from '../i18n';
+import { Locale } from '../config';
 import { defaultLocale } from '../config';
 
 export function useLocale() {
   const [locale, setLocale] = useState<Locale>(defaultLocale);
 
   useEffect(() => {
-    // Récupère la langue depuis localStorage ou utilise la langue par défaut
+    // Get the locale from localStorage if it exists
     const savedLocale = localStorage.getItem('locale') as Locale;
-    if (savedLocale && messages[savedLocale]) {
+    if (savedLocale) {
       setLocale(savedLocale);
     }
   }, []);
 
   const changeLocale = (newLocale: Locale) => {
-    if (messages[newLocale]) {
-      setLocale(newLocale);
-      localStorage.setItem('locale', newLocale);
-    }
+    setLocale(newLocale);
+    localStorage.setItem('locale', newLocale);
   };
 
-  return {
-    locale,
-    changeLocale,
-    availableLocales: Object.keys(messages) as Locale[],
-  };
+  return { locale, changeLocale };
 } 
