@@ -92,7 +92,11 @@ export default function Services() {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
-  const services = t(locale, 'services.list') as unknown as ServiceData[];
+  const services = t(locale, 'services.list');
+
+  if (!Array.isArray(services)) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white">
@@ -120,7 +124,7 @@ export default function Services() {
           animate="visible"
           className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
-          {services.map((service, index) => {
+          {services.map((service: ServiceData, index: number) => {
             const ServiceIcon = serviceIcons[index].Icon;
             return (
               <motion.div

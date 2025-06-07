@@ -24,8 +24,12 @@ interface Stat {
 
 export default function About() {
   const { locale } = useLocaleContext();
-  const values = t(locale, 'about.values.list') as unknown as string[];
-  const stats = t(locale, 'about.expertise.stats') as unknown as Stat[];
+  const values = t(locale, 'about.values.list');
+  const stats = t(locale, 'about.expertise.stats');
+
+  if (!Array.isArray(values) || !Array.isArray(stats)) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24">
