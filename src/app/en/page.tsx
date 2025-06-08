@@ -86,12 +86,12 @@ export default function Home() {
             transition={{ delay: 0.8, duration: 0.8 }}
             className="mt-10"
           >
-            <a
-              href="#features"
+            <Link
+              href="/en/about"
               className="rounded-full bg-zinc-700 px-8 py-3 text-white font-semibold transition-all hover:bg-zinc-600 hover:shadow-xl border border-zinc-600 hover:scale-105"
             >
               {t(locale, 'home.learnMore')}
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
         
