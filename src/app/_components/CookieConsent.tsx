@@ -3,11 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLocaleContext } from '@/contexts/LocaleContext';
-import { t } from '@/i18n';
+import { useTranslations } from '@/app/_hooks/useTranslations';
 
 export function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
   const { locale } = useLocaleContext();
+  const t = useTranslations('cookies');
 
   useEffect(() => {
     // Vérifie si l'utilisateur a déjà accepté les cookies
@@ -30,20 +31,20 @@ export function CookieConsent() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex flex-col md:flex-row items-center gap-2">
             <p className="text-sm text-zinc-600 text-center md:text-left">
-              {t(locale, 'cookies.description')}
+              {t('banner.description')}
             </p>
             <Link
               href={`/${locale}/cookies`}
               className="text-sm text-blue-600 hover:text-blue-800 underline"
             >
-              {t(locale, 'cookies.learnMore')}
+              {t('banner.learnMore')}
             </Link>
           </div>
           <button
             onClick={acceptCookies}
             className="px-6 py-2 bg-zinc-800 text-white rounded-full hover:bg-zinc-700 transition-colors"
           >
-            {t(locale, 'cookies.accept')}
+            {t('banner.accept')}
           </button>
         </div>
       </div>

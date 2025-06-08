@@ -6,6 +6,47 @@
     "contact": "Contact",
     "trust": "They Trust Us"
   },
+  "cookies": {
+    "banner": {
+      "description": "We use cookies to enhance your experience on our site.",
+      "learnMore": "Learn more",
+      "accept": "Accept"
+    },
+    "title": "Cookie Policy",
+    "description": "Learn more about how we use cookies on our site",
+    "accept": "I Accept",
+    "intro": {
+      "title": "What is a cookie?",
+      "description": "A cookie is a small text file stored on your computer when visiting a website. Cookies help us improve your experience on our site."
+    },
+    "types": {
+      "title": "Types of cookies we use",
+      "necessary": {
+        "title": "Necessary Cookies",
+        "description": "These cookies are essential for the website to function and cannot be disabled."
+      },
+      "analytics": {
+        "title": "Analytics Cookies",
+        "description": "These cookies allow us to analyze site usage to improve performance and user experience."
+      },
+      "preferences": {
+        "title": "Preference Cookies",
+        "description": "These cookies remember your choices and preferences for a better experience."
+      }
+    },
+    "control": {
+      "title": "How to control cookies?",
+      "description": "You can control and/or delete cookies as you wish. You can delete all cookies already on your computer and set most browsers to block them.",
+      "browser": {
+        "title": "Browser Settings",
+        "description": "Each browser offers options to manage cookies. Check your browser settings for more information."
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "If you have any questions about our use of cookies, please do not hesitate to contact us."
+    }
+  },
   "home": {
     "title": "Welcome to Gloriam Consulting",
     "subtitle": "Your partner in business excellence",
@@ -140,40 +181,9 @@
       "contact": "Contact Us"
     }
   },
-  "cookies": {
-    "title": "Cookie Policy",
-    "description": "Learn more about how we use cookies on our site",
-    "accept": "I Accept",
-    "intro": {
-      "title": "What is a cookie?",
-      "description": "A cookie is a small text file stored on your computer when visiting a website. Cookies help us improve your experience on our site."
-    },
-    "types": {
-      "title": "Types of cookies we use",
-      "necessary": {
-        "title": "Necessary Cookies",
-        "description": "These cookies are essential for the website to function and cannot be disabled."
-      },
-      "analytics": {
-        "title": "Analytics Cookies",
-        "description": "These cookies allow us to analyze site usage to improve performance and user experience."
-      },
-      "preferences": {
-        "title": "Preference Cookies",
-        "description": "These cookies remember your choices and preferences for a better experience."
-      }
-    },
-    "control": {
-      "title": "How to control cookies?",
-      "description": "You can control and/or delete cookies as you wish. You can delete all cookies already on your computer and set most browsers to block them.",
-      "browser": {
-        "title": "Browser Settings",
-        "description": "Each browser offers options to manage cookies. Check your browser settings for more information."
-      }
-    },
-    "contact": {
-      "title": "Contact Us",
-      "description": "If you have any questions about our use of cookies, please don't hesitate to contact us."
-    }
+  "cookieBanner": {
+    "description": "We use cookies to enhance your experience on our site.",
+    "learnMore": "Learn more",
+    "accept": "Accept"
   }
 } 
