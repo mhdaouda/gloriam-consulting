@@ -1,1 +1,49 @@
- 
+{
+  "navigation": {
+    "home": "Accueil",
+    "services": "Services",
+    "about": "À propos",
+    "contact": "Contact",
+    "trust": "Ils Nous Font Confiance"
+  },
+  "cookies": {
+    "banner": {
+      "description": "Nous utilisons des cookies pour améliorer votre expérience sur notre site.",
+      "learnMore": "En savoir plus",
+      "accept": "Accepter"
+    },
+    "title": "Politique des Cookies",
+    "description": "En savoir plus sur l'utilisation des cookies sur notre site",
+    "intro": {
+      "title": "Qu'est-ce qu'un cookie ?",
+      "description": "Un cookie est un petit fichier texte stocké sur votre ordinateur lors de la visite d'un site web. Les cookies nous aident à améliorer votre expérience sur notre site."
+    },
+    "types": {
+      "title": "Types de cookies que nous utilisons",
+      "necessary": {
+        "title": "Cookies Nécessaires",
+        "description": "Ces cookies sont essentiels au fonctionnement du site et ne peuvent pas être désactivés."
+      },
+      "analytics": {
+        "title": "Cookies Analytiques",
+        "description": "Ces cookies nous permettent d'analyser l'utilisation du site pour en améliorer les performances et l'expérience utilisateur."
+      },
+      "preferences": {
+        "title": "Cookies de Préférences",
+        "description": "Ces cookies permettent de mémoriser vos choix et préférences pour une meilleure expérience."
+      }
+    },
+    "control": {
+      "title": "Comment contrôler les cookies ?",
+      "description": "Vous pouvez contrôler et/ou supprimer les cookies comme vous le souhaitez. Vous pouvez supprimer tous les cookies déjà présents sur votre ordinateur et paramétrer la plupart des navigateurs pour les bloquer.",
+      "browser": {
+        "title": "Paramètres du navigateur",
+        "description": "Chaque navigateur propose des options pour gérer les cookies. Consultez les paramètres de votre navigateur pour plus d'informations."
+      }
+    },
+    "contact": {
+      "title": "Nous contacter",
+      "description": "Pour toute question concernant notre utilisation des cookies, n'hésitez pas à nous contacter."
+    }
+  }
+} 
