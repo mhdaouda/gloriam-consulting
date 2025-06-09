@@ -8,12 +8,12 @@
   },
   "cookies": {
     "banner": {
-      "description": "We use cookies to enhance your experience on our site.",
+      "description": "We use cookies to enhance your experience on our website.",
       "learnMore": "Learn more",
       "accept": "Accept"
     },
     "title": "Cookie Policy",
-    "description": "Learn more about how we use cookies on our site",
+    "description": "Learn more about how we use cookies on our website",
     "accept": "I Accept",
     "intro": {
       "title": "What is a cookie?",
@@ -44,7 +44,7 @@
     },
     "contact": {
       "title": "Contact Us",
-      "description": "If you have any questions about our use of cookies, please do not hesitate to contact us."
+      "description": "If you have any questions about our use of cookies, please don't hesitate to contact us."
     }
   },
   "home": {
