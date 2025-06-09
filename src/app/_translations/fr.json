@@ -148,13 +148,11 @@
     }
   },
   "cookies": {
-    "banner": {
-      "description": "Nous utilisons des cookies pour améliorer votre expérience sur notre site.",
-      "learnMore": "En savoir plus",
-      "accept": "Accepter"
-    },
+    "description": "Nous utilisons des cookies pour améliorer votre expérience sur notre site.",
+    "learnMore": "En savoir plus",
+    "accept": "Accepter",
     "title": "Politique des Cookies",
-    "description": "En savoir plus sur l'utilisation des cookies sur notre site",
+    "pageDescription": "En savoir plus sur l'utilisation des cookies sur notre site",
     "intro": {
       "title": "Qu'est-ce qu'un cookie ?",
       "description": "Un cookie est un petit fichier texte stocké sur votre ordinateur lors de la visite d'un site web. Les cookies nous aident à améliorer votre expérience sur notre site."
