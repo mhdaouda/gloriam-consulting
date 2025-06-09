@@ -7,14 +7,11 @@
     "trust": "They Trust Us"
   },
   "cookies": {
-    "banner": {
-      "description": "We use cookies to enhance your experience on our website.",
-      "learnMore": "Learn more",
-      "accept": "Accept"
-    },
+    "description": "We use cookies to enhance your experience on our website.",
+    "learnMore": "Learn more",
+    "accept": "Accept",
     "title": "Cookie Policy",
-    "description": "Learn more about how we use cookies on our website",
-    "accept": "I Accept",
+    "pageDescription": "Learn more about how we use cookies on our website",
     "intro": {
       "title": "What is a cookie?",
       "description": "A cookie is a small text file stored on your computer when visiting a website. Cookies help us improve your experience on our site."
@@ -182,11 +179,6 @@
       "rights": "Your Rights",
       "contact": "Contact Us"
     }
-  },
-  "cookieBanner": {
-    "description": "We use cookies to enhance your experience on our site.",
-    "learnMore": "Learn more",
-    "accept": "Accept"
   },
   "footer": {
     "allRights": "All rights reserved.",
