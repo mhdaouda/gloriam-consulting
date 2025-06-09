@@ -8,7 +8,7 @@ import {
 } from 'react-icons/fa';
 import { images } from '../_lib/images';
 import { useLocaleContext } from '@/contexts/LocaleContext';
-import { t } from '@/i18n';
+import { useTranslations } from '@/app/_hooks/useTranslations';
 import Link from 'next/link';
 
 const fadeInUp = {
@@ -41,6 +41,7 @@ const scaleIn = {
 
 export default function Home() {
   const { locale } = useLocaleContext();
+  const t = useTranslations('home');
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   const y = useTransform(scrollY, [0, 300], [0, 100]);
@@ -62,7 +63,7 @@ export default function Home() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="mb-6 text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-800 via-zinc-700 to-zinc-800"
           >
-            {t(locale, 'home.title')}
+            {t('title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -70,7 +71,7 @@ export default function Home() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="mb-8 text-2xl font-light sm:text-3xl text-zinc-700"
           >
-            {t(locale, 'home.subtitle')}
+            {t('subtitle')}
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -78,7 +79,7 @@ export default function Home() {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="mx-auto max-w-2xl text-lg text-zinc-600"
           >
-            {t(locale, 'home.description')}
+            {t('description')}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -87,10 +88,10 @@ export default function Home() {
             className="mt-10"
           >
             <Link
-              href="/en/about"
+              href={`/${locale}/about`}
               className="rounded-full bg-zinc-700 px-8 py-3 text-white font-semibold transition-all hover:bg-zinc-600 hover:shadow-xl border border-zinc-600 hover:scale-105"
             >
-              {t(locale, 'home.learnMore')}
+              {t('learnMore')}
             </Link>
           </motion.div>
         </motion.div>
@@ -128,9 +129,9 @@ export default function Home() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-zinc-800 mb-4">{t(locale, 'home.features.title')}</h2>
+            <h2 className="text-4xl font-bold text-zinc-800 mb-4">{t('features.title')}</h2>
             <p className="text-xl text-zinc-600 max-w-2xl mx-auto">
-              {t(locale, 'home.features.subtitle')}
+              {t('features.subtitle')}
             </p>
           </motion.div>
 
@@ -144,10 +145,10 @@ export default function Home() {
             >
               <FaLightbulb className="w-12 h-12 mb-6 text-blue-600" />
               <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                {t(locale, 'home.features.innovation.title')}
+                {t('features.innovation.title')}
               </h3>
               <p className="text-zinc-600 leading-relaxed">
-                {t(locale, 'home.features.innovation.description')}
+                {t('features.innovation.description')}
               </p>
               <div className="mt-6 h-1 w-0 bg-gradient-to-r from-blue-400 to-indigo-600 group-hover:w-full transition-all duration-500"></div>
             </motion.div>
@@ -161,16 +162,16 @@ export default function Home() {
             >
               <FaChartBar className="w-12 h-12 mb-6 text-purple-600" />
               <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text text-transparent">
-                {t(locale, 'home.features.excellence.title')}
+                {t('features.excellence.title')}
               </h3>
               <p className="text-zinc-600 leading-relaxed mb-4">
-                {t(locale, 'home.features.excellence.description')}
+                {t('features.excellence.description')}
               </p>
               <Link 
-                href="/en/about"
+                href={`/${locale}/about`}
                 className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium transition-colors duration-200"
               >
-                Learn more
+                {t('features.excellence.learnMore')}
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -187,16 +188,16 @@ export default function Home() {
             >
               <FaHandshake className="w-12 h-12 mb-6 text-emerald-600" />
               <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                {t(locale, 'home.features.partnership.title')}
+                {t('features.partnership.title')}
               </h3>
               <p className="text-zinc-600 leading-relaxed mb-4">
-                {t(locale, 'home.features.partnership.description')}
+                {t('features.partnership.description')}
               </p>
               <Link 
-                href="/en/trust"
+                href={`/${locale}/trust`}
                 className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium transition-colors duration-200"
               >
-                Discover our partners
+                {t('features.partnership.discover')}
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
