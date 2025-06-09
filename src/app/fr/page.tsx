@@ -167,10 +167,10 @@ export default function Home() {
                 {t(locale, 'home.features.excellence.description')}
               </p>
               <Link 
-                href="/fr/about"
+                href={`/${locale}/about`}
                 className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium transition-colors duration-200"
               >
-                En savoir plus
+                {t(locale, 'home.features.learnMore')}
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -193,10 +193,10 @@ export default function Home() {
                 {t(locale, 'home.features.partnership.description')}
               </p>
               <Link 
-                href="/fr/trust"
+                href={`/${locale}/trust`}
                 className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium transition-colors duration-200"
               >
-                Découvrir nos partenaires
+                {t(locale, 'home.features.discoverPartners')}
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>

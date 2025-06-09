@@ -50,11 +50,13 @@
   "home": {
     "title": "Welcome to Gloriam Consulting",
     "subtitle": "Your partner in business excellence",
-    "description": "We help companies in their transformation and growth",
-    "learnMore": "Learn More",
+    "description": "We support companies in their transformation and growth",
+    "learnMore": "Learn more",
     "features": {
-      "title": "Our Strengths",
-      "subtitle": "Discover what makes our expertise and difference",
+      "title": "Our strengths",
+      "subtitle": "Discover what makes our difference and expertise",
+      "learnMore": "Learn more",
+      "discoverPartners": "Discover our partners",
       "innovation": {
         "title": "Innovation",
         "description": "Innovative and creative solutions to transform your business"
@@ -65,7 +67,7 @@
       },
       "partnership": {
         "title": "Partnership",
-        "description": "Personalized support for lasting success"
+        "description": "Personalized support for sustainable success"
       }
     }
   },
