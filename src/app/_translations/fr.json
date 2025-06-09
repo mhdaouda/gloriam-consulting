@@ -6,6 +6,11 @@
     "contact": "Contact",
     "trust": "Ils Nous Font Confiance"
   },
+  "footer": {
+    "allRights": "Tous droits réservés.",
+    "privacyPolicy": "Politique de confidentialité",
+    "cookies": "Cookies"
+  },
   "home": {
     "title": "Bienvenue chez Gloriam Consulting",
     "subtitle": "Votre partenaire en excellence commerciale",

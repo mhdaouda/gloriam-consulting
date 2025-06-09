@@ -185,5 +185,10 @@
     "description": "We use cookies to enhance your experience on our site.",
     "learnMore": "Learn more",
     "accept": "Accept"
+  },
+  "footer": {
+    "allRights": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "cookies": "Cookies"
   }
 } 
