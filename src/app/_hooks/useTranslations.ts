@@ -1,4 +1,6 @@
-import { useParams } from 'next/navigation';
+'use client';
+
+import { useLocaleContext } from '@/contexts/LocaleContext';
 import enMessages from '../_translations/en.json';
 import frMessages from '../_translations/fr.json';
 
@@ -14,8 +16,7 @@ function getNestedValue(obj: any, path: string): any {
 }
 
 export function useTranslations(namespace?: string) {
-  const params = useParams();
-  const locale = (params?.locale as string) || 'fr';
+  const { locale } = useLocaleContext();
   const messages = locale === 'en' ? enMessages : frMessages;
 
   const t = (key: string) => {
