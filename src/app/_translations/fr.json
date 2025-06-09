@@ -6,6 +6,82 @@
     "contact": "Contact",
     "trust": "Ils Nous Font Confiance"
   },
+  "about": {
+    "title": "À Propos",
+    "description": "Découvrez notre histoire et notre vision",
+    "mission": {
+      "title": "Notre Mission",
+      "description": "Créé en 2023, Gloriam Consulting a pour vocation d'accompagner les entreprises dans leur transformation et leur croissance en apportant des solutions innovantes et sur mesure."
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "description": "Devenir le partenaire de référence en conseil aux entreprises, reconnu pour notre expertise et notre approche personnalisée."
+    },
+    "values": {
+      "title": "Nos Valeurs",
+      "list": [
+        "Excellence et professionnalisme",
+        "Innovation et adaptabilité",
+        "Intégrité et transparence",
+        "Engagement et proximité client"
+      ]
+    },
+    "expertise": {
+      "title": "Notre Expertise",
+      "stats": [
+        {
+          "title": "+1 an d'expérience",
+          "description": "Une année riche en expertise au service de nos clients"
+        },
+        {
+          "title": "100% de projets réussis",
+          "description": "Des solutions concrètes pour des résultats tangibles"
+        },
+        {
+          "title": "Satisfaction client prioritaire",
+          "description": "Une relation de confiance durable avec nos clients"
+        }
+      ]
+    }
+  },
+  "services": {
+    "title": "Nos Services",
+    "description": "Des solutions sur mesure pour votre entreprise",
+    "list": [
+      {
+        "title": "Conseil Stratégique",
+        "description": "Accompagnement dans la définition et l'exécution de votre stratégie d'entreprise"
+      },
+      {
+        "title": "Analyse Financière",
+        "description": "Optimisation de la performance financière et gestion des risques"
+      },
+      {
+        "title": "Transformation Digitale",
+        "description": "Accompagnement dans votre transition numérique et l'adoption des nouvelles technologies"
+      },
+      {
+        "title": "Gestion des Ressources Humaines",
+        "description": "Optimisation de vos processus RH et développement du capital humain"
+      },
+      {
+        "title": "Développement Commercial",
+        "description": "Stratégies de croissance et développement de nouveaux marchés"
+      },
+      {
+        "title": "Optimisation Opérationnelle",
+        "description": "Amélioration des processus et de la productivité"
+      },
+      {
+        "title": "Accompagnement PME",
+        "description": "Solutions sur mesure pour les petites et moyennes entreprises"
+      },
+      {
+        "title": "Innovation & Technologie",
+        "description": "Conseil en innovation et intégration technologique"
+      }
+    ]
+  },
   "cookies": {
     "banner": {
       "description": "Nous utilisons des cookies pour améliorer votre expérience sur notre site.",
