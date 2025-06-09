@@ -6,6 +6,28 @@
     "contact": "Contact",
     "trust": "Ils Nous Font Confiance"
   },
+  "home": {
+    "title": "Bienvenue chez Gloriam Consulting",
+    "subtitle": "Votre partenaire en excellence commerciale",
+    "description": "Nous accompagnons les entreprises dans leur transformation et leur croissance",
+    "learnMore": "En savoir plus",
+    "features": {
+      "title": "Nos atouts",
+      "subtitle": "Découvrez ce qui fait notre différence et notre expertise",
+      "innovation": {
+        "title": "Innovation",
+        "description": "Des solutions innovantes et créatives pour transformer votre entreprise"
+      },
+      "excellence": {
+        "title": "Excellence",
+        "description": "Une expertise pointue pour des résultats exceptionnels"
+      },
+      "partnership": {
+        "title": "Partenariat",
+        "description": "Un accompagnement personnalisé pour une réussite durable"
+      }
+    }
+  },
   "about": {
     "title": "À Propos",
     "description": "Découvrez notre histoire et notre vision",
@@ -81,6 +103,42 @@
         "description": "Conseil en innovation et intégration technologique"
       }
     ]
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "description": "Prenez contact avec notre équipe"
+  },
+  "trust": {
+    "title": "Ils nous font confiance",
+    "description": "Découvrez les entreprises qui nous font confiance",
+    "partners": {
+      "title": "Nos Partenaires"
+    },
+    "clients": {
+      "title": "Nos Clients"
+    },
+    "stats": {
+      "experience": "Années d'expérience",
+      "experienceDesc": "Une expertise solide au service de nos clients",
+      "projects": "Projets réussis",
+      "projectsDesc": "Des solutions concrètes pour des résultats tangibles",
+      "satisfaction": "Satisfaction client",
+      "satisfactionDesc": "Une relation de confiance durable avec nos clients"
+    }
+  },
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "description": "Découvrez comment nous protégeons vos données personnelles",
+    "lastUpdated": "Dernière mise à jour",
+    "content": {
+      "intro": "Cette politique de confidentialité décrit comment Gloriam Consulting collecte, utilise et protège vos informations personnelles.",
+      "collection": "Collecte des Informations",
+      "use": "Utilisation des Informations",
+      "protection": "Protection des Informations",
+      "cookies": "Politique des Cookies",
+      "rights": "Vos Droits",
+      "contact": "Nous Contacter"
+    }
   },
   "cookies": {
     "banner": {
