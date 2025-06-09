@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import { Metadata } from 'next';
 import GoogleAnalytics from '@/app/_components/GoogleAnalytics';
+import { CookieConsent } from '@/app/_components/CookieConsent';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="fr">
       <body className={inter.className}>
         {children}
+        <CookieConsent />
         <GoogleAnalytics />
       </body>
     </html>
