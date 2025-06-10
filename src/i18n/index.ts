@@ -32,9 +32,44 @@ const translations = {
       },
     },
     cookies: {
-      description: 'Nous utilisons des cookies pour améliorer votre expérience sur notre site.',
-      learnMore: 'En savoir plus',
-      accept: 'Accepter',
+      title: 'Politique des Cookies',
+      description: 'Découvrez comment nous utilisons les cookies pour améliorer votre expérience.',
+      sections: {
+        what: {
+          title: "Qu'est-ce qu'un cookie ?",
+          description: "Un cookie est un petit fichier texte stocké sur votre navigateur lors de votre visite sur notre site. Ces fichiers nous permettent d'améliorer votre expérience utilisateur."
+        },
+        usage: {
+          title: 'Notre utilisation des cookies',
+          description: 'Nous utilisons les cookies pour :',
+          purposes: [
+            'Mémoriser vos préférences de langue',
+            'Analyser le trafic du site',
+            'Améliorer nos services'
+          ]
+        },
+        types: {
+          title: 'Types de cookies utilisés',
+          essential: {
+            title: 'Cookies essentiels',
+            description: 'Nécessaires au fonctionnement du site'
+          },
+          preferences: {
+            title: 'Cookies de préférences',
+            description: 'Permettent de mémoriser vos choix'
+          },
+          analytics: {
+            title: 'Cookies analytiques',
+            description: "Nous aident à comprendre l'utilisation du site"
+          }
+        },
+        control: {
+          title: 'Contrôle des cookies',
+          description: 'Vous pouvez contrôler et/ou supprimer les cookies comme vous le souhaitez.',
+          browser: 'Gérer les cookies dans votre navigateur',
+          settings: 'Paramètres des cookies'
+        }
+      }
     },
     footer: {
       allRights: 'Tous droits réservés.',
@@ -73,9 +108,44 @@ const translations = {
       },
     },
     cookies: {
-      description: 'We use cookies to enhance your experience on our site.',
-      learnMore: 'Learn more',
-      accept: 'Accept',
+      title: 'Cookie Policy',
+      description: 'Learn how we use cookies to enhance your experience.',
+      sections: {
+        what: {
+          title: 'What is a cookie?',
+          description: 'A cookie is a small text file stored in your browser when you visit our site. These files help us improve your user experience.'
+        },
+        usage: {
+          title: 'Our use of cookies',
+          description: 'We use cookies to:',
+          purposes: [
+            'Remember your language preferences',
+            'Analyze site traffic',
+            'Improve our services'
+          ]
+        },
+        types: {
+          title: 'Types of cookies we use',
+          essential: {
+            title: 'Essential cookies',
+            description: 'Necessary for the site to function'
+          },
+          preferences: {
+            title: 'Preference cookies',
+            description: 'Remember your choices'
+          },
+          analytics: {
+            title: 'Analytics cookies',
+            description: 'Help us understand site usage'
+          }
+        },
+        control: {
+          title: 'Cookie control',
+          description: 'You can control and/or delete cookies as you wish.',
+          browser: 'Manage cookies in your browser',
+          settings: 'Cookie settings'
+        }
+      }
     },
     footer: {
       allRights: 'All rights reserved.',
