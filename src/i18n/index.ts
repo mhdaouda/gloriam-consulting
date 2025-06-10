@@ -32,6 +32,11 @@ const translations = {
       },
     },
     cookies: {
+      banner: {
+        description: 'Nous utilisons des cookies pour améliorer votre expérience sur notre site.',
+        learnMore: 'En savoir plus',
+        accept: 'Accepter'
+      },
       title: 'Politique des Cookies',
       description: 'Découvrez comment nous utilisons les cookies pour améliorer votre expérience.',
       sections: {
@@ -108,6 +113,11 @@ const translations = {
       },
     },
     cookies: {
+      banner: {
+        description: 'We use cookies to enhance your experience on our website.',
+        learnMore: 'Learn more',
+        accept: 'Accept'
+      },
       title: 'Cookie Policy',
       description: 'Learn how we use cookies to enhance your experience.',
       sections: {
