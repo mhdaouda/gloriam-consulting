@@ -150,6 +150,15 @@ export default function Home() {
               <p className="text-zinc-600 leading-relaxed">
                 {t('features.innovation.description')}
               </p>
+              <Link 
+                href={`/${locale}/services`}
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200 mt-4"
+              >
+                {t('features.learnMore')}
+                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Link>
               <div className="mt-6 h-1 w-0 bg-gradient-to-r from-blue-400 to-indigo-600 group-hover:w-full transition-all duration-500"></div>
             </motion.div>
 
@@ -171,7 +180,7 @@ export default function Home() {
                 href={`/${locale}/about`}
                 className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium transition-colors duration-200"
               >
-                {t('features.excellence.learnMore')}
+                {t('features.learnMore')}
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -197,7 +206,7 @@ export default function Home() {
                 href={`/${locale}/trust`}
                 className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium transition-colors duration-200"
               >
-                {t('features.partnership.discover')}
+                {t('features.discoverPartners')}
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>

@@ -4,6 +4,7 @@ import { useTranslations } from '../../_hooks/useTranslations';
 import { motion } from 'framer-motion';
 import { FaCookie, FaShieldAlt, FaCog, FaQuestionCircle } from 'react-icons/fa';
 import { images } from '../../_lib/images';
+import Link from 'next/link';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -168,6 +169,17 @@ export default function CookiesPage() {
             <p className="text-zinc-600 leading-relaxed pl-16">
               {t('contact.description')}
             </p>
+            <div className="pl-16 mt-6">
+              <Link
+                href="/en/contact"
+                className="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105"
+              >
+                {t('contact.title')}
+                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Link>
+            </div>
           </motion.section>
         </motion.div>
       </div>
