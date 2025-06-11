@@ -154,7 +154,7 @@ export default function Home() {
                 href={`/${locale}/services`}
                 className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200 mt-4"
               >
-                {t('features.learnMore')}
+                {t('features.seeInnovations')}
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
