@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMessageCircle, FiX, FiSend, FiUser, FiMessageSquare, FiExternalLink } from 'react-icons/fi';
 import { useTranslations } from '@/app/_hooks/useTranslations';
@@ -40,9 +40,16 @@ export default function Chatbot() {
         isUser: false,
         timestamp: new Date()
       }]);
+    } else if (messages.length === 1 && !messages[0].isUser) {
+      // Mettre à jour le message de bienvenue si la locale change
+      setMessages([{
+        id: messages[0].id,
+        text: t('welcome'),
+        isUser: false,
+        timestamp: messages[0].timestamp
+      }]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [locale, t]);
 
   useEffect(() => {
     scrollToBottom();
@@ -490,7 +497,7 @@ export default function Chatbot() {
     }
   };
 
-  const quickActions = [
+  const quickActions = useMemo(() => [
     t('quickActions.services'),
     t('quickActions.projects'),
     t('quickActions.quote'),
@@ -499,7 +506,7 @@ export default function Chatbot() {
     t('quickActions.learnMore'),
     t('quickActions.partners'),
     t('quickActions.otherQuestion')
-  ];
+  ], [t, locale]);
 
   return (
     <>
