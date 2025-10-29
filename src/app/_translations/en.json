@@ -201,8 +201,8 @@
         "client": "Insurance Company",
         "description": "Development of a web application enabling complete online insurance subscription without human intervention.",
         "details": "This revolutionary platform allows customers to subscribe to insurance in just a few minutes, with a fully automated process of quotes, comparison, and subscription. The application integrates advanced features for premium calculation, risk analysis, and automatic contract generation.",
-        "technologies": "Web application • Automation • Premium calculation • E-signature",
-        "image": "/images/projects/insurance.jpg"
+        "technologies": "JEE • JDK8 • Tomcat • SVN • AngularJS • Scrum • Postman • Batch • SOAP UI • Test Harness • OpenL • MySQL • TestingTools",
+        "image": "/images/projects/assurances.jpg"
       },
       {
         "title": "Banking Data Management",

@@ -200,8 +200,8 @@
         "client": "Compagnie d'Assurance",
         "description": "Développement d'une application web permettant la souscription complète d'assurances en ligne, sans intervention humaine.",
         "details": "Cette plateforme révolutionnaire permet aux clients de souscrire une assurance en quelques minutes, avec un processus entièrement automatisé de devis, comparaison et souscription. L'application intègre des fonctionnalités avancées de calcul de primes, d'analyse de risques et de génération automatique de contrats.",
-        "technologies": "Application web • Automatisation • Calcul de primes • E-signature",
-        "image": "/images/projects/insurance.jpg"
+        "technologies": "JEE • JDK8 • Tomcat • SVN • AngularJS • Scrum • Postman • Batch • SOAP UI • Test Harness • OpenL • MySQL • TestingTools",
+        "image": "/images/projects/assurances.jpg"
       },
       {
         "title": "Gestion de Data Bancaire",
