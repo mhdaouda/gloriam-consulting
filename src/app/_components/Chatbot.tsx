@@ -32,24 +32,26 @@ export default function Chatbot() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const welcomeMessage = useMemo(() => t('welcome'), [locale, t]);
+
   useEffect(() => {
     if (messages.length === 0) {
       setMessages([{
         id: '1',
-        text: t('welcome'),
+        text: welcomeMessage,
         isUser: false,
         timestamp: new Date()
       }]);
-    } else if (messages.length === 1 && !messages[0].isUser) {
+    } else if (messages.length === 1 && !messages[0].isUser && messages[0].text !== welcomeMessage) {
       // Mettre à jour le message de bienvenue si la locale change
       setMessages([{
         id: messages[0].id,
-        text: t('welcome'),
+        text: welcomeMessage,
         isUser: false,
         timestamp: messages[0].timestamp
       }]);
     }
-  }, [locale, t]);
+  }, [locale, welcomeMessage, messages.length, messages]);
 
   useEffect(() => {
     scrollToBottom();
