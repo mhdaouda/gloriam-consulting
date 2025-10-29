@@ -252,7 +252,8 @@
       "quote": "Request a quote",
       "estimation": "Quick estimate",
       "learnMore": "Learn more",
-      "partners": "Our partners"
+      "partners": "Our partners",
+      "otherQuestion": "Other question"
     },
     "responses": {
       "services": "We offer several services: Strategic Consulting, Financial Analysis, Digital Transformation, Human Resources Management, Business Development, Operational Optimization, SME Support, and Innovation & Technology. Would you like me to redirect you to our services page to discover more?",

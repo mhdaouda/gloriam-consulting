@@ -499,7 +499,8 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
     t('quickActions.estimation'),
     t('quickActions.contact'),
     t('quickActions.learnMore'),
-    t('quickActions.partners')
+    t('quickActions.partners'),
+    t('quickActions.otherQuestion')
   ];
 
   return (
@@ -682,6 +683,12 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
                         } else if (action === t('quickActions.estimation') || action === t('quickActions.quote')) {
                           // Si c'est une demande de devis ou estimation, rediriger vers contact
                           redirectToContactWithQuestion(action);
+                        } else if (action === t('quickActions.otherQuestion')) {
+                          // Si c'est "Autre question", juste mettre le focus sur l'input pour permettre à l'utilisateur de taper
+                          setInputValue('');
+                          setTimeout(() => {
+                            inputRef.current?.focus();
+                          }, 100);
                         } else {
                           // Pour les autres actions, mettre le texte dans l'input
                           setInputValue(action);

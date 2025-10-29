@@ -23,7 +23,8 @@
       "quote": "Demander un devis",
       "estimation": "Estimation rapide",
       "learnMore": "En savoir plus",
-      "partners": "Nos partenaires"
+      "partners": "Nos partenaires",
+      "otherQuestion": "Autre question"
     },
     "responses": {
       "services": "Nous proposons plusieurs services : Conseil Stratégique, Analyse Financière, Transformation Digitale, Gestion des Ressources Humaines, Développement Commercial, Optimisation Opérationnelle, Accompagnement PME, et Innovation & Technologie. Voulez-vous que je vous redirige vers notre page services pour en découvrir plus ?",
