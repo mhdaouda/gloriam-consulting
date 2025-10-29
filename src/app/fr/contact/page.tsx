@@ -2,7 +2,8 @@
 
 import { useTranslations } from '../../_hooks/useTranslations';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 
 const fadeIn = {
@@ -17,8 +18,27 @@ const fadeIn = {
 
 export default function Contact() {
   const t = useTranslations('contact');
+  const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  useEffect(() => {
+    const question = searchParams?.get('question');
+    if (question) {
+      const decodedQuestion = decodeURIComponent(question);
+      setFormData(prev => ({
+        ...prev,
+        subject: decodedQuestion.includes('Demande de devis') ? 'Demande de devis' : 'Question depuis le chatbot',
+        message: decodedQuestion
+      }));
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,16 +46,16 @@ export default function Contact() {
 
     try {
       const form = e.currentTarget;
-      const formData = new FormData(form);
+      const formDataToSend = new FormData(form);
       
       const response = await fetch('https://formsubmit.co/ajax/contact@gloriam-consulting.com', {
         method: 'POST',
-        body: formData,
+        body: formDataToSend,
       });
 
       if (response.ok) {
         setSubmitted(true);
-        form.reset();
+        setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         throw new Error('Erreur lors de l\'envoi');
       }
@@ -137,9 +157,9 @@ export default function Contact() {
               <input type="hidden" name="_template" value="table" />
               
               {[
-                { name: "name", label: "Nom complet", type: "text" },
-                { name: "email", label: "Email", type: "email" },
-                { name: "subject", label: "Sujet", type: "text" }
+                { name: "name", label: "Nom complet", type: "text", value: formData.name },
+                { name: "email", label: "Email", type: "email", value: formData.email },
+                { name: "subject", label: "Sujet", type: "text", value: formData.subject }
               ].map((field) => (
                 <div key={field.name}>
                   <label
@@ -152,6 +172,8 @@ export default function Contact() {
                     type={field.type}
                     id={field.name}
                     name={field.name}
+                    value={field.value}
+                    onChange={(e) => setFormData(prev => ({ ...prev, [field.name]: e.target.value }))}
                     required
                     className="block w-full rounded-lg border border-emerald-200 bg-white px-4 py-3 text-zinc-700 transition-colors duration-200 focus:border-teal-400 focus:outline-none focus:ring focus:ring-teal-200 focus:ring-opacity-50"
                   />
@@ -168,6 +190,8 @@ export default function Contact() {
                 <textarea
                   id="message"
                   name="message"
+                  value={formData.message}
+                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                   required
                   rows={4}
                   className="block w-full rounded-lg border border-emerald-200 bg-white px-4 py-3 text-zinc-700 transition-colors duration-200 focus:border-teal-400 focus:outline-none focus:ring focus:ring-teal-200 focus:ring-opacity-50"

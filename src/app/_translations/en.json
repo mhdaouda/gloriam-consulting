@@ -197,18 +197,24 @@
       "learnMore": "Learn more"
     },
     "responses": {
-      "services": "We offer several services: Strategic Consulting, Financial Analysis, Digital Transformation, Human Resources Management, Business Development, Operational Optimization, SME Support, and Innovation & Technology. Which one interests you?",
-      "contact": "To contact us, you can use the contact form on our website or call us directly. Would you like me to redirect you to our contact page?",
+      "services": "We offer several services: Strategic Consulting, Financial Analysis, Digital Transformation, Human Resources Management, Business Development, Operational Optimization, SME Support, and Innovation & Technology. Would you like me to redirect you to our services page to discover more?",
+      "contact": "To contact us, you can use the contact form on our website or call us directly. I can redirect you to our contact page if you wish.",
+      "quote": "To get a personalized quote, I invite you to contact us via our contact form. Our rates vary depending on the type of project, duration of support, and your specific needs. I can redirect you to our contact page for your quote request.",
+      "training": "We offer tailored training programs adapted to your needs. To get a quote for training, I invite you to contact us via our contact form. I can redirect you to the contact page for your request.",
       "pricing": "Our rates vary depending on the type of project and duration of support. I invite you to contact us for a personalized quote adapted to your specific needs.",
-      "company": "We support companies of all sizes in their transformation and growth. We have particular expertise with SMEs. What is your industry?",
+      "company": "We support companies of all sizes in their transformation and growth. We have particular expertise with SMEs. Would you like to discover our services?",
       "strategy": "Our Strategic Consulting service helps you define and execute your business strategy. We analyze your market, competitors, and growth opportunities.",
       "digital": "Digital Transformation is one of our areas of expertise. We support you in adopting new technologies and optimizing your digital processes.",
       "hr": "We optimize your HR processes and develop your human capital. This includes recruitment strategy, training, and improving team performance.",
       "finance": "Our Financial Analysis service helps you optimize your financial performance and manage risks. We analyze your cash flow, profitability, and investments.",
+      "about": "Gloriam Consulting is a consulting firm founded in 2023, specializing in supporting companies in their transformation and growth. Would you like to know more about our story and vision?",
+      "duration": "The duration of our projects depends on your specific needs. Some projects can be completed in a few weeks, others require support over several months. We adapt our approach to your context.",
+      "expertise": "Our team has solid expertise in several areas: strategic consulting, financial analysis, digital transformation, human resources management, and more. We have supported many companies in their growth.",
+      "clients": "We have the privilege of working with renowned companies that trust us. You can discover our partners and clients on our dedicated page.",
       "thanks": "You're welcome! It's a pleasure to help you. Don't hesitate if you have other questions about our services.",
       "greeting": "Hello! I'm here to help you discover our services. What would you like to know about Gloriam Consulting?",
-      "help": "I can inform you about our services, our rates, our working methods, or help you contact us. What would you like to know?",
-      "default": "Thank you for your message. For more detailed information, I invite you to contact us directly via our contact form. Our team will be happy to respond quickly."
+      "help": "I can inform you about our services, our rates, our working methods, or help you contact us. I can also redirect you to our services, contact, or about pages. What would you like to know?",
+      "default": "Thank you for your message. For more detailed information, I invite you to contact us directly via our contact form. I'll redirect you to our contact page with your question."
     }
   }
 } 

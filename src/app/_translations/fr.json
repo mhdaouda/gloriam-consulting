@@ -22,18 +22,24 @@
       "learnMore": "En savoir plus"
     },
     "responses": {
-      "services": "Nous proposons plusieurs services : Conseil Stratégique, Analyse Financière, Transformation Digitale, Gestion des Ressources Humaines, Développement Commercial, Optimisation Opérationnelle, Accompagnement PME, et Innovation & Technologie. Lequel vous intéresse ?",
-      "contact": "Pour nous contacter, vous pouvez utiliser le formulaire de contact sur notre site ou nous appeler directement. Souhaitez-vous que je vous redirige vers notre page de contact ?",
+      "services": "Nous proposons plusieurs services : Conseil Stratégique, Analyse Financière, Transformation Digitale, Gestion des Ressources Humaines, Développement Commercial, Optimisation Opérationnelle, Accompagnement PME, et Innovation & Technologie. Voulez-vous que je vous redirige vers notre page services pour en découvrir plus ?",
+      "contact": "Pour nous contacter, vous pouvez utiliser le formulaire de contact sur notre site ou nous appeler directement. Je peux vous rediriger vers notre page de contact si vous le souhaitez.",
+      "quote": "Pour obtenir un devis personnalisé, je vous invite à nous contacter via notre formulaire de contact. Nos tarifs varient selon le type de projet, la durée d'accompagnement et vos besoins spécifiques. Je peux vous rediriger vers notre page de contact pour votre demande de devis.",
+      "training": "Nous proposons des formations sur mesure adaptées à vos besoins. Pour obtenir un devis pour une formation, je vous invite à nous contacter via notre formulaire de contact. Je peux vous rediriger vers la page de contact pour votre demande.",
       "pricing": "Nos tarifs varient selon le type de projet et la durée d'accompagnement. Je vous invite à nous contacter pour obtenir un devis personnalisé adapté à vos besoins spécifiques.",
-      "company": "Nous accompagnons les entreprises de toutes tailles dans leur transformation et croissance. Nous avons une expertise particulière avec les PME. Quel est votre secteur d'activité ?",
+      "company": "Nous accompagnons les entreprises de toutes tailles dans leur transformation et croissance. Nous avons une expertise particulière avec les PME. Voulez-vous découvrir nos services ?",
       "strategy": "Notre service de Conseil Stratégique vous aide à définir et exécuter votre stratégie d'entreprise. Nous analysons votre marché, vos concurrents et vos opportunités de croissance.",
       "digital": "La Transformation Digitale est l'un de nos domaines d'expertise. Nous vous accompagnons dans l'adoption des nouvelles technologies et l'optimisation de vos processus numériques.",
       "hr": "Nous optimisons vos processus RH et développons votre capital humain. Cela inclut la stratégie de recrutement, la formation, et l'amélioration de la performance des équipes.",
       "finance": "Notre service d'Analyse Financière vous aide à optimiser votre performance financière et gérer les risques. Nous analysons vos flux de trésorerie, votre rentabilité et vos investissements.",
+      "about": "Gloriam Consulting est une société de conseil créée en 2023, spécialisée dans l'accompagnement des entreprises dans leur transformation et leur croissance. Voulez-vous en savoir plus sur notre histoire et notre vision ?",
+      "duration": "La durée de nos projets dépend de vos besoins spécifiques. Certains projets peuvent être réalisés en quelques semaines, d'autres nécessitent un accompagnement sur plusieurs mois. Nous adaptons notre approche à votre contexte.",
+      "expertise": "Notre équipe possède une expertise solide dans plusieurs domaines : conseil stratégique, analyse financière, transformation digitale, gestion des ressources humaines, et bien plus. Nous avons accompagné de nombreuses entreprises dans leur croissance.",
+      "clients": "Nous avons la chance de travailler avec des entreprises de renom qui nous font confiance. Vous pouvez découvrir nos partenaires et clients sur notre page dédiée.",
       "thanks": "De rien ! C'est un plaisir de vous aider. N'hésitez pas si vous avez d'autres questions sur nos services.",
       "greeting": "Bonjour ! Je suis là pour vous aider à découvrir nos services. Que souhaitez-vous savoir sur Gloriam Consulting ?",
-      "help": "Je peux vous renseigner sur nos services, nos tarifs, nos méthodes de travail, ou vous aider à nous contacter. Que souhaitez-vous savoir ?",
-      "default": "Merci pour votre message. Pour des informations plus détaillées, je vous invite à nous contacter directement via notre formulaire de contact. Notre équipe se fera un plaisir de vous répondre rapidement."
+      "help": "Je peux vous renseigner sur nos services, nos tarifs, nos méthodes de travail, ou vous aider à nous contacter. Je peux également vous rediriger vers nos pages services, contact, ou à propos. Que souhaitez-vous savoir ?",
+      "default": "Merci pour votre message. Pour des informations plus détaillées, je vous invite à nous contacter directement via notre formulaire de contact. Je vous redirige vers notre page de contact avec votre question."
     }
   },
   "home": {
