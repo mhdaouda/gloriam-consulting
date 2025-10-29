@@ -204,11 +204,11 @@
         "image": "/images/projects/assurances.jpg"
       },
       {
-        "title": "Flux Bancaire",
+        "title": "Gestion de Flux Bancaire",
         "client": "Grande Banque",
         "description": "Solution de gestion et d'échange de flux bancaires entre une grande banque et ses partenaires du secteur financier.",
         "details": "Mise en place d'une plateforme sécurisée permettant l'échange et la synchronisation de flux bancaires entre la banque et ses partenaires financiers. La solution garantit la sécurité des données, la conformité réglementaire et offre une traçabilité complète des échanges, facilitant la collaboration et l'innovation dans le secteur bancaire.",
-        "technologies": "CFT • Calypso • Windows 7 • Windows 10 • Windows Server • Unix • Linux • Protocoles réseaux SFTP • FTPS • PESIT • IBM Sterling • Gateway Axway • Control M • Jira",
+        "technologies": "CFT • Calypso • Windows 7 ET 10 • Windows Server • Unix • Linux • Protocole réseaux SFTP • FTPS • PeSIT • IBM Sterling • Gateway Axway • Control M • Jira",
         "image": "/images/projects/flux.jpg"
       },
       {

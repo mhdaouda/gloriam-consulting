@@ -205,11 +205,11 @@
         "image": "/images/projects/assurances.jpg"
       },
       {
-        "title": "Banking Flow",
+        "title": "Banking Flow Management",
         "client": "Major Bank",
         "description": "Solution for managing and exchanging banking flows between a major bank and its partners in the financial sector.",
         "details": "Implementation of a secure platform enabling banking flow exchange and synchronization between the bank and its financial partners. The solution ensures data security, regulatory compliance, and provides complete traceability of exchanges, facilitating collaboration and innovation in the banking sector.",
-        "technologies": "CFT • Calypso • Windows 7 • Windows 10 • Windows Server • Unix • Linux • Network Protocols SFTP • FTPS • PESIT • IBM Sterling • Axway Gateway • Control M • Jira",
+        "technologies": "CFT • Calypso • Windows 7 AND 10 • Windows Server • Unix • Linux • Network Protocols SFTP • FTPS • PeSIT • IBM Sterling • Gateway Axway • Control M • Jira",
         "image": "/images/projects/flux.jpg"
       },
       {
