@@ -25,7 +25,7 @@ export default function RootLayout({
           {children}
           <CookieConsent />
           <GoogleAnalytics />
-          <Chatbot locale="fr" />
+          <Chatbot />
         </LocaleProvider>
       </body>
     </html>

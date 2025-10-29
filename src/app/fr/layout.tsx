@@ -17,7 +17,7 @@ export default function FrLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
-        <Chatbot locale="fr" />
+        <Chatbot />
       </div>
     </LocaleProvider>
   );

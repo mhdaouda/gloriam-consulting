@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMessageCircle, FiX, FiSend, FiUser, FiMessageSquare, FiExternalLink } from 'react-icons/fi';
 import { useTranslations } from '@/app/_hooks/useTranslations';
+import { useLocaleContext } from '@/contexts/LocaleContext';
 
 interface Message {
   id: string;
@@ -17,11 +18,8 @@ interface Message {
   };
 }
 
-interface ChatbotProps {
-  locale?: string;
-}
-
-export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
+export default function Chatbot() {
+  const { locale } = useLocaleContext();
   const t = useTranslations('chatbot');
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);

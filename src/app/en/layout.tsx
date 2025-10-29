@@ -16,7 +16,7 @@ export default function EnLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
-        <Chatbot locale="en" />
+        <Chatbot />
       </div>
     </LocaleProvider>
   );
