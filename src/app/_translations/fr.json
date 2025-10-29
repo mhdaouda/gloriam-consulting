@@ -188,12 +188,12 @@
         "image": "/images/projects/construction.jpeg"
       },
       {
-        "title": "Gestion du SI Stations-Service Total",
-        "client": "Total Energies",
-        "description": "Gestion complète du système d'information des stations-service Total en France, Allemagne et autres entités européennes.",
+        "title": "Gestion du SI Stations-Service",
+        "client": "Groupe Énergétique International",
+        "description": "Gestion complète du système d'information des stations-service en France, Allemagne et autres entités européennes.",
         "details": "Projet phare : Mise en place d'une solution de télédistribution permettant la mise à jour automatique des prix de l'essence sans intervention humaine. Cette innovation révolutionnaire assure une synchronisation en temps réel des prix sur tous les points de vente, réduisant les erreurs et optimisant les opérations quotidiennes.",
-        "technologies": "Télédistribution • Automatisation • Système d'information • Intégration multi-pays",
-        "image": "/images/projects/total.jpg"
+        "technologies": "C# • Script Batch • VMware • SQL • Borne Wincor • TPI Token • Active Directory • Windows Server • XFB • Médiacontact • VPN SSL • Netop • TeamViewer • FileZilla",
+        "image": "/images/projects/StationService.png"
       },
       {
         "title": "Assurance en Ligne",
