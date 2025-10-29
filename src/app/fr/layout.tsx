@@ -4,6 +4,7 @@ import { LocaleProvider } from '@/contexts/LocaleContext';
 import { Metadata } from 'next';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import Chatbot from '@/app/_components/Chatbot';
 
 export default function FrLayout({
   children,
@@ -16,6 +17,7 @@ export default function FrLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Chatbot locale="fr" />
       </div>
     </LocaleProvider>
   );

@@ -11,6 +11,31 @@
     "privacyPolicy": "Politique de confidentialité",
     "cookies": "Cookies"
   },
+  "chatbot": {
+    "welcome": "Bonjour ! Je suis l'assistant virtuel de Gloriam Consulting. Comment puis-je vous aider aujourd'hui ?",
+    "online": "En ligne",
+    "typeMessage": "Tapez votre message...",
+    "quickActions": {
+      "services": "Nos services",
+      "contact": "Nous contacter",
+      "quote": "Demander un devis",
+      "learnMore": "En savoir plus"
+    },
+    "responses": {
+      "services": "Nous proposons plusieurs services : Conseil Stratégique, Analyse Financière, Transformation Digitale, Gestion des Ressources Humaines, Développement Commercial, Optimisation Opérationnelle, Accompagnement PME, et Innovation & Technologie. Lequel vous intéresse ?",
+      "contact": "Pour nous contacter, vous pouvez utiliser le formulaire de contact sur notre site ou nous appeler directement. Souhaitez-vous que je vous redirige vers notre page de contact ?",
+      "pricing": "Nos tarifs varient selon le type de projet et la durée d'accompagnement. Je vous invite à nous contacter pour obtenir un devis personnalisé adapté à vos besoins spécifiques.",
+      "company": "Nous accompagnons les entreprises de toutes tailles dans leur transformation et croissance. Nous avons une expertise particulière avec les PME. Quel est votre secteur d'activité ?",
+      "strategy": "Notre service de Conseil Stratégique vous aide à définir et exécuter votre stratégie d'entreprise. Nous analysons votre marché, vos concurrents et vos opportunités de croissance.",
+      "digital": "La Transformation Digitale est l'un de nos domaines d'expertise. Nous vous accompagnons dans l'adoption des nouvelles technologies et l'optimisation de vos processus numériques.",
+      "hr": "Nous optimisons vos processus RH et développons votre capital humain. Cela inclut la stratégie de recrutement, la formation, et l'amélioration de la performance des équipes.",
+      "finance": "Notre service d'Analyse Financière vous aide à optimiser votre performance financière et gérer les risques. Nous analysons vos flux de trésorerie, votre rentabilité et vos investissements.",
+      "thanks": "De rien ! C'est un plaisir de vous aider. N'hésitez pas si vous avez d'autres questions sur nos services.",
+      "greeting": "Bonjour ! Je suis là pour vous aider à découvrir nos services. Que souhaitez-vous savoir sur Gloriam Consulting ?",
+      "help": "Je peux vous renseigner sur nos services, nos tarifs, nos méthodes de travail, ou vous aider à nous contacter. Que souhaitez-vous savoir ?",
+      "default": "Merci pour votre message. Pour des informations plus détaillées, je vous invite à nous contacter directement via notre formulaire de contact. Notre équipe se fera un plaisir de vous répondre rapidement."
+    }
+  },
   "home": {
     "title": "Bienvenue chez Gloriam Consulting",
     "subtitle": "Votre partenaire en excellence commerciale",

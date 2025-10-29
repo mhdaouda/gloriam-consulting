@@ -180,5 +180,30 @@
     "allRights": "All rights reserved",
     "privacyPolicy": "Privacy Policy",
     "cookies": "Cookies"
+  },
+  "chatbot": {
+    "welcome": "Hello! I'm Gloriam Consulting's virtual assistant. How can I help you today?",
+    "online": "Online",
+    "typeMessage": "Type your message...",
+    "quickActions": {
+      "services": "Our services",
+      "contact": "Contact us",
+      "quote": "Request a quote",
+      "learnMore": "Learn more"
+    },
+    "responses": {
+      "services": "We offer several services: Strategic Consulting, Financial Analysis, Digital Transformation, Human Resources Management, Business Development, Operational Optimization, SME Support, and Innovation & Technology. Which one interests you?",
+      "contact": "To contact us, you can use the contact form on our website or call us directly. Would you like me to redirect you to our contact page?",
+      "pricing": "Our rates vary depending on the type of project and duration of support. I invite you to contact us for a personalized quote adapted to your specific needs.",
+      "company": "We support companies of all sizes in their transformation and growth. We have particular expertise with SMEs. What is your industry?",
+      "strategy": "Our Strategic Consulting service helps you define and execute your business strategy. We analyze your market, competitors, and growth opportunities.",
+      "digital": "Digital Transformation is one of our areas of expertise. We support you in adopting new technologies and optimizing your digital processes.",
+      "hr": "We optimize your HR processes and develop your human capital. This includes recruitment strategy, training, and improving team performance.",
+      "finance": "Our Financial Analysis service helps you optimize your financial performance and manage risks. We analyze your cash flow, profitability, and investments.",
+      "thanks": "You're welcome! It's a pleasure to help you. Don't hesitate if you have other questions about our services.",
+      "greeting": "Hello! I'm here to help you discover our services. What would you like to know about Gloriam Consulting?",
+      "help": "I can inform you about our services, our rates, our working methods, or help you contact us. What would you like to know?",
+      "default": "Thank you for your message. For more detailed information, I invite you to contact us directly via our contact form. Our team will be happy to respond quickly."
+    }
   }
 } 

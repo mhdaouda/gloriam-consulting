@@ -3,6 +3,7 @@
 import { LocaleProvider } from '@/contexts/LocaleContext';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import Chatbot from '@/app/_components/Chatbot';
 
 export default function EnLayout({
   children,
@@ -15,6 +16,7 @@ export default function EnLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Chatbot locale="en" />
       </div>
     </LocaleProvider>
   );

@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import { Metadata } from 'next';
 import GoogleAnalytics from '@/app/_components/GoogleAnalytics';
 import { CookieConsent } from '@/app/_components/CookieConsent';
+import Chatbot from '@/app/_components/Chatbot';
 import { LocaleProvider } from '@/contexts/LocaleContext';
 import './globals.css';
 
@@ -24,6 +25,7 @@ export default function RootLayout({
           {children}
           <CookieConsent />
           <GoogleAnalytics />
+          <Chatbot locale="fr" />
         </LocaleProvider>
       </body>
     </html>
