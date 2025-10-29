@@ -616,7 +616,15 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
                   {quickActions.map((action, index) => (
                     <motion.button
                       key={index}
-                      onClick={() => setInputValue(action)}
+                      onClick={() => {
+                        // Si c'est "En savoir plus" / "Learn more", rediriger directement vers la page à propos
+                        if (action === t('quickActions.learnMore')) {
+                          redirectToPage('/about');
+                        } else {
+                          // Pour les autres actions, mettre le texte dans l'input
+                          setInputValue(action);
+                        }
+                      }}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="text-xs bg-white hover:bg-emerald-50 border border-gray-200 hover:border-emerald-300 text-gray-700 hover:text-emerald-700 px-4 py-2 rounded-full transition-all duration-200 font-medium shadow-sm"
