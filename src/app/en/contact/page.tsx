@@ -2,7 +2,7 @@
 
 import { useTranslations } from '../../_hooks/useTranslations';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 
@@ -16,7 +16,7 @@ const fadeIn = {
   }
 };
 
-export default function Contact() {
+function ContactForm() {
   const t = useTranslations('contact');
   const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -213,5 +213,20 @@ export default function Contact() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Contact() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto"></div>
+          <p className="mt-4 text-zinc-600">Loading...</p>
+        </div>
+      </div>
+    }>
+      <ContactForm />
+    </Suspense>
   );
 } 
