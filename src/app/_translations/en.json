@@ -175,9 +175,9 @@
       {
         "title": "Pharmaceutical Payment Software",
         "client": "Major Pharmaceutical Group",
-        "description": "Development of a secure payment management software for a major pharmaceutical group, enabling transaction and reimbursement management.",
-        "details": "This comprehensive payment solution enables efficient management of financial transactions, reimbursements, invoicing, and payment traceability for pharmacies and group partners. The system ensures maximum security of financial data and full compliance with pharmaceutical sector regulations.",
-        "technologies": "Java JEE • Spring • JUnit • Bootstrap • Tomcat • Oracle • Git • REST API • Security",
+        "description": "Development of a secure and comprehensive payment system for a major pharmaceutical group, enabling the management of financial transactions for partner pharmacies.",
+        "details": "This innovative solution enables real-time payment processing for pharmacies, with complete integration into partner pharmacy management systems. The software provides complete transaction traceability, detailed reports, and ensures maximum security of financial data in compliance with current banking and pharmaceutical standards.",
+        "technologies": "Java JEE • Spring • JUnit • Bootstrap • Tomcat • Oracle • Git • REST API • Banking Security",
         "image": "/images/projects/paiements.png"
       },
       {

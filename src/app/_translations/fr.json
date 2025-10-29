@@ -174,9 +174,9 @@
       {
         "title": "Logiciel de Paiement Pharmaceutique",
         "client": "Grand Groupe Pharmaceutique",
-        "description": "Développement d'un logiciel de gestion de paiements sécurisé pour un grand groupe pharmaceutique, permettant la gestion des transactions et des remboursements.",
-        "details": "Cette solution de paiement complète permet de gérer efficacement les transactions financières, les remboursements, la facturation et la traçabilité des paiements pour les pharmacies et partenaires du groupe. Le système garantit une sécurité maximale des données financières et une conformité totale avec les réglementations du secteur pharmaceutique.",
-        "technologies": "Java JEE • Spring • JUnit • Bootstrap • Tomcat • Oracle • Git • REST API • Sécurité",
+        "description": "Développement d'un système de paiement sécurisé et complet pour un grand groupe pharmaceutique, permettant de gérer les transactions financières des pharmacies partenaires.",
+        "details": "Cette solution innovante permet de traiter les paiements des pharmacies en temps réel, avec une intégration complète aux systèmes de gestion des pharmacies partenaires. Le logiciel offre une traçabilité complète des transactions, des rapports détaillés, et garantit une sécurité maximale des données financières conformément aux normes bancaires et pharmaceutiques en vigueur.",
+        "technologies": "Java JEE • Spring • JUnit • Bootstrap • Tomcat • Oracle • Git • REST API • Sécurité bancaire",
         "image": "/images/projects/paiements.png"
       },
       {
