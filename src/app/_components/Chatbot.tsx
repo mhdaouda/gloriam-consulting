@@ -200,7 +200,7 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
       {/* Bouton flottant */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-colors duration-200"
+        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white p-4 rounded-full shadow-lg transition-all duration-200"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         initial={{ scale: 0 }}
@@ -243,7 +243,7 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
             className="fixed bottom-24 right-6 z-40 w-96 h-[500px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
           >
             {/* En-tête */}
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 text-white p-4 flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
                   <FiMessageSquare size={16} />
@@ -252,7 +252,7 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
                   <h3 className="font-semibold">
                     {locale === 'fr' ? 'Assistant Gloriam' : 'Gloriam Assistant'}
                   </h3>
-                  <p className="text-xs text-blue-100">
+                  <p className="text-xs text-emerald-100">
                     {t('online')}
                   </p>
                 </div>
@@ -277,20 +277,20 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
                   <div
                     className={`max-w-[80%] p-3 rounded-2xl ${
                       message.isUser
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white'
                         : 'bg-gray-100 text-gray-800'
                     }`}
                   >
                     <div className="flex items-start space-x-2">
                       {!message.isUser && (
-                        <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <div className="w-6 h-6 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                           <FiMessageSquare size={12} className="text-white" />
                         </div>
                       )}
                       <div className="flex-1">
                         <p className="text-sm leading-relaxed">{message.text}</p>
                         <p className={`text-xs mt-1 ${
-                          message.isUser ? 'text-blue-100' : 'text-gray-500'
+                          message.isUser ? 'text-emerald-100' : 'text-gray-500'
                         }`}>
                           {message.timestamp.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', {
                             hour: '2-digit',
@@ -317,7 +317,7 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
                 >
                   <div className="bg-gray-100 text-gray-800 p-3 rounded-2xl">
                     <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
+                      <div className="w-6 h-6 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full flex items-center justify-center">
                         <FiMessageSquare size={12} className="text-white" />
                       </div>
                       <div className="flex space-x-1">
@@ -360,13 +360,13 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder={t('typeMessage')}
-                  className="flex-1 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                  className="flex-1 p-3 border border-emerald-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 text-sm"
                   disabled={isTyping}
                 />
                 <button
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim() || isTyping}
-                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white p-3 rounded-xl transition-colors disabled:cursor-not-allowed"
+                  className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 disabled:bg-gray-300 text-white p-3 rounded-xl transition-all duration-200 disabled:cursor-not-allowed"
                 >
                   <FiSend size={16} />
                 </button>
