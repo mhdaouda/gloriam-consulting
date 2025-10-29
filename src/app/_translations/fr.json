@@ -4,7 +4,8 @@
     "services": "Services",
     "about": "À propos",
     "contact": "Contact",
-    "trust": "Ils Nous Font Confiance"
+    "trust": "Ils Nous Font Confiance",
+    "projects": "Projets"
   },
   "footer": {
     "allRights": "Tous droits réservés.",
@@ -165,6 +166,52 @@
       "satisfaction": "Satisfaction client",
       "satisfactionDesc": "Une relation de confiance durable avec nos clients"
     }
+  },
+  "projects": {
+    "title": "Nos Projets",
+    "description": "Découvrez quelques-uns de nos projets phares réalisés pour nos clients",
+    "projects": [
+      {
+        "title": "Gestion de Matériel de Construction",
+        "client": "Groupe de Construction Majeure",
+        "description": "Développement d'une application complète de gestion de matériel pour un groupe leader dans les grandes infrastructures (routes, voies ferrées, ponts).",
+        "details": "Cette solution permet de gérer efficacement les stocks de matériaux de construction, le suivi des commandes, la traçabilité des matériaux et l'optimisation des approvisionnements sur de multiples chantiers simultanés. L'application offre une vue d'ensemble en temps réel et facilite la coordination entre les différents sites.",
+        "technologies": "Application web et mobile • Gestion de stocks • Traçabilité • Multi-sites",
+        "image": "/images/projects/construction.jpg"
+      },
+      {
+        "title": "Gestion du SI Stations-Service Total",
+        "client": "Total Energies",
+        "description": "Gestion complète du système d'information des stations-service Total en France, Allemagne et autres entités européennes.",
+        "details": "Projet phare : Mise en place d'une solution de télédistribution permettant la mise à jour automatique des prix de l'essence sans intervention humaine. Cette innovation révolutionnaire assure une synchronisation en temps réel des prix sur tous les points de vente, réduisant les erreurs et optimisant les opérations quotidiennes.",
+        "technologies": "Télédistribution • Automatisation • Système d'information • Intégration multi-pays",
+        "image": "/images/projects/total.jpg"
+      },
+      {
+        "title": "Assurance en Ligne",
+        "client": "Compagnie d'Assurance",
+        "description": "Développement d'une application web permettant la souscription complète d'assurances en ligne, sans intervention humaine.",
+        "details": "Cette plateforme révolutionnaire permet aux clients de souscrire une assurance en quelques minutes, avec un processus entièrement automatisé de devis, comparaison et souscription. L'application intègre des fonctionnalités avancées de calcul de primes, d'analyse de risques et de génération automatique de contrats.",
+        "technologies": "Application web • Automatisation • Calcul de primes • E-signature",
+        "image": "/images/projects/insurance.jpg"
+      },
+      {
+        "title": "Gestion de Data Bancaire",
+        "client": "Grande Banque",
+        "description": "Solution de gestion et d'échange de données entre une grande banque et ses partenaires du secteur financier.",
+        "details": "Mise en place d'une plateforme sécurisée permettant l'échange et la synchronisation de données entre la banque et ses partenaires financiers. La solution garantit la sécurité des données, la conformité réglementaire et offre une traçabilité complète des échanges, facilitant la collaboration et l'innovation dans le secteur bancaire.",
+        "technologies": "Big Data • Sécurité • API • Conformité réglementaire • Intégration",
+        "image": "/images/projects/banking.jpg"
+      },
+      {
+        "title": "Solution Bancaire ODM",
+        "client": "Banque Digitale",
+        "description": "Mise en place d'une solution bancaire basée sur ODM (Operational Decision Management) permettant la souscription de crédits en ligne sans intervention humaine.",
+        "details": "Cette solution innovante utilise des moteurs de règles avancés pour évaluer automatiquement les demandes de crédit en temps réel. Grâce à l'automatisation complète du processus, les clients peuvent obtenir une réponse à leur demande de crédit en quelques minutes, avec une expérience utilisateur optimale et une conformité totale aux réglementations bancaires.",
+        "technologies": "ODM • Automatisation • Analyse de risque • Scoring • E-signature",
+        "image": "/images/projects/credit.jpg"
+      }
+    ]
   },
   "privacy": {
     "title": "Politique de Confidentialité",

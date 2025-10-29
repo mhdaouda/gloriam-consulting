@@ -36,6 +36,9 @@ export function Navbar() {
             <Link href={`/${locale}/about`} className="text-zinc-600 hover:text-zinc-900">
               {t(locale, 'navigation.about')}
             </Link>
+            <Link href={`/${locale}/projects`} className="text-zinc-600 hover:text-zinc-900">
+              {t(locale, 'navigation.projects')}
+            </Link>
             <Link href={`/${locale}/trust`} className="text-zinc-600 hover:text-zinc-900">
               {t(locale, 'navigation.trust')}
             </Link>

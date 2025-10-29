@@ -4,7 +4,8 @@
     "services": "Services",
     "about": "About",
     "contact": "Contact",
-    "trust": "They Trust Us"
+    "trust": "They Trust Us",
+    "projects": "Projects"
   },
   "cookies": {
     "description": "We use cookies to enhance your experience on our website.",
@@ -166,6 +167,52 @@
       "satisfaction": "Client Satisfaction",
       "satisfactionDesc": "A lasting relationship of trust with our clients"
     }
+  },
+  "projects": {
+    "title": "Our Projects",
+    "description": "Discover some of our flagship projects completed for our clients",
+    "projects": [
+      {
+        "title": "Construction Material Management",
+        "client": "Major Construction Group",
+        "description": "Development of a comprehensive material management application for a leading group in major infrastructure (roads, railways, bridges).",
+        "details": "This solution enables efficient management of construction material stocks, order tracking, material traceability, and supply optimization across multiple simultaneous construction sites. The application provides real-time overview and facilitates coordination between different sites.",
+        "technologies": "Web and mobile application • Stock management • Traceability • Multi-site",
+        "image": "/images/projects/construction.jpg"
+      },
+      {
+        "title": "Total Service Station IS Management",
+        "client": "Total Energies",
+        "description": "Complete management of Total service station information systems in France, Germany, and other European entities.",
+        "details": "Flagship project: Implementation of a remote distribution solution enabling automatic fuel price updates without human intervention. This revolutionary innovation ensures real-time price synchronization across all points of sale, reducing errors and optimizing daily operations.",
+        "technologies": "Remote distribution • Automation • Information system • Multi-country integration",
+        "image": "/images/projects/total.jpg"
+      },
+      {
+        "title": "Online Insurance",
+        "client": "Insurance Company",
+        "description": "Development of a web application enabling complete online insurance subscription without human intervention.",
+        "details": "This revolutionary platform allows customers to subscribe to insurance in just a few minutes, with a fully automated process of quotes, comparison, and subscription. The application integrates advanced features for premium calculation, risk analysis, and automatic contract generation.",
+        "technologies": "Web application • Automation • Premium calculation • E-signature",
+        "image": "/images/projects/insurance.jpg"
+      },
+      {
+        "title": "Banking Data Management",
+        "client": "Major Bank",
+        "description": "Solution for managing and exchanging data between a major bank and its partners in the financial sector.",
+        "details": "Implementation of a secure platform enabling data exchange and synchronization between the bank and its financial partners. The solution ensures data security, regulatory compliance, and provides complete traceability of exchanges, facilitating collaboration and innovation in the banking sector.",
+        "technologies": "Big Data • Security • API • Regulatory compliance • Integration",
+        "image": "/images/projects/banking.jpg"
+      },
+      {
+        "title": "ODM Banking Solution",
+        "client": "Digital Bank",
+        "description": "Implementation of a banking solution based on ODM (Operational Decision Management) enabling online credit subscription without human intervention.",
+        "details": "This innovative solution uses advanced rule engines to automatically evaluate credit applications in real-time. Thanks to complete process automation, customers can obtain a response to their credit application in just a few minutes, with optimal user experience and full compliance with banking regulations.",
+        "technologies": "ODM • Automation • Risk analysis • Scoring • E-signature",
+        "image": "/images/projects/credit.jpg"
+      }
+    ]
   },
   "privacy": {
     "title": "Privacy Policy",

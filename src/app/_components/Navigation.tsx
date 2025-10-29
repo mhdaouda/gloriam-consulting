@@ -43,6 +43,14 @@ export default function Navigation() {
               {t(locale, 'nav.about')}
             </Link>
             <Link
+              href={`/${locale}/projects`}
+              className={`text-zinc-600 hover:text-zinc-900 ${
+                pathname === `/${locale}/projects` ? 'font-semibold' : ''
+              }`}
+            >
+              {t(locale, 'nav.projects')}
+            </Link>
+            <Link
               href={`/${locale}/trust`}
               className={`text-zinc-600 hover:text-zinc-900 ${
                 pathname === `/${locale}/trust` ? 'font-semibold' : ''
@@ -110,6 +118,15 @@ export default function Navigation() {
                 onClick={toggleMenu}
               >
                 {t(locale, 'nav.about')}
+              </Link>
+              <Link
+                href={`/${locale}/projects`}
+                className={`text-zinc-600 hover:text-zinc-900 ${
+                  pathname === `/${locale}/projects` ? 'font-semibold' : ''
+                }`}
+                onClick={toggleMenu}
+              >
+                {t(locale, 'nav.projects')}
               </Link>
               <Link
                 href={`/${locale}/trust`}
