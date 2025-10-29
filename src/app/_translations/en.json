@@ -213,12 +213,12 @@
         "image": "/images/projects/flux.jpg"
       },
       {
-        "title": "ODM Banking Solution",
+        "title": "Banking Solution with Rules Engine",
         "client": "Digital Bank",
-        "description": "Implementation of a banking solution based on ODM (Operational Decision Management) enabling online credit subscription without human intervention.",
+        "description": "Implementation of a banking solution based on a rules engine enabling online credit subscription without human intervention.",
         "details": "This innovative solution uses advanced rule engines to automatically evaluate credit applications in real-time. Thanks to complete process automation, customers can obtain a response to their credit application in just a few minutes, with optimal user experience and full compliance with banking regulations.",
-        "technologies": "ODM • Automation • Risk analysis • Scoring • E-signature",
-        "image": "/images/projects/credit.jpg"
+        "technologies": "Java • Unix • Linux • XLDeploy • XLRelease • GitLab • API • Batch • PowerShell • SQL • ServiceNow • Python • Oracle",
+        "image": "/images/projects/odm.jpg"
       }
     ]
   },

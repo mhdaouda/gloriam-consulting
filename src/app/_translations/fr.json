@@ -212,12 +212,12 @@
         "image": "/images/projects/flux.jpg"
       },
       {
-        "title": "Solution Bancaire ODM",
+        "title": "Solution Bancaire avec Moteur de Règles",
         "client": "Banque Digitale",
-        "description": "Mise en place d'une solution bancaire basée sur ODM (Operational Decision Management) permettant la souscription de crédits en ligne sans intervention humaine.",
+        "description": "Mise en place d'une solution bancaire basée sur un moteur de règles permettant la souscription de crédits en ligne sans intervention humaine.",
         "details": "Cette solution innovante utilise des moteurs de règles avancés pour évaluer automatiquement les demandes de crédit en temps réel. Grâce à l'automatisation complète du processus, les clients peuvent obtenir une réponse à leur demande de crédit en quelques minutes, avec une expérience utilisateur optimale et une conformité totale aux réglementations bancaires.",
-        "technologies": "ODM • Automatisation • Analyse de risque • Scoring • E-signature",
-        "image": "/images/projects/credit.jpg"
+        "technologies": "Java • Unix • Linux • XLDeploy • XLRelease • GitLab • API • Batch • PowerShell • SQL • ServiceNow • Python • Oracle",
+        "image": "/images/projects/odm.jpg"
       }
     ]
   },
