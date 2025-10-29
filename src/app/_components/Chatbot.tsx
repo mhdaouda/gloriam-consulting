@@ -200,12 +200,12 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
       {/* Bouton flottant */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white p-4 rounded-full shadow-lg transition-all duration-200"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 2 }}
+        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-white/20"
+        whileHover={{ scale: 1.1, rotate: [0, -10, 10, -10, 0] }}
+        whileTap={{ scale: 0.9 }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 2, type: "spring", stiffness: 200 }}
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
@@ -240,71 +240,74 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-24 right-6 z-40 w-96 h-[500px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
+            className="fixed bottom-24 right-6 z-40 w-96 h-[500px] bg-white rounded-3xl shadow-2xl border border-gray-100 flex flex-col overflow-hidden backdrop-blur-sm"
           >
             {/* En-tête */}
-            <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 text-white p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 text-white p-5 flex items-center justify-between rounded-t-3xl border-b border-emerald-500/20">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                  <FiMessageSquare size={16} />
+                <div className="relative">
+                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <FiMessageSquare size={18} />
+                  </div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white animate-pulse"></div>
                 </div>
                 <div>
-                  <h3 className="font-semibold">
+                  <h3 className="font-bold text-base">
                     {locale === 'fr' ? 'Assistant Gloriam' : 'Gloriam Assistant'}
                   </h3>
-                  <p className="text-xs text-emerald-100">
+                  <p className="text-xs text-emerald-100 font-medium flex items-center gap-1">
+                    <span className="w-2 h-2 bg-emerald-300 rounded-full animate-pulse"></span>
                     {t('online')}
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-white/80 hover:text-white hover:bg-white/10 rounded-full p-1.5 transition-all duration-200"
               >
                 <FiX size={20} />
               </button>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
-              {messages.map((message) => (
+            <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-gradient-to-b from-gray-50/50 to-white">
+              {messages.map((message, index) => (
                 <motion.div
                   key={message.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+                  initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ delay: index * 0.05, duration: 0.3 }}
+                  className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} items-end gap-2`}
                 >
+                  {!message.isUser && (
+                    <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
+                      <FiMessageSquare size={14} className="text-white" />
+                    </div>
+                  )}
                   <div
-                    className={`max-w-[80%] p-3 rounded-2xl ${
+                    className={`max-w-[75%] rounded-2xl shadow-sm ${
                       message.isUser
-                        ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white'
-                        : 'bg-gray-100 text-gray-800'
+                        ? 'bg-gradient-to-br from-emerald-600 to-teal-600 text-white rounded-tr-sm'
+                        : 'bg-white text-gray-800 border border-gray-100 rounded-tl-sm'
                     }`}
                   >
-                    <div className="flex items-start space-x-2">
-                      {!message.isUser && (
-                        <div className="w-6 h-6 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                          <FiMessageSquare size={12} className="text-white" />
-                        </div>
-                      )}
-                      <div className="flex-1">
-                        <p className="text-sm leading-relaxed">{message.text}</p>
-                        <p className={`text-xs mt-1 ${
-                          message.isUser ? 'text-emerald-100' : 'text-gray-500'
-                        }`}>
-                          {message.timestamp.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', {
-                            hour: '2-digit',
-                            minute: '2-digit'
-                          })}
-                        </p>
-                      </div>
-                      {message.isUser && (
-                        <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                          <FiUser size={12} className="text-white" />
-                        </div>
-                      )}
+                    <div className="p-3.5">
+                      <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.text}</p>
+                      <p className={`text-xs mt-2 font-medium ${
+                        message.isUser ? 'text-emerald-100/80' : 'text-gray-400'
+                      }`}>
+                        {message.timestamp.toLocaleTimeString(locale === 'fr' ? 'fr-FR' : 'en-US', {
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </p>
                     </div>
                   </div>
+                  {message.isUser && (
+                    <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
+                      <FiUser size={14} className="text-white" />
+                    </div>
+                  )}
                 </motion.div>
               ))}
 
@@ -315,16 +318,14 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex justify-start"
                 >
-                  <div className="bg-gray-100 text-gray-800 p-3 rounded-2xl">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full flex items-center justify-center">
-                        <FiMessageSquare size={12} className="text-white" />
-                      </div>
-                      <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                      </div>
+                  <div className="bg-white border border-gray-100 text-gray-800 p-4 rounded-2xl rounded-tl-sm shadow-sm flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center shadow-md">
+                      <FiMessageSquare size={14} className="text-white" />
+                    </div>
+                    <div className="flex space-x-1.5">
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+                      <div className="w-2 h-2 bg-teal-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                     </div>
                   </div>
                 </motion.div>
@@ -335,24 +336,26 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
 
             {/* Actions rapides */}
             {messages.length === 1 && (
-              <div className="px-4 pb-2">
-                <div className="flex flex-wrap gap-2">
+              <div className="px-5 pb-3 border-t border-gray-100 bg-gray-50/50">
+                <div className="flex flex-wrap gap-2 pt-3">
                   {quickActions.map((action, index) => (
-                    <button
+                    <motion.button
                       key={index}
                       onClick={() => setInputValue(action)}
-                      className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded-full transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="text-xs bg-white hover:bg-emerald-50 border border-gray-200 hover:border-emerald-300 text-gray-700 hover:text-emerald-700 px-4 py-2 rounded-full transition-all duration-200 font-medium shadow-sm"
                     >
                       {action}
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
               </div>
             )}
 
             {/* Zone de saisie */}
-            <div className="p-4 border-t border-gray-200">
-              <div className="flex items-center space-x-2">
+            <div className="p-5 border-t border-gray-100 bg-white rounded-b-3xl">
+              <div className="flex items-center space-x-3">
                 <input
                   ref={inputRef}
                   type="text"
@@ -360,16 +363,18 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder={t('typeMessage')}
-                  className="flex-1 p-3 border border-emerald-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 text-sm"
+                  className="flex-1 p-3.5 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-400/50 focus:border-emerald-400 text-sm bg-gray-50 transition-all duration-200 placeholder:text-gray-400"
                   disabled={isTyping}
                 />
-                <button
+                <motion.button
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim() || isTyping}
-                  className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 disabled:bg-gray-300 text-white p-3 rounded-xl transition-all duration-200 disabled:cursor-not-allowed"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 disabled:bg-gray-300 disabled:from-gray-300 disabled:to-gray-300 text-white p-3.5 rounded-2xl transition-all duration-200 disabled:cursor-not-allowed shadow-lg hover:shadow-xl flex items-center justify-center min-w-[48px]"
                 >
-                  <FiSend size={16} />
-                </button>
+                  <FiSend size={18} />
+                </motion.button>
               </div>
             </div>
           </motion.div>
