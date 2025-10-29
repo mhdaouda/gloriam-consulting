@@ -97,7 +97,7 @@ export default function Projects() {
               >
                 {/* Image Section */}
                 <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-                  {project.image && (project.image.includes('construction.jpeg') || project.image.includes('paiements.png') || project.image.includes('StationService.png') || project.image.includes('assurances.jpg')) ? (
+                  {project.image && (project.image.includes('construction.jpeg') || project.image.includes('paiements.png') || project.image.includes('StationService.png') || project.image.includes('assurances.jpg') || project.image.includes('flux.jpg')) ? (
                     <>
                       <Image
                         src={project.image}
