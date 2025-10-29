@@ -173,6 +173,14 @@
     "description": "Discover some of our flagship projects completed for our clients",
     "projects": [
       {
+        "title": "Pharmaceutical Payment Software",
+        "client": "Major Pharmaceutical Group",
+        "description": "Development of a secure payment management software for a major pharmaceutical group, enabling transaction and reimbursement management.",
+        "details": "This comprehensive payment solution enables efficient management of financial transactions, reimbursements, invoicing, and payment traceability for pharmacies and group partners. The system ensures maximum security of financial data and full compliance with pharmaceutical sector regulations.",
+        "technologies": "Java JEE • Spring • JUnit • Bootstrap • Tomcat • Oracle • Git • REST API • Security",
+        "image": "/images/projects/paiements.png"
+      },
+      {
         "title": "Construction Material Management",
         "client": "Major Construction Group",
         "description": "Development of a comprehensive material management application for a leading group in major infrastructure (roads, railways, bridges).",

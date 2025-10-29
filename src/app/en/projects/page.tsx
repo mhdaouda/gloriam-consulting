@@ -3,7 +3,7 @@
 import { useTranslations } from '../../_hooks/useTranslations';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { FaBuilding, FaGasPump, FaShieldAlt, FaChartLine, FaCreditCard, FaCheckCircle } from 'react-icons/fa';
+import { FaBuilding, FaGasPump, FaShieldAlt, FaChartLine, FaCreditCard, FaCheckCircle, FaPills } from 'react-icons/fa';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -41,6 +41,7 @@ const headerVariants = {
 };
 
 const projectIcons = [
+  FaPills,
   FaBuilding,
   FaGasPump,
   FaShieldAlt,
@@ -49,6 +50,7 @@ const projectIcons = [
 ];
 
 const gradientColors = [
+  'from-purple-500 via-indigo-500 to-blue-500',
   'from-orange-500 via-amber-500 to-yellow-500',
   'from-red-500 via-pink-500 to-rose-500',
   'from-blue-500 via-indigo-500 to-purple-500',
@@ -95,7 +97,7 @@ export default function Projects() {
               >
                 {/* Image Section */}
                 <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-                  {project.image && project.image.includes('construction.jpeg') ? (
+                  {project.image && (project.image.includes('construction.jpeg') || project.image.includes('paiements.png')) ? (
                     <>
                       <Image
                         src={project.image}

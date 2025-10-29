@@ -172,6 +172,14 @@
     "description": "Découvrez quelques-uns de nos projets phares réalisés pour nos clients",
     "projects": [
       {
+        "title": "Logiciel de Paiement Pharmaceutique",
+        "client": "Grand Groupe Pharmaceutique",
+        "description": "Développement d'un logiciel de gestion de paiements sécurisé pour un grand groupe pharmaceutique, permettant la gestion des transactions et des remboursements.",
+        "details": "Cette solution de paiement complète permet de gérer efficacement les transactions financières, les remboursements, la facturation et la traçabilité des paiements pour les pharmacies et partenaires du groupe. Le système garantit une sécurité maximale des données financières et une conformité totale avec les réglementations du secteur pharmaceutique.",
+        "technologies": "Java JEE • Spring • JUnit • Bootstrap • Tomcat • Oracle • Git • REST API • Sécurité",
+        "image": "/images/projects/paiements.png"
+      },
+      {
         "title": "Gestion de Matériel de Construction",
         "client": "Groupe de Construction Majeure",
         "description": "Développement d'une application complète de gestion de matériel pour un groupe leader dans les grandes infrastructures (routes, voies ferrées, ponts).",
