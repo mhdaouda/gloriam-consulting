@@ -194,7 +194,8 @@
       "services": "Our services",
       "contact": "Contact us",
       "quote": "Request a quote",
-      "learnMore": "Learn more"
+      "learnMore": "Learn more",
+      "partners": "Our partners"
     },
     "responses": {
       "services": "We offer several services: Strategic Consulting, Financial Analysis, Digital Transformation, Human Resources Management, Business Development, Operational Optimization, SME Support, and Innovation & Technology. Would you like me to redirect you to our services page to discover more?",

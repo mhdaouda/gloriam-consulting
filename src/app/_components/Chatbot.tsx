@@ -446,7 +446,8 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
     t('quickActions.services'),
     t('quickActions.contact'),
     t('quickActions.quote'),
-    t('quickActions.learnMore')
+    t('quickActions.learnMore'),
+    t('quickActions.partners')
   ];
 
   return (
@@ -620,6 +621,9 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
                         // Si c'est "En savoir plus" / "Learn more", rediriger directement vers la page à propos
                         if (action === t('quickActions.learnMore')) {
                           redirectToPage('/about');
+                        } else if (action === t('quickActions.partners')) {
+                          // Si c'est "Nos partenaires" / "Our partners", rediriger vers la page trust
+                          redirectToPage('/trust');
                         } else {
                           // Pour les autres actions, mettre le texte dans l'input
                           setInputValue(action);
