@@ -194,12 +194,37 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
 
       // Partenaires / Clients
       if (message.includes('partenaire') || message.includes('client') || message.includes('référence') ||
-          message.includes('portfolio') || message.includes('projets')) {
+          message.includes('portfolio')) {
         return {
           text: t('responses.clients'),
           action: {
             type: 'redirect',
             url: '/trust'
+          }
+        };
+      }
+
+      // Projets / Réalisations
+      if ((message.includes('projet') && !message.includes('devis') && !message.includes('estimation')) ||
+          message.includes('réalisations') || message.includes('réalisé') ||
+          (message.includes('expérience') && message.includes('projet'))) {
+        return {
+          text: t('responses.projects'),
+          action: {
+            type: 'redirect',
+            url: '/projects'
+          }
+        };
+      }
+
+      // Estimation rapide
+      if (message.includes('estimation rapide') || message.includes('estimer rapidement') ||
+          message.includes('estimation') && (message.includes('rapide') || message.includes('rapidement'))) {
+        return {
+          text: t('responses.estimation'),
+          action: {
+            type: 'quote',
+            data: userMessage
           }
         };
       }
@@ -350,13 +375,38 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
       }
 
       // Partners / Clients
-      if (message.includes('partner') || message.includes('client') || message.includes('reference') ||
-          message.includes('portfolio') || message.includes('projects')) {
+      if (message.includes('partner') || message.includes('client') || message.includes('reference')) {
         return {
           text: t('responses.clients'),
           action: {
             type: 'redirect',
             url: '/trust'
+          }
+        };
+      }
+
+      // Projects / Portfolio
+      if ((message.includes('project') && !message.includes('quote') && !message.includes('estimate')) ||
+          (message.includes('portfolio') && !message.includes('quote')) ||
+          (message.includes('work') && message.includes('done')) ||
+          (message.includes('experience') && message.includes('project'))) {
+        return {
+          text: t('responses.projects'),
+          action: {
+            type: 'redirect',
+            url: '/projects'
+          }
+        };
+      }
+
+      // Quick Estimate
+      if (message.includes('quick estimate') || message.includes('fast estimate') ||
+          message.includes('estimate') && (message.includes('quick') || message.includes('fast'))) {
+        return {
+          text: t('responses.estimation'),
+          action: {
+            type: 'quote',
+            data: userMessage
           }
         };
       }
@@ -444,8 +494,10 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
 
   const quickActions = [
     t('quickActions.services'),
-    t('quickActions.contact'),
+    t('quickActions.projects'),
     t('quickActions.quote'),
+    t('quickActions.estimation'),
+    t('quickActions.contact'),
     t('quickActions.learnMore'),
     t('quickActions.partners')
   ];
@@ -624,6 +676,12 @@ export default function Chatbot({ locale = 'fr' }: ChatbotProps) {
                         } else if (action === t('quickActions.partners')) {
                           // Si c'est "Nos partenaires" / "Our partners", rediriger vers la page trust
                           redirectToPage('/trust');
+                        } else if (action === t('quickActions.projects')) {
+                          // Si c'est "Voir nos projets" / "View our projects", rediriger vers la page projets
+                          redirectToPage('/projects');
+                        } else if (action === t('quickActions.estimation') || action === t('quickActions.quote')) {
+                          // Si c'est une demande de devis ou estimation, rediriger vers contact
+                          redirectToContactWithQuestion(action);
                         } else {
                           // Pour les autres actions, mettre le texte dans l'input
                           setInputValue(action);

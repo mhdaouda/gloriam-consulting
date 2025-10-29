@@ -18,8 +18,10 @@
     "typeMessage": "Tapez votre message...",
     "quickActions": {
       "services": "Nos services",
+      "projects": "Voir nos projets",
       "contact": "Nous contacter",
       "quote": "Demander un devis",
+      "estimation": "Estimation rapide",
       "learnMore": "En savoir plus",
       "partners": "Nos partenaires"
     },
@@ -29,6 +31,8 @@
       "quote": "Pour obtenir un devis personnalisé, je vous invite à nous contacter via notre formulaire de contact. Nos tarifs varient selon le type de projet, la durée d'accompagnement et vos besoins spécifiques. Je peux vous rediriger vers notre page de contact pour votre demande de devis.",
       "training": "Nous proposons des formations sur mesure adaptées à vos besoins. Pour obtenir un devis pour une formation, je vous invite à nous contacter via notre formulaire de contact. Je peux vous rediriger vers la page de contact pour votre demande.",
       "pricing": "Nos tarifs varient selon le type de projet et la durée d'accompagnement. Je vous invite à nous contacter pour obtenir un devis personnalisé adapté à vos besoins spécifiques.",
+      "projects": "Nous avons réalisé de nombreux projets réussis pour nos clients : logiciels de paiement pharmaceutique, gestion de matériel de construction, systèmes de stations-service, applications d'assurance en ligne, solutions bancaires de flux et moteurs de règles. Voulez-vous découvrir nos projets en détail ?",
+      "estimation": "Pour obtenir une estimation rapide, j'aurais besoin de quelques informations : le type de service que vous recherchez, la durée estimée du projet, et votre budget approximatif. Je peux vous rediriger vers notre formulaire de contact pour une estimation détaillée.",
       "company": "Nous accompagnons les entreprises de toutes tailles dans leur transformation et croissance. Nous avons une expertise particulière avec les PME. Voulez-vous découvrir nos services ?",
       "strategy": "Notre service de Conseil Stratégique vous aide à définir et exécuter votre stratégie d'entreprise. Nous analysons votre marché, vos concurrents et vos opportunités de croissance.",
       "digital": "La Transformation Digitale est l'un de nos domaines d'expertise. Nous vous accompagnons dans l'adoption des nouvelles technologies et l'optimisation de vos processus numériques.",

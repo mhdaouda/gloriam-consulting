@@ -247,8 +247,10 @@
     "typeMessage": "Type your message...",
     "quickActions": {
       "services": "Our services",
+      "projects": "View our projects",
       "contact": "Contact us",
       "quote": "Request a quote",
+      "estimation": "Quick estimate",
       "learnMore": "Learn more",
       "partners": "Our partners"
     },
@@ -257,7 +259,9 @@
       "contact": "To contact us, you can use the contact form on our website or call us directly. I can redirect you to our contact page if you wish.",
       "quote": "To get a personalized quote, I invite you to contact us via our contact form. Our rates vary depending on the type of project, duration of support, and your specific needs. I can redirect you to our contact page for your quote request.",
       "training": "We offer tailored training programs adapted to your needs. To get a quote for training, I invite you to contact us via our contact form. I can redirect you to the contact page for your request.",
-      "pricing": "Our rates vary depending on the type of project and duration of support. I invite you to contact us for a personalized quote adapted to your specific needs.",
+      "pricing": "Our rates vary depending on the type of project and duration of support. I invite you to contact us for a personalized quote tailored to your specific needs.",
+      "projects": "We have completed many successful projects for our clients: pharmaceutical payment software, construction material management, service station systems, online insurance applications, banking flow solutions, and rules engines. Would you like to discover our projects in detail?",
+      "estimation": "To get a quick estimate, I would need some information: the type of service you are looking for, the estimated project duration, and your approximate budget. I can redirect you to our contact form for a detailed estimate.",
       "company": "We support companies of all sizes in their transformation and growth. We have particular expertise with SMEs. Would you like to discover our services?",
       "strategy": "Our Strategic Consulting service helps you define and execute your business strategy. We analyze your market, competitors, and growth opportunities.",
       "digital": "Digital Transformation is one of our areas of expertise. We support you in adopting new technologies and optimizing your digital processes.",
