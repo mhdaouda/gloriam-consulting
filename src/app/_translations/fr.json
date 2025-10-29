@@ -176,8 +176,8 @@
         "client": "Groupe de Construction Majeure",
         "description": "Développement d'une application complète de gestion de matériel pour un groupe leader dans les grandes infrastructures (routes, voies ferrées, ponts).",
         "details": "Cette solution permet de gérer efficacement les stocks de matériaux de construction, le suivi des commandes, la traçabilité des matériaux et l'optimisation des approvisionnements sur de multiples chantiers simultanés. L'application offre une vue d'ensemble en temps réel et facilite la coordination entre les différents sites.",
-        "technologies": "Application web et mobile • Gestion de stocks • Traçabilité • Multi-sites",
-        "image": "/images/projects/construction.jpg"
+        "technologies": "Java JEE • Maven • AngularJS • Node.js • SVN • SQL • JBoss • REST API • Spring Framework • Hibernate",
+        "image": "/images/projects/construction.jpeg"
       },
       {
         "title": "Gestion du SI Stations-Service Total",

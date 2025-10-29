@@ -177,8 +177,8 @@
         "client": "Major Construction Group",
         "description": "Development of a comprehensive material management application for a leading group in major infrastructure (roads, railways, bridges).",
         "details": "This solution enables efficient management of construction material stocks, order tracking, material traceability, and supply optimization across multiple simultaneous construction sites. The application provides real-time overview and facilitates coordination between different sites.",
-        "technologies": "Web and mobile application • Stock management • Traceability • Multi-site",
-        "image": "/images/projects/construction.jpg"
+        "technologies": "Java JEE • Maven • AngularJS • Node.js • SVN • SQL • JBoss • REST API • Spring Framework • Hibernate",
+        "image": "/images/projects/construction.jpeg"
       },
       {
         "title": "Total Service Station IS Management",

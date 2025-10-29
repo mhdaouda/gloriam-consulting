@@ -2,6 +2,7 @@
 
 import { useTranslations } from '../../_hooks/useTranslations';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { FaBuilding, FaGasPump, FaShieldAlt, FaChartLine, FaCreditCard, FaCheckCircle } from 'react-icons/fa';
 
 const containerVariants = {
@@ -94,12 +95,26 @@ export default function Projects() {
               >
                 {/* Image Section */}
                 <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-80`} />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Icon className="text-white text-8xl opacity-60" />
-                  </div>
-                  {/* Placeholder pour l'image - vous pouvez remplacer par une vraie image */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-800/20 to-transparent" />
+                  {project.image && project.image.includes('construction.jpeg') ? (
+                    <>
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-40`} />
+                    </>
+                  ) : (
+                    <>
+                      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-80`} />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Icon className="text-white text-8xl opacity-60" />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-800/20 to-transparent" />
+                    </>
+                  )}
                 </div>
 
                 {/* Content Section */}
