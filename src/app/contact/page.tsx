@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { t } from '@/i18n';
 
@@ -99,16 +99,7 @@ export default function Contact() {
               <div>
                 <h3 className="text-lg font-semibold text-zinc-800">Email</h3>
                 <p className="text-zinc-600">contact@gloriam-consulting.com</p>
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="flex items-center space-x-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600">
-                <FaPhone className="h-6 w-6" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-zinc-800">Téléphone</h3>
-                <p className="text-zinc-600">+33 6 XX XX XX XX</p>
+                <p className="text-zinc-600">daoudayinde@gmail.com</p>
               </div>
             </motion.div>
 

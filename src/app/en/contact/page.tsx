@@ -4,7 +4,7 @@ import { useTranslations } from '../../_hooks/useTranslations';
 import { motion } from 'framer-motion';
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -118,16 +118,9 @@ function ContactForm() {
                 iconColor: "text-emerald-600"
               },
               {
-                Icon: FaPhone,
-                title: "Phone",
-                content: ["+33 6 84 10 63 93"],
-                gradient: "from-teal-100 to-emerald-100",
-                iconColor: "text-teal-600"
-              },
-              {
                 Icon: FaEnvelope,
                 title: "Email",
-                content: ["contact@gloriam-consulting.com"],
+                content: ["contact@gloriam-consulting.com", "daoudayinde@gmail.com"],
                 gradient: "from-emerald-100 to-teal-100",
                 iconColor: "text-emerald-600"
               }
