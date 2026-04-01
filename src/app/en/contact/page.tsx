@@ -4,6 +4,7 @@ import { useTranslations } from '../../_hooks/useTranslations';
 import { motion } from 'framer-motion';
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import { FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 
 const fadeIn = {
@@ -109,6 +110,18 @@ function ContactForm() {
 
         <div className="grid gap-16 md:grid-cols-2">
           <div className="space-y-8">
+            <div className="flex justify-center md:justify-start">
+              <div className="relative h-52 w-52 shrink-0 overflow-hidden rounded-2xl border border-emerald-100 shadow-lg ring-2 ring-emerald-50">
+                <Image
+                  src="/images/profile-pi.png"
+                  alt="Gloriam Consulting"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 208px, 208px"
+                  priority
+                />
+              </div>
+            </div>
             {[
               {
                 Icon: FaMapMarkerAlt,

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { t } from '@/i18n';
@@ -92,6 +93,19 @@ export default function Contact() {
             animate="visible"
             className="space-y-8"
           >
+            <motion.div variants={fadeInUp} className="flex justify-center md:justify-start">
+              <div className="relative h-52 w-52 shrink-0 overflow-hidden rounded-2xl border border-emerald-100 shadow-lg ring-2 ring-emerald-50">
+                <Image
+                  src="/images/profile-pi.png"
+                  alt="Gloriam Consulting"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 208px, 208px"
+                  priority
+                />
+              </div>
+            </motion.div>
+
             <motion.div variants={fadeInUp} className="flex items-center space-x-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
                 <FaEnvelope className="h-6 w-6" />
