@@ -1,10 +1,15 @@
-import { Inter } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import { Metadata } from 'next';
 import GoogleAnalytics from '@/app/_components/GoogleAnalytics';
 import { CookieConsent } from '@/app/_components/CookieConsent';
+import { Providers } from '@/app/_components/Providers';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-plus-jakarta',
+});
 
 export const metadata: Metadata = {
   title: 'Gloriam Consulting',
@@ -17,9 +22,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr">
-      <body className={inter.className}>
-        {children}
+    <html lang="fr" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('gloriam-theme');document.documentElement.classList.toggle('dark',t!=='light')}catch(e){document.documentElement.classList.add('dark')}})();`,
+          }}
+        />
+      </head>
+      <body className={`${plusJakarta.className} antialiased`}>
+        <Providers>{children}</Providers>
         <CookieConsent />
         <GoogleAnalytics />
       </body>

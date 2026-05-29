@@ -1,7 +1,6 @@
 'use client';
 
 import { LocaleProvider } from '@/contexts/LocaleContext';
-import { Metadata } from 'next';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Chatbot from '@/app/_components/Chatbot';
@@ -13,9 +12,13 @@ export default function FrLayout({
 }) {
   return (
     <LocaleProvider locale="fr">
-      <div className="flex min-h-screen flex-col">
+      <div className="relative flex min-h-screen flex-col bg-slate-50 dark:bg-slate-950">
+        <div
+          className="pointer-events-none fixed inset-0 hidden bg-grid-dark opacity-[0.14] dark:block"
+          aria-hidden
+        />
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="relative z-[1] flex-1">{children}</main>
         <Footer />
         <Chatbot />
       </div>

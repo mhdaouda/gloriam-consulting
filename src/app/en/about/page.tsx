@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaStar, FaCheck, FaHeart } from 'react-icons/fa';
 import { images } from '../../_lib/images';
+import OperationalMap from '../../_components/OperationalMap';
+import { OPERATIONAL_LOCATIONS } from '../../_lib/operationalLocations';
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -113,6 +115,35 @@ export default function About() {
             </div>
           </div>
         </div>
+
+        <section
+          className="mt-24 rounded-2xl border border-slate-200/80 bg-white p-8 shadow-lg md:p-12"
+          aria-labelledby="about-coverage-heading"
+        >
+          <h2
+            id="about-coverage-heading"
+            className="mb-3 text-center text-3xl font-bold text-zinc-800"
+          >
+            {t('coverage.title')}
+          </h2>
+          <p className="mx-auto mb-8 max-w-3xl text-center text-lg text-zinc-600">
+            {t('coverage.description')}
+          </p>
+          <OperationalMap />
+          <p className="mb-3 mt-8 text-center text-sm font-semibold uppercase tracking-wide text-emerald-700/90">
+            {t('coverage.listTitle')}
+          </p>
+          <ul className="flex flex-wrap justify-center gap-2">
+            {OPERATIONAL_LOCATIONS.map((loc) => (
+              <li
+                key={loc.id}
+                className="rounded-full border border-emerald-200/80 bg-emerald-50 px-3 py-1.5 text-sm font-medium text-emerald-900"
+              >
+                {t(`coverage.countries.${loc.id}`)}
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <div className="mt-24 rounded-2xl bg-gradient-to-br from-indigo-50 via-purple-50 to-white p-12 shadow-lg">
           <h2 className="mb-12 text-center text-3xl font-bold text-zinc-800">

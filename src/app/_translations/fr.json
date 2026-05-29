@@ -10,7 +10,18 @@
   "footer": {
     "allRights": "Tous droits réservés.",
     "privacyPolicy": "Politique de confidentialité",
-    "cookies": "Cookies"
+    "cookies": "Cookies",
+    "tagline": "Conseil, stratégie et accompagnement pour accélérer la transformation de votre entreprise.",
+    "quickLinks": "Liens rapides",
+    "legal": "Informations légales",
+    "contactBlock": "Contact",
+    "address": "95360 Montmagny, France",
+    "ecosystem": "Écosystème",
+    "ecosystemLinks": {
+      "turbotech": "TurboTech Consulting",
+      "flashcoder": "FlashCoder Academy",
+      "portfolio": "Portfolio Mohamed Daouda"
+    }
   },
   "chatbot": {
     "welcome": "Bonjour ! Je suis l'assistant virtuel de Gloriam Consulting. Comment puis-je vous aider aujourd'hui ?",
@@ -50,13 +61,62 @@
     }
   },
   "home": {
-    "title": "Bienvenue chez Gloriam Consulting",
-    "subtitle": "Votre partenaire en excellence commerciale",
-    "description": "Nous accompagnons les entreprises dans leur transformation et leur croissance",
+    "badge": "SASU · Conseil & excellence commerciale",
+    "titleLine1": "Le conseil & la digitalisation",
+    "titleLine2": "au service de votre croissance.",
+    "description": "accompagne les entreprises dans leur transformation, leur stratégie commerciale et leurs projets digitaux — en France, en Afrique et au Canada.",
+    "zonesHint": "Afrique · Europe · Amérique",
+    "zonesLabel": "Zones d'intervention",
+    "ctaStart": "Démarrer un projet",
+    "ctaServices": "Nos services",
+    "ctaContact": "Nous contacter",
     "learnMore": "En savoir plus",
+    "heroEyebrow": "Conseil · Stratégie · Croissance",
+    "stats": {
+      "founded": "Année de création",
+      "countries": "Pays couverts",
+      "projects": "Projets réussis",
+      "ecosystem": "Entités de l'écosystème"
+    },
+    "zones": {
+      "eyebrow": "Présence internationale",
+      "title": "Référencés là où vous opérez",
+      "subtitle": "Nous intervenons sur plusieurs continents avec une approche locale et des standards internationaux.",
+      "africa": "Afrique",
+      "europe": "Europe",
+      "america": "Amérique",
+      "cta": "Voir la carte interactive"
+    },
+    "ecosystem": {
+      "eyebrow": "Écosystème fondateur",
+      "title": "Un réseau digital au-delà de Gloriam",
+      "subtitle": "Gloriam Consulting s'inscrit dans un écosystème porté par Mohamed Daouda Ayinde : startup IT, formation en ligne et portfolio professionnel.",
+      "visitSite": "Visiter le site",
+      "turbotech": {
+        "label": "Startup lancée",
+        "title": "TurboTech Consulting",
+        "description": "Startup high-tech IT & digital — développement, infrastructure, cybersécurité et conseil. Afrique, Europe et Canada."
+      },
+      "flashcoder": {
+        "label": "Plateforme formation",
+        "title": "FlashCoder Academy",
+        "description": "Formations pour développeurs : parcours, exercices, playground code et révision accélérée. Réalisée par Gloriam Consulting."
+      },
+      "portfolio": {
+        "label": "Portfolio fondateur",
+        "title": "Mohamed Daouda Ayinde",
+        "description": "Ingénieur informatique — projets web, expériences professionnelles et compétences techniques du fondateur de Gloriam."
+      }
+    },
+    "ctaBanner": {
+      "title": "Prêt à accélérer votre transformation ?",
+      "subtitle": "Décrivez votre besoin : nous revenons vers vous rapidement pour cadrer votre projet, sans engagement.",
+      "button": "Nous contacter"
+    },
     "features": {
-      "title": "Nos atouts",
-      "subtitle": "Découvrez ce qui fait notre différence et notre expertise",
+      "eyebrow": "Nos atouts",
+      "title": "Une expertise complète pour vos enjeux",
+      "subtitle": "Découvrez ce qui fait notre différence et notre expertise au quotidien",
       "learnMore": "En savoir plus",
       "discoverPartners": "Découvrir nos partenaires",
       "seeInnovations": "Voir nos innovations",
@@ -94,6 +154,35 @@
         "Engagement et proximité client"
       ]
     },
+    "coverage": {
+      "title": "Où nous intervenons",
+      "description": "Gloriam Consulting accompagne des missions en Europe, en Afrique de l’Ouest et centrale, ainsi qu’en Amérique du Nord. Explorez la carte pour voir les pays concernés.",
+      "listTitle": "Zones couvertes",
+      "loading": "Chargement de la carte…",
+      "mapAria": "Carte des zones d’intervention de Gloriam Consulting",
+      "popupHint": "Intervention possible · me contacter pour préciser votre besoin",
+      "locateMe": "Me localiser",
+      "locateMeHint": "Trouver la zone couverte la plus proche (distance à vol d’oiseau)",
+      "locating": "Localisation en cours…",
+      "geoDenied": "Accès à la position refusé. Vérifiez les autorisations du navigateur.",
+      "geoError": "Impossible d’obtenir votre position. Réessayez ou vérifiez votre connexion.",
+      "geoNoBrowser": "La géolocalisation n’est pas disponible sur ce navigateur.",
+      "nearestIntro": "Zone la plus proche de vous :",
+      "distanceApprox": "environ {{km}} km (jusqu’au centre de la zone indiquée sur la carte)",
+      "youAreHere": "Votre position",
+      "rankingTitle": "Autres zones (par distance)",
+      "privacyNote": "Votre position est utilisée uniquement dans votre navigateur pour calculer les distances ; elle n’est pas transmise à nos serveurs.",
+      "countries": {
+        "france": "France",
+        "belgium": "Belgique",
+        "switzerland": "Suisse",
+        "benin": "Bénin",
+        "togo": "Togo",
+        "gabon": "Gabon",
+        "nigeria": "Nigeria",
+        "canada": "Canada"
+      }
+    },
     "expertise": {
       "title": "Notre Expertise",
       "stats": [
@@ -115,6 +204,7 @@
   "services": {
     "title": "Nos Services",
     "description": "Des solutions sur mesure pour votre entreprise",
+    "eyebrow": "Expertise",
     "list": [
       {
         "title": "Conseil Stratégique",
@@ -152,7 +242,24 @@
   },
   "contact": {
     "title": "Contactez-nous",
-    "description": "Prenez contact avec notre équipe"
+    "description": "Prenez contact avec notre équipe",
+    "addressLabel": "Adresse",
+    "emailLabel": "Email",
+    "loading": "Chargement...",
+    "form": {
+      "name": "Nom complet",
+      "email": "Email",
+      "subject": "Sujet",
+      "message": "Message",
+      "submit": "Envoyer le message",
+      "submitting": "Envoi en cours...",
+      "error": "Une erreur est survenue lors de l'envoi du message."
+    },
+    "success": {
+      "title": "Message envoyé avec succès !",
+      "description": "Nous vous répondrons dans les plus brefs délais.",
+      "again": "Envoyer un autre message"
+    }
   },
   "trust": {
     "title": "Ils nous font confiance",
@@ -175,6 +282,12 @@
   "projects": {
     "title": "Nos Projets",
     "description": "Découvrez quelques-uns de nos projets phares réalisés pour nos clients",
+    "eyebrow": "Réalisations",
+    "cta": {
+      "title": "Vous avez un projet similaire ?",
+      "description": "Contactez-nous pour discuter de votre projet et découvrez comment nous pouvons vous accompagner.",
+      "button": "Nous contacter"
+    },
     "projects": [
       {
         "title": "Logiciel de Paiement Pharmaceutique",
@@ -277,5 +390,10 @@
       "title": "Nous contacter",
       "description": "Pour toute question concernant notre utilisation des cookies, n'hésitez pas à nous contacter."
     }
+  },
+  "theme": {
+    "light": "Mode clair",
+    "dark": "Mode sombre",
+    "toggle": "Changer le thème"
   }
-} 
+}

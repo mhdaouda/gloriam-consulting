@@ -15,6 +15,8 @@ const translations = {
       subtitle: 'Votre partenaire en excellence commerciale',
       description: 'Nous accompagnons les entreprises dans leur transformation et leur croissance',
       learnMore: 'En savoir plus',
+      ctaContact: 'Nous contacter',
+      heroEyebrow: 'Conseil · Stratégie · Croissance',
       features: {
         title: 'Nos atouts',
         subtitle: 'Découvrez ce qui fait notre différence et notre expertise',
@@ -81,6 +83,12 @@ const translations = {
       allRights: 'Tous droits réservés.',
       privacyPolicy: 'Politique de confidentialité',
       cookies: 'Cookies',
+      tagline:
+        'Conseil, stratégie et accompagnement pour accélérer la transformation de votre entreprise.',
+      quickLinks: 'Liens rapides',
+      legal: 'Informations légales',
+      contactBlock: 'Contact',
+      address: '95360 Montmagny, France',
     },
   },
   en: {
@@ -97,6 +105,8 @@ const translations = {
       subtitle: 'Your partner in business excellence',
       description: 'We support companies in their transformation and growth',
       learnMore: 'Learn more',
+      ctaContact: 'Contact us',
+      heroEyebrow: 'Consulting · Strategy · Growth',
       features: {
         title: 'Our strengths',
         subtitle: 'Discover what makes our difference and expertise',
@@ -163,6 +173,12 @@ const translations = {
       allRights: 'All rights reserved.',
       privacyPolicy: 'Privacy Policy',
       cookies: 'Cookies',
+      tagline:
+        'Consulting, strategy and hands-on support to accelerate your company’s transformation.',
+      quickLinks: 'Quick links',
+      legal: 'Legal information',
+      contactBlock: 'Contact',
+      address: '95360 Montmagny, France',
     },
   },
 } as const;
