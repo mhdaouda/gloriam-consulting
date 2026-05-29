@@ -48,3 +48,39 @@ export const slideInRight = {
     transition: { duration: 0.6, ease: easeOut },
   },
 };
+
+/** Hero entrance — blur + slide like TurboTech load */
+export const heroStagger = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.11, delayChildren: 0.2 },
+  },
+};
+
+export const heroItem = {
+  hidden: {
+    opacity: 0,
+    y: 28,
+    filter: 'blur(10px)',
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.75, ease: easeOut },
+  },
+};
+
+export const heroTitleLine = {
+  hidden: {
+    opacity: 0,
+    y: 36,
+    filter: 'blur(12px)',
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.85, ease: easeOut },
+  },
+};

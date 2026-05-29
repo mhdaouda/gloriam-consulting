@@ -19,6 +19,8 @@ import { CountryMarquee } from '@/app/_components/CountryMarquee';
 import { EXTERNAL_LINKS } from '@/app/_lib/externalLinks';
 import {
   fadeInUp,
+  heroItem,
+  heroStagger,
   scaleIn,
   slideInLeft,
   slideInRight,
@@ -26,7 +28,7 @@ import {
 } from '@/app/_lib/motionPresets';
 
 const featureCard =
-  'group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-emerald-300/60 hover:shadow-glow dark:border-white/10 dark:bg-white/[0.04] dark:shadow-none dark:hover:border-emerald-400/30';
+  'group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-emerald-300/60 hover:shadow-glow dark:border-white/[0.06] dark:bg-gradient-to-br dark:from-white/[0.04] dark:to-white/[0.01] dark:shadow-none dark:backdrop-blur-md dark:hover:border-emerald-400/40 dark:hover:-translate-y-2';
 
 const iconWrap =
   'mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/10 text-emerald-600 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 dark:from-emerald-500/25 dark:to-cyan-500/15 dark:text-emerald-400';
@@ -47,7 +49,7 @@ function StatCard({
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:backdrop-blur-sm"
+      className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm dark:border-white/[0.08] dark:bg-gradient-to-br dark:from-white/[0.05] dark:to-white/[0.02] dark:shadow-none dark:backdrop-blur-md"
     >
       <p className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">
         {value}
@@ -100,93 +102,81 @@ export default function HomeLanding() {
   return (
     <div className="flex min-h-screen flex-col overflow-x-hidden dark:bg-transparent">
       {/* Hero */}
-      <section className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden bg-gradient-to-br from-emerald-50/90 via-white to-cyan-50/70 px-4 pb-16 pt-8 text-slate-900 dark:from-slate-950 dark:via-slate-950 dark:to-[#0a1628] dark:text-white">
+      <section className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden bg-gradient-to-br from-emerald-50/90 via-white to-cyan-50/70 px-4 pb-16 pt-8 text-slate-900 dark:bg-transparent dark:text-white">
         <div className="pointer-events-none absolute inset-0 bg-hero-radial opacity-60 dark:bg-hero-radial-dark dark:opacity-100" />
-        <div className="animate-float-slow pointer-events-none absolute -left-40 top-20 h-[480px] w-[480px] rounded-full bg-emerald-400/25 blur-[120px] dark:bg-emerald-500/25" />
-        <div className="animate-float-delayed pointer-events-none absolute -right-32 bottom-10 h-[400px] w-[400px] rounded-full bg-cyan-400/20 blur-[100px] dark:bg-cyan-500/20" />
-        <div className="animate-pulse-glow pointer-events-none absolute left-1/2 top-1/3 h-64 w-64 -translate-x-1/2 rounded-full bg-teal-400/15 blur-[80px] dark:bg-teal-400/15" />
-        <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-40 dark:bg-grid-dark dark:opacity-55" />
+        <div className="animate-float-slow pointer-events-none absolute -left-40 top-20 h-[480px] w-[480px] rounded-full bg-emerald-400/25 blur-[120px] dark:bg-emerald-500/30" />
+        <div className="animate-float-delayed pointer-events-none absolute -right-32 bottom-10 h-[400px] w-[400px] rounded-full bg-cyan-400/20 blur-[100px] dark:bg-cyan-500/25" />
+        <div className="animate-pulse-glow pointer-events-none absolute left-1/2 top-1/3 h-64 w-64 -translate-x-1/2 rounded-full bg-teal-400/15 blur-[80px] dark:bg-teal-400/20" />
+        <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-40 dark:bg-grid-dark dark:opacity-60" />
 
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
           className="container relative z-10 mx-auto max-w-5xl"
         >
           <motion.div
-            initial={false}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="mb-6 flex flex-wrap items-center gap-3"
+            variants={heroStagger}
+            initial="hidden"
+            animate="visible"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-700 dark:border-emerald-400/30 dark:text-emerald-300">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500 dark:bg-emerald-400" />
-              {t('badge')}
-            </span>
-            <span className="text-sm text-slate-600 dark:text-slate-400">{t('zonesHint')}</span>
-          </motion.div>
+            <motion.div variants={heroItem} className="mb-6 flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-700 dark:border-emerald-400/35 dark:bg-emerald-500/10 dark:text-emerald-300">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.15)] dark:bg-emerald-400" />
+                {t('badge')}
+              </span>
+              <span className="text-sm text-slate-600 dark:text-slate-400">{t('zonesHint')}</span>
+            </motion.div>
 
-          <motion.h1
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
-          >
-            <span className="block text-slate-900 dark:bg-gradient-to-r dark:from-white dark:via-emerald-100 dark:to-cyan-200 dark:bg-clip-text dark:text-transparent">
-              {t('titleLine1')}
-            </span>
-            <span className="mt-2 block text-emerald-700 dark:bg-gradient-to-r dark:from-emerald-300 dark:via-teal-200 dark:to-cyan-300 dark:bg-clip-text dark:text-transparent">
-              {t('titleLine2')}
-            </span>
-          </motion.h1>
+            <motion.div variants={heroItem} className="space-y-2">
+              <h1 className="text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
+                <span className="block text-slate-900 dark:turbo-gradient-text">
+                  {t('titleLine1')}
+                </span>
+                <span className="mt-2 block text-emerald-700 dark:turbo-gradient-text-accent">
+                  {t('titleLine2')}
+                </span>
+              </h1>
+            </motion.div>
 
-          <motion.p
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.22, duration: 0.6 }}
-            className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl dark:text-slate-400"
-          >
-            <strong className="font-semibold text-slate-800 dark:text-slate-200">
-              Gloriam Consulting
-            </strong>{' '}
-            {t('description')}
-          </motion.p>
+            <motion.p variants={heroItem} className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl dark:text-slate-400">
+              <strong className="font-semibold text-slate-800 dark:text-slate-200">
+                Gloriam Consulting
+              </strong>{' '}
+              {t('description')}
+            </motion.p>
 
-          <motion.div
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.32, duration: 0.55 }}
-            className="mt-8 flex flex-col gap-4 sm:flex-row"
-          >
-            <Link
-              href={`${base}/contact`}
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-8 py-3.5 text-sm font-bold text-slate-950 shadow-glow transition hover:scale-[1.02] hover:from-emerald-400 hover:to-cyan-400"
+            <motion.div variants={heroItem} className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href={`${base}/contact`}
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-8 py-3.5 text-sm font-bold text-slate-950 shadow-glow transition hover:scale-[1.02] hover:from-emerald-400 hover:to-cyan-400 dark:shadow-[0_0_40px_-8px_rgba(16,185,129,0.6)]"
+              >
+                {t('ctaStart')}
+                <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href={`${base}/services`}
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/80 px-8 py-3.5 text-sm font-semibold text-slate-800 backdrop-blur-sm transition hover:border-emerald-400/50 hover:bg-emerald-50 dark:border-white/15 dark:bg-white/[0.04] dark:text-white dark:backdrop-blur-md dark:hover:border-emerald-400/50 dark:hover:bg-emerald-500/10"
+              >
+                {t('ctaServices')}
+              </Link>
+            </motion.div>
+
+            <motion.p
+              variants={heroItem}
+              className="mt-8 text-xs font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400/90"
             >
-              {t('ctaStart')}
-              <FaArrowRight className="transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href={`${base}/services`}
-              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/80 px-8 py-3.5 text-sm font-semibold text-slate-800 backdrop-blur-sm transition hover:border-emerald-400/50 hover:bg-emerald-50 dark:border-white/20 dark:bg-white/5 dark:text-white dark:hover:border-emerald-400/50 dark:hover:bg-white/10"
-            >
-              {t('ctaServices')}
-            </Link>
+              {t('zonesLabel')}
+            </motion.p>
+            <motion.div variants={heroItem}>
+              <CountryMarquee />
+            </motion.div>
           </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.45 }}
-            className="mt-8 text-xs font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400/80"
-          >
-            {t('zonesLabel')}
-          </motion.p>
-          <CountryMarquee />
         </motion.div>
 
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 via-white/80 to-transparent dark:from-slate-950 dark:via-slate-950/80" />
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 via-white/80 to-transparent dark:from-black dark:via-black/80" />
       </section>
 
       {/* Stats */}
-      <section className="relative border-y border-slate-200 bg-slate-100 py-14 dark:border-white/5 dark:bg-slate-950">
+      <section className="relative border-y border-slate-200 bg-slate-100 py-14 dark:border-white/[0.06] dark:bg-black">
         <div className="pointer-events-none absolute inset-0 hidden bg-grid-dark opacity-30 dark:block" />
         <div className="container relative z-[1] mx-auto grid max-w-4xl grid-cols-2 gap-4 px-4 md:grid-cols-4 md:gap-6">
           <StatCard value="2023" label={t('stats.founded')} delay={0} />
@@ -197,7 +187,7 @@ export default function HomeLanding() {
       </section>
 
       {/* Features */}
-      <section className="relative bg-slate-50 py-24 dark:bg-slate-950 md:py-28">
+      <section className="relative bg-slate-50 py-24 dark:bg-black md:py-28">
         <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-60 dark:bg-grid-dark dark:opacity-40" />
         <motion.div
           variants={stagger}
@@ -270,7 +260,7 @@ export default function HomeLanding() {
       </section>
 
       {/* Zones */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-white to-slate-100 py-24 text-slate-900 dark:bg-slate-950 dark:text-white dark:from-slate-950 dark:via-[#0a1628] dark:to-slate-950">
+      <section className="relative overflow-hidden bg-gradient-to-b from-white to-slate-100 py-24 text-slate-900 dark:bg-black dark:text-white">
         <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-30 dark:bg-grid-dark dark:opacity-45" />
         <div className="pointer-events-none absolute -left-32 top-1/2 hidden h-80 w-80 -translate-y-1/2 rounded-full bg-emerald-500/10 blur-[100px] dark:block" />
         <motion.div
@@ -294,7 +284,7 @@ export default function HomeLanding() {
                 key={group.key}
                 variants={gi === 1 ? slideInLeft : gi === 2 ? slideInRight : fadeInUp}
                 whileHover={{ scale: 1.02 }}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-emerald-300/60 hover:shadow-md dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:backdrop-blur-sm dark:hover:border-emerald-400/30 dark:hover:bg-white/[0.07]"
+                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-emerald-300/60 hover:shadow-md dark:border-white/[0.06] dark:bg-gradient-to-br dark:from-white/[0.04] dark:to-white/[0.01] dark:shadow-none dark:backdrop-blur-md dark:hover:border-emerald-400/40 dark:hover:bg-white/[0.06]"
               >
                 <div className="mb-4 flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
                   <FaGlobe className="h-5 w-5" />
@@ -327,7 +317,7 @@ export default function HomeLanding() {
       </section>
 
       {/* Écosystème */}
-      <section className="relative bg-gradient-to-b from-slate-50 to-white py-24 dark:from-slate-950 dark:via-[#0a1628] dark:to-slate-950 md:py-28">
+      <section className="relative bg-gradient-to-b from-slate-50 to-white py-24 dark:bg-black md:py-28">
         <div className="pointer-events-none absolute inset-0 hidden bg-grid-dark opacity-35 dark:block" />
         <motion.div
           variants={stagger}
@@ -386,7 +376,7 @@ export default function HomeLanding() {
       </section>
 
       {/* CTA */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 py-20 text-white dark:bg-slate-950 dark:from-slate-950 dark:via-[#0a1628] dark:to-slate-950">
+      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 py-20 text-white dark:bg-black dark:from-black dark:via-black dark:to-black">
         <div className="pointer-events-none absolute inset-0 hidden bg-grid-dark opacity-40 dark:block" />
         <div className="animate-float-slow pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-white/10 blur-[90px] dark:bg-emerald-500/20" />
         <div className="pointer-events-none absolute -left-20 bottom-0 hidden h-64 w-64 rounded-full bg-cyan-500/10 blur-[80px] dark:block" />

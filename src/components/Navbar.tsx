@@ -48,8 +48,8 @@ export function Navbar() {
   };
 
   const shellClass = scrolled
-    ? 'border-slate-200/80 bg-white/95 shadow-md shadow-slate-200/40 dark:border-white/10 dark:bg-slate-950/95 dark:shadow-lg dark:shadow-black/30'
-    : 'border-slate-200/60 bg-white/90 dark:border-white/10 dark:bg-slate-950/85';
+    ? 'border-slate-200/80 bg-white/95 shadow-md shadow-slate-200/40 dark:border-white/[0.08] dark:bg-black/90 dark:shadow-lg dark:shadow-emerald-950/20'
+    : 'border-slate-200/60 bg-white/90 dark:border-white/[0.06] dark:bg-black/75';
 
   const linkActive =
     'bg-emerald-50 text-emerald-800 dark:bg-white/10 dark:text-white';
@@ -58,9 +58,9 @@ export function Navbar() {
 
   return (
     <motion.header
-      initial={false}
+      initial={{ y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
       className={`sticky top-0 z-50 border-b backdrop-blur-xl transition-all duration-300 ${shellClass}`}
     >
       <nav className="container mx-auto px-4">

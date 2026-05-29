@@ -14,13 +14,20 @@ body {
 }
 
 html.dark {
-  --background: #020617;
+  --background: #000000;
   --foreground: #f8fafc;
-  --surface: #0f172a;
+  --surface: #0a0a0a;
   --surface-elevated: rgba(255, 255, 255, 0.04);
-  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-subtle: rgba(255, 255, 255, 0.08);
   --accent-emerald: #34d399;
   --accent-cyan: #22d3ee;
+}
+
+html.dark body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(16, 185, 129, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, rgba(34, 211, 238, 0.14), transparent 60%),
+    #000000;
 }
 
 html:not(.dark) {
@@ -28,27 +35,107 @@ html:not(.dark) {
   --foreground: #0f172a;
 }
 
+html:not(.dark) body {
+  background: var(--background);
+}
+
+/* TurboTech page load reveal */
+body.is-loading main,
+body.is-loading header,
+body.is-loading footer {
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(8px);
+}
+
+body.is-loaded main,
+body.is-loaded header,
+body.is-loaded footer {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition:
+    opacity 650ms ease,
+    transform 650ms ease,
+    filter 650ms ease;
+}
+
+/* Grain + cursor spotlight (dark) */
+.turbo-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  mix-blend-mode: overlay;
+  background-image:
+    repeating-radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 3px),
+    repeating-radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 4px);
+  filter: contrast(120%) brightness(95%);
+}
+
+html.dark .turbo-grain {
+  opacity: 0.1;
+}
+
+.turbo-spotlight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  background:
+    radial-gradient(
+      600px 420px at var(--spot-x, 50%) var(--spot-y, 30%),
+      rgba(34, 211, 238, 0.12),
+      transparent 55%
+    ),
+    radial-gradient(
+      520px 380px at var(--spot-x, 50%) var(--spot-y, 30%),
+      rgba(16, 185, 129, 0.1),
+      transparent 60%
+    );
+}
+
+html.has-spotlight .turbo-spotlight {
+  opacity: 1;
+}
+
 @layer components {
   .theme-card {
     @apply border border-slate-200/80 bg-white shadow-sm
-      dark:border-white/10 dark:bg-white/[0.04] dark:shadow-none dark:backdrop-blur-sm
-      dark:hover:border-emerald-400/25;
+      dark:border-white/[0.06] dark:bg-gradient-to-br dark:from-white/[0.04] dark:to-white/[0.01]
+      dark:shadow-none dark:backdrop-blur-md
+      dark:hover:border-emerald-400/40 dark:hover:-translate-y-1.5;
+  }
+
+  html.dark .theme-card {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
   html.dark .theme-card:hover {
-    box-shadow: 0 0 60px -12px rgba(16, 185, 129, 0.45);
+    box-shadow:
+      0 30px 60px -20px rgba(16, 185, 129, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
   }
 
-  .turbo-dark-hero {
-    @apply bg-gradient-to-br from-slate-950 via-slate-950 to-[#0a1628] text-white;
+  .turbo-pill {
+    @apply shrink-0 rounded-full border border-emerald-500/30 bg-emerald-500/[0.08] px-4 py-1.5
+      text-sm font-semibold text-emerald-100/95 backdrop-blur-md
+      transition hover:border-emerald-400/50 hover:bg-emerald-500/15;
   }
 
-  .turbo-dark-section {
-    @apply bg-slate-950 text-white;
+  .turbo-gradient-text {
+    @apply bg-gradient-to-r from-white via-emerald-100 to-cyan-200 bg-clip-text text-transparent;
   }
 
-  .turbo-dark-alt {
-    @apply bg-[#0a1628] text-white;
+  .turbo-gradient-text-accent {
+    @apply bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent;
+  }
+
+  .turbo-section-dark {
+    @apply bg-black text-white;
   }
 }
 
@@ -178,8 +265,14 @@ html:not(.dark) {
 
   .bg-grid-dark {
     background-image:
-      linear-gradient(to right, rgb(51 65 85 / 0.35) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(51 65 85 / 0.35) 1px, transparent 1px);
+      linear-gradient(to right, rgb(51 65 85 / 0.22) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(51 65 85 / 0.22) 1px, transparent 1px);
     background-size: 56px 56px;
+  }
+
+  html.dark .bg-grid-dark {
+    background-image:
+      linear-gradient(to right, rgba(16, 185, 129, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(16, 185, 129, 0.06) 1px, transparent 1px);
   }
 }
