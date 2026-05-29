@@ -260,7 +260,7 @@ function ContactFormInner() {
 function ContactLoading() {
   const t = useTranslations('contact');
   return (
-    <div className="flex min-h-[50vh] items-center justify-center bg-slate-50 dark:bg-slate-950">
+    <div className="flex min-h-[50vh] items-center justify-center bg-slate-50 dark:bg-transparent">
       <div className="text-center">
         <div className="mx-auto h-12 w-12 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent" />
         <p className="mt-4 text-slate-600 dark:text-slate-400">{t('loading')}</p>

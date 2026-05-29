@@ -18,7 +18,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative z-[1] border-t border-slate-200 bg-slate-100 text-slate-600 dark:border-white/[0.06] dark:bg-black dark:text-slate-400">
+    <footer className="relative z-[1] border-t border-slate-200 bg-slate-100 text-slate-600 dark:turbo-section-divider dark:bg-transparent dark:text-slate-400">
       <div className="container mx-auto px-4 py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5 lg:gap-8">
           <div className="lg:col-span-1">

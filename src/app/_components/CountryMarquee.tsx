@@ -17,8 +17,8 @@ export function CountryMarquee() {
         {row.map((label, i) => (
           <motion.span
             key={`${label}-${i}`}
-            whileHover={{ scale: 1.05, borderColor: 'rgba(16,185,129,0.5)' }}
-            className="shrink-0 rounded-full border border-emerald-200/80 bg-white/90 px-4 py-1.5 text-sm font-medium text-emerald-800 backdrop-blur-sm transition hover:border-emerald-400/60 hover:bg-emerald-50 dark:turbo-pill"
+            whileHover={{ scale: 1.06 }}
+            className="shrink-0 rounded-full border border-emerald-200/80 bg-white/90 px-4 py-1.5 text-sm font-medium text-emerald-800 backdrop-blur-sm transition dark:turbo-pill"
           >
             {label}
           </motion.span>

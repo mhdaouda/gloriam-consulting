@@ -12,9 +12,9 @@ export default function FrLayout({
 }) {
   return (
     <LocaleProvider locale="fr">
-      <div className="relative flex min-h-screen flex-col bg-slate-50 dark:bg-black">
+      <div className="relative z-[1] flex min-h-screen flex-col bg-slate-50 dark:bg-transparent">
         <div
-          className="pointer-events-none fixed inset-0 hidden bg-grid-dark opacity-[0.2] dark:block"
+          className="pointer-events-none fixed inset-0 z-0 hidden bg-grid-dark opacity-[0.35] dark:block"
           aria-hidden
         />
         <Navbar />

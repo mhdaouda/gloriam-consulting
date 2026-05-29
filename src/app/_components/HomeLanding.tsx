@@ -28,7 +28,7 @@ import {
 } from '@/app/_lib/motionPresets';
 
 const featureCard =
-  'group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-emerald-300/60 hover:shadow-glow dark:border-white/[0.06] dark:bg-gradient-to-br dark:from-white/[0.04] dark:to-white/[0.01] dark:shadow-none dark:backdrop-blur-md dark:hover:border-emerald-400/40 dark:hover:-translate-y-2';
+  'theme-card group relative overflow-hidden rounded-2xl p-8 duration-500 hover:-translate-y-2';
 
 const iconWrap =
   'mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/10 text-emerald-600 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 dark:from-emerald-500/25 dark:to-cyan-500/15 dark:text-emerald-400';
@@ -49,7 +49,7 @@ function StatCard({
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm dark:border-white/[0.08] dark:bg-gradient-to-br dark:from-white/[0.05] dark:to-white/[0.02] dark:shadow-none dark:backdrop-blur-md"
+      className="theme-card rounded-2xl p-6 text-center"
     >
       <p className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">
         {value}
@@ -120,7 +120,7 @@ export default function HomeLanding() {
           >
             <motion.div variants={heroItem} className="mb-6 flex flex-wrap items-center gap-3">
               <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-700 dark:border-emerald-400/35 dark:bg-emerald-500/10 dark:text-emerald-300">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.15)] dark:bg-emerald-400" />
+                <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-emerald-500 shadow-[0_0_0_6px_rgba(16,185,129,0.14)] dark:bg-emerald-400" />
                 {t('badge')}
               </span>
               <span className="text-sm text-slate-600 dark:text-slate-400">{t('zonesHint')}</span>
@@ -172,11 +172,11 @@ export default function HomeLanding() {
           </motion.div>
         </motion.div>
 
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 via-white/80 to-transparent dark:from-black dark:via-black/80" />
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 via-white/80 to-transparent dark:from-transparent dark:via-transparent dark:to-transparent" />
       </section>
 
       {/* Stats */}
-      <section className="relative border-y border-slate-200 bg-slate-100 py-14 dark:border-white/[0.06] dark:bg-black">
+      <section className="relative border-y border-slate-200 bg-slate-100 py-14 dark:turbo-section-divider dark:bg-transparent">
         <div className="pointer-events-none absolute inset-0 hidden bg-grid-dark opacity-30 dark:block" />
         <div className="container relative z-[1] mx-auto grid max-w-4xl grid-cols-2 gap-4 px-4 md:grid-cols-4 md:gap-6">
           <StatCard value="2023" label={t('stats.founded')} delay={0} />
@@ -187,7 +187,7 @@ export default function HomeLanding() {
       </section>
 
       {/* Features */}
-      <section className="relative bg-slate-50 py-24 dark:bg-black md:py-28">
+      <section className="relative border-t border-slate-200 bg-slate-50 py-24 dark:turbo-section-divider dark:bg-transparent md:py-28">
         <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-60 dark:bg-grid-dark dark:opacity-40" />
         <motion.div
           variants={stagger}
@@ -260,7 +260,7 @@ export default function HomeLanding() {
       </section>
 
       {/* Zones */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-white to-slate-100 py-24 text-slate-900 dark:bg-black dark:text-white">
+      <section className="relative overflow-hidden border-t border-slate-200 bg-gradient-to-b from-white to-slate-100 py-24 text-slate-900 dark:turbo-section-divider dark:bg-transparent dark:text-white">
         <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-30 dark:bg-grid-dark dark:opacity-45" />
         <div className="pointer-events-none absolute -left-32 top-1/2 hidden h-80 w-80 -translate-y-1/2 rounded-full bg-emerald-500/10 blur-[100px] dark:block" />
         <motion.div
@@ -284,7 +284,7 @@ export default function HomeLanding() {
                 key={group.key}
                 variants={gi === 1 ? slideInLeft : gi === 2 ? slideInRight : fadeInUp}
                 whileHover={{ scale: 1.02 }}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-emerald-300/60 hover:shadow-md dark:border-white/[0.06] dark:bg-gradient-to-br dark:from-white/[0.04] dark:to-white/[0.01] dark:shadow-none dark:backdrop-blur-md dark:hover:border-emerald-400/40 dark:hover:bg-white/[0.06]"
+                className="theme-card rounded-2xl p-6 transition hover:-translate-y-0.5"
               >
                 <div className="mb-4 flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
                   <FaGlobe className="h-5 w-5" />
@@ -317,7 +317,7 @@ export default function HomeLanding() {
       </section>
 
       {/* Écosystème */}
-      <section className="relative bg-gradient-to-b from-slate-50 to-white py-24 dark:bg-black md:py-28">
+      <section className="relative border-t border-slate-200 bg-gradient-to-b from-slate-50 to-white py-24 dark:turbo-section-divider dark:bg-transparent md:py-28">
         <div className="pointer-events-none absolute inset-0 hidden bg-grid-dark opacity-35 dark:block" />
         <motion.div
           variants={stagger}
@@ -348,7 +348,7 @@ export default function HomeLanding() {
                 variants={scaleIn}
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-8 shadow-lg transition-shadow hover:shadow-glow dark:border-white/10 dark:bg-white/[0.04] dark:shadow-none"
+                className="theme-card group relative flex flex-col overflow-hidden rounded-2xl p-8 transition-shadow hover:shadow-glow"
               >
                 <div
                   className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${item.gradient}`}
@@ -376,9 +376,10 @@ export default function HomeLanding() {
       </section>
 
       {/* CTA */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 py-20 text-white dark:bg-black dark:from-black dark:via-black dark:to-black">
+      <section className="relative overflow-hidden border-t border-slate-200 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 py-20 text-white dark:turbo-section-divider dark:bg-transparent dark:from-transparent dark:via-transparent dark:to-transparent">
         <div className="pointer-events-none absolute inset-0 hidden bg-grid-dark opacity-40 dark:block" />
-        <div className="animate-float-slow pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-white/10 blur-[90px] dark:bg-emerald-500/20" />
+        <div className="pointer-events-none absolute inset-0 hidden dark:block dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(16,185,129,0.18),transparent_70%)]" />
+        <div className="animate-float-slow pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-white/10 blur-[90px] dark:bg-emerald-500/25" />
         <div className="pointer-events-none absolute -left-20 bottom-0 hidden h-64 w-64 rounded-full bg-cyan-500/10 blur-[80px] dark:block" />
         <motion.div
           initial={{ opacity: 0, y: 24 }}
