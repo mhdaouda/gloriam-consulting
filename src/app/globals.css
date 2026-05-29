@@ -130,10 +130,23 @@ html.dark .turbo-section-divider {
   border-color: rgba(255, 255, 255, 0.06);
 }
 
+/* Tailwind gradients use background-image; dark:bg-transparent is not enough */
+html.dark .turbo-pill {
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  background: rgba(16, 185, 129, 0.08);
+  color: rgba(167, 243, 208, 0.95);
+}
+
+html.dark .turbo-pill:hover {
+  border-color: rgba(16, 185, 129, 0.5);
+  background: rgba(16, 185, 129, 0.14);
+}
+
 @layer components {
   .theme-card {
-    @apply border border-slate-200/80 bg-white shadow-sm transition-all duration-300
+    @apply border border-slate-200/80 shadow-sm transition-all duration-300
       hover:-translate-y-1 hover:border-emerald-300/60;
+    background-color: #fff;
   }
 
   .theme-card:hover {
@@ -294,6 +307,10 @@ html.dark .turbo-section-divider {
 }
 
 @layer utilities {
+  .dark-surface {
+    @apply dark:bg-transparent dark:bg-none;
+  }
+
   .bg-grid-light {
     background-image:
       linear-gradient(to right, rgb(148 163 184 / 0.08) 1px, transparent 1px),

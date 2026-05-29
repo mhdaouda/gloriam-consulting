@@ -43,12 +43,10 @@ export function TurboAmbient() {
     };
   }, [theme, mounted]);
 
-  if (!mounted) return null;
-
   return (
     <>
       <div className="turbo-grain" aria-hidden />
-      {theme === 'dark' && <div className="turbo-spotlight" aria-hidden />}
+      <div className="turbo-spotlight hidden dark:block" aria-hidden />
     </>
   );
 }

@@ -102,7 +102,7 @@ export default function HomeLanding() {
   return (
     <div className="flex min-h-screen flex-col overflow-x-hidden dark:bg-transparent">
       {/* Hero */}
-      <section className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden bg-gradient-to-br from-emerald-50/90 via-white to-cyan-50/70 px-4 pb-16 pt-8 text-slate-900 dark:bg-transparent dark:text-white">
+      <section className="dark-surface relative flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden bg-gradient-to-br from-emerald-50/90 via-white to-cyan-50/70 px-4 pb-16 pt-8 text-slate-900 dark:text-white">
         <div className="pointer-events-none absolute inset-0 bg-hero-radial opacity-60 dark:bg-hero-radial-dark dark:opacity-100" />
         <div className="animate-float-slow pointer-events-none absolute -left-40 top-20 h-[480px] w-[480px] rounded-full bg-emerald-400/25 blur-[120px] dark:bg-emerald-500/30" />
         <div className="animate-float-delayed pointer-events-none absolute -right-32 bottom-10 h-[400px] w-[400px] rounded-full bg-cyan-400/20 blur-[100px] dark:bg-cyan-500/25" />
@@ -260,7 +260,7 @@ export default function HomeLanding() {
       </section>
 
       {/* Zones */}
-      <section className="relative overflow-hidden border-t border-slate-200 bg-gradient-to-b from-white to-slate-100 py-24 text-slate-900 dark:turbo-section-divider dark:bg-transparent dark:text-white">
+      <section className="dark-surface relative overflow-hidden border-t border-slate-200 bg-gradient-to-b from-white to-slate-100 py-24 text-slate-900 dark:turbo-section-divider dark:text-white">
         <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-30 dark:bg-grid-dark dark:opacity-45" />
         <div className="pointer-events-none absolute -left-32 top-1/2 hidden h-80 w-80 -translate-y-1/2 rounded-full bg-emerald-500/10 blur-[100px] dark:block" />
         <motion.div
@@ -376,7 +376,7 @@ export default function HomeLanding() {
       </section>
 
       {/* CTA */}
-      <section className="relative overflow-hidden border-t border-slate-200 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 py-20 text-white dark:turbo-section-divider dark:bg-transparent dark:from-transparent dark:via-transparent dark:to-transparent">
+      <section className="dark-surface relative overflow-hidden border-t border-slate-200 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 py-20 text-white dark:turbo-section-divider">
         <div className="pointer-events-none absolute inset-0 hidden bg-grid-dark opacity-40 dark:block" />
         <div className="pointer-events-none absolute inset-0 hidden dark:block dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(16,185,129,0.18),transparent_70%)]" />
         <div className="animate-float-slow pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-white/10 blur-[90px] dark:bg-emerald-500/25" />

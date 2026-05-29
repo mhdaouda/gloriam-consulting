@@ -48,8 +48,8 @@ export function Navbar() {
   };
 
   const shellClass = scrolled
-    ? 'border-slate-200/80 bg-white/95 shadow-md shadow-slate-200/40 dark:border-white/[0.08] dark:bg-black/80 dark:shadow-lg dark:shadow-emerald-950/30'
-    : 'border-slate-200/60 bg-white/90 dark:border-white/[0.06] dark:bg-black/60';
+    ? 'border-slate-200/80 bg-white/95 shadow-md shadow-slate-200/40 dark:border-white/[0.08] dark:bg-black/40 dark:shadow-lg dark:shadow-emerald-950/30 dark:backdrop-blur-xl'
+    : 'border-slate-200/60 bg-white/90 dark:border-white/[0.06] dark:bg-black/30 dark:backdrop-blur-xl';
 
   const linkActive =
     'bg-emerald-50 text-emerald-800 dark:bg-white/10 dark:text-white';
