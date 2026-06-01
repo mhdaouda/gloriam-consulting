@@ -51,10 +51,10 @@ function StatCard({
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
       className="theme-card rounded-2xl p-6 text-center"
     >
-      <p className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">
+      <p className="text-3xl font-bold tracking-tight text-theme md:text-4xl">
         {value}
       </p>
-      <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{label}</p>
+      <p className="mt-2 text-sm text-theme-muted">{label}</p>
     </motion.div>
   );
 }
@@ -102,7 +102,7 @@ export default function HomeLanding() {
   return (
     <div className="flex min-h-screen flex-col overflow-x-hidden dark:bg-transparent">
       {/* Hero */}
-      <section className="dark-surface relative flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden bg-gradient-to-br from-emerald-50/90 via-white to-cyan-50/70 px-4 pb-16 pt-8 text-slate-900 dark:text-white">
+      <section className="dark-surface relative flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 px-4 pb-16 pt-8">
         <div className="pointer-events-none absolute inset-0 bg-hero-radial opacity-60 dark:bg-hero-radial-dark dark:opacity-100" />
         <div className="animate-float-slow pointer-events-none absolute -left-40 top-20 h-[480px] w-[480px] rounded-full bg-emerald-400/25 blur-[120px] dark:bg-emerald-500/30" />
         <div className="animate-float-delayed pointer-events-none absolute -right-32 bottom-10 h-[400px] w-[400px] rounded-full bg-cyan-400/20 blur-[100px] dark:bg-cyan-500/25" />
@@ -119,26 +119,22 @@ export default function HomeLanding() {
             animate="visible"
           >
             <motion.div variants={heroItem} className="mb-6 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-700 dark:border-emerald-400/35 dark:bg-emerald-500/10 dark:text-emerald-300">
-                <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-emerald-500 shadow-[0_0_0_6px_rgba(16,185,129,0.14)] dark:bg-emerald-400" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent">
+                <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-[var(--accent)]" />
                 {t('badge')}
               </span>
-              <span className="text-sm text-slate-600 dark:text-slate-400">{t('zonesHint')}</span>
+              <span className="text-sm text-theme-muted">{t('zonesHint')}</span>
             </motion.div>
 
             <motion.div variants={heroItem} className="space-y-2">
               <h1 className="text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
-                <span className="block light-gradient-text dark:turbo-gradient-text">
-                  {t('titleLine1')}
-                </span>
-                <span className="mt-2 block light-gradient-text-accent dark:turbo-gradient-text-accent">
-                  {t('titleLine2')}
-                </span>
+                <span className="block text-theme">{t('titleLine1')}</span>
+                <span className="mt-2 block text-accent">{t('titleLine2')}</span>
               </h1>
             </motion.div>
 
-            <motion.p variants={heroItem} className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl dark:text-slate-400">
-              <strong className="font-semibold text-slate-800 dark:text-slate-200">
+            <motion.p variants={heroItem} className="mt-6 max-w-2xl text-lg leading-relaxed text-theme-muted sm:text-xl">
+              <strong className="font-semibold text-theme">
                 Gloriam Consulting
               </strong>{' '}
               {t('description')}
@@ -147,14 +143,14 @@ export default function HomeLanding() {
             <motion.div variants={heroItem} className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link
                 href={`${base}/contact`}
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-8 py-3.5 text-sm font-bold text-slate-950 shadow-glow transition hover:scale-[1.02] hover:from-emerald-400 hover:to-cyan-400 dark:shadow-[0_0_40px_-8px_rgba(16,185,129,0.6)]"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-8 py-3.5 text-sm font-bold text-white transition hover:opacity-90 dark:text-zinc-950"
               >
                 {t('ctaStart')}
                 <FaArrowRight className="transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 href={`${base}/services`}
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/80 px-8 py-3.5 text-sm font-semibold text-slate-800 backdrop-blur-sm transition hover:border-emerald-400/50 hover:bg-emerald-50 dark:border-white/15 dark:bg-white/[0.04] dark:text-white dark:backdrop-blur-md dark:hover:border-emerald-400/50 dark:hover:bg-emerald-500/10"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] px-8 py-3.5 text-sm font-semibold text-theme transition hover:border-[var(--border-strong)] hover:bg-[var(--surface-muted)]"
               >
                 {t('ctaServices')}
               </Link>
@@ -162,7 +158,7 @@ export default function HomeLanding() {
 
             <motion.p
               variants={heroItem}
-              className="mt-8 text-xs font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400/90"
+              className="mt-8 text-xs font-semibold uppercase tracking-widest text-accent"
             >
               {t('zonesLabel')}
             </motion.p>
@@ -197,13 +193,13 @@ export default function HomeLanding() {
           className="container relative z-[1] mx-auto px-4"
         >
           <motion.div variants={fadeInUp} className="mb-16 text-center">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
               {t('features.eyebrow')}
             </p>
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-theme md:text-4xl">
               {t('features.title')}
             </h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+            <p className="mx-auto max-w-2xl text-lg text-theme-muted">
               {t('features.subtitle')}
             </p>
           </motion.div>
@@ -241,13 +237,13 @@ export default function HomeLanding() {
                 <div className={iconWrap}>
                   <card.icon className="h-7 w-7" />
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-slate-900 dark:text-white">
+                <h3 className="mb-3 text-xl font-semibold text-theme">
                   {card.title}
                 </h3>
-                <p className="leading-relaxed text-slate-600 dark:text-slate-400">{card.desc}</p>
+                <p className="leading-relaxed text-theme-muted">{card.desc}</p>
                 <Link
                   href={card.href}
-                  className="mt-5 inline-flex items-center text-sm font-semibold text-emerald-600 transition hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300"
+                  className="mt-5 inline-flex items-center text-sm font-semibold text-accent transition hover:opacity-80"
                 >
                   {card.link}
                   <FaArrowRight className="ml-2 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
@@ -260,7 +256,7 @@ export default function HomeLanding() {
       </section>
 
       {/* Zones */}
-      <section className="dark-surface theme-section theme-section-zones relative overflow-hidden border-t py-24 text-slate-900 dark:turbo-section-divider dark:text-white">
+      <section className="dark-surface theme-section theme-section-zones relative overflow-hidden border-t py-24 dark:turbo-section-divider">
         <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-30 dark:bg-grid-dark dark:opacity-45" />
         <div className="pointer-events-none absolute -left-32 top-1/2 hidden h-80 w-80 -translate-y-1/2 rounded-full bg-emerald-500/10 blur-[100px] dark:block" />
         <motion.div
@@ -271,11 +267,11 @@ export default function HomeLanding() {
           className="container relative z-[1] mx-auto px-4"
         >
           <motion.div variants={fadeInUp} className="mx-auto mb-14 max-w-3xl text-center">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-cyan-600 dark:text-cyan-400">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
               {t('zones.eyebrow')}
             </p>
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">{t('zones.title')}</h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400">{t('zones.subtitle')}</p>
+            <h2 className="mb-4 text-3xl font-bold text-theme md:text-4xl">{t('zones.title')}</h2>
+            <p className="text-lg text-theme-muted">{t('zones.subtitle')}</p>
           </motion.div>
 
           <div className="grid gap-6 md:grid-cols-3">
@@ -286,7 +282,7 @@ export default function HomeLanding() {
                 whileHover={{ scale: 1.02 }}
                 className="theme-card rounded-2xl p-6 transition hover:-translate-y-0.5"
               >
-                <div className="mb-4 flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+                <div className="mb-4 flex items-center gap-2 text-accent">
                   <FaGlobe className="h-5 w-5" />
                   <h3 className="font-semibold">{t(`zones.${group.key}`)}</h3>
                 </div>
@@ -294,7 +290,7 @@ export default function HomeLanding() {
                   {group.ids.map((id) => (
                     <li
                       key={id}
-                      className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm text-emerald-800 dark:border-white/10 dark:bg-emerald-500/10 dark:text-emerald-200"
+                      className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-1 text-sm text-theme"
                     >
                       {tAbout(`coverage.countries.${id}`)}
                     </li>
@@ -307,7 +303,7 @@ export default function HomeLanding() {
           <motion.div variants={fadeInUp} className="mt-10 text-center">
             <Link
               href={`${base}/about`}
-              className="group inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-6 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-500/15 dark:border-emerald-400/40 dark:text-emerald-300 dark:hover:bg-emerald-500/20"
+              className="group inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-6 py-3 text-sm font-semibold text-accent transition hover:border-[var(--border-strong)]"
             >
               {t('zones.cta')}
               <FaArrowRight className="transition-transform group-hover:translate-x-1" />
@@ -327,13 +323,13 @@ export default function HomeLanding() {
           className="container mx-auto px-4"
         >
           <motion.div variants={fadeInUp} className="mb-16 text-center">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
               {t('ecosystem.eyebrow')}
             </p>
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+            <h2 className="mb-4 text-3xl font-bold text-theme md:text-4xl">
               {t('ecosystem.title')}
             </h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+            <p className="mx-auto max-w-2xl text-lg text-theme-muted">
               {t('ecosystem.subtitle')}
             </p>
           </motion.div>
@@ -355,16 +351,16 @@ export default function HomeLanding() {
                 >
                   <item.icon className={`h-7 w-7 ${item.accent}`} />
                 </div>
-                <span className="mb-2 text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+                <span className="mb-2 text-xs font-bold uppercase tracking-widest text-accent">
                   {t(`ecosystem.${item.key}.label`)}
                 </span>
-                <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
+                <h3 className="mb-3 text-xl font-bold text-theme">
                   {t(`ecosystem.${item.key}.title`)}
                 </h3>
-                <p className="mb-6 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                <p className="mb-6 flex-1 text-sm leading-relaxed text-theme-muted">
                   {t(`ecosystem.${item.key}.description`)}
                 </p>
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 transition group-hover:gap-3 dark:text-emerald-400">
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent transition group-hover:gap-3">
                   {t('ecosystem.visitSite')}
                   <FaExternalLinkAlt className="h-3.5 w-3.5" />
                 </span>
@@ -388,15 +384,15 @@ export default function HomeLanding() {
           transition={{ duration: 0.65 }}
           className="container relative z-[1] mx-auto px-4 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl dark:bg-gradient-to-r dark:from-white dark:via-emerald-100 dark:to-cyan-200 dark:bg-clip-text dark:text-transparent">
+          <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl dark:text-theme">
             {t('ctaBanner.title')}
           </h2>
-          <p className="mx-auto mb-8 max-w-xl text-lg text-emerald-50 dark:text-slate-400">
+          <p className="mx-auto mb-8 max-w-xl text-lg text-emerald-50 dark:text-theme-muted">
             {t('ctaBanner.subtitle')}
           </p>
           <Link
             href={`${base}/contact`}
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-8 py-3.5 text-sm font-bold text-slate-950 shadow-glow transition hover:scale-[1.03]"
+            className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-bold text-[var(--accent)] transition hover:opacity-90 dark:bg-[var(--accent)] dark:text-zinc-950"
           >
             {t('ctaBanner.button')}
             <FaArrowRight />

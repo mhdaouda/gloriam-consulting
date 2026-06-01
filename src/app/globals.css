@@ -2,46 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Design tokens ─── */
+/* ─── Design tokens (uniform, readable) ─── */
 :root {
-  --background: #f4f7fb;
-  --foreground: #0f172a;
-  --foreground-muted: #475569;
+  --background: #f8fafc;
+  --foreground: #1e293b;
+  --foreground-muted: #64748b;
+  --accent: #047857;
+  --accent-hover: #059669;
   --surface: #ffffff;
-  --surface-muted: #ecfdf5;
-  --surface-alt: #f8fafc;
-  --accent: #059669;
-  --accent-bright: #10b981;
-  --accent-soft: #d1fae5;
-  --accent-cyan: #0891b2;
+  --surface-muted: #f1f5f9;
   --border: #e2e8f0;
-  --border-accent: #a7f3d0;
-  --nav-bg: rgba(255, 255, 255, 0.94);
+  --border-strong: #cbd5e1;
+  --nav-bg: rgba(255, 255, 255, 0.96);
   --nav-border: #e2e8f0;
   --card-bg: #ffffff;
   --card-border: #e2e8f0;
-  --card-shadow: 0 4px 24px -6px rgba(15, 23, 42, 0.1);
-  --footer-bg: #ecfdf5;
+  --card-shadow: 0 1px 3px rgba(15, 23, 42, 0.08), 0 4px 16px -4px rgba(15, 23, 42, 0.06);
+  --footer-bg: #f1f5f9;
 }
 
 html.dark {
-  --background: #000000;
-  --foreground: #f8fafc;
-  --foreground-muted: #94a3b8;
-  --surface: rgba(255, 255, 255, 0.045);
-  --surface-muted: rgba(255, 255, 255, 0.02);
-  --surface-alt: transparent;
+  --background: #09090b;
+  --foreground: #f1f5f9;
+  --foreground-muted: #cbd5e1;
   --accent: #34d399;
-  --accent-bright: #6ee7b7;
-  --accent-soft: rgba(16, 185, 129, 0.14);
-  --accent-cyan: #22d3ee;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-accent: rgba(16, 185, 129, 0.35);
-  --nav-bg: rgba(3, 7, 18, 0.82);
-  --nav-border: rgba(255, 255, 255, 0.08);
-  --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
-  --card-border: rgba(255, 255, 255, 0.09);
-  --card-shadow: 0 28px 56px -18px rgba(16, 185, 129, 0.22);
+  --accent-hover: #6ee7b7;
+  --surface: rgba(255, 255, 255, 0.05);
+  --surface-muted: rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --nav-bg: rgba(9, 9, 11, 0.88);
+  --nav-border: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.5);
   --footer-bg: transparent;
   color-scheme: dark;
 }
@@ -55,20 +49,14 @@ body {
 }
 
 html:not(.dark) body {
-  background:
-    radial-gradient(900px 520px at 95% -5%, rgba(6, 182, 212, 0.1), transparent 55%),
-    radial-gradient(820px 480px at -5% 15%, rgba(16, 185, 129, 0.14), transparent 55%),
-    radial-gradient(600px 360px at 50% 100%, rgba(16, 185, 129, 0.06), transparent 60%),
-    var(--background);
-  background-attachment: fixed;
+  background: var(--background);
 }
 
 html.dark body {
   background:
-    radial-gradient(1400px 700px at 8% -8%, rgba(16, 185, 129, 0.28), transparent 58%),
-    radial-gradient(1000px 550px at 105% 8%, rgba(34, 211, 238, 0.2), transparent 58%),
-    radial-gradient(900px 450px at 50% 105%, rgba(16, 185, 129, 0.12), transparent 55%),
-    #000000;
+    radial-gradient(1200px 600px at 10% -10%, rgba(16, 185, 129, 0.18), transparent 58%),
+    radial-gradient(900px 500px at 100% 0%, rgba(6, 182, 212, 0.12), transparent 58%),
+    var(--background);
   background-attachment: fixed;
 }
 
@@ -76,33 +64,28 @@ html.dark body {
   background: transparent;
 }
 
-html:not(.dark) .theme-shell {
-  background: linear-gradient(180deg, rgba(236, 253, 245, 0.55) 0%, rgba(244, 247, 251, 0.9) 40%, #f4f7fb 100%);
-}
-
 .theme-section {
   border-color: var(--border);
 }
 
 html:not(.dark) .theme-section-stats {
-  background: linear-gradient(to bottom, #ecfdf5, #f0fdf4 50%, #f8fafc);
-  border-color: var(--border-accent);
+  background: var(--surface-muted);
 }
 
 html:not(.dark) .theme-section-features {
-  background: #ffffff;
+  background: var(--surface);
 }
 
 html:not(.dark) .theme-section-zones {
-  background: linear-gradient(to bottom, #ffffff, #f0fdfa);
+  background: var(--surface);
 }
 
 html:not(.dark) .theme-section-ecosystem {
-  background: linear-gradient(to bottom, #f8fafc, #ecfdf5);
+  background: var(--surface-muted);
 }
 
 html:not(.dark) .theme-section-cta {
-  background: linear-gradient(135deg, #059669 0%, #0d9488 45%, #0891b2 100%);
+  background: #047857;
   color: #ffffff;
 }
 
@@ -220,18 +203,14 @@ html:not(.dark) .theme-card {
 }
 
 html:not(.dark) .theme-card:hover {
-  border-color: var(--border-accent);
-  box-shadow:
-    0 12px 40px -12px rgba(16, 185, 129, 0.35),
-    var(--card-shadow);
+  border-color: var(--border-strong);
+  box-shadow: var(--card-shadow);
 }
 
 html.dark .turbo-glass:hover,
 html.dark .theme-card:hover {
-  border-color: rgba(16, 185, 129, 0.5);
-  box-shadow:
-    0 28px 56px -18px rgba(16, 185, 129, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border-color: rgba(52, 211, 153, 0.4);
+  box-shadow: var(--card-shadow);
 }
 
 html.dark .turbo-section-divider {
@@ -239,26 +218,25 @@ html.dark .turbo-section-divider {
 }
 
 html.dark .turbo-pill {
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  background: rgba(16, 185, 129, 0.1);
-  color: #a7f3d0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--foreground);
 }
 
 html.dark .turbo-pill:hover {
-  border-color: rgba(52, 211, 153, 0.55);
-  background: rgba(16, 185, 129, 0.18);
+  border-color: var(--border-strong);
+  background: var(--surface-muted);
 }
 
 html:not(.dark) .turbo-pill {
-  border: 1px solid #6ee7b7;
-  background: #ffffff;
-  color: #047857;
-  box-shadow: 0 2px 8px -2px rgba(16, 185, 129, 0.2);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--foreground);
 }
 
 html:not(.dark) .turbo-pill:hover {
-  border-color: #34d399;
-  background: #ecfdf5;
+  border-color: var(--border-strong);
+  background: var(--surface-muted);
 }
 
 .theme-nav {
@@ -268,29 +246,43 @@ html:not(.dark) .turbo-pill:hover {
   -webkit-backdrop-filter: blur(16px);
 }
 
+.theme-toggle {
+  display: inline-flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--foreground-muted);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--border-strong);
+}
+
+.text-theme {
+  color: var(--foreground);
+}
+
+.text-theme-muted {
+  color: var(--foreground-muted);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
 @layer components {
   .theme-card {
     @apply transition-all duration-300 hover:-translate-y-1;
   }
 
   .turbo-pill {
-    @apply shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold backdrop-blur-md transition;
-  }
-
-  .light-gradient-text {
-    @apply bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent;
-  }
-
-  .light-gradient-text-accent {
-    @apply bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-600 bg-clip-text text-transparent;
-  }
-
-  .turbo-gradient-text {
-    @apply bg-gradient-to-r from-white via-emerald-100 to-cyan-200 bg-clip-text text-transparent;
-  }
-
-  .turbo-gradient-text-accent {
-    @apply bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent;
+    @apply shrink-0 rounded-full px-4 py-1.5 text-sm font-medium backdrop-blur-md transition;
   }
 
   .btn-primary {

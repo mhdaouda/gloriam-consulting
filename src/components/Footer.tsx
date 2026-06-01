@@ -22,11 +22,9 @@ export function Footer() {
       <div className="container mx-auto px-4 py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5 lg:gap-8">
           <div className="lg:col-span-1">
-            <p className="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">
+            <p className="text-lg font-semibold tracking-tight text-theme">
               Gloriam{' '}
-              <span className="font-light text-emerald-600 dark:text-emerald-300/90">
-                Consulting
-              </span>
+              <span className="font-light text-accent">Consulting</span>
             </p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed">
               {t('footer.tagline')}
@@ -34,14 +32,14 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400/90">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-accent">
               {t('footer.quickLinks')}
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
                 <Link
                   href={`${base}/services`}
-                  className="transition hover:text-emerald-700 dark:hover:text-white"
+                  className="transition hover:text-accent"
                 >
                   {t('navigation.services')}
                 </Link>
@@ -49,7 +47,7 @@ export function Footer() {
               <li>
                 <Link
                   href={`${base}/about`}
-                  className="transition hover:text-emerald-700 dark:hover:text-white"
+                  className="transition hover:text-accent"
                 >
                   {t('navigation.about')}
                 </Link>
@@ -57,7 +55,7 @@ export function Footer() {
               <li>
                 <Link
                   href={`${base}/projects`}
-                  className="transition hover:text-emerald-700 dark:hover:text-white"
+                  className="transition hover:text-accent"
                 >
                   {t('navigation.projects')}
                 </Link>
@@ -65,7 +63,7 @@ export function Footer() {
               <li>
                 <Link
                   href={`${base}/contact`}
-                  className="transition hover:text-emerald-700 dark:hover:text-white"
+                  className="transition hover:text-accent"
                 >
                   {t('navigation.contact')}
                 </Link>
@@ -74,14 +72,14 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400/90">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-accent">
               {t('footer.legal')}
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
                 <Link
                   href={`${base}/privacy-policy`}
-                  className="transition hover:text-emerald-700 dark:hover:text-white"
+                  className="transition hover:text-accent"
                 >
                   {t('footer.privacyPolicy')}
                 </Link>
@@ -89,7 +87,7 @@ export function Footer() {
               <li>
                 <Link
                   href={`${base}/cookies`}
-                  className="transition hover:text-emerald-700 dark:hover:text-white"
+                  className="transition hover:text-accent"
                 >
                   {t('footer.cookies')}
                 </Link>
@@ -98,7 +96,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400/90">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-accent">
               {t('footer.ecosystem')}
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
@@ -108,7 +106,7 @@ export function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="transition hover:text-emerald-700 dark:hover:text-white"
+                    className="transition hover:text-accent"
                   >
                     {link.label}
                   </a>
@@ -118,14 +116,14 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400/90">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-accent">
               {t('footer.contactBlock')}
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
                 <a
                   href="mailto:contact@gloriam-consulting.com"
-                  className="transition hover:text-emerald-700 dark:hover:text-white"
+                  className="transition hover:text-accent"
                 >
                   contact@gloriam-consulting.com
                 </a>
@@ -133,7 +131,7 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:daoudayinde@gmail.com"
-                  className="transition hover:text-emerald-700 dark:hover:text-white"
+                  className="transition hover:text-accent"
                 >
                   daoudayinde@gmail.com
                 </a>

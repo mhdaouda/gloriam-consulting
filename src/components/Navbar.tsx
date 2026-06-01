@@ -51,9 +51,9 @@ export function Navbar() {
     : 'theme-nav';
 
   const linkActive =
-    'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200/80 dark:bg-emerald-500/15 dark:text-emerald-300 dark:ring-emerald-500/30';
+    'bg-[var(--surface-muted)] text-[var(--accent)] ring-1 ring-[var(--border)]';
   const linkIdle =
-    'text-slate-600 hover:bg-emerald-50 hover:text-emerald-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white';
+    'text-theme-muted hover:bg-[var(--surface-muted)] hover:text-theme';
 
   return (
     <header
@@ -66,7 +66,7 @@ export function Navbar() {
             className="flex items-center gap-2.5"
             onClick={() => setOpen(false)}
           >
-            <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg bg-emerald-100 ring-1 ring-emerald-200 dark:bg-emerald-500/10 dark:ring-emerald-500/25">
+            <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg bg-[var(--surface-muted)] ring-1 ring-[var(--border)]">
               <Image
                 src="/images/logoAgrandit.png"
                 alt="Gloriam Consulting"
@@ -76,10 +76,10 @@ export function Navbar() {
               />
             </span>
             <div className="flex items-baseline gap-0">
-              <span className="text-lg font-bold tracking-tight text-slate-900 md:text-xl dark:text-white">
+              <span className="text-lg font-bold tracking-tight text-theme md:text-xl">
                 Gloriam
               </span>
-              <span className="text-lg font-light tracking-tight text-emerald-600 md:text-xl dark:text-emerald-400">
+              <span className="text-lg font-light tracking-tight text-accent md:text-xl">
                 Consulting
               </span>
             </div>
@@ -103,13 +103,13 @@ export function Navbar() {
             <ThemeToggle />
             <Link
               href={locale === 'fr' ? '/en' : '/fr'}
-              className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+              className="rounded-lg px-3 py-2 text-sm font-semibold text-theme-muted transition hover:text-theme"
             >
               {locale === 'fr' ? 'EN' : 'FR'}
             </Link>
             <Link
               href={`/${locale}/contact`}
-              className="rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-2 text-sm font-semibold text-white shadow-md transition hover:scale-105 hover:from-emerald-500 hover:to-teal-500 dark:from-emerald-400 dark:to-cyan-400 dark:text-slate-950 dark:shadow-[0_0_24px_-6px_rgba(16,185,129,0.55)]"
+              className="rounded-full bg-[var(--accent)] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 dark:text-zinc-950"
             >
               {t('contact')}
             </Link>

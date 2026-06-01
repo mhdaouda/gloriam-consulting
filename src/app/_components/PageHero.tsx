@@ -25,20 +25,20 @@ export function PageHero({ title, description, eyebrow }: PageHeroProps) {
         {eyebrow && (
           <motion.p
             variants={heroTitleLine}
-            className="mb-3 text-sm font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400"
+            className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent"
           >
             {eyebrow}
           </motion.p>
         )}
         <motion.h1
           variants={heroTitleLine}
-          className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl light-gradient-text dark:turbo-gradient-text"
+          className="mb-4 text-4xl font-bold tracking-tight text-theme sm:text-5xl md:text-6xl"
         >
           {title}
         </motion.h1>
         <motion.p
           variants={fadeInUp}
-          className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-400"
+          className="mx-auto max-w-3xl text-lg leading-relaxed text-theme-muted"
         >
           {description}
         </motion.p>
