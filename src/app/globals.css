@@ -32,18 +32,14 @@ html:not(.dark) body {
   background: var(--background);
 }
 
-/* TurboTech page load reveal */
-body.is-loading main,
-body.is-loading header,
-body.is-loading footer {
+/* TurboTech page load reveal — header/footer stay visible for navigation */
+body.is-loading main {
   opacity: 0;
   transform: translateY(12px);
   filter: blur(6px);
 }
 
-body.is-loaded main,
-body.is-loaded header,
-body.is-loaded footer {
+body.is-loaded main {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);

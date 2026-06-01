@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { useTranslations } from '@/app/_hooks/useTranslations';
@@ -57,10 +56,7 @@ export function Navbar() {
     'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white';
 
   return (
-    <motion.header
-      initial={{ y: -16, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
+    <header
       className={`sticky top-0 z-50 border-b backdrop-blur-xl transition-all duration-300 ${shellClass}`}
     >
       <nav className="container mx-auto px-4">
@@ -89,7 +85,7 @@ export function Navbar() {
             </div>
           </Link>
 
-          <div className="hidden items-center gap-1 lg:gap-2">
+          <div className="hidden items-center gap-1 lg:flex lg:gap-2">
             {navKeys.map(({ href, key }) => (
               <Link
                 key={key}
@@ -166,6 +162,6 @@ export function Navbar() {
           </div>
         )}
       </nav>
-    </motion.header>
+    </header>
   );
 }
