@@ -242,10 +242,18 @@
   },
   "contact": {
     "title": "Contactez-nous",
-    "description": "Prenez contact avec notre équipe",
+    "description": "Prenez contact avec notre équipe ou réservez un créneau en visio",
     "addressLabel": "Adresse",
     "emailLabel": "Email",
+    "profileAlt": "Mohamed Daouda Ayinde — fondateur de Gloriam Consulting",
+    "profileRole": "Fondateur & CEO",
     "loading": "Chargement...",
+    "calendly": {
+      "title": "Prendre rendez-vous",
+      "description": "Réservez un créneau de 30 minutes en visioconférence pour échanger sur votre projet — sans engagement.",
+      "cta": "Réserver un créneau (30 min)",
+      "duration": "30 min · Visioconférence"
+    },
     "form": {
       "name": "Nom complet",
       "email": "Email",

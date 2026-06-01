@@ -4,10 +4,12 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { FaCalendarAlt, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { useTranslations } from '@/app/_hooks/useTranslations';
 import { PageHero } from '@/app/_components/PageHero';
+import { CalendlyEmbed } from '@/app/_components/CalendlyEmbed';
+import { EXTERNAL_LINKS } from '@/app/_lib/externalLinks';
 import { fadeInUp } from '@/app/_lib/motionPresets';
 
 function ContactFormInner() {
@@ -118,17 +120,51 @@ function ContactFormInner() {
             variants={fadeInUp}
             className="space-y-8"
           >
-            <div className="flex justify-center lg:justify-start">
-              <div className="relative h-52 w-52 overflow-hidden rounded-2xl border border-emerald-200/80 shadow-lg ring-2 ring-emerald-100 dark:border-emerald-500/30 dark:ring-emerald-500/20">
+            <div className="flex flex-col items-center lg:items-start">
+              <div className="relative aspect-[652/1024] w-56 overflow-hidden rounded-2xl border border-emerald-200/80 shadow-lg ring-2 ring-emerald-100 dark:border-emerald-500/30 dark:ring-emerald-500/20 sm:w-60">
                 <Image
-                  src="/images/profile-pi.png"
-                  alt="Gloriam Consulting"
+                  src="/images/profile-daouda.png"
+                  alt={t('profileAlt')}
                   fill
-                  className="object-cover"
-                  sizes="208px"
+                  className="object-cover object-top"
+                  sizes="(max-width: 1024px) 224px, 240px"
                   priority
                 />
               </div>
+              <p className="font-display mt-4 text-lg font-semibold text-theme">
+                Mohamed Daouda Ayinde
+              </p>
+              <p className="font-label text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                {t('profileRole')}
+              </p>
+            </div>
+
+            <div className="theme-card rounded-2xl p-5">
+              <div className="mb-3 flex items-center gap-3">
+                <div className="rounded-xl bg-gradient-to-br from-emerald-100 to-cyan-100 p-3 text-emerald-700 dark:from-emerald-500/20 dark:to-cyan-500/10 dark:text-emerald-400">
+                  <FaCalendarAlt size={20} />
+                </div>
+                <div>
+                  <h3 className="font-display text-lg font-semibold text-theme">
+                    {t('calendly.title')}
+                  </h3>
+                  <p className="font-label text-[10px] font-semibold uppercase tracking-[0.15em] text-accent">
+                    {t('calendly.duration')}
+                  </p>
+                </div>
+              </div>
+              <p className="mb-4 text-sm leading-relaxed text-theme-muted">
+                {t('calendly.description')}
+              </p>
+              <a
+                href={EXTERNAL_LINKS.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-5 py-3 text-sm font-bold text-slate-950 transition hover:from-emerald-400 hover:to-cyan-400"
+              >
+                <FaCalendarAlt size={14} />
+                {t('calendly.cta')}
+              </a>
             </div>
 
             {[
@@ -250,6 +286,26 @@ function ContactFormInner() {
                 <FaPaperPlane className="transition-transform group-hover:translate-x-0.5" />
               </button>
             </form>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="border-t border-[var(--border)] pb-20 pt-4 md:pb-24">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="theme-card mx-auto max-w-4xl overflow-hidden rounded-2xl p-6 md:p-8"
+          >
+            <div className="mb-6 text-center">
+              <h2 className="font-display mb-2 text-2xl font-semibold text-theme md:text-3xl">
+                {t('calendly.title')}
+              </h2>
+              <p className="text-theme-muted">{t('calendly.description')}</p>
+            </div>
+            <CalendlyEmbed />
           </motion.div>
         </div>
       </section>

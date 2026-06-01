@@ -93,14 +93,14 @@ export default function Contact() {
             animate="visible"
             className="space-y-8"
           >
-            <motion.div variants={fadeInUp} className="flex justify-center md:justify-start">
-              <div className="relative h-52 w-52 shrink-0 overflow-hidden rounded-2xl border border-emerald-100 shadow-lg ring-2 ring-emerald-50">
+            <motion.div variants={fadeInUp} className="flex flex-col items-center md:items-start">
+              <div className="relative aspect-[652/1024] w-56 overflow-hidden rounded-2xl border border-emerald-100 shadow-lg ring-2 ring-emerald-50">
                 <Image
-                  src="/images/profile-pi.png"
-                  alt="Gloriam Consulting"
+                  src="/images/profile-daouda.png"
+                  alt="Mohamed Daouda Ayinde — Gloriam Consulting"
                   fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 208px, 208px"
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 224px, 224px"
                   priority
                 />
               </div>

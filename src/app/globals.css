@@ -559,9 +559,97 @@ html:not(.dark) .turbo-pill:hover {
   background-size: 56px 56px;
 }
 
-.intro-scan {
-  background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.8), transparent);
-  animation: intro-scan 2.8s ease-in-out infinite;
+.intro-glow {
+  width: min(520px, 90vw);
+  height: min(520px, 90vw);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.28) 0%, transparent 68%);
+  animation: intro-glow-pulse 3.2s ease-in-out infinite;
+}
+
+html:not(.dark) .intro-glow {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.16) 0%, transparent 68%);
+}
+
+.intro-beam {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(52, 211, 153, 0.15) 20%,
+    rgba(110, 231, 183, 0.95) 50%,
+    rgba(52, 211, 153, 0.15) 80%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 24px rgba(52, 211, 153, 0.45),
+    0 0 60px rgba(16, 185, 129, 0.2);
+  animation: intro-scan 3.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.intro-corner {
+  width: 28px;
+  height: 28px;
+  border-color: rgba(16, 185, 129, 0.35);
+  opacity: 0;
+  animation: intro-corner-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.intro-corner--tl {
+  border-top: 1px solid;
+  border-left: 1px solid;
+  animation-delay: 0.35s;
+}
+
+.intro-corner--tr {
+  border-top: 1px solid;
+  border-right: 1px solid;
+  animation-delay: 0.45s;
+}
+
+.intro-corner--bl {
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  animation-delay: 0.55s;
+}
+
+.intro-corner--br {
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  animation-delay: 0.65s;
+}
+
+.intro-divider {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(16, 185, 129, 0.55) 50%,
+    transparent
+  );
+}
+
+.intro-shimmer {
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: intro-shimmer 4s ease-in-out infinite;
+}
+
+.intro-pulse-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+.intro-progress-fill {
+  transform-origin: left;
+  animation: intro-progress-fill var(--intro-duration, 5.2s) linear forwards;
+}
+
+.animate-marquee-intro {
+  animation: marquee 28s linear infinite;
+}
+
+.intro-skip--pulse {
+  animation: intro-skip-hint 2.4s ease-in-out 1.6s infinite;
 }
 
 .intro-skip {
@@ -589,15 +677,67 @@ html:not(.dark) .turbo-pill:hover {
     transform: translateY(-100vh);
     opacity: 0;
   }
-  15% {
-    opacity: 0.7;
+  12% {
+    opacity: 1;
   }
-  85% {
-    opacity: 0.7;
+  88% {
+    opacity: 1;
   }
   100% {
     transform: translateY(100vh);
     opacity: 0;
+  }
+}
+
+@keyframes intro-glow-pulse {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes intro-corner-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes intro-shimmer {
+  0%,
+  100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+@keyframes intro-progress-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes intro-skip-hint {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+  50% {
+    box-shadow: 0 0 28px -4px var(--accent-glow);
   }
 }
 
