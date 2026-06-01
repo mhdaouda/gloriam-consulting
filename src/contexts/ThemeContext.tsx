@@ -11,6 +11,7 @@ import {
 export type Theme = 'light' | 'dark';
 
 const STORAGE_KEY = 'gloriam-theme';
+const USER_SET_KEY = 'gloriam-theme-user-set';
 
 type ThemeContextValue = {
   theme: Theme;
@@ -21,11 +22,14 @@ type ThemeContextValue = {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
-function applyTheme(theme: Theme) {
+function applyTheme(theme: Theme, persist = true) {
   const root = document.documentElement;
   root.classList.toggle('dark', theme === 'dark');
   root.setAttribute('data-theme', theme);
-  localStorage.setItem(STORAGE_KEY, theme);
+  if (persist) {
+    localStorage.setItem(STORAGE_KEY, theme);
+    localStorage.setItem(USER_SET_KEY, 'true');
+  }
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
@@ -33,10 +37,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    const userSet = localStorage.getItem(USER_SET_KEY) === 'true';
     const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
     const initial: Theme =
-      stored === 'light' || stored === 'dark' ? stored : 'light';
-    applyTheme(initial);
+      userSet && stored === 'dark' ? 'dark' : 'light';
+    applyTheme(initial, false);
     setThemeState(initial);
     setMounted(true);
   }, []);

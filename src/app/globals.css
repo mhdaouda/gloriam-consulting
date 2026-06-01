@@ -143,12 +143,61 @@ html:not(.dark) .theme-section-cta {
 html.dark .theme-section-stats,
 html.dark .theme-section-features,
 html.dark .theme-section-zones,
-html.dark .theme-section-ecosystem {
-  background: transparent;
+html.dark .theme-section-ecosystem,
+html.dark .theme-section-cta {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+html.dark .dark-surface,
+html.dark .section-hero {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+html:not(.dark) .section-hero {
+  background: linear-gradient(
+    to bottom right,
+    var(--surface-muted),
+    var(--surface),
+    var(--surface-muted)
+  );
+}
+
+html.dark .hero-fade {
+  display: none;
+}
+
+html.dark .bg-grid-light {
+  background-image: none !important;
+}
+
+html.dark .theme-page [class*='from-slate'],
+html.dark .theme-page [class*='via-white'],
+html.dark .theme-page [class*='to-slate'],
+html.dark .theme-page [class*='to-white'] {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+html.dark .theme-page .bg-slate-100,
+html.dark .theme-page .bg-slate-200,
+html.dark .theme-page .bg-emerald-50,
+html.dark .theme-page [class*='bg-emerald-50'],
+html.dark .theme-page .bg-white {
+  background-color: var(--surface-muted) !important;
+  color: var(--foreground);
+}
+
+html.dark .theme-page .border-emerald-100 {
+  border-color: var(--border) !important;
+}
+
+html.dark .theme-card {
+  background: var(--card-bg) !important;
 }
 
 html.dark .theme-section-cta {
-  background: transparent;
   color: var(--foreground);
 }
 

@@ -35,7 +35,7 @@ export default function ServicesContent() {
     <div className="theme-page dark-surface min-h-screen">
       <PageHero title={t('title')} description={t('description')} eyebrow={t('eyebrow')} />
 
-      <section className="py-16 md:py-24">
+      <section className="theme-section theme-section-features py-16 md:py-24">
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -57,10 +57,10 @@ export default function ServicesContent() {
                 >
                   <Icon size={28} />
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-slate-900 dark:text-white">
+                <h3 className="mb-3 text-xl font-semibold text-theme">
                   {service.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                <p className="text-sm leading-relaxed text-theme-muted">
                   {service.description}
                 </p>
                 <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-emerald-500 to-cyan-500 transition-all duration-500 group-hover:w-full" />

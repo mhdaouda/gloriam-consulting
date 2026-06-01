@@ -11,7 +11,7 @@ type PageHeroProps = {
 
 export function PageHero({ title, description, eyebrow }: PageHeroProps) {
   return (
-    <section className="dark-surface relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-br from-slate-50 via-white to-slate-100 py-20">
+    <section className="section-hero dark-surface relative overflow-hidden border-b border-[var(--border)] py-20">
       <div className="pointer-events-none absolute inset-0 bg-hero-radial opacity-50 dark:bg-hero-radial-dark dark:opacity-100" />
       <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-40 dark:bg-grid-dark dark:opacity-50" />
       <div className="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-emerald-400/20 blur-[100px] dark:bg-emerald-500/25" />

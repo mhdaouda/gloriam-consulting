@@ -102,7 +102,7 @@ export default function HomeLanding() {
   return (
     <div className="theme-page dark-surface flex min-h-screen flex-col overflow-x-hidden">
       {/* Hero */}
-      <section className="dark-surface relative flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 px-4 pb-16 pt-8">
+      <section className="section-hero dark-surface relative flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden px-4 pb-16 pt-8">
         <div className="pointer-events-none absolute inset-0 bg-hero-radial opacity-60 dark:bg-hero-radial-dark dark:opacity-100" />
         <div className="animate-float-slow pointer-events-none absolute -left-40 top-20 h-[480px] w-[480px] rounded-full bg-emerald-400/25 blur-[120px] dark:bg-emerald-500/30" />
         <div className="animate-float-delayed pointer-events-none absolute -right-32 bottom-10 h-[400px] w-[400px] rounded-full bg-cyan-400/20 blur-[100px] dark:bg-cyan-500/25" />
@@ -168,7 +168,7 @@ export default function HomeLanding() {
           </motion.div>
         </motion.div>
 
-        <div className="dark-surface pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 via-white/80 to-transparent" />
+        <div className="hero-fade pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 via-white/80 to-transparent" />
       </section>
 
       {/* Stats */}
@@ -392,7 +392,7 @@ export default function HomeLanding() {
           </p>
           <Link
             href={`${base}/contact`}
-            className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-bold text-[var(--accent)] transition hover:opacity-90 dark:bg-[var(--accent)] dark:text-zinc-950"
+            className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-8 py-3.5 text-sm font-bold text-white transition hover:opacity-90 dark:text-zinc-950"
           >
             {t('ctaBanner.button')}
             <FaArrowRight />

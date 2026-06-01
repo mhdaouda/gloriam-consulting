@@ -52,7 +52,7 @@ export default function ProjectsContent() {
     <div className="theme-page dark-surface min-h-screen">
       <PageHero title={t('title')} description={t('description')} eyebrow={t('eyebrow')} />
 
-      <section className="py-16 md:py-24">
+      <section className="theme-section theme-section-features py-16 md:py-24">
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -71,7 +71,7 @@ export default function ProjectsContent() {
                 whileHover={{ y: -6 }}
                 className="theme-card group overflow-hidden rounded-3xl transition-shadow hover:shadow-glow"
               >
-                <div className="relative h-64 overflow-hidden bg-slate-200 dark:bg-slate-800">
+                <div className="relative h-64 overflow-hidden bg-[var(--surface-muted)]">
                   {project.image ? (
                     <>
                       <Image
@@ -104,14 +104,14 @@ export default function ProjectsContent() {
                     <Icon className="text-sm" />
                     {project.client}
                   </div>
-                  <h3 className="mb-3 text-2xl font-bold text-slate-900 transition-colors group-hover:text-emerald-600 dark:text-white dark:group-hover:text-emerald-400">
+                  <h3 className="mb-3 text-2xl font-bold text-theme transition-colors group-hover:text-accent">
                     {project.title}
                   </h3>
-                  <p className="mb-4 leading-relaxed text-slate-600 dark:text-slate-400">
+                  <p className="mb-4 leading-relaxed text-theme-muted">
                     {project.description}
                   </p>
-                  <div className="mb-6 rounded-xl border border-emerald-100 bg-emerald-50/80 p-4 dark:border-emerald-500/20 dark:bg-emerald-500/10">
-                    <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                  <div className="mb-6 rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] p-4">
+                    <p className="text-sm leading-relaxed text-theme-muted">
                       {project.details}
                     </p>
                   </div>
@@ -119,9 +119,9 @@ export default function ProjectsContent() {
                     {project.technologies.split(' • ').map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:bg-emerald-100 hover:text-emerald-800 dark:bg-white/10 dark:text-slate-300 dark:hover:bg-emerald-500/20 dark:hover:text-emerald-200"
+                        className="inline-flex items-center gap-1 rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-1.5 text-xs font-medium text-theme transition-colors hover:border-[var(--border-strong)]"
                       >
-                        <FaCheckCircle className="text-emerald-600 dark:text-emerald-400" />
+                        <FaCheckCircle className="text-accent" />
                         {tech}
                       </span>
                     ))}
@@ -144,7 +144,7 @@ export default function ProjectsContent() {
             <p className="mb-6 text-emerald-50 dark:text-theme-muted">{t('cta.description')}</p>
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3 font-semibold text-[var(--accent)] transition hover:opacity-90 dark:bg-[var(--accent)] dark:text-zinc-950"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--accent)] px-8 py-3 font-semibold text-white transition hover:opacity-90 dark:text-zinc-950"
             >
               {t('cta.button')}
               <FaArrowRight />

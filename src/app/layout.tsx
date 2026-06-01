@@ -32,7 +32,7 @@ export default function RootLayout({
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('gloriam-theme');var d=t==='dark';document.documentElement.classList.toggle('dark',d);document.documentElement.setAttribute('data-theme',d?'dark':'light')}catch(e){document.documentElement.classList.remove('dark');document.documentElement.setAttribute('data-theme','light')}})();`,
+            __html: `(function(){try{var u=localStorage.getItem('gloriam-theme-user-set');var t=localStorage.getItem('gloriam-theme');var d=u==='true'&&t==='dark';document.documentElement.classList.toggle('dark',d);document.documentElement.setAttribute('data-theme',d?'dark':'light')}catch(e){document.documentElement.classList.remove('dark');document.documentElement.setAttribute('data-theme','light')}})();`,
           }}
         />
       </head>
