@@ -410,6 +410,13 @@
     "badge": "SASU · Consulting & commercial excellence",
     "tagline": "Your partner for transformation, commercial excellence and digital projects — Africa, Europe & the Americas.",
     "zones": "Areas of operation",
+    "regionsSummary": "Africa · Europe · Americas",
+    "zonesHint": "Hover or click a country to highlight it.",
+    "regions": {
+      "africa": "Africa",
+      "europe": "Europe",
+      "america": "Americas"
+    },
     "skip": "Skip introduction"
   }
 } 
