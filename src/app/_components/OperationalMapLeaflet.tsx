@@ -20,7 +20,7 @@ function FitAgencyBounds({ positions }: { positions: [number, number][] }) {
     const bounds = L.latLngBounds(
       positions.map(([lat, lng]) => L.latLng(lat, lng))
     );
-    map.fitBounds(bounds, { padding: [52, 52], maxZoom: 4 });
+    map.fitBounds(bounds, { padding: [52, 52], maxZoom: 6 });
   }, [map, positions]);
   return null;
 }

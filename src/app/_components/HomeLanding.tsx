@@ -16,14 +16,12 @@ import {
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { useTranslations } from '@/app/_hooks/useTranslations';
 import { CountryMarquee } from '@/app/_components/CountryMarquee';
-import { EXTERNAL_LINKS } from '@/app/_lib/externalLinks';
+import { EXTERNAL_LINKS, HOME_COUNTRY_IDS, ZONE_GROUPS } from '@/app/_lib/externalLinks';
 import {
   fadeInUp,
   heroItem,
   heroStagger,
   scaleIn,
-  slideInLeft,
-  slideInRight,
   stagger,
 } from '@/app/_lib/motionPresets';
 
@@ -93,11 +91,7 @@ export default function HomeLanding() {
     },
   ] as const;
 
-  const zoneGroups = [
-    { key: 'africa', ids: ['benin', 'togo', 'gabon', 'nigeria'] as const },
-    { key: 'europe', ids: ['france', 'belgium', 'switzerland'] as const },
-    { key: 'america', ids: ['canada'] as const },
-  ] as const;
+  const zoneGroups = ZONE_GROUPS;
 
   return (
     <div className="theme-page dark-surface flex min-h-screen flex-col overflow-x-hidden">
@@ -178,7 +172,7 @@ export default function HomeLanding() {
         <div className="pointer-events-none absolute inset-0 hidden bg-grid-dark opacity-30 dark:block" />
         <div className="container relative z-[1] mx-auto grid max-w-4xl grid-cols-2 gap-4 px-4 md:grid-cols-4 md:gap-6">
           <StatCard value="2023" label={t('stats.founded')} delay={0} />
-          <StatCard value="8" label={t('stats.countries')} delay={0.08} />
+          <StatCard value={String(HOME_COUNTRY_IDS.length)} label={t('stats.countries')} delay={0.08} />
           <StatCard value="100%" label={t('stats.projects')} delay={0.16} />
           <StatCard value="3" label={t('stats.ecosystem')} delay={0.24} />
         </div>
@@ -276,11 +270,11 @@ export default function HomeLanding() {
             <p className="text-lg text-theme-muted">{t('zones.subtitle')}</p>
           </motion.div>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {zoneGroups.map((group, gi) => (
+          <div className="mx-auto grid max-w-lg gap-6">
+            {zoneGroups.map((group) => (
               <motion.div
                 key={group.key}
-                variants={gi === 1 ? slideInLeft : gi === 2 ? slideInRight : fadeInUp}
+                variants={fadeInUp}
                 whileHover={{ scale: 1.02 }}
                 className="theme-card rounded-2xl p-6 transition hover:-translate-y-0.5"
               >

@@ -64,8 +64,8 @@
     "badge": "SASU · Conseil & excellence commerciale",
     "titleLine1": "Le conseil & la digitalisation",
     "titleLine2": "au service de votre croissance.",
-    "description": "accompagne les entreprises dans leur transformation, leur stratégie commerciale et leurs projets digitaux — en France, en Afrique et au Canada.",
-    "zonesHint": "Afrique · Europe · Amérique",
+    "description": "accompagne les entreprises dans leur transformation, leur stratégie commerciale et leurs projets digitaux — en Europe.",
+    "zonesHint": "Europe",
     "zonesLabel": "Zones d'intervention",
     "ctaStart": "Démarrer un projet",
     "ctaServices": "Nos services",
@@ -79,12 +79,10 @@
       "ecosystem": "Entités de l'écosystème"
     },
     "zones": {
-      "eyebrow": "Présence internationale",
+      "eyebrow": "Présence européenne",
       "title": "Référencés là où vous opérez",
-      "subtitle": "Nous intervenons sur plusieurs continents avec une approche locale et des standards internationaux.",
-      "africa": "Afrique",
+      "subtitle": "Nous intervenons en Europe — France, Belgique et Suisse — avec une approche locale et des standards internationaux.",
       "europe": "Europe",
-      "america": "Amérique",
       "cta": "Voir la carte interactive"
     },
     "ecosystem": {
@@ -156,7 +154,7 @@
     },
     "coverage": {
       "title": "Où nous intervenons",
-      "description": "Gloriam Consulting accompagne des missions en Europe, en Afrique de l’Ouest et centrale, ainsi qu’en Amérique du Nord. Explorez la carte pour voir les pays concernés.",
+      "description": "Gloriam Consulting accompagne des missions en Europe — France, Belgique et Suisse. Explorez la carte pour voir les pays concernés.",
       "listTitle": "Zones couvertes",
       "loading": "Chargement de la carte…",
       "mapAria": "Carte des zones d’intervention de Gloriam Consulting",
@@ -175,12 +173,7 @@
       "countries": {
         "france": "France",
         "belgium": "Belgique",
-        "switzerland": "Suisse",
-        "benin": "Bénin",
-        "togo": "Togo",
-        "gabon": "Gabon",
-        "nigeria": "Nigeria",
-        "canada": "Canada"
+        "switzerland": "Suisse"
       }
     },
     "expertise": {
@@ -408,14 +401,12 @@
     "brand": "Gloriam",
     "brandAccent": "Consulting",
     "badge": "SASU · Conseil & excellence commerciale",
-    "tagline": "Votre partenaire pour la transformation, l'excellence commerciale et le digital — Afrique, Europe & Amérique.",
+    "tagline": "Votre partenaire pour la transformation, l'excellence commerciale et le digital — en Europe.",
     "zones": "Zones d'intervention",
-    "regionsSummary": "Afrique · Europe · Amérique",
+    "regionsSummary": "Europe",
     "zonesHint": "Survole ou clique un pays pour le mettre en évidence.",
     "regions": {
-      "africa": "Afrique",
-      "europe": "Europe",
-      "america": "Amérique"
+      "europe": "Europe"
     },
     "skip": "Passer l'introduction"
   }

@@ -6,17 +6,11 @@ import Image from 'next/image';
 import { useTheme } from '@/contexts/ThemeContext';
 import enMessages from '@/app/_translations/en.json';
 import frMessages from '@/app/_translations/fr.json';
-import { HOME_COUNTRY_IDS } from '@/app/_lib/externalLinks';
+import { EXTERNAL_LINKS, HOME_COUNTRY_IDS, ZONE_GROUPS } from '@/app/_lib/externalLinks';
 import { easeOut } from '@/app/_lib/motionPresets';
 
 const INTRO_KEY = 'gloriam-intro-seen';
 const AUTO_MS = 5000;
-
-const ZONE_GROUPS = [
-  { key: 'africa' as const, ids: ['benin', 'togo', 'gabon', 'nigeria'] as const },
-  { key: 'europe' as const, ids: ['france', 'belgium', 'switzerland'] as const },
-  { key: 'america' as const, ids: ['canada'] as const },
-];
 
 type SiteIntroProps = {
   onComplete: () => void;
@@ -290,7 +284,7 @@ export function SiteIntro({ onComplete }: SiteIntroProps) {
               {/* Regions grid — interactive countries */}
               <motion.div
                 variants={fadeUp}
-                className="intro-regions mt-6 grid w-full max-w-3xl gap-4 sm:grid-cols-3 sm:gap-5"
+                className="intro-regions mt-6 grid w-full max-w-md gap-4"
               >
                 {ZONE_GROUPS.map((group) => (
                   <motion.div
