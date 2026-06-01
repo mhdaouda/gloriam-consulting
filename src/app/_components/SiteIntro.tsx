@@ -10,7 +10,7 @@ import { HOME_COUNTRY_IDS } from '@/app/_lib/externalLinks';
 import { easeOut } from '@/app/_lib/motionPresets';
 
 const INTRO_KEY = 'gloriam-intro-seen';
-const AUTO_MS = 7800;
+const AUTO_MS = 5000;
 
 const ZONE_GROUPS = [
   { key: 'africa' as const, ids: ['benin', 'togo', 'gabon', 'nigeria'] as const },
