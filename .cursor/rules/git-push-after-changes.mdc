@@ -1,0 +1,17 @@
+---
+description: Commit and push to origin after every code modification in this project
+alwaysApply: true
+---
+
+# Git — push after each modification
+
+After completing any requested code change in this repository:
+
+1. **Commit** with a concise message (1–2 sentences, focus on why).
+2. **Push** immediately to `origin` on the current branch (`git push origin HEAD` or `git push -u origin HEAD` if needed).
+
+Do this without waiting for the user to ask, unless they explicitly say not to commit/push for that task.
+
+Follow the git safety protocol: never force-push to main, never skip hooks, never commit secrets.
+
+If there are no file changes, do not create an empty commit.
