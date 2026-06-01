@@ -33,7 +33,7 @@ export default function CookiesPage() {
   const t = useTranslations('cookies');
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24 relative">
+    <div className="theme-page dark-surface min-h-screen py-24 relative">
       {/* Pattern background */}
       <motion.div
         initial={{ opacity: 0 }}

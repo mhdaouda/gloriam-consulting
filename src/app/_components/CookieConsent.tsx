@@ -10,7 +10,6 @@ export function CookieConsent() {
   const { locale } = useLocaleContext();
 
   useEffect(() => {
-    // Vérifie si l'utilisateur a déjà accepté les cookies
     const consent = localStorage.getItem('cookie-consent');
     if (!consent) {
       setShowBanner(true);
@@ -25,23 +24,23 @@ export function CookieConsent() {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 p-4 shadow-lg z-50">
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-[var(--border)] bg-[var(--surface)] p-4 shadow-lg backdrop-blur-md">
       <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col md:flex-row items-center gap-2">
-            <p className="text-sm text-zinc-600 text-center md:text-left">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <div className="flex flex-col items-center gap-2 md:flex-row">
+            <p className="text-center text-sm text-theme-muted md:text-left">
               {t(locale, 'cookies.banner.description')}
             </p>
             <Link
               href={`/${locale}/cookies`}
-              className="text-sm text-blue-600 hover:text-blue-800 underline"
+              className="text-sm text-accent underline hover:opacity-80"
             >
               {t(locale, 'cookies.banner.learnMore')}
             </Link>
           </div>
           <button
             onClick={acceptCookies}
-            className="px-6 py-2 bg-zinc-800 text-white rounded-full hover:bg-zinc-700 transition-colors"
+            className="rounded-full bg-[var(--accent)] px-6 py-2 text-sm font-semibold text-white transition hover:opacity-90 dark:text-zinc-950"
           >
             {t(locale, 'cookies.banner.accept')}
           </button>
@@ -49,4 +48,4 @@ export function CookieConsent() {
       </div>
     </div>
   );
-} 
+}

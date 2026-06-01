@@ -100,7 +100,7 @@ export default function HomeLanding() {
   ] as const;
 
   return (
-    <div className="flex min-h-screen flex-col overflow-x-hidden dark:bg-transparent">
+    <div className="theme-page dark-surface flex min-h-screen flex-col overflow-x-hidden">
       {/* Hero */}
       <section className="dark-surface relative flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 px-4 pb-16 pt-8">
         <div className="pointer-events-none absolute inset-0 bg-hero-radial opacity-60 dark:bg-hero-radial-dark dark:opacity-100" />
@@ -168,7 +168,7 @@ export default function HomeLanding() {
           </motion.div>
         </motion.div>
 
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 via-white/80 to-transparent dark:from-transparent dark:via-transparent dark:to-transparent" />
+        <div className="dark-surface pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 via-white/80 to-transparent" />
       </section>
 
       {/* Stats */}

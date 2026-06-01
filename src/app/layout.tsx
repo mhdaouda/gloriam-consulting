@@ -24,6 +24,12 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
+        <style
+          dangerouslySetInnerHTML={{
+            __html:
+              'html{background-color:#f8fafc;color:#1e293b}html.dark{background-color:#09090b;color:#f1f5f9}',
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('gloriam-theme');var d=t==='dark';document.documentElement.classList.toggle('dark',d);document.documentElement.setAttribute('data-theme',d?'dark':'light')}catch(e){document.documentElement.classList.remove('dark');document.documentElement.setAttribute('data-theme','light')}})();`,

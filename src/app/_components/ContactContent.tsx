@@ -79,7 +79,7 @@ function ContactFormInner() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen py-24">
+      <div className="theme-page dark-surface min-h-screen py-24">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -106,7 +106,7 @@ function ContactFormInner() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="theme-page dark-surface min-h-screen">
       <PageHero title={t('title')} description={t('description')} />
 
       <section className="py-16 md:py-20">

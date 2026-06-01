@@ -60,6 +60,57 @@ html.dark body {
   background-attachment: fixed;
 }
 
+.theme-page {
+  color: var(--foreground);
+}
+
+html.dark .theme-page {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+html.dark .theme-page .bg-white,
+html.dark .theme-page .rounded-2xl.bg-white,
+html.dark .theme-page .rounded-xl.bg-white {
+  background: var(--card-bg) !important;
+  border-color: var(--border);
+}
+
+html.dark .theme-page .border-zinc-100,
+html.dark .theme-page .border-zinc-200,
+html.dark .theme-page .border-slate-200,
+html.dark .theme-page .border-blue-100,
+html.dark .theme-page .border-indigo-100 {
+  border-color: var(--border) !important;
+}
+
+html.dark .theme-page .text-zinc-900,
+html.dark .theme-page .text-zinc-800,
+html.dark .theme-page .text-zinc-700,
+html.dark .theme-page .text-gray-800,
+html.dark .theme-page .text-gray-700 {
+  color: var(--foreground) !important;
+}
+
+html.dark .theme-page .text-zinc-600,
+html.dark .theme-page .text-zinc-500,
+html.dark .theme-page .text-gray-600 {
+  color: var(--foreground-muted) !important;
+}
+
+html.dark .theme-page [class*='from-zinc-50'],
+html.dark .theme-page [class*='from-blue-50'],
+html.dark .theme-page [class*='from-indigo-50'],
+html.dark .theme-page [class*='via-indigo-50'],
+html.dark .theme-page [class*='to-white'] {
+  background-image: none !important;
+  background-color: var(--surface) !important;
+}
+
+html:not(.dark) .theme-page [class*='bg-gradient-to-b'][class*='from-zinc-50'] {
+  background: linear-gradient(to bottom, var(--surface-muted), var(--surface));
+}
+
 .theme-shell {
   background: transparent;
 }

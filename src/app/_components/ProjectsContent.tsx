@@ -49,7 +49,7 @@ export default function ProjectsContent() {
   }>;
 
   return (
-    <div className="min-h-screen">
+    <div className="theme-page dark-surface min-h-screen">
       <PageHero title={t('title')} description={t('description')} eyebrow={t('eyebrow')} />
 
       <section className="py-16 md:py-24">
@@ -139,12 +139,12 @@ export default function ProjectsContent() {
           viewport={{ once: true }}
           className="container mx-auto mt-16 px-4"
         >
-          <div className="mx-auto max-w-2xl rounded-2xl bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 p-8 text-center shadow-glow">
-            <h3 className="mb-3 text-2xl font-bold text-white">{t('cta.title')}</h3>
-            <p className="mb-6 text-emerald-50">{t('cta.description')}</p>
+          <div className="dark-surface theme-section-cta mx-auto max-w-2xl rounded-2xl p-8 text-center">
+            <h3 className="mb-3 text-2xl font-bold text-white dark:text-theme">{t('cta.title')}</h3>
+            <p className="mb-6 text-emerald-50 dark:text-theme-muted">{t('cta.description')}</p>
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3 font-semibold text-emerald-700 transition hover:scale-[1.02] hover:bg-emerald-50"
+              className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3 font-semibold text-[var(--accent)] transition hover:opacity-90 dark:bg-[var(--accent)] dark:text-zinc-950"
             >
               {t('cta.button')}
               <FaArrowRight />

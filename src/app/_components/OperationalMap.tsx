@@ -6,7 +6,7 @@ import { useTranslations } from '@/app/_hooks/useTranslations';
 function MapLoadingFallback() {
   const t = useTranslations('about');
   return (
-    <div className="flex h-[min(52vh,520px)] w-full items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50 text-sm text-slate-500">
+    <div className="flex h-[min(52vh,520px)] w-full items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] text-sm text-theme-muted">
       {t('coverage.loading')}
     </div>
   );

@@ -47,7 +47,7 @@ export default function CookiesPage() {
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white">
+    <div className="theme-page dark-surface min-h-screen">
       <motion.div 
         className="container mx-auto px-4 py-24"
         style={{ opacity, scale }}

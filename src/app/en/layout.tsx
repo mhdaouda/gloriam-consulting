@@ -12,7 +12,7 @@ export default function EnLayout({
 }) {
   return (
     <LocaleProvider locale="en">
-      <div className="theme-shell relative z-[1] flex min-h-screen flex-col">
+      <div className="theme-shell relative z-[1] flex min-h-screen flex-col theme-page">
         <div
           className="pointer-events-none fixed inset-0 z-0 bg-grid-light opacity-20 dark:hidden"
           aria-hidden

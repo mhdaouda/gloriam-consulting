@@ -32,7 +32,7 @@ export default function About() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-24">
+    <div className="theme-page dark-surface min-h-screen py-24">
       <div className="container mx-auto px-4">
         <motion.div
           initial="hidden"
