@@ -25,14 +25,14 @@ export function PageHero({ title, description, eyebrow }: PageHeroProps) {
         {eyebrow && (
           <motion.p
             variants={heroTitleLine}
-            className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent"
+            className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent font-label"
           >
             {eyebrow}
           </motion.p>
         )}
         <motion.h1
           variants={heroTitleLine}
-          className="mb-4 text-4xl font-bold tracking-tight text-theme sm:text-5xl md:text-6xl"
+          className="font-display mb-4 text-4xl font-semibold tracking-tight text-theme sm:text-5xl md:text-6xl"
         >
           {title}
         </motion.h1>

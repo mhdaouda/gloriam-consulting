@@ -7,16 +7,8 @@ import { FaStar, FaCheck, FaHeart } from 'react-icons/fa';
 import { images } from '../../_lib/images';
 import OperationalMap from '../../_components/OperationalMap';
 import { OPERATIONAL_LOCATIONS } from '../../_lib/operationalLocations';
-
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
+import { Reveal } from '../../_components/Reveal';
+import { stagger, fadeInUp } from '../../_lib/motionPresets';
 
 interface Stat {
   title: string;
@@ -30,147 +22,119 @@ export default function About() {
   const stats = t.raw('expertise.stats') as Stat[];
 
   return (
-    <div className="theme-page dark-surface min-h-screen py-24 relative">
-      {/* Pattern background */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.05 }}
-        transition={{ duration: 1 }}
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `url(${images.other.pattern.src})`,
-          backgroundSize: '200px',
-          backgroundRepeat: 'repeat',
-          opacity: 0.3
-        }}
-      />
-      
-      {/* Main content */}
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn}
-          className="mb-20 text-center"
-        >
-          <h1 className="mb-6 text-5xl font-bold sm:text-6xl text-zinc-800">
+    <div className="theme-page dark-surface relative min-h-screen py-24">
+      <div className="container relative z-10 mx-auto px-4">
+        <Reveal className="mb-20 text-center">
+          <p className="font-label mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-accent">
+            Gloriam Consulting
+          </p>
+          <h1 className="font-display mb-6 text-5xl font-semibold text-theme sm:text-6xl">
             {t('title')}
           </h1>
-          <p className="mx-auto max-w-3xl text-xl text-zinc-600 leading-relaxed">
+          <p className="mx-auto max-w-3xl text-xl leading-relaxed text-theme-muted">
             {t('description')}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid gap-16 md:grid-cols-2">
-          <div className="flex items-center justify-center group">
-            <div className="relative">
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-200 to-purple-200 transform rotate-6 scale-105 opacity-20 group-hover:rotate-4 transition-transform duration-300"></div>
+          <Reveal variant="slideLeft" className="flex items-center justify-center">
+            <div className="group relative">
+              <div className="absolute inset-0 rotate-6 scale-105 rounded-2xl bg-emerald-500/10 opacity-60 transition-transform duration-300 group-hover:rotate-4" />
               <Image
                 src={images.other.gcLogo}
                 alt="Gloriam Consulting Logo"
                 width={300}
                 height={300}
-                className="mx-auto h-auto w-64 rounded-lg shadow-xl transition-transform duration-300 hover:scale-105"
+                className="relative mx-auto h-auto w-64 rounded-lg shadow-xl transition-transform duration-300 hover:scale-105"
               />
             </div>
-          </div>
+          </Reveal>
 
-          <div className="flex flex-col justify-center space-y-8">
-            <div className="group">
-              <h2 className="mb-4 text-2xl font-semibold text-zinc-800 group-hover:text-zinc-900 transition-colors duration-300">
-                {t('mission.title')}
-              </h2>
-              <p className="text-zinc-600 leading-relaxed">
-                {t('mission.description')}
-              </p>
-              <div className="h-0.5 w-0 bg-gradient-to-r from-indigo-400 to-purple-600 group-hover:w-full transition-all duration-500"></div>
-            </div>
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-40px' }}
+            className="flex flex-col justify-center space-y-8"
+          >
+            {[
+              { title: t('mission.title'), desc: t('mission.description') },
+              { title: t('vision.title'), desc: t('vision.description') },
+            ].map((block) => (
+              <motion.div key={block.title} variants={fadeInUp} className="group theme-card rounded-2xl p-6">
+                <h2 className="font-display mb-4 text-2xl font-semibold text-theme">{block.title}</h2>
+                <p className="text-theme-muted leading-relaxed">{block.desc}</p>
+                <div className="mt-4 h-0.5 w-0 bg-gradient-to-r from-emerald-500 to-cyan-500 transition-all duration-500 group-hover:w-full" />
+              </motion.div>
+            ))}
 
-            <div className="group">
-              <h2 className="mb-4 text-2xl font-semibold text-zinc-800 group-hover:text-zinc-900 transition-colors duration-300">
-                {t('vision.title')}
-              </h2>
-              <p className="text-zinc-600 leading-relaxed">
-                {t('vision.description')}
-              </p>
-              <div className="h-0.5 w-0 bg-gradient-to-r from-purple-400 to-indigo-600 group-hover:w-full transition-all duration-500"></div>
-            </div>
-
-            <div className="group">
-              <h2 className="mb-4 text-2xl font-semibold text-zinc-800 group-hover:text-zinc-900 transition-colors duration-300">
-                {t('values.title')}
-              </h2>
-              <ul className="grid grid-cols-2 gap-4 text-zinc-600">
+            <motion.div variants={fadeInUp} className="group theme-card rounded-2xl p-6">
+              <h2 className="font-display mb-4 text-2xl font-semibold text-theme">{t('values.title')}</h2>
+              <ul className="grid grid-cols-2 gap-4 text-theme-muted">
                 {values.map((value: string, index: number) => (
-                  <li
-                    key={index}
-                    className="flex items-center space-x-2 group"
-                  >
-                    <span className="text-zinc-400 group-hover:text-zinc-600 transition-colors duration-300">•</span>
-                    <span className="leading-relaxed">{value}</span>
+                  <li key={index} className="flex items-center gap-2">
+                    <span className="text-accent">•</span>
+                    <span>{value}</span>
                   </li>
                 ))}
               </ul>
-              <div className="h-0.5 w-0 bg-gradient-to-r from-indigo-400 to-purple-600 group-hover:w-full transition-all duration-500"></div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
 
-        <section
-          className="mt-24 rounded-2xl border border-slate-200/80 bg-white p-8 shadow-lg md:p-12"
-          aria-labelledby="about-coverage-heading"
-        >
+        <Reveal className="theme-card mt-24 rounded-2xl p-8 md:p-12" delay={0.1}>
           <h2
             id="about-coverage-heading"
-            className="mb-3 text-center text-3xl font-bold text-zinc-800"
+            className="font-display mb-3 text-center text-3xl font-semibold text-theme"
           >
             {t('coverage.title')}
           </h2>
-          <p className="mx-auto mb-8 max-w-3xl text-center text-lg text-zinc-600">
+          <p className="mx-auto mb-8 max-w-3xl text-center text-lg text-theme-muted">
             {t('coverage.description')}
           </p>
           <OperationalMap />
-          <p className="mb-3 mt-8 text-center text-sm font-semibold uppercase tracking-wide text-emerald-700/90">
+          <p className="font-label mb-3 mt-8 text-center text-sm font-semibold uppercase tracking-widest text-accent">
             {t('coverage.listTitle')}
           </p>
           <ul className="flex flex-wrap justify-center gap-2">
             {OPERATIONAL_LOCATIONS.map((loc) => (
-              <li
-                key={loc.id}
-                className="rounded-full border border-emerald-200/80 bg-emerald-50 px-3 py-1.5 text-sm font-medium text-emerald-900"
-              >
+              <li key={loc.id} className="turbo-pill text-sm">
                 {t(`coverage.countries.${loc.id}`)}
               </li>
             ))}
           </ul>
-        </section>
+        </Reveal>
 
-        <div className="mt-24 rounded-2xl bg-gradient-to-br from-indigo-50 via-purple-50 to-white p-12 shadow-lg">
-          <h2 className="mb-12 text-center text-3xl font-bold text-zinc-800">
+        <Reveal className="mt-24" delay={0.15}>
+          <h2 className="font-display mb-12 text-center text-3xl font-semibold text-theme">
             {t('expertise.title')}
           </h2>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          >
             {stats.map((stat: Stat, index: number) => (
-              <div
+              <motion.div
                 key={index}
-                className="group rounded-xl bg-white p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-zinc-100 hover:border-zinc-200"
+                variants={fadeInUp}
+                whileHover={{ y: -6 }}
+                className="theme-card group rounded-2xl p-8"
               >
-                <div className="mb-6 text-4xl text-indigo-500 transition-colors duration-300 group-hover:text-purple-600">
-                  {index === 0 && <FaStar className="w-12 h-12 transform transition-transform duration-300 group-hover:scale-110" />}
-                  {index === 1 && <FaCheck className="w-12 h-12 transform transition-transform duration-300 group-hover:scale-110" />}
-                  {index === 2 && <FaHeart className="w-12 h-12 transform transition-transform duration-300 group-hover:scale-110" />}
+                <div className="mb-6 text-4xl text-accent transition-transform duration-300 group-hover:scale-110">
+                  {index === 0 && <FaStar className="h-12 w-12" />}
+                  {index === 1 && <FaCheck className="h-12 w-12" />}
+                  {index === 2 && <FaHeart className="h-12 w-12" />}
                 </div>
-                <h3 className="mb-4 text-xl font-semibold text-zinc-800 transition-colors duration-300 group-hover:text-zinc-900">
-                  {stat.title}
-                </h3>
-                <p className="text-zinc-600 leading-relaxed">
-                  {stat.description}
-                </p>
-              </div>
+                <h3 className="font-display mb-4 text-xl font-semibold text-theme">{stat.title}</h3>
+                <p className="text-theme-muted leading-relaxed">{stat.description}</p>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </Reveal>
       </div>
     </div>
   );
-} 
+}

@@ -127,9 +127,11 @@ export default function HomeLanding() {
             </motion.div>
 
             <motion.div variants={heroItem} className="space-y-2">
-              <h1 className="text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
+              <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
                 <span className="block text-theme">{t('titleLine1')}</span>
-                <span className="mt-2 block text-accent">{t('titleLine2')}</span>
+                <span className="mt-2 block bg-gradient-to-r from-emerald-700 via-teal-600 to-cyan-600 bg-clip-text italic text-transparent dark:from-emerald-300 dark:via-teal-200 dark:to-cyan-300">
+                  {t('titleLine2')}
+                </span>
               </h1>
             </motion.div>
 
@@ -196,7 +198,7 @@ export default function HomeLanding() {
             <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
               {t('features.eyebrow')}
             </p>
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-theme md:text-4xl">
+            <h2 className="font-display mb-4 text-3xl font-semibold tracking-tight text-theme md:text-4xl">
               {t('features.title')}
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-theme-muted">

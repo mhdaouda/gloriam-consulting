@@ -78,10 +78,10 @@ export default function Trust() {
           variants={fadeInUp}
           className="mb-20 text-center"
         >
-          <h1 className="mb-6 text-5xl font-bold sm:text-6xl text-zinc-800">
+          <h1 className="font-display mb-6 text-5xl font-semibold text-theme sm:text-6xl">
             {t('title')}
           </h1>
-          <p className="mx-auto max-w-3xl text-xl text-zinc-600 leading-relaxed">
+          <p className="mx-auto max-w-3xl text-xl leading-relaxed text-theme-muted">
             {t('description')}
           </p>
         </motion.div>

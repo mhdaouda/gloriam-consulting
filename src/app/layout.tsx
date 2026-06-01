@@ -1,4 +1,4 @@
-import { Plus_Jakarta_Sans } from 'next/font/google';
+import { Cormorant_Garamond, Plus_Jakarta_Sans, Rajdhani } from 'next/font/google';
 import { Metadata } from 'next';
 import GoogleAnalytics from '@/app/_components/GoogleAnalytics';
 import { CookieConsent } from '@/app/_components/CookieConsent';
@@ -9,6 +9,21 @@ const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-plus-jakarta',
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-display',
+});
+
+const rajdhani = Rajdhani({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  display: 'swap',
+  variable: '--font-label',
 });
 
 export const metadata: Metadata = {
@@ -36,7 +51,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${plusJakarta.className} antialiased`}>
+      <body
+        className={`${plusJakarta.variable} ${cormorant.variable} ${rajdhani.variable} ${plusJakarta.className} antialiased`}
+      >
         <Providers>{children}</Providers>
         <CookieConsent />
         <GoogleAnalytics />

@@ -76,10 +76,10 @@ export function Navbar() {
               />
             </span>
             <div className="flex items-baseline gap-0">
-              <span className="text-lg font-bold tracking-tight text-theme md:text-xl">
+              <span className="font-label text-lg font-bold uppercase tracking-[0.12em] text-theme md:text-xl">
                 Gloriam
               </span>
-              <span className="text-lg font-light tracking-tight text-accent md:text-xl">
+              <span className="font-display text-lg font-semibold italic text-accent md:text-xl">
                 Consulting
               </span>
             </div>

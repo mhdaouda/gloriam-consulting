@@ -75,7 +75,7 @@ function ContactFormInner() {
   };
 
   const inputClass =
-    'block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-800 transition focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-200/80 dark:border-white/15 dark:bg-slate-900/60 dark:text-slate-100 dark:focus:border-emerald-500 dark:focus:ring-emerald-500/30';
+    'block w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-theme transition focus:border-[var(--accent)] focus:outline-none focus:ring-2 focus:ring-emerald-500/25';
 
   if (submitted) {
     return (

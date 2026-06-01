@@ -9,6 +9,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-plus-jakarta)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'Georgia', 'serif'],
+        label: ['var(--font-label)', 'system-ui', 'sans-serif'],
+      },
       boxShadow: {
         glow: '0 0 60px -12px rgba(16, 185, 129, 0.45)',
         'glow-teal': '0 0 50px -10px rgba(20, 184, 166, 0.4)',

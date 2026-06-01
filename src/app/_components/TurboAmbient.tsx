@@ -3,24 +3,24 @@
 import { useEffect, useRef } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 
-export function TurboAmbient() {
+export function TurboAmbient({ introComplete }: { introComplete: boolean }) {
   const { theme, mounted } = useTheme();
   const readyRef = useRef(false);
 
   useEffect(() => {
-    if (readyRef.current) return;
+    if (!introComplete || readyRef.current) return;
     readyRef.current = true;
 
     document.body.classList.add('is-loading');
     const t = window.setTimeout(() => {
       document.body.classList.remove('is-loading');
       document.body.classList.add('is-loaded');
-    }, 100);
+    }, 80);
 
     return () => {
       window.clearTimeout(t);
     };
-  }, []);
+  }, [introComplete]);
 
   useEffect(() => {
     if (!mounted) return;

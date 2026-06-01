@@ -57,7 +57,7 @@ export default function ServicesContent() {
                 >
                   <Icon size={28} />
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-theme">
+                <h3 className="font-display mb-3 text-xl font-semibold text-theme">
                   {service.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-theme-muted">

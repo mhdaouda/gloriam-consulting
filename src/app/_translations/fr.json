@@ -395,5 +395,13 @@
     "light": "Mode clair",
     "dark": "Mode sombre",
     "toggle": "Changer le thème"
+  },
+  "intro": {
+    "brand": "Gloriam",
+    "brandAccent": "Consulting",
+    "badge": "SASU · Conseil & excellence commerciale",
+    "tagline": "Votre partenaire pour la transformation, l'excellence commerciale et le digital — Afrique, Europe & Amérique.",
+    "zones": "Zones d'intervention",
+    "skip": "Passer l'introduction"
   }
 }
