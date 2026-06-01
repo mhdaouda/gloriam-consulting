@@ -81,7 +81,7 @@
     "zones": {
       "eyebrow": "Présence européenne",
       "title": "Référencés là où vous opérez",
-      "subtitle": "Nous intervenons en Europe — France, Belgique et Suisse — avec une approche locale et des standards internationaux.",
+      "subtitle": "Nous intervenons en Europe — France, Estonie, Belgique, Luxembourg, Pays-Bas, Pologne, Allemagne et Suisse.",
       "europe": "Europe",
       "cta": "Voir la carte interactive"
     },
@@ -154,7 +154,7 @@
     },
     "coverage": {
       "title": "Où nous intervenons",
-      "description": "Gloriam Consulting accompagne des missions en Europe — France, Belgique et Suisse. Explorez la carte pour voir les pays concernés.",
+      "description": "Gloriam Consulting accompagne des missions en Europe — France, Estonie, Belgique, Luxembourg, Pays-Bas, Pologne, Allemagne et Suisse. Explorez la carte pour voir les pays concernés.",
       "listTitle": "Zones couvertes",
       "loading": "Chargement de la carte…",
       "mapAria": "Carte des zones d’intervention de Gloriam Consulting",
@@ -172,7 +172,12 @@
       "privacyNote": "Votre position est utilisée uniquement dans votre navigateur pour calculer les distances ; elle n’est pas transmise à nos serveurs.",
       "countries": {
         "france": "France",
+        "estonia": "Estonie",
         "belgium": "Belgique",
+        "luxembourg": "Luxembourg",
+        "netherlands": "Pays-Bas",
+        "poland": "Pologne",
+        "germany": "Allemagne",
         "switzerland": "Suisse"
       }
     },

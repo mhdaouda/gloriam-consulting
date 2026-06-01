@@ -270,7 +270,7 @@ export default function HomeLanding() {
             <p className="text-lg text-theme-muted">{t('zones.subtitle')}</p>
           </motion.div>
 
-          <div className="mx-auto grid max-w-lg gap-6">
+          <div className="mx-auto grid max-w-2xl gap-6">
             {zoneGroups.map((group) => (
               <motion.div
                 key={group.key}

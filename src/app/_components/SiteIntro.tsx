@@ -284,7 +284,7 @@ export function SiteIntro({ onComplete }: SiteIntroProps) {
               {/* Regions grid — interactive countries */}
               <motion.div
                 variants={fadeUp}
-                className="intro-regions mt-6 grid w-full max-w-md gap-4"
+                className="intro-regions mt-6 grid w-full max-w-2xl gap-4"
               >
                 {ZONE_GROUPS.map((group) => (
                   <motion.div
