@@ -32,7 +32,7 @@ export default function ServicesContent() {
   const services = t.raw('list') as { title: string; description: string }[];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-transparent">
+    <div className="min-h-screen">
       <PageHero title={t('title')} description={t('description')} eyebrow={t('eyebrow')} />
 
       <section className="py-16 md:py-24">

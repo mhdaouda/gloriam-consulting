@@ -79,7 +79,7 @@ function ContactFormInner() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-slate-50 py-24 dark:bg-transparent">
+      <div className="min-h-screen py-24">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -106,7 +106,7 @@ function ContactFormInner() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-transparent">
+    <div className="min-h-screen">
       <PageHero title={t('title')} description={t('description')} />
 
       <section className="py-16 md:py-20">
@@ -260,7 +260,7 @@ function ContactFormInner() {
 function ContactLoading() {
   const t = useTranslations('contact');
   return (
-    <div className="flex min-h-[50vh] items-center justify-center bg-slate-50 dark:bg-transparent">
+    <div className="flex min-h-[50vh] items-center justify-center">
       <div className="text-center">
         <div className="mx-auto h-12 w-12 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent" />
         <p className="mt-4 text-slate-600 dark:text-slate-400">{t('loading')}</p>

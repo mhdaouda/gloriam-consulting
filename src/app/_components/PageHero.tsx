@@ -32,7 +32,7 @@ export function PageHero({ title, description, eyebrow }: PageHeroProps) {
         )}
         <motion.h1
           variants={heroTitleLine}
-          className="mb-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl dark:turbo-gradient-text"
+          className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl light-gradient-text dark:turbo-gradient-text"
         >
           {title}
         </motion.h1>

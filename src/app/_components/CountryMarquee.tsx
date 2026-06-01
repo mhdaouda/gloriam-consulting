@@ -18,7 +18,7 @@ export function CountryMarquee() {
           <motion.span
             key={`${label}-${i}`}
             whileHover={{ scale: 1.06 }}
-            className="shrink-0 rounded-full border border-emerald-200/80 bg-white/90 px-4 py-1.5 text-sm font-medium text-emerald-800 backdrop-blur-sm transition dark:bg-transparent dark:turbo-pill"
+            className="turbo-pill shrink-0 backdrop-blur-sm transition"
           >
             {label}
           </motion.span>

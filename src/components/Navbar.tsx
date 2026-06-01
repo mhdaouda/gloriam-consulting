@@ -47,13 +47,13 @@ export function Navbar() {
   };
 
   const shellClass = scrolled
-    ? 'border-slate-200/80 bg-white/95 shadow-md shadow-slate-200/40 dark:border-white/[0.08] dark:bg-black/40 dark:shadow-lg dark:shadow-emerald-950/30 dark:backdrop-blur-xl'
-    : 'border-slate-200/60 bg-white/90 dark:border-white/[0.06] dark:bg-black/30 dark:backdrop-blur-xl';
+    ? 'theme-nav shadow-md shadow-slate-200/50 dark:shadow-lg dark:shadow-emerald-950/40'
+    : 'theme-nav';
 
   const linkActive =
-    'bg-emerald-50 text-emerald-800 dark:bg-white/10 dark:text-white';
+    'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200/80 dark:bg-emerald-500/15 dark:text-emerald-300 dark:ring-emerald-500/30';
   const linkIdle =
-    'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white';
+    'text-slate-600 hover:bg-emerald-50 hover:text-emerald-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white';
 
   return (
     <header
@@ -66,7 +66,7 @@ export function Navbar() {
             className="flex items-center gap-2.5"
             onClick={() => setOpen(false)}
           >
-            <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg bg-emerald-50 ring-1 ring-emerald-100 dark:bg-white/10 dark:ring-white/10">
+            <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg bg-emerald-100 ring-1 ring-emerald-200 dark:bg-emerald-500/10 dark:ring-emerald-500/25">
               <Image
                 src="/images/logoAgrandit.png"
                 alt="Gloriam Consulting"
@@ -79,7 +79,7 @@ export function Navbar() {
               <span className="text-lg font-bold tracking-tight text-slate-900 md:text-xl dark:text-white">
                 Gloriam
               </span>
-              <span className="text-lg font-light tracking-tight text-emerald-600 md:text-xl dark:text-emerald-200/90">
+              <span className="text-lg font-light tracking-tight text-emerald-600 md:text-xl dark:text-emerald-400">
                 Consulting
               </span>
             </div>
@@ -109,7 +109,7 @@ export function Navbar() {
             </Link>
             <Link
               href={`/${locale}/contact`}
-              className="rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-5 py-2 text-sm font-semibold text-slate-950 shadow-md transition hover:scale-105 hover:from-emerald-400 hover:to-cyan-400"
+              className="rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-2 text-sm font-semibold text-white shadow-md transition hover:scale-105 hover:from-emerald-500 hover:to-teal-500 dark:from-emerald-400 dark:to-cyan-400 dark:text-slate-950 dark:shadow-[0_0_24px_-6px_rgba(16,185,129,0.55)]"
             >
               {t('contact')}
             </Link>

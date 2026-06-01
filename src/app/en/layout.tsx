@@ -12,9 +12,13 @@ export default function EnLayout({
 }) {
   return (
     <LocaleProvider locale="en">
-      <div className="relative z-[1] flex min-h-screen flex-col bg-slate-50 dark:bg-transparent">
+      <div className="theme-shell relative z-[1] flex min-h-screen flex-col">
         <div
-          className="pointer-events-none fixed inset-0 z-0 hidden bg-grid-dark opacity-[0.35] dark:block"
+          className="pointer-events-none fixed inset-0 z-0 bg-grid-light opacity-[0.45] dark:hidden"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none fixed inset-0 z-0 hidden bg-grid-dark opacity-[0.4] dark:block"
           aria-hidden
         />
         <Navbar />

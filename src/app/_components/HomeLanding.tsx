@@ -128,10 +128,10 @@ export default function HomeLanding() {
 
             <motion.div variants={heroItem} className="space-y-2">
               <h1 className="text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
-                <span className="block text-slate-900 dark:turbo-gradient-text">
+                <span className="block light-gradient-text dark:turbo-gradient-text">
                   {t('titleLine1')}
                 </span>
-                <span className="mt-2 block text-emerald-700 dark:turbo-gradient-text-accent">
+                <span className="mt-2 block light-gradient-text-accent dark:turbo-gradient-text-accent">
                   {t('titleLine2')}
                 </span>
               </h1>
@@ -176,7 +176,7 @@ export default function HomeLanding() {
       </section>
 
       {/* Stats */}
-      <section className="relative border-y border-slate-200 bg-slate-100 py-14 dark:turbo-section-divider dark:bg-transparent">
+      <section className="theme-section theme-section-stats relative border-y py-14 dark:turbo-section-divider">
         <div className="pointer-events-none absolute inset-0 hidden bg-grid-dark opacity-30 dark:block" />
         <div className="container relative z-[1] mx-auto grid max-w-4xl grid-cols-2 gap-4 px-4 md:grid-cols-4 md:gap-6">
           <StatCard value="2023" label={t('stats.founded')} delay={0} />
@@ -187,7 +187,7 @@ export default function HomeLanding() {
       </section>
 
       {/* Features */}
-      <section className="relative border-t border-slate-200 bg-slate-50 py-24 dark:turbo-section-divider dark:bg-transparent md:py-28">
+      <section className="theme-section theme-section-features relative border-t py-24 dark:turbo-section-divider md:py-28">
         <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-60 dark:bg-grid-dark dark:opacity-40" />
         <motion.div
           variants={stagger}
@@ -260,7 +260,7 @@ export default function HomeLanding() {
       </section>
 
       {/* Zones */}
-      <section className="dark-surface relative overflow-hidden border-t border-slate-200 bg-gradient-to-b from-white to-slate-100 py-24 text-slate-900 dark:turbo-section-divider dark:text-white">
+      <section className="dark-surface theme-section theme-section-zones relative overflow-hidden border-t py-24 text-slate-900 dark:turbo-section-divider dark:text-white">
         <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-30 dark:bg-grid-dark dark:opacity-45" />
         <div className="pointer-events-none absolute -left-32 top-1/2 hidden h-80 w-80 -translate-y-1/2 rounded-full bg-emerald-500/10 blur-[100px] dark:block" />
         <motion.div
@@ -294,7 +294,7 @@ export default function HomeLanding() {
                   {group.ids.map((id) => (
                     <li
                       key={id}
-                      className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm text-slate-700 dark:border-white/10 dark:bg-slate-900/60 dark:text-slate-300"
+                      className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm text-emerald-800 dark:border-white/10 dark:bg-emerald-500/10 dark:text-emerald-200"
                     >
                       {tAbout(`coverage.countries.${id}`)}
                     </li>
@@ -317,7 +317,7 @@ export default function HomeLanding() {
       </section>
 
       {/* Écosystème */}
-      <section className="relative border-t border-slate-200 bg-gradient-to-b from-slate-50 to-white py-24 dark:turbo-section-divider dark:bg-transparent md:py-28">
+      <section className="dark-surface theme-section theme-section-ecosystem relative border-t py-24 dark:turbo-section-divider md:py-28">
         <div className="pointer-events-none absolute inset-0 hidden bg-grid-dark opacity-35 dark:block" />
         <motion.div
           variants={stagger}
@@ -376,7 +376,7 @@ export default function HomeLanding() {
       </section>
 
       {/* CTA */}
-      <section className="dark-surface relative overflow-hidden border-t border-slate-200 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 py-20 text-white dark:turbo-section-divider">
+      <section className="dark-surface theme-section theme-section-cta relative overflow-hidden border-t py-20 dark:turbo-section-divider">
         <div className="pointer-events-none absolute inset-0 hidden bg-grid-dark opacity-40 dark:block" />
         <div className="pointer-events-none absolute inset-0 hidden dark:block dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(16,185,129,0.18),transparent_70%)]" />
         <div className="animate-float-slow pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-white/10 blur-[90px] dark:bg-emerald-500/25" />
@@ -388,7 +388,7 @@ export default function HomeLanding() {
           transition={{ duration: 0.65 }}
           className="container relative z-[1] mx-auto px-4 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold md:text-4xl dark:bg-gradient-to-r dark:from-white dark:via-emerald-100 dark:to-cyan-200 dark:bg-clip-text dark:text-transparent">
+          <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl dark:bg-gradient-to-r dark:from-white dark:via-emerald-100 dark:to-cyan-200 dark:bg-clip-text dark:text-transparent">
             {t('ctaBanner.title')}
           </h2>
           <p className="mx-auto mb-8 max-w-xl text-lg text-emerald-50 dark:text-slate-400">
