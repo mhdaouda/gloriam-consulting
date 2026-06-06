@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard Admin — Gloriam Consulting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+    <div id="admin-login" class="admin-login-wrap">
+        <div class="admin-login-card">
+            <h1><i class="fas fa-lock"></i> Admin Gloriam</h1>
+            <p>Connexion par mot de passe (Google Sheets — voir <code>admin/SETUP-GOOGLE.md</code>).</p>
+            <form id="login-form">
+                <label for="login-password">Mot de passe admin</label>
+                <input type="password" id="login-password" required autocomplete="current-password">
+                <p id="login-error" class="admin-error" role="alert"></p>
+                <p id="login-setup" class="admin-muted admin-hidden" style="margin-bottom:1rem;font-size:0.85rem"></p>
+                <button type="submit" class="admin-btn" style="width:100%;justify-content:center">Se connecter</button>
+            </form>
+            <p class="admin-muted" style="margin-top:1.25rem;font-size:0.8rem">
+                Backend : Google Apps Script + feuille Sheets (pas de Supabase). Les e-mails arrivent aussi via FormSubmit.
+            </p>
+        </div>
+    </div>
+
+    <div id="admin-app" class="admin-hidden">
+        <header class="admin-header">
+            <h1>Dashboard Admin Gloriam</h1>
+            <div class="admin-header-actions">
+                <a href="mail-campaigns.html" class="admin-btn admin-btn--teal"><i class="fas fa-paper-plane"></i> Campagnes e-mail</a>
+                <button type="button" id="btn-refresh" class="admin-btn admin-btn--ghost"><i class="fas fa-sync-alt"></i> Actualiser</button>
+                <button type="button" id="btn-logout" class="admin-btn admin-btn--danger"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+            </div>
+            <p id="admin-session-user" class="admin-session-bar admin-hidden"><i class="fas fa-user-shield"></i> Session admin active</p>
+        </header>
+
+        <nav class="admin-tabs" aria-label="Sections">
+            <button type="button" class="admin-tab is-active" data-tab="overview"><i class="fas fa-chart-line"></i> Vue d'ensemble</button>
+            <button type="button" class="admin-tab" data-tab="contacts"><i class="fas fa-envelope"></i> Contacts</button>
+            <button type="button" class="admin-tab" data-tab="chatbot"><i class="fas fa-comments"></i> Analytics Chatbot</button>
+            <button type="button" class="admin-tab" data-tab="visitors"><i class="fas fa-globe"></i> Analytics Visiteurs</button>
+            <button type="button" class="admin-tab" data-tab="campaigns"><i class="fas fa-paper-plane"></i> Campagnes e-mail</button>
+        </nav>
+
+        <main class="admin-main">
+            <div id="admin-loading" class="admin-loading admin-hidden">Chargement des données…</div>
+
+            <section id="panel-overview" class="admin-panel is-active">
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <div class="label">Messages</div>
+                        <div class="value" id="stat-messages">0</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="label">Nouveaux</div>
+                        <div class="value" id="stat-new">0</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="label">Via chatbot</div>
+                        <div class="value" id="stat-chatbot">0</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="label">Visiteurs uniques (30 j)</div>
+                        <div class="value" id="stat-visitors">0</div>
+                    </div>
+                </div>
+                <div class="admin-grid-2">
+                    <div class="admin-card">
+                        <h2>Derniers contacts</h2>
+                        <div id="overview-contacts"></div>
+                    </div>
+                    <div class="admin-card">
+                        <h2>Canaux d'acquisition (30 j)</h2>
+                        <ul id="channels-list-overview" class="admin-channel-list"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="panel-contacts" class="admin-panel">
+                <div class="admin-card">
+                    <h2>Messages de contact (<span id="contacts-count">0</span>)</h2>
+                    <div class="admin-table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Email</th>
+                                    <th>Téléphone</th>
+                                    <th>Formation / Entreprise</th>
+                                    <th>Message</th>
+                                    <th>Date</th>
+                                    <th>Statut</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="contacts-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="panel-chatbot" class="admin-panel">
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <div class="label">Leads chatbot (total)</div>
+                        <div class="value" id="cb-total">0</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="label">30 derniers jours</div>
+                        <div class="value" id="cb-recent">0</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="label">Formulaire (total)</div>
+                        <div class="value" id="cb-form-total">0</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="label">Formation renseignée</div>
+                        <div class="value" id="cb-company-rate">0%</div>
+                    </div>
+                </div>
+
+                <div class="admin-card admin-card--wide">
+                    <h2>Statistiques détaillées</h2>
+                    <p class="admin-card-sub">Évolution sur les 6 derniers mois</p>
+                    <div class="admin-grid-2 admin-grid-2--charts">
+                        <div>
+                            <h3 class="admin-chart-title">Évolution des contacts chatbot</h3>
+                            <div id="chart-chatbot-monthly" class="admin-month-chart" role="img" aria-label="Graphique mensuel chatbot"></div>
+                        </div>
+                        <div>
+                            <h3 class="admin-chart-title">Évolution des messages formulaire</h3>
+                            <div id="chart-form-monthly" class="admin-month-chart" role="img" aria-label="Graphique mensuel formulaire"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-grid-2">
+                    <div class="admin-card">
+                        <h2>Types de services demandés</h2>
+                        <div id="cb-services"></div>
+                    </div>
+                    <div class="admin-card">
+                        <h2>Budget &amp; délais (chatbot)</h2>
+                        <div id="cb-budget-timeline"></div>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+                    <h2>Derniers leads chatbot</h2>
+                    <div id="cb-recent-leads"></div>
+                </div>
+            </section>
+
+            <section id="panel-campaigns" class="admin-panel">
+                <div class="admin-card admin-card--wide" style="text-align:center;padding:2rem">
+                    <h2><i class="fas fa-paper-plane"></i> Campagnes e-mail</h2>
+                    <p class="admin-card-sub">Module complet : brouillons, envoi Gmail, suivi des <strong>ouvertures</strong> (pixel), filtres destinataires — comme sur HEXAHUB.</p>
+                    <a href="mail-campaigns.html" class="admin-btn admin-btn--teal" style="margin-top:1rem"><i class="fas fa-external-link-alt"></i> Ouvrir le module campagnes</a>
+                </div>
+            </section>
+
+            <section id="panel-visitors" class="admin-panel">
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <div class="label">Visites totales</div>
+                        <div class="value" id="vis-total">0</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="label">Visiteurs uniques</div>
+                        <div class="value" id="vis-unique">0</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="label">Taux de rebond</div>
+                        <div class="value" id="vis-bounce">0%</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="label">Période</div>
+                        <div class="value" style="font-size:1rem">30 derniers jours</div>
+                    </div>
+                </div>
+                <div class="admin-grid-2">
+                    <div class="admin-card">
+                        <h2><i class="fas fa-link"></i> Canaux d'acquisition</h2>
+                        <ul id="channels-list" class="admin-channel-list"></ul>
+                    </div>
+                    <div class="admin-card">
+                        <h2>Pages les plus vues</h2>
+                        <div id="top-pages"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="admin-modal" class="admin-modal-overlay" role="dialog" aria-modal="true">
+        <div class="admin-modal">
+            <h3>Détail du message</h3>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="../js/gloriam-api-config.js"></script>
+    <script src="../js/gloriam-api.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiMessageCircle, FiX, FiSend, FiUser, FiMessageSquare, FiExternalLink } from 'react-icons/fi';
 import { useTranslations } from '@/app/_hooks/useTranslations';
 import { useLocaleContext } from '@/contexts/LocaleContext';
+import { insertGloriamContact } from '@/app/_lib/gloriamApi';
 
 interface Message {
   id: string;
@@ -70,7 +71,27 @@ export default function Chatbot() {
     }, 300);
   };
 
-  const redirectToContactWithQuestion = (question: string) => {
+  const saveChatbotLead = async (question: string, kind: 'question' | 'quote' = 'question') => {
+    const subject =
+      kind === 'quote'
+        ? locale === 'fr'
+          ? 'Demande de devis (chatbot)'
+          : 'Quote request (chatbot)'
+        : locale === 'fr'
+          ? 'Question chatbot'
+          : 'Chatbot question';
+
+    await insertGloriamContact({
+      source: 'chatbot',
+      name: locale === 'fr' ? 'Visiteur chatbot' : 'Chatbot visitor',
+      email: `chatbot+${Date.now()}@lead.gloriam-consulting.com`,
+      subject,
+      message: question,
+    });
+  };
+
+  const redirectToContactWithQuestion = (question: string, kind: 'question' | 'quote' = 'question') => {
+    void saveChatbotLead(question, kind);
     setIsOpen(false);
     setTimeout(() => {
       const encodedQuestion = encodeURIComponent(question);
@@ -480,12 +501,16 @@ export default function Chatbot() {
         setTimeout(() => {
           if (response.action?.type === 'redirect' && response.action.url) {
             if (response.action.url.includes('contact?question=')) {
-              redirectToContactWithQuestion(currentInput);
+              redirectToContactWithQuestion(currentInput, 'question');
             } else {
               redirectToPage(response.action.url);
             }
           } else if (response.action?.type === 'quote') {
-            redirectToContactWithQuestion(`Demande de devis: ${currentInput}`);
+            const quoteMsg =
+              locale === 'fr'
+                ? `Demande de devis: ${currentInput}`
+                : `Quote request: ${currentInput}`;
+            redirectToContactWithQuestion(quoteMsg, 'quote');
           }
         }, 1500);
       }

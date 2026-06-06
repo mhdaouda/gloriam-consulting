@@ -10,6 +10,7 @@ import { useTranslations } from '@/app/_hooks/useTranslations';
 import { PageHero } from '@/app/_components/PageHero';
 import { CalendlyEmbed } from '@/app/_components/CalendlyEmbed';
 import { EXTERNAL_LINKS } from '@/app/_lib/externalLinks';
+import { insertGloriamContact } from '@/app/_lib/gloriamApi';
 import { fadeInUp } from '@/app/_lib/motionPresets';
 
 function ContactFormInner() {
@@ -55,7 +56,15 @@ function ContactFormInner() {
       const form = e.currentTarget;
       const formDataToSend = new FormData(form);
 
-      const response = await fetch(
+      const apiPromise = insertGloriamContact({
+        source: 'form',
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      });
+
+      const emailPromise = fetch(
         'https://formsubmit.co/ajax/contact@gloriam-consulting.com',
         {
           method: 'POST',
@@ -63,7 +72,13 @@ function ContactFormInner() {
         }
       );
 
-      if (response.ok) {
+      const [apiResult, response] = await Promise.all([apiPromise, emailPromise]);
+
+      if (!response.ok && !apiResult.ok) {
+        throw new Error('send failed');
+      }
+
+      if (response.ok || apiResult.ok) {
         setSubmitted(true);
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {

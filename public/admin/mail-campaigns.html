@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Campagnes e-mail — Admin Gloriam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="mail.css">
+</head>
+<body class="mail-page">
+    <header class="mail-top">
+        <div class="mail-top-left">
+            <a href="dashboard.html" class="mail-back" title="Dashboard"><i class="fas fa-arrow-left"></i></a>
+            <div>
+                <h1 id="mail-page-title">Campagnes e-mail</h1>
+                <p class="mail-sub" id="mail-page-sub">Brouillon par défaut — aucun envoi sans validation</p>
+            </div>
+        </div>
+        <nav class="mail-subnav">
+            <a href="#list" class="is-active" data-nav="list"><i class="fas fa-paper-plane"></i> Campagnes</a>
+            <a href="dashboard.html" data-nav="contacts"><i class="fas fa-users"></i> Contacts</a>
+        </nav>
+    </header>
+
+    <main class="mail-main">
+        <div id="view-list">
+            <div class="mail-toolbar">
+                <span id="mail-list-count">0 campagne(s)</span>
+                <a href="#new" class="mail-btn mail-btn--primary"><i class="fas fa-plus"></i> Créer une campagne</a>
+            </div>
+            <div id="mail-campaigns-list" class="mail-list"></div>
+        </div>
+
+        <div id="view-new" class="mail-hidden">
+            <div class="mail-alert">
+                <strong>Sécurité :</strong> la campagne est créée en <strong>brouillon</strong>. Aucun e-mail n'est envoyé tant que vous n'avez pas validé l'envoi sur l'écran suivant.
+            </div>
+            <div class="mail-form-card">
+                <h2>Créer une campagne</h2>
+                <form id="mail-create-form">
+                    <div class="mail-form-row">
+                        <div>
+                            <label for="mail-name">Nom de la campagne</label>
+                            <input type="text" id="mail-name" required placeholder="Ex. : Prospection Q2 2026">
+                        </div>
+                        <div>
+                            <label for="mail-audience">Destinataires</label>
+                            <select id="mail-audience">
+                                <option value="all">Tous les contacts</option>
+                                <option value="nouveau">Statut nouveau</option>
+                                <option value="form">Formulaire</option>
+                                <option value="chatbot">Chatbot</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p class="mail-list-meta" id="mail-new-count">0 destinataire(s)</p>
+                    <label for="mail-description">Description (interne)</label>
+                    <input type="text" id="mail-description" placeholder="Réduction charge admin, relance devis…">
+                    <label for="mail-subject">Objet de l'e-mail *</label>
+                    <input type="text" id="mail-subject" required placeholder="Objet chez le destinataire">
+                    <label for="mail-body">Message (HTML ou texte) *</label>
+                    <textarea id="mail-body" required placeholder="<p>{{salutation}},</p><p>Votre message…</p>"></textarea>
+                    <p class="mail-list-meta">Variables : salutation, nom, email, entreprise (voir aide dans le texte)</p>
+                    <div style="display:flex;gap:0.5rem;margin-top:1.25rem;flex-wrap:wrap">
+                        <button type="button" id="mail-btn-test" class="mail-btn mail-btn--ghost">Envoyer un test</button>
+                        <button type="submit" class="mail-btn mail-btn--primary">Créer en brouillon</button>
+                        <a href="#list" class="mail-btn mail-btn--ghost">Annuler</a>
+                    </div>
+                </form>
+                <h2 style="margin-top:1.5rem">Aperçu</h2>
+                <div id="mail-preview" class="mail-preview-box">Saisissez un message pour voir l'aperçu.</div>
+            </div>
+        </div>
+
+        <div id="view-detail" class="mail-hidden">
+            <div class="mail-toolbar">
+                <div>
+                    <h2 id="detail-title" style="margin:0;font-size:1.1rem"></h2>
+                    <p id="detail-status" class="mail-list-meta"></p>
+                </div>
+                <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+                    <button type="button" id="mail-btn-send" class="mail-btn mail-btn--primary"><i class="fas fa-paper-plane"></i> Valider et envoyer</button>
+                    <button type="button" id="mail-btn-delete" class="mail-btn mail-btn--danger">Supprimer</button>
+                    <a href="#list" class="mail-btn mail-btn--ghost">Retour</a>
+                </div>
+            </div>
+            <div class="mail-stats" id="detail-stats"></div>
+            <div class="mail-form-card">
+                <div class="mail-toolbar" style="margin-bottom:0">
+                    <div class="mail-filters" id="recipient-filters"></div>
+                    <input type="search" id="recipient-search" class="mail-search" placeholder="Rechercher email…">
+                </div>
+                <div class="mail-table-wrap">
+                    <table class="mail-table">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Statut</th>
+                                <th>Détail</th>
+                                <th>Ouvertures</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recipient-rows"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/gloriam-api-config.js"></script>
+    <script src="../js/gloriam-api.js"></script>
+    <script src="mail-campaigns.js"></script>
+</body>
+</html>
