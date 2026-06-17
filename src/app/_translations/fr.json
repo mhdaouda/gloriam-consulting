@@ -259,7 +259,18 @@
       "message": "Message",
       "submit": "Envoyer le message",
       "submitting": "Envoi en cours...",
-      "error": "Une erreur est survenue lors de l'envoi du message."
+      "error": "Une erreur est survenue lors de l'envoi du message.",
+      "spam": {
+        "honeypot": "Soumission refusée.",
+        "too_fast": "Veuillez prendre le temps de remplir le formulaire avant d'envoyer.",
+        "rate_limit": "Trop de messages envoyés. Réessayez dans une heure.",
+        "invalid_email": "Adresse e-mail invalide.",
+        "too_many_links": "Votre message contient trop de liens.",
+        "spam_content": "Contenu suspect détecté. Modifiez votre message.",
+        "message_short": "Message trop court (minimum 10 caractères).",
+        "duplicate": "Ce message a déjà été envoyé récemment.",
+        "captcha_required": "Veuillez valider la vérification anti-spam."
+      }
     },
     "success": {
       "title": "Message envoyé avec succès !",

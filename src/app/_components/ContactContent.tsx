@@ -2,23 +2,35 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FaCalendarAlt, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { useTranslations } from '@/app/_hooks/useTranslations';
 import { PageHero } from '@/app/_components/PageHero';
 import { CalendlyEmbed } from '@/app/_components/CalendlyEmbed';
+import { TurnstileField } from '@/app/_components/TurnstileField';
 import { EXTERNAL_LINKS } from '@/app/_lib/externalLinks';
 import { insertGloriamContact } from '@/app/_lib/gloriamApi';
+import {
+  isTurnstileEnabled,
+  recordContactSubmission,
+  validateContactSpam,
+} from '@/app/_lib/formSpamGuard';
+import { useTheme } from '@/contexts/ThemeContext';
 import { fadeInUp } from '@/app/_lib/motionPresets';
 
 function ContactFormInner() {
   const { locale } = useLocaleContext();
+  const { theme } = useTheme();
   const t = useTranslations('contact');
   const searchParams = useSearchParams();
+  const formStartedAt = useRef(Date.now());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [spamError, setSpamError] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -50,7 +62,34 @@ function ContactFormInner() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSpamError('');
     setIsSubmitting(true);
+
+    const spamCheck = validateContactSpam({
+      honeypot,
+      formStartedAt: formStartedAt.current,
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    });
+
+    if (!spamCheck.ok) {
+      if (spamCheck.code === 'honeypot') {
+        setSubmitted(true);
+        setIsSubmitting(false);
+        return;
+      }
+      setSpamError(t(`form.spam.${spamCheck.code}`));
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (isTurnstileEnabled() && !turnstileToken) {
+      setSpamError(t('form.spam.captcha_required'));
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const form = e.currentTarget;
@@ -62,6 +101,9 @@ function ContactFormInner() {
         email: formData.email,
         subject: formData.subject,
         message: formData.message,
+        hp_field: honeypot,
+        form_ts: formStartedAt.current,
+        turnstile_token: turnstileToken,
       });
 
       const emailPromise = fetch(
@@ -79,13 +121,15 @@ function ContactFormInner() {
       }
 
       if (response.ok || apiResult.ok) {
+        recordContactSubmission();
         setSubmitted(true);
         setFormData({ name: '', email: '', subject: '', message: '' });
+        setTurnstileToken('');
       } else {
         throw new Error('send failed');
       }
     } catch {
-      alert(t('form.error'));
+      setSpamError(t('form.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -228,8 +272,23 @@ function ContactFormInner() {
             variants={fadeInUp}
             className="theme-card rounded-2xl p-8"
           >
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <input type="hidden" name="_captcha" value="false" />
+            <form onSubmit={handleSubmit} className="relative space-y-5">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0"
+              >
+                <label htmlFor="company_website">Site web</label>
+                <input
+                  id="company_website"
+                  name="company_website"
+                  type="text"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               <input
                 type="hidden"
                 name="_subject"
@@ -291,6 +350,18 @@ function ContactFormInner() {
                   className={inputClass}
                 />
               </div>
+
+              <TurnstileField
+                theme={theme === 'dark' ? 'dark' : 'light'}
+                onToken={setTurnstileToken}
+                onExpire={() => setTurnstileToken('')}
+              />
+
+              {spamError && (
+                <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-300">
+                  {spamError}
+                </p>
+              )}
 
               <button
                 type="submit"

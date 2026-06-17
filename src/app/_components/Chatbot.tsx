@@ -6,6 +6,7 @@ import { FiMessageCircle, FiX, FiSend, FiUser, FiMessageSquare, FiExternalLink }
 import { useTranslations } from '@/app/_hooks/useTranslations';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { insertGloriamContact } from '@/app/_lib/gloriamApi';
+import { canSendChatbotLead, recordChatbotLead } from '@/app/_lib/formSpamGuard';
 
 interface Message {
   id: string;
@@ -72,6 +73,7 @@ export default function Chatbot() {
   };
 
   const saveChatbotLead = async (question: string, kind: 'question' | 'quote' = 'question') => {
+    if (!canSendChatbotLead()) return;
     const subject =
       kind === 'quote'
         ? locale === 'fr'
@@ -87,7 +89,9 @@ export default function Chatbot() {
       email: `chatbot+${Date.now()}@lead.gloriam-consulting.com`,
       subject,
       message: question,
+      form_ts: Date.now() - 5000,
     });
+    recordChatbotLead();
   };
 
   const redirectToContactWithQuestion = (question: string, kind: 'question' | 'quote' = 'question') => {

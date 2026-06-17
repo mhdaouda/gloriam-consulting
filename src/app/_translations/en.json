@@ -244,7 +244,18 @@
       "message": "Message",
       "submit": "Send message",
       "submitting": "Sending...",
-      "error": "An error occurred while sending your message."
+      "error": "An error occurred while sending your message.",
+      "spam": {
+        "honeypot": "Submission rejected.",
+        "too_fast": "Please take a moment to complete the form before submitting.",
+        "rate_limit": "Too many messages sent. Please try again in an hour.",
+        "invalid_email": "Invalid email address.",
+        "too_many_links": "Your message contains too many links.",
+        "spam_content": "Suspicious content detected. Please revise your message.",
+        "message_short": "Message too short (minimum 10 characters).",
+        "duplicate": "This message was already sent recently.",
+        "captcha_required": "Please complete the anti-spam verification."
+      }
     },
     "success": {
       "title": "Message sent successfully!",

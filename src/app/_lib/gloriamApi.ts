@@ -72,6 +72,9 @@ export type ContactPayload = {
   budget?: string;
   timeline?: string;
   project_details?: string;
+  hp_field?: string;
+  form_ts?: number;
+  turnstile_token?: string;
 };
 
 export async function insertGloriamContact(payload: ContactPayload): Promise<ApiResult> {
@@ -94,7 +97,12 @@ export async function insertGloriamContact(payload: ContactPayload): Promise<Api
     return { ok: false, error: 'Champs requis manquants' };
   }
 
-  return request('contact', row);
+  return request('contact', {
+    ...row,
+    hp_field: payload.hp_field || '',
+    form_ts: payload.form_ts || 0,
+    turnstile_token: payload.turnstile_token || '',
+  });
 }
 
 export async function trackGloriamPageView(): Promise<void> {

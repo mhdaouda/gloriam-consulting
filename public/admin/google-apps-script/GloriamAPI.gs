@@ -115,6 +115,9 @@ function actionLogout_(token) {
 }
 
 function actionContact_(body) {
+  var spamError = validateContactSpam_(body);
+  if (spamError) return { error: spamError };
+
   var sh = getSpreadsheet_().getSheetByName(SHEET_CONTACTS);
   if (!sh) setupSheets();
   sh = getSpreadsheet_().getSheetByName(SHEET_CONTACTS);
@@ -458,4 +461,90 @@ function sanitize_(val, maxLen) {
   if (val == null) return '';
   var s = String(val).replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '');
   return s.length > maxLen ? s.substring(0, maxLen) : s;
+}
+
+function validateContactSpam_(body) {
+  var hp = sanitize_(body.hp_field, 200);
+  if (hp) return 'Soumission refusée';
+
+  var source = sanitize_(body.source, 20) || 'form';
+  var formTs = parseInt(body.form_ts, 10);
+  if (source !== 'chatbot' && formTs && (Date.now() - formTs) < 3000) {
+    return 'Soumission trop rapide';
+  }
+
+  var email = sanitize_(body.email, 200).trim().toLowerCase();
+  var message = sanitize_(body.message, 8000).trim();
+  var name = sanitize_(body.name, 200).trim();
+  var subject = sanitize_(body.subject, 300).trim();
+
+  if (!name || !email || !message) return 'Champs requis manquants';
+  if (source !== 'chatbot' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+    return 'Email invalide';
+  }
+  if (message.length < 10) return 'Message trop court';
+
+  var blob = (name + ' ' + subject + ' ' + message).toLowerCase();
+  var urlCount = (blob.match(/https?:\/\/|www\./g) || []).length;
+  if (urlCount > 4) return 'Trop de liens dans le message';
+
+  var spamWords = ['viagra', 'cialis', 'casino', 'lottery', 'crypto pump', 'buy followers', '<script'];
+  for (var i = 0; i < spamWords.length; i++) {
+    if (blob.indexOf(spamWords[i]) >= 0) return 'Contenu suspect détecté';
+  }
+
+  if (source !== 'chatbot' && !verifyTurnstile_(body.turnstile_token)) {
+    return 'Vérification anti-spam échouée';
+  }
+
+  if (source !== 'chatbot') {
+    var rateErr = checkContactRateLimit_(email);
+    if (rateErr) return rateErr;
+  }
+
+  var dupErr = checkContactDuplicate_(email, message);
+  if (dupErr) return dupErr;
+
+  return '';
+}
+
+function verifyTurnstile_(token) {
+  var secret = PropertiesService.getScriptProperties().getProperty('TURNSTILE_SECRET_KEY');
+  if (!secret) return true;
+  if (!token) return false;
+  try {
+    var resp = UrlFetchApp.fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'post',
+      muteHttpExceptions: true,
+      payload: {
+        secret: secret,
+        response: String(token)
+      }
+    });
+    var data = JSON.parse(resp.getContentText());
+    return data.success === true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function checkContactRateLimit_(email) {
+  var cache = CacheService.getScriptCache();
+  var key = 'rl_' + Utilities.base64EncodeWebSafe(email).slice(0, 48);
+  var count = parseInt(cache.get(key) || '0', 10);
+  if (count >= 5) return 'Trop de messages — réessayez dans une heure';
+  cache.put(key, String(count + 1), 3600);
+  return '';
+}
+
+function checkContactDuplicate_(email, message) {
+  var cache = CacheService.getScriptCache();
+  var digest = Utilities.computeDigest(
+    Utilities.DigestAlgorithm.SHA_256,
+    email + '|' + message.slice(0, 240)
+  );
+  var key = 'dup_' + Utilities.base64EncodeWebSafe(digest).slice(0, 48);
+  if (cache.get(key)) return 'Message déjà envoyé récemment';
+  cache.put(key, '1', 600);
+  return '';
 }

@@ -90,6 +90,8 @@ Apps Script → engrenage ⚙️ → **Paramètres du projet** → **Propriété
 |-----------|-------------|---------|
 | `ADMIN_PASSWORD` | Oui | votre mot de passe dashboard |
 | `SPREADSHEET_ID` | Oui si **Plan B** (script sur script.google.com) | id copié depuis l’URL de la feuille |
+| `TURNSTILE_SECRET_KEY` | Non (anti-spam formulaire) | clé secrète Cloudflare Turnstile |
+| `MAIL_FROM_NAME` | Non | `Gloriam Consulting` |
 | `SPREADSHEET_ID` | Non si **Plan A** (ouvert depuis Extensions) | — |
 
 Enregistrez les propriétés.
