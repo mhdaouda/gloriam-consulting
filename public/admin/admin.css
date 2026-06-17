@@ -1,16 +1,16 @@
 /* Dashboard admin Gloriam Consulting */
 :root {
-    --admin-bg: #0f0a1e;
-    --admin-surface: #1a1230;
-    --admin-surface-2: #241a3d;
-    --admin-border: rgba(255, 255, 255, 0.08);
+    --admin-bg: #050508;
+    --admin-surface: rgba(255, 255, 255, 0.05);
+    --admin-surface-2: rgba(255, 255, 255, 0.08);
+    --admin-border: rgba(255, 255, 255, 0.1);
     --admin-text: #f1f5f9;
     --admin-muted: #94a3b8;
-    --admin-primary: #8b5cf6;
-    --admin-primary-glow: rgba(139, 92, 246, 0.45);
-    --admin-teal: #10b981;
+    --admin-primary: #10b981;
+    --admin-primary-glow: rgba(16, 185, 129, 0.45);
+    --admin-teal: #34d399;
     --admin-danger: #b45309;
-    --admin-badge: #3b82f6;
+    --admin-badge: #047857;
 }
 
 * { box-sizing: border-box; }
@@ -19,7 +19,7 @@ body.admin-body {
     margin: 0;
     min-height: 100vh;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    background: radial-gradient(ellipse 120% 80% at 50% -10%, #2e1064 0%, var(--admin-bg) 45%, #05030a 100%);
+    background: radial-gradient(ellipse 120% 80% at 50% -10%, #064e3b 0%, var(--admin-bg) 45%, #020203 100%);
     color: var(--admin-text);
 }
 
@@ -98,7 +98,27 @@ body.admin-body {
     border-bottom: 1px solid var(--admin-border);
 }
 
-.admin-header h1 {
+.admin-login-card h1 {
+    margin: 0 0 0.5rem;
+    font-size: 1.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.admin-login-logo {
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+.admin-header-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.admin-header-brand h1 {
     margin: 0;
     font-size: 1.25rem;
 }
@@ -165,12 +185,12 @@ body.admin-body {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, transparent 70%);
     pointer-events: none;
 }
 
 .admin-body--demo .admin-stat-card .value {
-    background: linear-gradient(135deg, #f8fafc 0%, #c4b5fd 100%);
+    background: linear-gradient(135deg, #f8fafc 0%, #6ee7b7 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -185,7 +205,7 @@ body.admin-body {
 }
 
 .admin-body--demo .admin-tab.is-active {
-    box-shadow: 0 0 24px rgba(139, 92, 246, 0.35);
+    box-shadow: 0 0 24px rgba(16, 185, 129, 0.35);
 }
 
 .admin-session-bar {
@@ -378,7 +398,7 @@ body.admin-body {
 }
 
 .admin-badge--lu { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; }
-.admin-badge--traite { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; }
+.admin-badge--traite { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; }
 
 .admin-msg-preview {
     max-width: 220px;

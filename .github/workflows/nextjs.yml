@@ -34,6 +34,7 @@ jobs:
       - name: Build with Next.js
         env:
           NEXT_PUBLIC_TURNSTILE_SITE_KEY: 0x4AAAAAADmpFYiVS9wnsuOW
+          NEXT_PUBLIC_GLORIAM_API_URL: ${{ secrets.NEXT_PUBLIC_GLORIAM_API_URL }}
         run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -1,7 +1,7 @@
 /* Module campagnes e-mail — style HEXAHUB */
 .mail-page {
     min-height: 100vh;
-    background: radial-gradient(ellipse 120% 80% at 50% -10%, #1e1b4b 0%, #0a0a12 50%, #050308 100%);
+    background: radial-gradient(ellipse 120% 80% at 50% -10%, #064e3b 0%, #050508 50%, #020203 100%);
     color: #e2e8f0;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
 }

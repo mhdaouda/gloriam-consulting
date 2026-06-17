@@ -1,5 +1,5 @@
 /**
- * API portfolio — Google Sheets via Apps Script (sans Supabase)
+ * API Gloriam — Google Sheets via Apps Script (sans Supabase)
  */
 (function () {
     'use strict';

@@ -14,8 +14,9 @@
 <body class="admin-body">
     <div id="admin-login" class="admin-login-wrap">
         <div class="admin-login-card">
+            <img src="../images/GClogo.svg" alt="Gloriam Consulting" class="admin-login-logo" width="56" height="56">
             <h1><i class="fas fa-lock"></i> Admin Gloriam</h1>
-            <p>Connexion par mot de passe (Google Sheets — voir <code>admin/SETUP-GOOGLE.md</code>).</p>
+            <p>CRM, analytics et campagnes e-mail — connexion par mot de passe (<code>admin/SETUP-GOOGLE.md</code>).</p>
             <form id="login-form">
                 <label for="login-password">Mot de passe admin</label>
                 <input type="password" id="login-password" required autocomplete="current-password">
@@ -31,8 +32,12 @@
 
     <div id="admin-app" class="admin-hidden">
         <header class="admin-header">
-            <h1>Dashboard Admin Gloriam</h1>
+            <div class="admin-header-brand">
+                <img src="../images/GClogo.svg" alt="" width="32" height="32" aria-hidden="true">
+                <h1>Dashboard Admin Gloriam</h1>
+            </div>
             <div class="admin-header-actions">
+                <a href="../fr/" class="admin-btn admin-btn--ghost" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Site</a>
                 <a href="mail-campaigns.html" class="admin-btn admin-btn--teal"><i class="fas fa-paper-plane"></i> Campagnes e-mail</a>
                 <button type="button" id="btn-refresh" class="admin-btn admin-btn--ghost"><i class="fas fa-sync-alt"></i> Actualiser</button>
                 <button type="button" id="btn-logout" class="admin-btn admin-btn--danger"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>

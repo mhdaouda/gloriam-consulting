@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && touch out/.nojekyll && cp -r public/* out/",
+    "dev": "node scripts/write-gloriam-api-config.mjs && next dev",
+    "build": "node scripts/write-gloriam-api-config.mjs && next build && touch out/.nojekyll && cp -r public/* out/ && node scripts/write-gloriam-api-config.mjs --out",
     "start": "next start",
     "lint": "next lint"
   },

@@ -122,27 +122,40 @@ Gardez cette URL dans un fichier notes : vous en aurez besoin à l’étape 7.
 
 ---
 
-## Étape 7 — Brancher le portfolio
+## Étape 7 — Brancher le site Gloriam
 
-1. Ouvrez dans le projet : `js/gloriam-api-config.js`
-2. Remplacez par votre URL (exemple) :
+1. Copiez l’URL Web App `/exec` de l’**étape 6**
+2. **En local** — fichier `.env.local` à la racine du projet :
+
+```bash
+NEXT_PUBLIC_GLORIAM_API_URL=https://script.google.com/macros/s/AKfycbxxxxxxxxxxxxxxxx/exec
+```
+
+3. **Sur GitHub** (déploiement automatique) — ajoutez le secret :
+   - Repo → **Settings** → **Secrets and variables** → **Actions**
+   - **New repository secret** : nom `NEXT_PUBLIC_GLORIAM_API_URL`, valeur = la même URL `/exec`
+
+4. Au build, le script `scripts/write-gloriam-api-config.mjs` injecte l’URL dans :
+   - le site Next.js (formulaire, analytics, chatbot)
+   - `out/js/gloriam-api-config.js` (dashboard admin)
+
+5. Commit + push :
+
+```bash
+git add .
+git commit -m "config: URL Google Apps Script admin Gloriam"
+git push
+```
+
+6. Attendez **2–5 minutes** (déploiement GitHub Pages)
+
+**Alternative manuelle** (sans secret GitHub) : éditez `public/js/gloriam-api-config.js` :
 
 ```javascript
 window.GLORIAM_API = {
     baseUrl: 'https://script.google.com/macros/s/AKfycbxxxxxxxxxxxxxxxx/exec'
 };
 ```
-
-3. Enregistrez le fichier
-4. Dans le terminal (dossier du portfolio) :
-
-```bash
-git add js/gloriam-api-config.js
-git commit -m "config: URL Google Apps Script admin portfolio"
-git push
-```
-
-5. Attendez **2–5 minutes** (déploiement GitHub Pages)
 
 ---
 
@@ -174,13 +187,14 @@ Propriétés optionnelles :
 
 ### Test A — Dashboard
 
-1. Ouvrez : [https://www.daoudayinde.com/admin/dashboard.html](https://www.daoudayinde.com/admin/dashboard.html)
+1. Ouvrez : [https://www.gloriam-consulting.com/admin/dashboard.html](https://www.gloriam-consulting.com/admin/dashboard.html)  
+   (ou `/admin/` → redirection automatique)
 2. Entrez le mot de passe de l’**étape 5**
 3. Vous devez voir le dashboard (stats à 0 si pas encore de données)
 
 ### Test B — Enregistrement d’une visite
 
-1. Ouvrez la page d’accueil du portfolio dans un **onglet privé**
+1. Ouvrez la page d’accueil Gloriam dans un **onglet privé** ([gloriam-consulting.com/fr](https://www.gloriam-consulting.com/fr))
 2. Attendez 5 secondes
 3. Dans Google Sheets → onglet **Visits** → une **nouvelle ligne** doit apparaître
 
@@ -195,7 +209,7 @@ Propriétés optionnelles :
 
 | Problème | Solution |
 |----------|----------|
-| « API non configurée » sur le dashboard | `baseUrl` vide ou pas encore poussé sur GitHub → refaire étape 7 |
+| « API non configurée » sur le dashboard | `NEXT_PUBLIC_GLORIAM_API_URL` vide (local ou secret GitHub) → refaire étape 7 |
 | « Mot de passe incorrect » | Vérifier `ADMIN_PASSWORD` dans Propriétés du script (orthographe exacte) |
 | « Session expirée » | Se reconnecter (session 24 h) |
 | Aucune ligne dans Visits | URL `/exec` incorrecte ; ou déploiement « Moi » + « Tout le monde » mal configuré |
@@ -210,9 +224,10 @@ Propriétés optionnelles :
 | Élément | Où |
 |--------|-----|
 | Données brutes | Feuille Google **Gloriam Consulting Admin** |
-| Dashboard | `https://www.daoudayinde.com/admin/dashboard.html` |
+| Dashboard | `https://www.gloriam-consulting.com/admin/dashboard.html` |
+| Campagnes e-mail | `https://www.gloriam-consulting.com/admin/mail-campaigns.html` |
 | Mot de passe | Propriété script `ADMIN_PASSWORD` |
-| URL API | `js/gloriam-api-config.js` → `baseUrl` |
+| URL API | Secret GitHub `NEXT_PUBLIC_GLORIAM_API_URL` ou `.env.local` |
 | Code serveur | `admin/google-apps-script/GloriamAPI.gs` |
 
 ---

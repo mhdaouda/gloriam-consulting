@@ -1,5 +1,5 @@
 /**
- * Dashboard admin portfolio
+ * Dashboard admin Gloriam Consulting
  */
 (function () {
     'use strict';
