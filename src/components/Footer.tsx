@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { useTranslations } from '@/app/_hooks/useTranslations';
 import { EXTERNAL_LINKS } from '@/app/_lib/externalLinks';
+import { AdminPortalLink } from '@/components/AdminPortalLink';
 
 export function Footer() {
   const { locale } = useLocaleContext();
@@ -144,8 +145,11 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-8 text-xs dark:border-white/10 sm:flex-row sm:text-sm">
-          <p>
-            © {year} Gloriam Consulting. {t('footer.allRights')}
+          <p className="flex items-center justify-center sm:justify-start">
+            <span>
+              © {year} Gloriam Consulting. {t('footer.allRights')}
+            </span>
+            <AdminPortalLink />
           </p>
         </div>
       </div>
