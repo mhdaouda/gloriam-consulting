@@ -90,11 +90,13 @@ Apps Script → engrenage ⚙️ → **Paramètres du projet** → **Propriété
 |-----------|-------------|---------|
 | `ADMIN_PASSWORD` | Oui | votre mot de passe dashboard |
 | `SPREADSHEET_ID` | Oui si **Plan B** (script sur script.google.com) | id copié depuis l’URL de la feuille |
-| `TURNSTILE_SECRET_KEY` | Non (anti-spam formulaire) | clé secrète Cloudflare Turnstile |
+| `TURNSTILE_SECRET_KEY` | Recommandé (anti-spam) | clé secrète Cloudflare Turnstile — **Apps Script uniquement**, jamais sur GitHub |
 | `MAIL_FROM_NAME` | Non | `Gloriam Consulting` |
 | `SPREADSHEET_ID` | Non si **Plan A** (ouvert depuis Extensions) | — |
 
 Enregistrez les propriétés.
+
+> **Turnstile :** ajoutez `TURNSTILE_SECRET_KEY` avec la clé secrète Cloudflare (onglet Turnstile → votre widget → Settings). Ne la mettez **pas** dans le code GitHub.
 
 > Ce mot de passe servira sur `admin/dashboard.html` — ce n’est **pas** le mot de passe Google.
 
