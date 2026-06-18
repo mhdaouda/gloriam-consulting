@@ -132,6 +132,15 @@ function actionContact_(body) {
     sanitize_(body.budget, 40), sanitize_(body.timeline, 40),
     sanitize_(body.project_details, 8000), 'nouveau'
   ]);
+
+  markContactCooldown_(sanitize_(body.email, 200).trim().toLowerCase());
+
+  try {
+    notifyContactSubmission_(body);
+  } catch (e) {
+    Logger.log('notifyContactSubmission_: ' + e);
+  }
+
   return { ok: true, id: id };
 }
 
@@ -469,7 +478,7 @@ function validateContactSpam_(body) {
 
   var source = sanitize_(body.source, 20) || 'form';
   var formTs = parseInt(body.form_ts, 10);
-  if (source !== 'chatbot' && formTs && (Date.now() - formTs) < 3000) {
+  if (source !== 'chatbot' && formTs && (Date.now() - formTs) < 4000) {
     return 'Soumission trop rapide';
   }
 
@@ -498,6 +507,18 @@ function validateContactSpam_(body) {
   }
 
   if (source !== 'chatbot') {
+    var globalErr = checkGlobalContactRateLimit_();
+    if (globalErr) return globalErr;
+
+    var cooldownErr = checkContactCooldown_(email);
+    if (cooldownErr) return cooldownErr;
+
+    var clientId = sanitize_(body.client_id, 80);
+    if (clientId) {
+      var clientErr = checkContactRateLimitByClient_(clientId);
+      if (clientErr) return clientErr;
+    }
+
     var rateErr = checkContactRateLimit_(email);
     if (rateErr) return rateErr;
   }
@@ -532,9 +553,75 @@ function checkContactRateLimit_(email) {
   var cache = CacheService.getScriptCache();
   var key = 'rl_' + Utilities.base64EncodeWebSafe(email).slice(0, 48);
   var count = parseInt(cache.get(key) || '0', 10);
-  if (count >= 5) return 'Trop de messages — réessayez dans une heure';
+  if (count >= 3) return 'Trop de messages — réessayez dans une heure';
   cache.put(key, String(count + 1), 3600);
   return '';
+}
+
+function checkContactRateLimitByClient_(clientId) {
+  var cache = CacheService.getScriptCache();
+  var key = 'rlc_' + Utilities.base64EncodeWebSafe(clientId).slice(0, 48);
+  var count = parseInt(cache.get(key) || '0', 10);
+  if (count >= 4) return 'Trop de messages — réessayez dans une heure';
+  cache.put(key, String(count + 1), 3600);
+  return '';
+}
+
+function checkGlobalContactRateLimit_() {
+  var cache = CacheService.getScriptCache();
+  var key = 'rl_global_contacts';
+  var count = parseInt(cache.get(key) || '0', 10);
+  if (count >= 40) return 'Service temporairement saturé — réessayez plus tard';
+  cache.put(key, String(count + 1), 3600);
+  return '';
+}
+
+function checkContactCooldown_(email) {
+  if (!email) return '';
+  var cache = CacheService.getScriptCache();
+  var key = 'cd_' + Utilities.base64EncodeWebSafe(email).slice(0, 48);
+  if (cache.get(key)) return 'Attendez 90 secondes avant un nouvel envoi';
+  return '';
+}
+
+function markContactCooldown_(email) {
+  if (!email) return;
+  var cache = CacheService.getScriptCache();
+  var key = 'cd_' + Utilities.base64EncodeWebSafe(email).slice(0, 48);
+  cache.put(key, '1', 90);
+}
+
+function notifyContactSubmission_(body) {
+  var to = PropertiesService.getScriptProperties().getProperty('CONTACT_NOTIFY_EMAIL')
+    || 'contact@gloriam-consulting.com';
+  var name = sanitize_(body.name, 200);
+  var email = sanitize_(body.email, 200);
+  var subject = sanitize_(body.subject, 300) || 'Nouveau message — site Gloriam';
+  var message = sanitize_(body.message, 8000);
+  var source = sanitize_(body.source, 20) || 'form';
+  var html = [
+    '<p><strong>Nouveau message</strong> (' + source + ')</p>',
+    '<p><strong>Nom :</strong> ' + escapeHtml_(name) + '</p>',
+    '<p><strong>Email :</strong> ' + escapeHtml_(email) + '</p>',
+    '<p><strong>Objet :</strong> ' + escapeHtml_(subject) + '</p>',
+    '<hr>',
+    '<pre style="white-space:pre-wrap;font-family:sans-serif">' + escapeHtml_(message) + '</pre>'
+  ].join('');
+  MailApp.sendEmail({
+    to: to,
+    subject: '[Gloriam] ' + subject,
+    htmlBody: html,
+    replyTo: email,
+    name: PropertiesService.getScriptProperties().getProperty('MAIL_FROM_NAME') || 'Gloriam Consulting'
+  });
+}
+
+function escapeHtml_(s) {
+  return String(s || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 function checkContactDuplicate_(email, message) {

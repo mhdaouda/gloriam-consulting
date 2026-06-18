@@ -75,6 +75,7 @@ export type ContactPayload = {
   hp_field?: string;
   form_ts?: number;
   turnstile_token?: string;
+  client_id?: string;
 };
 
 export async function insertGloriamContact(payload: ContactPayload): Promise<ApiResult> {
@@ -102,6 +103,7 @@ export async function insertGloriamContact(payload: ContactPayload): Promise<Api
     hp_field: payload.hp_field || '',
     form_ts: payload.form_ts || 0,
     turnstile_token: payload.turnstile_token || '',
+    client_id: payload.client_id || getSessionId(),
   });
 }
 

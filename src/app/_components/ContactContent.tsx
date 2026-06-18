@@ -11,9 +11,11 @@ import { PageHero } from '@/app/_components/PageHero';
 import { CalendlyEmbed } from '@/app/_components/CalendlyEmbed';
 import { TurnstileField } from '@/app/_components/TurnstileField';
 import { EXTERNAL_LINKS } from '@/app/_lib/externalLinks';
-import { insertGloriamContact } from '@/app/_lib/gloriamApi';
+import { insertGloriamContact, isGloriamApiConfigured } from '@/app/_lib/gloriamApi';
 import {
+  getCooldownRemainingMs,
   isTurnstileEnabled,
+  recordContactDuplicate,
   recordContactSubmission,
   validateContactSpam,
 } from '@/app/_lib/formSpamGuard';
@@ -31,6 +33,7 @@ function ContactFormInner() {
   const [honeypot, setHoneypot] = useState('');
   const [turnstileToken, setTurnstileToken] = useState('');
   const [spamError, setSpamError] = useState('');
+  const [cooldownSec, setCooldownSec] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -59,6 +62,33 @@ function ContactFormInner() {
       }));
     }
   }, [searchParams, locale]);
+
+  useEffect(() => {
+    const tick = () => {
+      const ms = getCooldownRemainingMs();
+      setCooldownSec(ms > 0 ? Math.ceil(ms / 1000) : 0);
+    };
+    tick();
+    const id = window.setInterval(tick, 1000);
+    return () => window.clearInterval(id);
+  }, [submitted, isSubmitting]);
+
+  function mapApiSpamError(error?: string): string {
+    if (!error) return t('form.spam.generic');
+    const lower = error.toLowerCase();
+    if (lower.includes('trop de messages') || lower.includes('réessayez dans une heure')) {
+      return t('form.spam.rate_limit');
+    }
+    if (lower.includes('attendez') || lower.includes('trop rapide')) {
+      return t('form.spam.cooldown');
+    }
+    if (lower.includes('déjà envoyé')) return t('form.spam.duplicate');
+    if (lower.includes('saturé')) return t('form.spam.service_busy');
+    if (lower.includes('anti-spam') || lower.includes('vérification')) {
+      return t('form.spam.captcha_required');
+    }
+    return t('form.spam.generic');
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -92,10 +122,7 @@ function ContactFormInner() {
     }
 
     try {
-      const form = e.currentTarget;
-      const formDataToSend = new FormData(form);
-
-      const apiPromise = insertGloriamContact({
+      const apiResult = await insertGloriamContact({
         source: 'form',
         name: formData.name,
         email: formData.email,
@@ -106,7 +133,34 @@ function ContactFormInner() {
         turnstile_token: turnstileToken,
       });
 
-      const emailPromise = fetch(
+      if (!apiResult.ok) {
+        if (isGloriamApiConfigured()) {
+          setSpamError(mapApiSpamError(apiResult.error as string));
+          setIsSubmitting(false);
+          return;
+        }
+      }
+
+      if (isGloriamApiConfigured()) {
+        if (apiResult.ok) {
+          recordContactSubmission();
+          recordContactDuplicate(formData.email, formData.message);
+          setSubmitted(true);
+          setFormData({ name: '', email: '', subject: '', message: '' });
+          setTurnstileToken('');
+        } else {
+          throw new Error('send failed');
+        }
+        return;
+      }
+
+      const form = e.currentTarget;
+      const formDataToSend = new FormData(form);
+      if (turnstileToken) {
+        formDataToSend.append('cf-turnstile-response', turnstileToken);
+      }
+
+      const response = await fetch(
         'https://formsubmit.co/ajax/contact@gloriam-consulting.com',
         {
           method: 'POST',
@@ -114,14 +168,13 @@ function ContactFormInner() {
         }
       );
 
-      const [apiResult, response] = await Promise.all([apiPromise, emailPromise]);
-
       if (!response.ok && !apiResult.ok) {
         throw new Error('send failed');
       }
 
       if (response.ok || apiResult.ok) {
         recordContactSubmission();
+        recordContactDuplicate(formData.email, formData.message);
         setSubmitted(true);
         setFormData({ name: '', email: '', subject: '', message: '' });
         setTurnstileToken('');
@@ -365,10 +418,16 @@ function ContactFormInner() {
 
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || cooldownSec > 0}
                 className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3.5 text-sm font-bold text-slate-950 transition hover:from-emerald-400 hover:to-cyan-400 disabled:opacity-60"
               >
-                {isSubmitting ? t('form.submitting') : t('form.submit')}
+                {isSubmitting
+                  ? t('form.submitting')
+                  : cooldownSec > 0
+                    ? locale === 'fr'
+                      ? `Patientez ${cooldownSec}s…`
+                      : `Wait ${cooldownSec}s…`
+                    : t('form.submit')}
                 <FaPaperPlane className="transition-transform group-hover:translate-x-0.5" />
               </button>
             </form>

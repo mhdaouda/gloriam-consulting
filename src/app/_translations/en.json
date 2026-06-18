@@ -248,13 +248,17 @@
       "spam": {
         "honeypot": "Submission rejected.",
         "too_fast": "Please take a moment to complete the form before submitting.",
-        "rate_limit": "Too many messages sent. Please try again in an hour.",
+        "cooldown": "Please wait 90 seconds before sending again.",
+        "rate_limit": "Too many messages sent (3 per hour max). Please try again later.",
+        "session_limit": "Session limit reached. Reload the page or try again later.",
         "invalid_email": "Invalid email address.",
         "too_many_links": "Your message contains too many links.",
         "spam_content": "Suspicious content detected. Please revise your message.",
         "message_short": "Message too short (minimum 10 characters).",
         "duplicate": "This message was already sent recently.",
-        "captcha_required": "Please complete the anti-spam verification."
+        "captcha_required": "Please complete the anti-spam verification.",
+        "service_busy": "Service temporarily busy. Please try again in a few minutes.",
+        "generic": "Unable to send right now. Please try again later."
       }
     },
     "success": {

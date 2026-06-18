@@ -1,6 +1,8 @@
-export const FORM_MIN_MS = 3500;
-export const RATE_LIMIT_MAX = 5;
+export const FORM_MIN_MS = 4000;
+export const RATE_LIMIT_MAX = 3;
+export const SESSION_RATE_MAX = 2;
 export const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+export const MIN_COOLDOWN_MS = 90_000;
 
 export type SpamCheckInput = {
   honeypot?: string;
@@ -18,14 +20,20 @@ export type SpamCheckResult =
 export type SpamErrorCode =
   | 'honeypot'
   | 'too_fast'
+  | 'cooldown'
   | 'rate_limit'
+  | 'session_limit'
   | 'invalid_email'
   | 'too_many_links'
   | 'spam_content'
   | 'message_short'
-  | 'duplicate';
+  | 'duplicate'
+  | 'service_busy';
 
 const RATE_KEY = 'gloriam_contact_submissions';
+const SESSION_RATE_KEY = 'gloriam_contact_session_submissions';
+const COOLDOWN_KEY = 'gloriam_contact_last_submit';
+const DUP_KEY = 'gloriam_last_contact_hash';
 
 const SPAM_PATTERNS = [
   /\b(viagra|cialis|casino|lottery|forex signal|crypto pump|buy followers)\b/i,
@@ -75,6 +83,38 @@ function writeRateTimestamps(timestamps: number[]) {
   localStorage.setItem(RATE_KEY, JSON.stringify(timestamps));
 }
 
+function readSessionRateTimestamps(): number[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = sessionStorage.getItem(SESSION_RATE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw) as number[];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeSessionRateTimestamps(timestamps: number[]) {
+  if (typeof window === 'undefined') return;
+  sessionStorage.setItem(SESSION_RATE_KEY, JSON.stringify(timestamps));
+}
+
+function contactFingerprint(email: string, message: string): string {
+  return `${email.trim().toLowerCase()}|${message.trim().slice(0, 240)}`;
+}
+
+export function getCooldownRemainingMs(): number {
+  if (typeof window === 'undefined') return 0;
+  try {
+    const last = parseInt(sessionStorage.getItem(COOLDOWN_KEY) || '0', 10);
+    if (!last) return 0;
+    return Math.max(0, MIN_COOLDOWN_MS - (Date.now() - last));
+  } catch {
+    return 0;
+  }
+}
+
 export function isWithinRateLimit(): boolean {
   const now = Date.now();
   const recent = readRateTimestamps().filter((ts) => now - ts < RATE_LIMIT_WINDOW_MS);
@@ -82,11 +122,35 @@ export function isWithinRateLimit(): boolean {
   return recent.length < RATE_LIMIT_MAX;
 }
 
+function isWithinSessionRateLimit(): boolean {
+  const now = Date.now();
+  const recent = readSessionRateTimestamps().filter((ts) => now - ts < RATE_LIMIT_WINDOW_MS);
+  writeSessionRateTimestamps(recent);
+  return recent.length < SESSION_RATE_MAX;
+}
+
 export function recordContactSubmission() {
   const now = Date.now();
   const recent = readRateTimestamps().filter((ts) => now - ts < RATE_LIMIT_WINDOW_MS);
   recent.push(now);
   writeRateTimestamps(recent);
+
+  const sessionRecent = readSessionRateTimestamps().filter((ts) => now - ts < RATE_LIMIT_WINDOW_MS);
+  sessionRecent.push(now);
+  writeSessionRateTimestamps(sessionRecent);
+
+  sessionStorage.setItem(COOLDOWN_KEY, String(now));
+}
+
+export function recordContactDuplicate(email: string, message: string) {
+  if (typeof window === 'undefined') return;
+  sessionStorage.setItem(DUP_KEY, contactFingerprint(email, message));
+}
+
+function isDuplicateContact(email: string, message: string): boolean {
+  if (typeof window === 'undefined') return false;
+  const current = contactFingerprint(email, message);
+  return sessionStorage.getItem(DUP_KEY) === current;
 }
 
 export function validateContactSpam(input: SpamCheckInput): SpamCheckResult {
@@ -98,8 +162,20 @@ export function validateContactSpam(input: SpamCheckInput): SpamCheckResult {
     return { ok: false, code: 'too_fast' };
   }
 
+  if (getCooldownRemainingMs() > 0) {
+    return { ok: false, code: 'cooldown' };
+  }
+
+  if (!isWithinSessionRateLimit()) {
+    return { ok: false, code: 'session_limit' };
+  }
+
   if (!isWithinRateLimit()) {
     return { ok: false, code: 'rate_limit' };
+  }
+
+  if (isDuplicateContact(input.email, input.message)) {
+    return { ok: false, code: 'duplicate' };
   }
 
   if (!isValidContactEmail(input.email)) {
@@ -132,7 +208,7 @@ export function isTurnstileEnabled(): boolean {
 }
 
 const CHATBOT_RATE_KEY = 'gloriam_chatbot_leads';
-const CHATBOT_RATE_MAX = 8;
+const CHATBOT_RATE_MAX = 5;
 
 export function canSendChatbotLead(): boolean {
   if (typeof window === 'undefined') return true;

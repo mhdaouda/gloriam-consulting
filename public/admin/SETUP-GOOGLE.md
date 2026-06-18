@@ -168,7 +168,7 @@ window.GLORIAM_API = {
 
 ## Mise à jour du script (campagnes e-mail, déconnexion)
 
-Après une mise à jour de `GloriamAPI.gs` dans le repo :
+Après mise à jour de `GloriamAPI.gs` dans le repo (anti-spam, notification e-mail contact) :
 
 1. Recopiez le fichier dans Apps Script → **Enregistrer**
 2. **Déployer** → **Gérer les déploiements** → ✏️ → **Nouvelle version** → **Déployer**
@@ -179,6 +179,7 @@ Propriétés optionnelles :
 | Propriété | Usage |
 |-----------|--------|
 | `MAIL_FROM_NAME` | Nom affiché comme expéditeur (ex. Mohamed DAOUDA) |
+| `CONTACT_NOTIFY_EMAIL` | E-mail de notification des formulaires (défaut : contact@gloriam-consulting.com) |
 | `CAMPAIGN_TEST_EMAIL` | E-mail pour le bouton « Envoyer un test » |
 
 ---
