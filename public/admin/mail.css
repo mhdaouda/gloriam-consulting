@@ -219,8 +219,48 @@
     gap: 1rem;
 }
 
+.mail-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin: 1rem 0 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.mail-check input { margin-top: 0.15rem; accent-color: #10b981; }
+
+.mail-var-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0.35rem 0 0.5rem;
+}
+
+.mail-var-chip {
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    background: rgba(16, 185, 129, 0.1);
+    color: #6ee7b7;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.mail-var-chip:hover { background: rgba(16, 185, 129, 0.2); }
+
+.mail-preview-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+}
+
 .mail-preview-box {
-    margin-top: 1rem;
+    margin-top: 0;
     padding: 1rem;
     background: #fff;
     color: #111;

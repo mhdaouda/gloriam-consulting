@@ -162,9 +162,12 @@ window.GLORIAM_API = {
 ## Campagnes e-mail et suivi des ouvertures
 
 - Module : `admin/mail-campaigns.html` (après connexion dashboard)
-- Chaque e-mail HTML contient un **pixel invisible** ; quand le destinataire ouvre le mail, le compteur **Ouverts** augmente
-- Feuilles Google : **MailCampaigns**, **MailRecipients**
-- Après mise à jour du script : exécuter **`setupSheets`** puis **nouveau déploiement** Web App
+- **Modèles** : relance devis, newsletter, remerciement, invitation RDV (style HEXAHUB / Gloriam)
+- **Enveloppe brandée** : header gradient émeraude, bouton CTA, footer légal + lien désinscription
+- **Preheader** : texte d’aperçu dans la boîte mail
+- Pixel invisible → compteur **Ouverts**
+- Feuilles Google : **MailCampaigns**, **MailRecipients**, **Unsubscribes**
+- Après mise à jour du script : **`setupSheets`** → ouvrir le module campagnes (migration colonnes auto) → **nouveau déploiement** Web App
 
 ## Mise à jour du script (campagnes e-mail, déconnexion)
 
@@ -181,6 +184,7 @@ Propriétés optionnelles :
 | `MAIL_FROM_NAME` | Nom affiché comme expéditeur (ex. Mohamed DAOUDA) |
 | `CONTACT_NOTIFY_EMAIL` | E-mail de notification des formulaires (défaut : contact@gloriam-consulting.com) |
 | `CAMPAIGN_TEST_EMAIL` | E-mail pour le bouton « Envoyer un test » |
+| `SITE_URL` | Lien site dans le footer des campagnes (défaut : gloriam-consulting.com) |
 
 ---
 

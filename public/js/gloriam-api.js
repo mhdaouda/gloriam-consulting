@@ -195,6 +195,18 @@
         return request('mailDelete', { token, campaignId });
     }
 
+    async function mailUpdate(payload) {
+        const token = getToken();
+        if (!token) return { ok: false, error: 'Non connecté' };
+        return request('mailUpdate', { token, ...payload });
+    }
+
+    async function mailDuplicate(campaignId) {
+        const token = getToken();
+        if (!token) return { ok: false, error: 'Non connecté' };
+        return request('mailDuplicate', { token, campaignId });
+    }
+
     async function mailTest(payload) {
         const token = getToken();
         if (!token) return { ok: false, error: 'Non connecté' };
@@ -213,6 +225,8 @@
         mailList,
         mailGet,
         mailCreate,
+        mailUpdate,
+        mailDuplicate,
         mailSend,
         mailDelete,
         mailTest,

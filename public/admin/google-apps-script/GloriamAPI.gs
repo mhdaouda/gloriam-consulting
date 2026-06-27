@@ -5,6 +5,12 @@ var SHEET_CONTACTS = 'Contacts';
 var SHEET_VISITS = 'Visits';
 var SHEET_MAIL_CAMPAIGNS = 'MailCampaigns';
 var SHEET_MAIL_RECIPIENTS = 'MailRecipients';
+var SHEET_UNSUBSCRIBES = 'Unsubscribes';
+var MAIL_CAMPAIGN_HEADERS = [
+  'id', 'created_at', 'name', 'description', 'subject', 'body_html', 'audience',
+  'status', 'total', 'sent', 'failed', 'opens', 'clicks',
+  'preheader', 'cta_url', 'cta_label', 'brand_wrap', 'template_id'
+];
 var TOKEN_TTL = 86400;
 var TRACK_GIF = 'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
@@ -27,13 +33,13 @@ function setupSheets() {
     'id', 'created_at', 'session_id', 'page_path', 'page_title',
     'referrer', 'referrer_channel', 'user_agent', 'language'
   ]);
-  ensureSheet_(ss, SHEET_MAIL_CAMPAIGNS, [
-    'id', 'created_at', 'name', 'description', 'subject', 'body_html', 'audience',
-    'status', 'total', 'sent', 'failed', 'opens', 'clicks'
-  ]);
+  ensureSheet_(ss, SHEET_MAIL_CAMPAIGNS, MAIL_CAMPAIGN_HEADERS);
   ensureSheet_(ss, SHEET_MAIL_RECIPIENTS, [
     'id', 'campaign_id', 'email', 'name', 'company', 'status',
     'sent_at', 'opened_at', 'open_count', 'click_count', 'error'
+  ]);
+  ensureSheet_(ss, SHEET_UNSUBSCRIBES, [
+    'email', 'unsubscribed_at', 'source'
   ]);
 }
 
@@ -49,8 +55,9 @@ function ensureSheet_(ss, name, headers) {
 function doGet(e) {
   var p = e.parameter || {};
   if (p.action === 'trackOpen' && p.rid) return actionTrackOpen_(p.rid);
+  if (p.action === 'unsubscribe' && p.email) return actionUnsubscribePage_(p.email);
   if (p.action === 'version') {
-    return jsonResponse_({ ok: true, version: 3, mail: true });
+    return jsonResponse_({ ok: true, version: 4, mail: true, templates: true });
   }
   return handleRequest_(e);
 }
@@ -80,6 +87,8 @@ function handleRequest_(e) {
       case 'mailList': result = actionMailList_(body.token); break;
       case 'mailGet': result = actionMailGet_(body.token, body.campaignId); break;
       case 'mailCreate': result = actionMailCreate_(body.token, body); break;
+      case 'mailUpdate': result = actionMailUpdate_(body.token, body); break;
+      case 'mailDuplicate': result = actionMailDuplicate_(body.token, body.campaignId); break;
       case 'mailSend': result = actionMailSend_(body.token, body.campaignId); break;
       case 'mailDelete': result = actionMailDelete_(body.token, body.campaignId); break;
       case 'mailTest': result = actionMailTest_(body.token, body); break;
@@ -201,18 +210,24 @@ function actionMailCreate_(token, body) {
   var bodyHtml = sanitize_(body.body_html, 80000);
   var audience = sanitize_(body.audience, 30) || 'all';
   var description = sanitize_(body.description, 500);
+  var preheader = sanitize_(body.preheader, 300);
+  var ctaUrl = sanitize_(body.cta_url, 500);
+  var ctaLabel = sanitize_(body.cta_label, 120) || 'En savoir plus';
+  var brandWrap = body.brand_wrap === false || body.brand_wrap === '0' ? '0' : '1';
+  var templateId = sanitize_(body.template_id, 80);
 
   if (!subject || !bodyHtml) return { error: 'Sujet et message requis' };
 
   var contacts = readSheetAsObjects_(SHEET_CONTACTS);
   var recipients = filterCampaignRecipients_(contacts, audience);
-  if (!recipients.length) return { error: 'Aucun destinataire pour cette sélection' };
+  if (!recipients.length) return { error: 'Aucun destinataire pour cette sélection (vérifiez les désinscriptions)' };
 
   var campaignId = Utilities.getUuid();
   var shC = getSpreadsheet_().getSheetByName(SHEET_MAIL_CAMPAIGNS);
   shC.appendRow([
     campaignId, new Date().toISOString(), name, description, subject, bodyHtml, audience,
-    'draft', recipients.length, 0, 0, 0, 0
+    'draft', recipients.length, 0, 0, 0, 0,
+    preheader, ctaUrl, ctaLabel, brandWrap, templateId
   ]);
 
   var shR = getSpreadsheet_().getSheetByName(SHEET_MAIL_RECIPIENTS);
@@ -224,6 +239,50 @@ function actionMailCreate_(token, body) {
   }
 
   return { ok: true, campaignId: campaignId, total: recipients.length };
+}
+
+function actionMailUpdate_(token, body) {
+  if (!isValidToken_(token)) return { error: 'Session expirée' };
+  var campaignId = body.campaignId;
+  var campaign = findById_(SHEET_MAIL_CAMPAIGNS, 'id', campaignId);
+  if (!campaign) return { error: 'Campagne introuvable' };
+  if (campaign.status !== 'draft') return { error: 'Seuls les brouillons sont modifiables' };
+
+  var patch = {};
+  if (body.name != null) patch.name = sanitize_(body.name, 200);
+  if (body.description != null) patch.description = sanitize_(body.description, 500);
+  if (body.subject != null) patch.subject = sanitize_(body.subject, 200);
+  if (body.body_html != null) patch.body_html = sanitize_(body.body_html, 80000);
+  if (body.preheader != null) patch.preheader = sanitize_(body.preheader, 300);
+  if (body.cta_url != null) patch.cta_url = sanitize_(body.cta_url, 500);
+  if (body.cta_label != null) patch.cta_label = sanitize_(body.cta_label, 120);
+  if (body.brand_wrap != null) {
+    patch.brand_wrap = body.brand_wrap === false || body.brand_wrap === '0' ? '0' : '1';
+  }
+  if (body.template_id != null) patch.template_id = sanitize_(body.template_id, 80);
+
+  if (!Object.keys(patch).length) return { error: 'Aucune modification' };
+  updateRowById_(SHEET_MAIL_CAMPAIGNS, 'id', campaignId, patch);
+  return { ok: true, campaignId: campaignId };
+}
+
+function actionMailDuplicate_(token, campaignId) {
+  if (!isValidToken_(token)) return { error: 'Session expirée' };
+  var campaign = findById_(SHEET_MAIL_CAMPAIGNS, 'id', campaignId);
+  if (!campaign) return { error: 'Campagne introuvable' };
+
+  return actionMailCreate_(token, {
+    name: (campaign.name || 'Campagne') + ' (copie)',
+    description: campaign.description || '',
+    subject: campaign.subject,
+    body_html: campaign.body_html,
+    audience: campaign.audience || 'all',
+    preheader: campaign.preheader || '',
+    cta_url: campaign.cta_url || '',
+    cta_label: campaign.cta_label || '',
+    brand_wrap: campaign.brand_wrap !== '0' ? '1' : '0',
+    template_id: campaign.template_id || ''
+  });
 }
 
 function actionMailSend_(token, campaignId) {
@@ -247,7 +306,7 @@ function actionMailSend_(token, campaignId) {
   for (var i = 0; i < recipients.length; i++) {
     var r = recipients[i];
     try {
-      var html = buildCampaignHtml_(campaign.body_html, r, webAppUrl);
+      var html = buildCampaignHtml_(campaign.body_html, r, webAppUrl, campaignMeta_(campaign));
       MailApp.sendEmail({
         to: r.email,
         subject: campaign.subject,
@@ -294,7 +353,8 @@ function actionMailTest_(token, body) {
 
   var webAppUrl = getWebAppUrl_();
   var fake = { id: 'test', email: testEmail, name: 'Test', company: 'Démo' };
-  var html = buildCampaignHtml_(bodyHtml, fake, webAppUrl);
+  var meta = campaignMeta_(body);
+  var html = buildCampaignHtml_(bodyHtml, fake, webAppUrl, meta);
 
   MailApp.sendEmail({
     to: testEmail,
@@ -327,16 +387,118 @@ function actionTrackOpen_(rid) {
     .setMimeType(ContentService.MimeType.GIF);
 }
 
-function buildCampaignHtml_(template, recipient, webAppUrl) {
+function buildCampaignHtml_(template, recipient, webAppUrl, meta) {
+  meta = meta || {};
   var html = personalizeCampaign_(template, recipient);
   html = textToHtmlIfNeeded_(html);
+
+  var useBrand = meta.brand_wrap !== false && meta.brand_wrap !== '0';
+  var isFullDoc = html.indexOf('<html') >= 0 || html.indexOf('<!-- gloriam:no-wrap -->') >= 0;
+  if (useBrand && !isFullDoc) {
+    html = wrapInGloriamTemplate_(html, recipient, webAppUrl, meta);
+  }
+
   var pixel = '<img src="' + webAppUrl + '?action=trackOpen&rid=' + encodeURIComponent(recipient.id) +
     '" width="1" height="1" alt="" style="display:block;width:1px;height:1px;border:0;" />';
   if (html.indexOf('</body>') >= 0) {
     return html.replace('</body>', pixel + '</body>');
   }
-  return '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.5;color:#111">' +
-    html + '</div>' + pixel;
+  return html + pixel;
+}
+
+function campaignMeta_(campaign) {
+  return {
+    preheader: campaign.preheader || '',
+    cta_url: campaign.cta_url || '',
+    cta_label: campaign.cta_label || 'En savoir plus',
+    brand_wrap: campaign.brand_wrap
+  };
+}
+
+function wrapInGloriamTemplate_(innerHtml, recipient, webAppUrl, meta) {
+  var siteUrl = PropertiesService.getScriptProperties().getProperty('SITE_URL') || 'https://www.gloriam-consulting.com';
+  var unsubUrl = webAppUrl + '?action=unsubscribe&email=' + encodeURIComponent(recipient.email || '');
+  var preheader = meta.preheader || '';
+  var ctaUrl = meta.cta_url || '';
+  var ctaLabel = meta.cta_label || 'En savoir plus';
+
+  var ctaBlock = '';
+  if (ctaUrl) {
+    ctaBlock = '<p style="margin:24px 0 0;text-align:center;">' +
+      '<a href="' + escapeHtml_(ctaUrl) + '" style="display:inline-block;background:linear-gradient(90deg,#059669,#06b6d4);' +
+      'color:#042f2e;font-weight:700;padding:12px 28px;border-radius:999px;text-decoration:none;font-size:15px;">' +
+      escapeHtml_(ctaLabel) + '</a></p>';
+  }
+
+  var preheaderBlock = preheader
+    ? '<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">' +
+      escapeHtml_(preheader) + '</div>'
+    : '';
+
+  return '<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">' +
+    '</head><body style="margin:0;padding:0;background:#f4f8fb;font-family:Arial,sans-serif;">' +
+    preheaderBlock +
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f8fb;padding:20px 10px;">' +
+    '<tr><td align="center">' +
+    '<table role="presentation" width="600" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #dce5e0;">' +
+    '<tr><td style="background:linear-gradient(90deg,#047857,#10b981);padding:20px 24px;color:#ffffff;">' +
+    '<p style="margin:0;font-size:20px;font-weight:700;">Gloriam Consulting</p>' +
+    '<p style="margin:6px 0 0;font-size:13px;opacity:0.95;">Conseil · Stratégie · Croissance</p>' +
+    '</td></tr>' +
+    '<tr><td style="padding:24px;color:#0f172a;font-size:15px;line-height:1.65;">' +
+    innerHtml + ctaBlock +
+    '</td></tr>' +
+    '<tr><td style="padding:14px 24px;background:#eef4f2;color:#64748b;font-size:12px;line-height:1.6;">' +
+    'Gloriam Consulting · contact@gloriam-consulting.com<br>' +
+    '<a href="' + unsubUrl + '" style="color:#64748b;">Se désinscrire</a> · ' +
+    '<a href="' + siteUrl + '" style="color:#047857;">gloriam-consulting.com</a>' +
+    '</td></tr></table></td></tr></table></body></html>';
+}
+
+function actionUnsubscribePage_(email) {
+  var clean = String(email || '').trim().toLowerCase();
+  if (!clean || clean.indexOf('@') < 1) {
+    return HtmlService.createHtmlOutput('<p>Adresse e-mail invalide.</p>');
+  }
+  recordUnsubscribe_(clean, 'link');
+  var siteUrl = PropertiesService.getScriptProperties().getProperty('SITE_URL') || 'https://www.gloriam-consulting.com';
+  return HtmlService.createHtmlOutput(
+    '<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">' +
+    '<title>Désinscription — Gloriam Consulting</title></head>' +
+    '<body style="font-family:Arial,sans-serif;background:#f4f8fb;padding:40px 16px;text-align:center;">' +
+    '<div style="max-width:480px;margin:0 auto;background:#fff;border-radius:12px;padding:32px;border:1px solid #dce5e0;">' +
+    '<h1 style="color:#047857;font-size:22px;">Désinscription confirmée</h1>' +
+    '<p style="color:#334155;line-height:1.6;">L\'adresse <strong>' + escapeHtml_(clean) + '</strong> ne recevra plus nos campagnes e-mail.</p>' +
+    '<p style="margin-top:24px;"><a href="' + siteUrl + '" style="color:#047857;">Retour au site Gloriam</a></p>' +
+    '</div></body></html>'
+  ).setTitle('Désinscription confirmée');
+}
+
+function recordUnsubscribe_(email, source) {
+  ensureMailSheets_();
+  if (isUnsubscribed_(email)) return;
+  var sh = getSpreadsheet_().getSheetByName(SHEET_UNSUBSCRIBES);
+  sh.appendRow([email, new Date().toISOString(), source || 'link']);
+}
+
+function isUnsubscribed_(email) {
+  var clean = String(email || '').trim().toLowerCase();
+  if (!clean) return false;
+  var rows = readSheetAsObjects_(SHEET_UNSUBSCRIBES);
+  for (var i = 0; i < rows.length; i++) {
+    if (String(rows[i].email || '').trim().toLowerCase() === clean) return true;
+  }
+  return false;
+}
+
+function getUnsubscribedSet_() {
+  var set = {};
+  var rows = readSheetAsObjects_(SHEET_UNSUBSCRIBES);
+  for (var i = 0; i < rows.length; i++) {
+    var e = String(rows[i].email || '').trim().toLowerCase();
+    if (e) set[e] = true;
+  }
+  return set;
 }
 
 function getWebAppUrl_() {
@@ -369,15 +531,35 @@ function refreshCampaignOpenCount_(campaignId) {
 function ensureMailSheets_() {
   var ss = getSpreadsheet_();
   if (!ss.getSheetByName(SHEET_MAIL_CAMPAIGNS)) setupSheets();
+  migrateSheetHeaders_(SHEET_MAIL_CAMPAIGNS, MAIL_CAMPAIGN_HEADERS);
+  if (!ss.getSheetByName(SHEET_UNSUBSCRIBES)) {
+    ensureSheet_(ss, SHEET_UNSUBSCRIBES, ['email', 'unsubscribed_at', 'source']);
+  }
+}
+
+function migrateSheetHeaders_(sheetName, expectedHeaders) {
+  var sh = getSpreadsheet_().getSheetByName(sheetName);
+  if (!sh || sh.getLastRow() === 0) return;
+  var lastCol = Math.max(sh.getLastColumn(), 1);
+  var current = sh.getRange(1, 1, 1, lastCol).getValues()[0];
+  for (var i = 0; i < expectedHeaders.length; i++) {
+    if (current.indexOf(expectedHeaders[i]) < 0) {
+      sh.getRange(1, current.length + 1).setValue(expectedHeaders[i]);
+      sh.getRange(1, current.length + 1).setFontWeight('bold');
+      current.push(expectedHeaders[i]);
+    }
+  }
 }
 
 function filterCampaignRecipients_(contacts, audience) {
   var seen = {};
+  var unsub = getUnsubscribedSet_();
   var list = [];
   for (var i = 0; i < contacts.length; i++) {
     var c = contacts[i];
     var email = String(c.email || '').trim().toLowerCase();
     if (!email || email.indexOf('@') < 1) continue;
+    if (unsub[email]) continue;
     if (audience === 'nouveau' && c.status !== 'nouveau') continue;
     if (audience === 'form' && c.source !== 'form') continue;
     if (audience === 'chatbot' && c.source !== 'chatbot') continue;

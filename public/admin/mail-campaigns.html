@@ -56,13 +56,34 @@
                         </div>
                     </div>
                     <p class="mail-list-meta" id="mail-new-count">0 destinataire(s)</p>
+                    <label for="mail-template">Modèle de départ</label>
+                    <select id="mail-template">
+                        <option value="">— Choisir un modèle (optionnel) —</option>
+                    </select>
                     <label for="mail-description">Description (interne)</label>
                     <input type="text" id="mail-description" placeholder="Réduction charge admin, relance devis…">
+                    <label for="mail-preheader">Preheader (aperçu boîte mail)</label>
+                    <input type="text" id="mail-preheader" placeholder="Texte court visible dans la liste des e-mails…" maxlength="300">
                     <label for="mail-subject">Objet de l'e-mail *</label>
                     <input type="text" id="mail-subject" required placeholder="Objet chez le destinataire">
+                    <div class="mail-form-row">
+                        <div>
+                            <label for="mail-cta-url">Bouton CTA — URL</label>
+                            <input type="url" id="mail-cta-url" placeholder="https://www.gloriam-consulting.com/fr/contact">
+                        </div>
+                        <div>
+                            <label for="mail-cta-label">Bouton CTA — libellé</label>
+                            <input type="text" id="mail-cta-label" placeholder="En savoir plus">
+                        </div>
+                    </div>
+                    <label class="mail-check">
+                        <input type="checkbox" id="mail-brand-wrap" checked>
+                        Enveloppe Gloriam (header gradient + footer légal + désinscription)
+                    </label>
                     <label for="mail-body">Message (HTML ou texte) *</label>
+                    <div class="mail-var-chips" id="mail-var-chips"></div>
                     <textarea id="mail-body" required placeholder="<p>{{salutation}},</p><p>Votre message…</p>"></textarea>
-                    <p class="mail-list-meta">Variables : salutation, nom, email, entreprise (voir aide dans le texte)</p>
+                    <p class="mail-list-meta">Variables : {{salutation}}, {{nom}}, {{email}}, {{entreprise}}</p>
                     <div style="display:flex;gap:0.5rem;margin-top:1.25rem;flex-wrap:wrap">
                         <button type="button" id="mail-btn-test" class="mail-btn mail-btn--ghost">Envoyer un test</button>
                         <button type="submit" class="mail-btn mail-btn--primary">Créer en brouillon</button>
@@ -70,6 +91,10 @@
                     </div>
                 </form>
                 <h2 style="margin-top:1.5rem">Aperçu</h2>
+                <div class="mail-preview-tabs">
+                    <button type="button" class="mail-chip is-active" data-preview="brand">Avec enveloppe Gloriam</button>
+                    <button type="button" class="mail-chip" data-preview="raw">Contenu seul</button>
+                </div>
                 <div id="mail-preview" class="mail-preview-box">Saisissez un message pour voir l'aperçu.</div>
             </div>
         </div>
@@ -81,12 +106,18 @@
                     <p id="detail-status" class="mail-list-meta"></p>
                 </div>
                 <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+                    <button type="button" id="mail-btn-edit" class="mail-btn mail-btn--ghost mail-hidden"><i class="fas fa-edit"></i> Modifier le brouillon</button>
+                    <button type="button" id="mail-btn-duplicate" class="mail-btn mail-btn--ghost"><i class="fas fa-copy"></i> Dupliquer</button>
                     <button type="button" id="mail-btn-send" class="mail-btn mail-btn--primary"><i class="fas fa-paper-plane"></i> Valider et envoyer</button>
                     <button type="button" id="mail-btn-delete" class="mail-btn mail-btn--danger">Supprimer</button>
                     <a href="#list" class="mail-btn mail-btn--ghost">Retour</a>
                 </div>
             </div>
             <div class="mail-stats" id="detail-stats"></div>
+            <div id="detail-preview-card" class="mail-form-card mail-hidden">
+                <h2>Aperçu du message</h2>
+                <div id="detail-preview" class="mail-preview-box"></div>
+            </div>
             <div class="mail-form-card">
                 <div class="mail-toolbar" style="margin-bottom:0">
                     <div class="mail-filters" id="recipient-filters"></div>
@@ -111,6 +142,7 @@
 
     <script src="../js/gloriam-api-config.js"></script>
     <script src="../js/gloriam-api.js"></script>
+    <script src="mail-templates.js"></script>
     <script src="mail-campaigns.js"></script>
 </body>
 </html>
