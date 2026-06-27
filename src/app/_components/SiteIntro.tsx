@@ -211,14 +211,15 @@ export function SiteIntro({ onComplete }: SiteIntroProps) {
             </div>
           </motion.div>
 
-          {/* Main content */}
-          <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 py-6 sm:px-6">
-            <motion.div
-              variants={contentVariants}
-              initial="hidden"
-              animate={exiting ? 'exit' : 'visible'}
-              className="flex w-full max-w-4xl flex-col items-center text-center"
-            >
+          {/* Main content + skip — flex column so the button never overlaps */}
+          <div className="relative z-10 flex min-h-0 flex-1 flex-col">
+            <div className="flex flex-1 flex-col items-center justify-center overflow-y-auto px-4 py-6 sm:px-6">
+              <motion.div
+                variants={contentVariants}
+                initial="hidden"
+                animate={exiting ? 'exit' : 'visible'}
+                className="flex w-full max-w-4xl flex-col items-center text-center"
+              >
               <motion.div variants={fadeUp} className="intro-logo-mark mb-6">
                 <Image
                   src="/images/GClogo.svg"
@@ -321,25 +322,28 @@ export function SiteIntro({ onComplete }: SiteIntroProps) {
               >
                 {copy.intro.zonesHint}
               </motion.p>
-            </motion.div>
+              </motion.div>
+            </div>
+
+            <div className="relative z-30 flex shrink-0 justify-center px-4 pb-5 pt-2 sm:pb-6">
+              <motion.button
+                type="button"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: exiting ? 0 : 1, y: exiting ? 16 : 0 }}
+                transition={{ delay: exiting ? 0 : 1.2, duration: 0.6, ease: easeOut }}
+                onClick={dismiss}
+                className="intro-skip intro-skip--pulse"
+              >
+                {copy.intro.skip}
+              </motion.button>
+            </div>
           </div>
 
           {/* Corners */}
           <div className="intro-corner intro-corner--tl pointer-events-none absolute left-4 top-16 sm:left-6 sm:top-[4.5rem]" aria-hidden />
           <div className="intro-corner intro-corner--tr pointer-events-none absolute right-4 top-16 sm:right-6 sm:top-[4.5rem]" aria-hidden />
-          <div className="intro-corner intro-corner--bl pointer-events-none absolute bottom-16 left-4 sm:left-6 sm:bottom-20" aria-hidden />
-          <div className="intro-corner intro-corner--br pointer-events-none absolute bottom-16 right-4 sm:right-6 sm:bottom-20" aria-hidden />
-
-          <motion.button
-            type="button"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: exiting ? 0 : 1, y: exiting ? 16 : 0 }}
-            transition={{ delay: exiting ? 0 : 1.2, duration: 0.6, ease: easeOut }}
-            onClick={dismiss}
-            className="intro-skip intro-skip--pulse absolute bottom-12 left-1/2 z-30 -translate-x-1/2 sm:bottom-14"
-          >
-            {copy.intro.skip}
-          </motion.button>
+          <div className="intro-corner intro-corner--bl pointer-events-none absolute bottom-24 left-4 sm:left-6 sm:bottom-28" aria-hidden />
+          <div className="intro-corner intro-corner--br pointer-events-none absolute bottom-24 right-4 sm:right-6 sm:bottom-28" aria-hidden />
 
           <div className="intro-progress absolute inset-x-0 bottom-0 z-30 h-[3px] bg-accent/15" aria-hidden>
             <div className="intro-progress-fill h-full bg-accent" />
