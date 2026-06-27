@@ -139,11 +139,46 @@
     function initTemplateSelect() {
         const sel = $('#mail-template');
         if (!sel || !window.GloriamMailTemplates) return;
+
+        const groups = new Map();
         GloriamMailTemplates.TEMPLATES.forEach((t) => {
-            const opt = document.createElement('option');
-            opt.value = t.id;
-            opt.textContent = t.name;
-            sel.appendChild(opt);
+            const g = t.sectorGroup || 'Autres';
+            if (!groups.has(g)) groups.set(g, []);
+            groups.get(g).push(t);
+        });
+
+        const order = ['IT — Général'];
+        if (GloriamMailTemplates.IT_SECTORS) {
+            GloriamMailTemplates.IT_SECTORS.forEach((s) => order.push(s.label));
+        }
+        order.push('Autres');
+
+        const seen = new Set();
+        order.forEach((groupName) => {
+            if (!groups.has(groupName)) return;
+            seen.add(groupName);
+            const og = document.createElement('optgroup');
+            og.label = groupName;
+            groups.get(groupName).forEach((t) => {
+                const opt = document.createElement('option');
+                opt.value = t.id;
+                opt.textContent = t.sequenceLabel || t.name;
+                og.appendChild(opt);
+            });
+            sel.appendChild(og);
+        });
+
+        groups.forEach((items, groupName) => {
+            if (seen.has(groupName)) return;
+            const og = document.createElement('optgroup');
+            og.label = groupName;
+            items.forEach((t) => {
+                const opt = document.createElement('option');
+                opt.value = t.id;
+                opt.textContent = t.sequenceLabel || t.name;
+                og.appendChild(opt);
+            });
+            sel.appendChild(og);
         });
     }
 

@@ -162,7 +162,8 @@ window.GLORIAM_API = {
 ## Campagnes e-mail et suivi des ouvertures
 
 - Module : `admin/mail-campaigns.html` (après connexion dashboard)
-- **Modèles** : relance devis, newsletter, remerciement, invitation RDV (style HEXAHUB / Gloriam)
+- **Modèles** : 10 secteurs IT × 5 e-mails (question, relance, clôture, opportunités, marché) + remerciement
+- **Secteurs** : ESN/SSII, SaaS, agences digital, cyber, cloud, startups, MSP, data/IA, e-commerce tech, FinTech
 - **Enveloppe brandée** : header gradient émeraude, bouton CTA, footer légal + lien désinscription
 - **Preheader** : texte d’aperçu dans la boîte mail
 - Pixel invisible → compteur **Ouverts**
