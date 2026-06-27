@@ -1,6 +1,6 @@
 /**
- * Modèles campagnes — secteurs IT (séquence HEXAHUB : question → relance → clôture)
- * Variables : {{salutation}}, {{nom}}, {{email}}, {{entreprise}}, {{unsubscribe}}
+ * Modèles campagnes — projets IT / particuliers + secteurs IT pro (séquence HEXAHUB)
+ * Variables : {{salutation}}, {{nom}}, {{email}}, {{entreprise}}, {{projet}}, {{unsubscribe}}
  */
 (function (global) {
     'use strict';
@@ -84,7 +84,126 @@
         );
     }
 
-    /** Secteurs liés à l'informatique — contenu métier par vertical */
+    /** Porteurs de projet, particuliers et TPE — besoins concrets (site web, app, digital) */
+    const PROJECT_SECTORS = [
+        {
+            id: 'site-internet',
+            label: 'Site internet',
+            tagline: 'Site web · Vitrine · Landing',
+            peer: 'personnes et organisations qui souhaitent lancer ou améliorer leur présence en ligne',
+            intro: 'nous accompagnons des <strong style="color:#e8eef4;">particuliers, indépendants et petites structures</strong> qui veulent un site internet clair, professionnel et facile à faire évoluer.',
+            pain: 'Beaucoup de projets de site restent au stade d\'idée : difficile de choisir la bonne approche, le bon budget, ou de trouver un interlocuteur qui comprend le besoin sans sur-complexifier.',
+            painOnline: 'Votre activité mérite d\'être visible en ligne — mais entre modèles, CMS, freelance et agences, difficile de savoir par où commencer pour un site qui vous ressemble vraiment.',
+            painMarket: 'Aujourd\'hui, un site crédible rassure avant même le premier échange : clarté du message, mobile, formulaire de contact et confiance visuelle font la différence.',
+            value: [
+                'Cadrage du besoin &amp; périmètre du site',
+                'Structure, contenus &amp; parcours visiteur',
+                'Design professionnel &amp; responsive',
+                'Mise en ligne, suivi &amp; évolutions'
+            ],
+            reminder: [
+                'Site vitrine ou landing page',
+                'Portfolio, activité ou commerce local',
+                'Formulaire de contact &amp; visibilité Google',
+                'Budget maîtrisé &amp; livraison claire'
+            ],
+            closing: 'votre projet de site'
+        },
+        {
+            id: 'particulier-projet',
+            label: 'Particulier & projet perso',
+            tagline: 'Projet IT · Particulier · Besoin concret',
+            peer: 'particuliers et porteurs de projet avec un besoin informatique concret',
+            intro: 'nous aidons des <strong style="color:#e8eef4;">particuliers</strong> à concrétiser un projet informatique : site web, outil en ligne, automatisation ou conseil pour structurer une idée.',
+            pain: 'Quand on n\'est pas du métier, un projet IT peut sembler flou : par où commencer, combien ça coûte, qui peut réellement livrer — sans jargon ni mauvaises surprises.',
+            painOnline: 'Vous avez une idée ou un besoin précis (site, outil, présence en ligne) mais vous cherchez quelqu\'un de fiable pour vous guider et réaliser proprement ?',
+            painMarket: 'Un bon accompagnement, c\'est d\'abord écouter le besoin réel, proposer un plan simple et livrer quelque chose d\'utilisable — pas un devis incompréhensible.',
+            value: [
+                'Échange gratuit pour cadrer votre idée',
+                'Recommandations honnêtes &amp; périmètre clair',
+                'Réalisation ou mise en relation selon le besoin',
+                'Suivi humain, sans jargon inutile'
+            ],
+            reminder: [
+                'Site internet ou page de présentation',
+                'Outil ou formulaire en ligne',
+                'Conseil avant de lancer un projet',
+                'Devis transparent &amp; délais réalistes'
+            ],
+            closing: 'votre projet'
+        },
+        {
+            id: 'tpe-commerce',
+            label: 'TPE, artisan & commerce',
+            tagline: 'TPE · Artisan · Commerce local',
+            peer: 'artisans, commerçants et TPE qui veulent développer leur activité grâce au digital',
+            intro: 'nous accompagnons des <strong style="color:#e8eef4;">TPE, artisans et commerces locaux</strong> qui veulent être trouvés en ligne et convertir plus de contacts en clients.',
+            pain: 'Entre Facebook, Google, bouche-à-oreille et un site vieillissant, beaucoup de petites structures perdent des opportunités faute d\'une vitrine digitale simple et efficace.',
+            painOnline: 'Vos clients vous cherchent sur Google ou les réseaux — est-ce que votre site (ou votre absence de site) leur donne envie de vous contacter ?',
+            painMarket: 'Pour une TPE, un site clair avec horaires, services, avis et contact direct peut remplacer des heures de prospection — si le message est bien cadré.',
+            value: [
+                'Site vitrine adapté à votre métier',
+                'Référencement local &amp; fiche Google',
+                'Prise de rendez-vous / devis en ligne',
+                'Maintenance légère &amp; mises à jour'
+            ],
+            reminder: [
+                'Visibilité locale &amp; crédibilité',
+                'Site mobile &amp; rapide',
+                'Contact &amp; demandes de devis',
+                'Budget adapté aux TPE'
+            ],
+            closing: 'votre activité'
+        },
+        {
+            id: 'refonte-site',
+            label: 'Refonte & modernisation',
+            tagline: 'Refonte · Migration · Mise à jour',
+            peer: 'structures avec un site existant à moderniser ou remettre à niveau',
+            intro: 'nous aidons à <strong style="color:#e8eef4;">refondre ou moderniser</strong> des sites internet devenus lents, datés ou difficiles à mettre à jour.',
+            pain: 'Un site vieux de 5 ou 10 ans freine la confiance : design dépassé, pas adapté mobile, formulaires cassés — sans parler des failles de sécurité ou CMS abandonné.',
+            painOnline: 'Votre site actuel vous freine-t-il : trop lent, pas mobile, difficile à modifier, ou plus du tout aligné avec ce que vous proposez aujourd\'hui ?',
+            painMarket: 'Une refonte bien cadrée ne signifie pas tout recommencer : souvent, on garde l\'essentiel, on clarifie le message et on repart sur une base saine.',
+            value: [
+                'Audit rapide de l\'existant',
+                'Nouveau design &amp; expérience mobile',
+                'Migration contenus &amp; SEO de base',
+                'Formation légère pour vos mises à jour'
+            ],
+            reminder: [
+                'Site lent ou non responsive',
+                'Contenus obsolètes ou confus',
+                'Besoin de formulaires / paiement',
+                'Sécurité &amp; maintenance'
+            ],
+            closing: 'votre refonte'
+        },
+        {
+            id: 'app-sur-mesure',
+            label: 'Application & outil sur mesure',
+            tagline: 'App web · Outil métier · Sur mesure',
+            peer: 'entrepreneurs et porteurs de projet qui ont besoin d\'un outil ou d\'une application web adaptée',
+            intro: 'nous concevons des <strong style="color:#e8eef4;">applications et outils web sur mesure</strong> quand un site vitrine ou un Excel ne suffit plus.',
+            pain: 'Tableurs, e-mails et outils génériques finissent par limiter la croissance : il faut un outil qui correspond vraiment au process métier — sans budget enterprise.',
+            painOnline: 'Avez-vous un process (devis, réservation, suivi client, catalogue…) que vous aimeriez automatiser avec un outil simple et sur mesure ?',
+            painMarket: 'Un bon outil métier fait gagner du temps chaque semaine — à condition d\'être bien cadré dès le départ, avec un MVP réaliste.',
+            value: [
+                'Atelier cadrage &amp; spécifications',
+                'Prototype ou MVP fonctionnel',
+                'Développement web sur mesure',
+                'Évolutions &amp; support après lancement'
+            ],
+            reminder: [
+                'Outil interne ou client',
+                'Automatisation de process',
+                'Tableau de bord &amp; reporting',
+                'Intégrations (paiement, CRM…)'
+            ],
+            closing: 'votre application'
+        }
+    ];
+
+    /** Secteurs liés à l'informatique — contenu métier par vertical (B2B pro) */
     const IT_SECTORS = [
         {
             id: 'esn-ssii',
@@ -308,6 +427,129 @@
         }
     ];
 
+    function buildProjectTemplates(sector) {
+        const base = {
+            sectorGroup: 'Projets & particuliers',
+            brand_wrap: '0',
+            template_id: sector.id
+        };
+        const orgLine = sector.closing || 'votre projet';
+        const whoLine =
+            '<p style="color:#8b9cb3;">Je contacte des ' + sector.peer +
+            '. Si {{entreprise}} correspond à votre profil, cet échange pourrait vous concerner.</p>';
+
+        return [
+            {
+                ...base,
+                id: sector.id + '-question',
+                sequenceLabel: '1 · Question rapide',
+                name: sector.label + ' — Question rapide',
+                subject: 'Question rapide — ' + sector.label.toLowerCase(),
+                preheader: 'Un échange gratuit pour cadrer votre besoin, sans engagement.',
+                cta_url: CALENDLY,
+                cta_label: '📅 Planifier un appel',
+                body_html: darkShell(
+                    sector.tagline,
+                    '<p style="color:#ffffff;font-weight:600;margin-top:0;">{{salutation}},</p>' +
+                    '<p style="color:#8b9cb3;">Je vous contacte car ' + sector.intro + '</p>' +
+                    '<p style="color:#8b9cb3;">' + sector.pain + '</p>' +
+                    valueBox('Ce que nous pouvons faire pour vous', sector.value) +
+                    '<p style="color:#8b9cb3;">Avez-vous un besoin en cours pour {{projet}} ? Seriez-vous ouvert à un échange rapide (30 min, gratuit) pour en parler ?</p>' +
+                    ctaButton(CALENDLY, '📅 Planifier un appel') +
+                    '<p style="margin-top:18px;color:#8b9cb3;">ou répondez simplement à cet e-mail.</p>' +
+                    signatureBlock(),
+                    'Projet — ' + sector.label
+                )
+            },
+            {
+                ...base,
+                id: sector.id + '-relance',
+                sequenceLabel: '2 · Relance',
+                name: sector.label + ' — Relance',
+                subject: 'Toujours d\'actualité pour vous ?',
+                preheader: sector.label + ' — votre projet est-il toujours d\'actualité ?',
+                cta_url: CALENDLY,
+                cta_label: '📅 Voir les disponibilités',
+                body_html: darkShell(
+                    sector.tagline,
+                    '<p style="color:#ffffff;font-weight:600;margin-top:0;">{{salutation}},</p>' +
+                    '<p style="color:#8b9cb3;">Je me permets de revenir vers vous suite à mon précédent message.</p>' +
+                    '<p style="color:#8b9cb3;">Est-ce que <strong style="color:#e8eef4;">' + orgLine + '</strong> est toujours d\'actualité pour vous en ce moment ?</p>' +
+                    valueBox('Rappel — ' + sector.label, sector.reminder) +
+                    '<p style="color:#8b9cb3;">Si ce n\'est pas le bon moment, je comprends totalement.<br/>Sinon, je propose un court échange pour avancer concrètement.</p>' +
+                    ctaButton(CALENDLY, '📅 Voir les disponibilités') +
+                    signatureBlock(),
+                    'Relance — ' + sector.label
+                )
+            },
+            {
+                ...base,
+                id: sector.id + '-cloture',
+                sequenceLabel: '3 · Clôture',
+                name: sector.label + ' — Suite à mon message',
+                subject: 'Suite à mon message',
+                preheader: 'Dernier message — un simple retour suffit.',
+                cta_url: CALENDLY,
+                cta_label: '📅 Planifier un échange',
+                body_html: darkShell(
+                    '',
+                    '<p style="color:#ffffff;font-weight:600;margin-top:0;">{{salutation}},</p>' +
+                    '<p style="color:#8b9cb3;">Je me permets un dernier message pour ne pas vous importuner.</p>' +
+                    '<p style="color:#8b9cb3;">Sans retour de votre part, j\'imagine que ce n\'est pas une priorité — je clôture proprement mon suivi.</p>' +
+                    valueBox('Rappel — ' + sector.label, sector.value.slice(0, 4)) +
+                    '<p style="color:#8b9cb3;">Un simple retour suffit :</p>' +
+                    interestButtons() +
+                    ctaButton(CALENDLY, '📅 Planifier un échange') +
+                    '<p style="margin-top:18px;color:#8b9cb3;">Merci pour votre temps.</p>' +
+                    signatureBlock(),
+                    'Clôture — ' + sector.label
+                )
+            },
+            {
+                ...base,
+                id: sector.id + '-besoin',
+                sequenceLabel: '4 · Besoin concret',
+                name: sector.label + ' — Besoin concret',
+                subject: 'Un besoin concret en informatique ?',
+                preheader: sector.painOnline.slice(0, 120),
+                cta_url: CONTACT,
+                cta_label: '📩 Décrire mon besoin',
+                body_html: darkShell(
+                    sector.tagline,
+                    '<p style="color:#ffffff;font-weight:600;margin-top:0;">{{salutation}},</p>' +
+                    whoLine +
+                    '<p style="color:#8b9cb3;">' + sector.painOnline + '</p>' +
+                    valueBox('Comment nous vous aidons', sector.value) +
+                    '<p style="color:#8b9cb3;">Si cela vous parle, décrivez votre besoin en quelques lignes — ou réservez 30 minutes pour en discuter.</p>' +
+                    ctaButton(CONTACT, '📩 Décrire mon besoin') +
+                    signatureBlock(),
+                    'Besoin concret — ' + sector.label
+                )
+            },
+            {
+                ...base,
+                id: sector.id + '-visibilite',
+                sequenceLabel: '5 · Visibilité en ligne',
+                name: sector.label + ' — Visibilité en ligne',
+                subject: 'Votre présence en ligne vous aide-t-elle vraiment ?',
+                preheader: sector.painMarket.slice(0, 120),
+                cta_url: CALENDLY,
+                cta_label: '📅 Planifier un échange',
+                body_html: darkShell(
+                    sector.tagline,
+                    '<p style="color:#ffffff;font-weight:600;margin-top:0;">{{salutation}},</p>' +
+                    '<p style="color:#8b9cb3;">' + sector.painMarket + '</p>' +
+                    '<p style="color:#8b9cb3;">Que vous soyez particulier, indépendant ou petite structure — un projet digital bien mené doit être <strong style="color:#e8eef4;">simple, utile et crédible</strong>.</p>' +
+                    valueBox('Notre approche — ' + sector.label, sector.value) +
+                    '<p style="color:#8b9cb3;">Seriez-vous ouvert à un échange rapide pour voir si nous pouvons vous aider sur {{projet}} ?</p>' +
+                    ctaButton(CALENDLY, '📅 Planifier un échange') +
+                    signatureBlock(),
+                    'Visibilité — ' + sector.label
+                )
+            }
+        ];
+    }
+
     function buildSectorTemplates(sector) {
         const base = {
             sectorGroup: sector.label,
@@ -429,6 +671,10 @@
 
     const TEMPLATES = [];
 
+    PROJECT_SECTORS.forEach((sector) => {
+        buildProjectTemplates(sector).forEach((t) => TEMPLATES.push(t));
+    });
+
     IT_SECTORS.forEach((sector) => {
         buildSectorTemplates(sector).forEach((t) => TEMPLATES.push(t));
     });
@@ -439,23 +685,23 @@
             sectorGroup: 'IT — Général',
             sequenceLabel: '1 · Question rapide',
             name: 'IT Général — Question rapide',
-            subject: 'Question rapide — écosystème IT',
-            preheader: 'Conseil & stratégie pour acteurs de l\'informatique en Europe.',
+            subject: 'Question rapide — projet ou activité IT',
+            preheader: 'Particuliers, TPE et acteurs IT — conseil & réalisation en Europe.',
             brand_wrap: '0',
             cta_url: CALENDLY,
             cta_label: '📅 Planifier un appel',
             body_html: darkShell(
                 'IT · Digital · Conseil · Europe',
                 '<p style="color:#ffffff;font-weight:600;margin-top:0;">{{salutation}},</p>' +
-                '<p style="color:#8b9cb3;">Je vous contacte car nous accompagnons des acteurs de l\'<strong style="color:#e8eef4;">écosystème informatique</strong> (ESN, SaaS, agences, cyber, cloud, startups…) sur leur stratégie commerciale et leur croissance en Europe.</p>' +
-                '<p style="color:#8b9cb3;">Beaucoup peinent à structurer leur pipe, leur message et leur visibilité — tout en livrant la qualité technique attendue.</p>' +
+                '<p style="color:#8b9cb3;">Je vous contacte car nous accompagnons <strong style="color:#e8eef4;">particuliers, TPE et acteurs de l\'informatique</strong> : site internet, outil sur mesure, refonte, ou stratégie commerciale pour les structures IT.</p>' +
+                '<p style="color:#8b9cb3;">Que ce soit un projet concret (site web, application) ou le développement d\'une activité IT, beaucoup de monde manque de clarté sur le périmètre, le budget et le bon interlocuteur.</p>' +
                 valueBox('Ce que nous mettons en place', [
-                    'Stratégie commerciale &amp; go-to-market IT',
-                    'Positionnement &amp; proposition de valeur',
-                    'Processus avant-vente &amp; delivery',
-                    'Visibilité digitale &amp; crédibilité B2B'
+                    'Sites web &amp; présence en ligne',
+                    'Applications &amp; outils sur mesure',
+                    'Conseil &amp; stratégie pour acteurs IT',
+                    'Accompagnement clair, sans jargon'
                 ]) +
-                '<p style="color:#8b9cb3;">Seriez-vous ouvert à un échange rapide pour {{entreprise}} ?</p>' +
+                '<p style="color:#8b9cb3;">Avez-vous un besoin ou un projet en cours ? Seriez-vous ouvert à un échange rapide ?</p>' +
                 ctaButton(CALENDLY, '📅 Planifier un appel') +
                 signatureBlock(),
                 'IT général — premier contact'
@@ -502,7 +748,9 @@
     }
 
     function listSectors() {
-        return IT_SECTORS.map((s) => ({ id: s.id, label: s.label }));
+        const projects = PROJECT_SECTORS.map((s) => ({ id: s.id, label: s.label, group: 'projets' }));
+        const it = IT_SECTORS.map((s) => ({ id: s.id, label: s.label, group: 'it' }));
+        return projects.concat(it);
     }
 
     function isFullDocument(html) {
@@ -573,11 +821,13 @@
             .replace(/\{\{email\}\}/gi, 'sophie@exemple.fr')
             .replace(/\{\{company\}\}/gi, 'TechFlow SAS')
             .replace(/\{\{entreprise\}\}/gi, 'TechFlow SAS')
+            .replace(/\{\{projet\}\}/gi, 'création de site vitrine')
             .replace(/\{\{unsubscribe\}\}/gi, '#');
     }
 
     global.GloriamMailTemplates = {
         TEMPLATES,
+        PROJECT_SECTORS,
         IT_SECTORS,
         getTemplate,
         listTemplates,
@@ -589,7 +839,8 @@
             { key: '{{salutation}}', label: 'Salutation' },
             { key: '{{nom}}', label: 'Nom' },
             { key: '{{email}}', label: 'E-mail' },
-            { key: '{{entreprise}}', label: 'Entreprise' },
+            { key: '{{entreprise}}', label: 'Entreprise / activité' },
+            { key: '{{projet}}', label: 'Projet (ex. site internet)' },
             { key: '{{unsubscribe}}', label: 'Désinscription' }
         ]
     };

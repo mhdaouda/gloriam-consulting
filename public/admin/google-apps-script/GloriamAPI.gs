@@ -354,7 +354,7 @@ function actionMailTest_(token, body) {
   if (!testEmail) return { error: 'CAMPAIGN_TEST_EMAIL manquant' };
 
   var webAppUrl = getWebAppUrl_();
-  var fake = { id: 'test', email: testEmail, name: 'Test', company: 'Démo' };
+  var fake = { id: 'test', email: testEmail, name: 'Test', company: 'Démo', project: 'création de site vitrine' };
   var meta = campaignMeta_(body);
   var html = buildCampaignHtml_(bodyHtml, fake, webAppUrl, meta);
 
@@ -571,20 +571,33 @@ function filterCampaignRecipients_(contacts, audience) {
     if (audience === 'chatbot' && c.source !== 'chatbot') continue;
     if (seen[email]) continue;
     seen[email] = true;
-    list.push({ name: c.name || '', email: email, company: c.company || '' });
+    list.push({
+      name: c.name || '',
+      email: email,
+      company: c.company || '',
+      project: summarizeProject_(c.project_details || c.message || '')
+    });
   }
   return list;
 }
 
+function summarizeProject_(text) {
+  var t = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!t) return '';
+  return t.length > 120 ? t.slice(0, 117) + '…' : t;
+}
+
 function personalizeCampaign_(template, contact) {
   var salutation = contact.name ? ('Bonjour ' + contact.name) : 'Bonjour';
+  var projet = contact.project || contact.project_details || contact.company || 'votre projet';
   return template
     .replace(/\{\{salutation\}\}/gi, salutation)
     .replace(/\{\{name\}\}/gi, contact.name || '')
     .replace(/\{\{nom\}\}/gi, contact.name || '')
     .replace(/\{\{email\}\}/gi, contact.email || '')
     .replace(/\{\{company\}\}/gi, contact.company || '')
-    .replace(/\{\{entreprise\}\}/gi, contact.company || '');
+    .replace(/\{\{entreprise\}\}/gi, contact.company || '')
+    .replace(/\{\{projet\}\}/gi, projet);
 }
 
 function textToHtmlIfNeeded_(text) {

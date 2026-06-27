@@ -73,7 +73,8 @@
             .replace(/\{\{nom\}\}/gi, 'Sophie Martin')
             .replace(/\{\{email\}\}/gi, 'sophie@exemple.fr')
             .replace(/\{\{company\}\}/gi, 'Université Paris')
-            .replace(/\{\{entreprise\}\}/gi, 'Université Paris');
+            .replace(/\{\{entreprise\}\}/gi, 'Université Paris')
+            .replace(/\{\{projet\}\}/gi, 'création de site vitrine');
     }
 
     function getPreviewMeta() {
@@ -147,7 +148,7 @@
             groups.get(g).push(t);
         });
 
-        const order = ['IT — Général'];
+        const order = ['Projets & particuliers', 'IT — Général'];
         if (GloriamMailTemplates.IT_SECTORS) {
             GloriamMailTemplates.IT_SECTORS.forEach((s) => order.push(s.label));
         }
