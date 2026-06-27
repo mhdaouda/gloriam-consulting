@@ -302,14 +302,16 @@ function actionMailSend_(token, campaignId) {
   var fromName = PropertiesService.getScriptProperties().getProperty('MAIL_FROM_NAME') || 'Gloriam Consulting';
   var sent = parseInt(campaign.sent, 10) || 0;
   var failed = parseInt(campaign.failed, 10) || 0;
+  var meta = campaignMeta_(campaign);
 
   for (var i = 0; i < recipients.length; i++) {
     var r = recipients[i];
     try {
-      var html = buildCampaignHtml_(campaign.body_html, r, webAppUrl, campaignMeta_(campaign));
+      var subject = personalizeCampaign_(campaign.subject || '', r);
+      var html = buildCampaignHtml_(campaign.body_html, r, webAppUrl, meta);
       MailApp.sendEmail({
         to: r.email,
-        subject: campaign.subject,
+        subject: subject,
         htmlBody: html,
         name: fromName
       });
@@ -390,6 +392,10 @@ function actionTrackOpen_(rid) {
 function buildCampaignHtml_(template, recipient, webAppUrl, meta) {
   meta = meta || {};
   var html = personalizeCampaign_(template, recipient);
+  if (webAppUrl && recipient.email) {
+    var unsubUrl = webAppUrl + '?action=unsubscribe&email=' + encodeURIComponent(recipient.email);
+    html = html.replace(/\{\{unsubscribe\}\}/gi, unsubUrl);
+  }
   html = textToHtmlIfNeeded_(html);
 
   var useBrand = meta.brand_wrap !== false && meta.brand_wrap !== '0';

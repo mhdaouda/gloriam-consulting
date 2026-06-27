@@ -1,0 +1,250 @@
+Delivered-To: daoudayinde@gmail.com
+Received: by 2002:a05:7108:2b36:b0:574:5e12:a0ac with SMTP id v22csp3094631gdg;
+        Sat, 27 Jun 2026 11:36:17 -0700 (PDT)
+X-Received: by 2002:a5d:5d84:0:b0:45e:f8d0:d22c with SMTP id ffacd0b85a97d-46dc1a9186dmr17589579f8f.25.1782585377702;
+        Sat, 27 Jun 2026 11:36:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782585377; cv=none;
+        d=google.com; s=arc-20260327;
+        b=psIs9IWugAU+7twhTMDizu3oWo2nDMH5iljUyHBZkDMfZ4mvApyJcXWuVl0rnqnjtS
+         v6C2JQVgpOghCg2dnj0YhvW/2rdEWDhOBX3WZH3jzt6mRtpIWbYTE14KN4hVBC8paQn2
+         ZgWVExk8Ev+U533g9xqUVaS6IBSW1yIyFLSfHWq4ewsx5Sh5PBcKr8c7el/zuzNhi4Uk
+         FVznWZxPtlKR+aP+kHI0WNl6VNLxuIEsugCZMKLiqMKwZqJ7OFWCRG4L+uyNcgbr+t8c
+         sb3n8MqwGjOXUE13HTLGT/IFQCzdL6UiBffy85tVtz9FbFYTZ+Zi/GYHQBzmh36gEtkV
+         0Wbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=ui-outboundreport:mime-version:date:content-transfer-encoding
+         :message-id:subject:reply-to:to:from:dkim-signature;
+        bh=XLRcOfBH1nAgSdLrmFuEtVOytzeIQZQ8IbWhD+gdsmE=;
+        fh=aITp07NXCVma1JncrtlvF2dR/9khQCGXrL3W2jVCy5w=;
+        b=d9tIAxmE9Gicyw3gHTLXfOA/NV5NE1FZI75TwKaWyrh7bdvxNuYgswBJzJU99u1UpW
+         wsAfAlTNfz1SMGhOamCH9TlpfhKwbiCF+zaRdopaKf7dBCBPAHK6R3Uy8cwaaZyeX0ix
+         H3Y7CiA3j73hjMxhswSjJQksMVG0CC6OqULT/q76HiGlHSNsMkE4RvcDZooH/MPUGspe
+         LOh8mRXRPyv9Oo3aGzKl23vXC/ozB4IiTTRKNUaojcAJYCmSrf+QnQsaQMIUiyMCQGXm
+         CZTasFbvzrb2sl9BUCU/g1V34mKh8pO9a+gnDiRVbsojssixPjPXG8aEV7fQL3k/Mf/s
+         ajhA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@hexahub.fr header.s=s1-ionos header.b=A1rby3lU;
+       spf=pass (google.com: domain of zoumeye.toure@hexahub.fr designates 212.227.126.134 as permitted sender) smtp.mailfrom=zoumeye.toure@hexahub.fr;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=hexahub.fr
+Return-Path: <zoumeye.toure@hexahub.fr>
+Received: from mout.kundenserver.de (mout.kundenserver.de. [212.227.126.134])
+        by mx.google.com with ESMTPS id ffacd0b85a97d-471a9275197si3210144f8f.94.2026.06.27.11.36.17
+        for <daoudayinde@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Jun 2026 11:36:17 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zoumeye.toure@hexahub.fr designates 212.227.126.134 as permitted sender) client-ip=212.227.126.134;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@hexahub.fr header.s=s1-ionos header.b=A1rby3lU;
+       spf=pass (google.com: domain of zoumeye.toure@hexahub.fr designates 212.227.126.134 as permitted sender) smtp.mailfrom=zoumeye.toure@hexahub.fr;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=hexahub.fr
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hexahub.fr;
+	s=s1-ionos; t=1782585377; x=1783190177; i=zoumeye.toure@hexahub.fr;
+	bh=XLRcOfBH1nAgSdLrmFuEtVOytzeIQZQ8IbWhD+gdsmE=;
+	h=X-UI-Sender-Class:From:To:Reply-To:Subject:Message-ID:
+	 Content-Transfer-Encoding:Date:MIME-Version:Content-Type:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=A1rby3lULPfilsX3ASjRnHCU2ifz0UvEcetk/uutJx0698/aB29q5dOYUfLgHdTB
+	 rJXg9Bzii11jxxgUVogbfYnmmZnGd5qZOvePlb8i1YFpzTijKGSWqcPp3WbjbFY6q
+	 EjQgmELnMrfyYraGCKOoMZoWZz+XuUnRqu6/bEptIekF0qPxNXYT+r8FepWt448gm
+	 rP2tBScw48ZosA7398CA0bXrFbz6ICMVjHRIJpnTDiUkNiIHq3lv9L9elIu7UgMho
+	 MoAS2ZELCeBgeEdLJbCl1Q8WvNyPuBAATS587fFNDyxOZDhpS1NXJGe7usZ4pmCVi
+	 /rnpBzxd/NJNNzZF3g==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from client.hidden.invalid by mrelayeu.kundenserver.de (mreue011
+ [212.227.15.134]) with ESMTPSA (Nemesis) id 1MRn0U-1wXaoc3rNS-00TOiN for
+ <daoudayinde@gmail.com>; Sat, 27 Jun 2026 20:36:17 +0200
+From: HEXAHUB <zoumeye.toure@hexahub.fr>
+To: daoudayinde@gmail.com
+Reply-To: zoumeye.toure@hexahub.fr
+Subject: =?UTF-8?Q?Votre_visibilit=C3=A9_immobili=C3=A8re?=
+Message-ID: <f9ac919e-6f24-e042-40c3-c9e3aedacd6d@hexahub.fr>
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 27 Jun 2026 18:36:15 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+X-Provags-ID: V03:K1:nh5Jbv46Htl+q6rZxcVn2kUBMrJiNm0jbCRkqPbkhoXaWx5su7V
+ 0xK5GjGfw6Pah5JOV95tfSpTBR1ac9eOFtDlJrLlt4KuqeKejM7BwjtxJvFgLur+oP1knfA
+ Ij/FMVEyYIQqtGqOgNi9suFyv002NZ4dg69jeWTT616m7IboSCVmOHEVrBC7Auts++SWzIi
+ gqIbI/divTWBXvDSxnjQg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:ZPtumlYd/AY=;DC/Ul0mGntsqebUe+z/BeYE0df2
+ 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
+ =
+
+<!DOCTYPE html>
+<html lang=3D"fr"><head><meta charset=3D"UTF-8"/></head>
+<body style=3D"margin:0;padding:0;">
+<table role=3D"presentation" =
+width=3D"100%" cellpadding=3D"0" cellspacing=3D"0"
+style=3D"margin:0;paddin=
+g:0;background:#070b12;font-family:Arial,Helvetica,sans-serif;">
+
+<tr><td align=3D"center" style=3D"padding:30px 14px;">
+
+<table role=3D"presentation" width=3D"100%" cellpadding=3D"0" =
+cellspacing=3D"0"
+style=3D"max-width:620px;background:#0f1623;border-radius=
+:16px;overflow:hidden;border:1px solid rgba(16,185,129,0.25);">
+
+<!-- HEADER -->
+<tr>
+<td style=3D"background:linear-gradient(135deg,#10b981=
+,#059669);padding:22px;text-align:center;">
+<div style=3D"font-size:20px;fo=
+nt-weight:900;color:#ffffff;">HEXAHUB</div>
+<div style=3D"font-size:13px;co=
+lor:rgba(255,255,255,0.9);">Immobilier =C2=B7 Visibilit=C3=A9 =C2=B7 =
+Acquisition clients</div>
+</td>
+</tr>
+
+<!-- BODY -->
+<tr>
+<td style=3D"padding:28px;color:#e8eef4;font-size:15px;line-height:1.7;">
+
+<p style=3D"color:#ffffff;font-weight:600;">Bonjour DAOUDA MOHAMED,</p>
+
+<p style=3D"color:#8b9cb3;">
+Je vous contacte car dans l=E2=80=99immobilier=
+, une grande partie des clients commence aujourd=E2=80=99hui leur recherche=
+ en ligne.
+</p>
+
+<p style=3D"color:#8b9cb3;">
+Sans pr=C3=A9sence digitale =
+claire, il est souvent difficile de g=C3=A9n=C3=A9rer des demandes =
+r=C3=A9guli=C3=A8res de prospects qualifi=C3=A9s.
+</p>
+
+<table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0"
+style=3D"margin:20px 0;background:#0c1220;border-radius:12px;border:1px =
+solid rgba(16,185,129,0.25);">
+<tr><td style=3D"padding:16px;">
+
+<div style=3D"color:#10b981;font-weight:800;font-size:13px;">Ce que nous =
+mettons en place</div>
+<div style=3D"color:#8b9cb3;font-size:13px;margin-to=
+p:8px;line-height:1.6;">
+=E2=80=A2 Sites immobiliers modernes<br/>
+=E2=80=A2 Mise en avant des biens<br/>
+=E2=80=A2 G=C3=A9n=C3=A9ration de =
+demandes clients<br/>
+=E2=80=A2 Optimisation visibilit=C3=A9 locale
+</div>
+
+</td></tr>
+</table>
+
+<p style=3D"color:#8b9cb3;">
+Seriez-vous ouvert =C3=A0=
+ un =C3=A9change rapide pour voir comment am=C3=A9liorer vos demandes =
+clients ?
+</p>
+
+<p>
+<a href=3D"https://www.hexahub.fr/calendly"
+style=3D"display:inline-block;padding:12px 22px;background:#10b981;color:#f=
+ff;font-weight:700;text-decoration:none;border-radius:8px;">
+=F0=9F=93=85 Planifier un =C3=A9change
+</a>
+</p>
+
+<p =
+style=3D"margin-top:18px;color:#8b9cb3;">Cordialement,</p>
+<table cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" =
+style=3D"margin-top:20px;border-collapse:collapse;border-left:3px solid =
+#10b981;">
+  <tr>
+    <td style=3D"vertical-align:top;padding:0 16px 0 =
+14px;width:88px;">
+      <img src=3D"https://www.hexahub.fr/photoprofil.=
+jpg" alt=3D"Zoumeye TOURE" width=3D"72" height=3D"72"
+        style=3D"width:72px;height:72px;border-radius:50%;object-fit:cover;=
+display:block;border:2px solid rgba(16,185,129,0.4);" />
+    </td>
+    <td style=3D"vertical-align:top;">
+      <p style=3D"font-size:15px;fon=
+t-weight:700;color:#ffffff;margin:0 0 2px;">Zoumeye TOURE</p>
+      <p style=3D"font-size:13px;font-weight:600;color:#10b981;margin:0 0 =
+6px;">Fondateur HEXAHUB</p>
+      <p style=3D"font-size:12px;color:#8b9cb3;=
+margin:0 0 8px;line-height:1.4;">HEXAHUB =C2=B7 Libreville, Gabon</p>
+      <p style=3D"font-size:12px;color:#8b9cb3;margin:0 0 =
+12px;line-height:1.5;">
+        <a href=3D"mailto:zoumeye.toure@hexahub.fr"=
+ style=3D"color:#10b981;text-decoration:none;">zoumeye.toure@<a =
+href=3D"https://www.hexahub.fr/api/mail/track/click/739863ae778d481222c0578=
+3841b1682ac7044ac0fca799c?url=3Dhttps%3A%2F%2Fwww.hexahub.fr" =
+style=3D"color:#06b6d4;text-decoration:underline;">hexahub.fr</a></a><br/>
+        +241 076 28 39 33
+      </p>
+      <p style=3D"margin:0;line-height=
+:1;">
+        <a href=3D"https://www.linkedin.com/in/zoumeye-toure-0b205467=
+/" style=3D"display:inline-block;margin-right:10px;text-decoration:none;">
+          <img src=3D"https://www.hexahub.fr/email-icons/linkedin.png" =
+alt=3D"LinkedIn" width=3D"28" height=3D"28" style=3D"display:block;border:0=
+;" />
+        </a>
+        <a href=3D"https://wa.me/241076283933" =
+style=3D"display:inline-block;margin-right:10px;text-decoration:none;">
+          <img src=3D"https://www.hexahub.fr/email-icons/whatsapp.png" =
+alt=3D"WhatsApp" width=3D"28" height=3D"28" style=3D"display:block;border:0=
+;" />
+        </a>
+        <a href=3D"https://www.hexahub.=
+fr/api/mail/track/click/739863ae778d481222c05783841b1682ac7044ac0fca799c?=
+url=3Dhttps%3A%2F%2Fwww.hexahub.fr" style=3D"display:inline-block;text-deco=
+ration:none;">
+          <img src=3D"https://www.hexahub.fr/email-icons/web=
+.png" alt=3D"hexahub.fr" width=3D"28" height=3D"28" =
+style=3D"display:block;border:0;" />
+        </a>
+      </p>
+      <p style=3D"margin:8px 0 0;font-size:12px;">
+        <a =
+href=3D"https://www.hexahub.fr/api/mail/track/click/739863ae778d481222c0578=
+3841b1682ac7044ac0fca799c?url=3Dhttps%3A%2F%2Fwww.hexahub.fr" =
+style=3D"color:#10b981;text-decoration:none;font-weight:600;"><a =
+href=3D"https://www.hexahub.fr/api/mail/track/click/739863ae778d481222c0578=
+3841b1682ac7044ac0fca799c?url=3Dhttps%3A%2F%2Fwww.hexahub.fr" =
+style=3D"color:#06b6d4;text-decoration:underline;">www.hexahub.fr</a></a>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- hexahub-signature -->
+<!-- hexahub-signature -->
+</body></html><img src=3D"https://www.hexahub.=
+fr/api/mail/track/open/739863ae778d481222c05783841b1682ac7044ac0fca799c" =
+width=3D"1" height=3D"1" alt=3D"" style=3D"display:block;width:1px;height:1=
+px;border:0;"/>

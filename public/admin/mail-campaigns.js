@@ -99,6 +99,10 @@
             box.textContent = 'Saisissez un message pour voir l\'aperçu.';
             return;
         }
+        if (window.GloriamMailTemplates?.isFullDocument?.(body)) {
+            box.innerHTML = personalizePreview(body);
+            return;
+        }
         const inner = renderBodyPreview(body);
         const meta = getPreviewMeta();
         if (previewMode === 'brand' && meta.brand_wrap && window.GloriamMailTemplates?.wrapBrandPreview) {
@@ -113,7 +117,12 @@
         const box = $('#detail-preview');
         if (!card || !box || !campaign?.body_html) return;
         card.classList.remove('mail-hidden');
-        const inner = renderBodyPreview(campaign.body_html);
+        const body = campaign.body_html;
+        if (window.GloriamMailTemplates?.isFullDocument?.(body)) {
+            box.innerHTML = personalizePreview(body);
+            return;
+        }
+        const inner = renderBodyPreview(body);
         const meta = {
             preheader: campaign.preheader || '',
             cta_url: campaign.cta_url || '',
@@ -168,6 +177,9 @@
         if ($('#mail-cta-url') && t.cta_url) $('#mail-cta-url').value = t.cta_url;
         if ($('#mail-cta-label') && t.cta_label) $('#mail-cta-label').value = t.cta_label;
         if ($('#mail-body') && t.body_html) $('#mail-body').value = t.body_html;
+        if ($('#mail-brand-wrap')) {
+            $('#mail-brand-wrap').checked = t.brand_wrap !== '0' && t.brand_wrap !== false;
+        }
         updatePreview();
     }
 
