@@ -24,11 +24,13 @@ export type SpamErrorCode =
   | 'rate_limit'
   | 'session_limit'
   | 'invalid_email'
+  | 'blocked_email'
   | 'too_many_links'
   | 'spam_content'
   | 'message_short'
   | 'duplicate'
-  | 'service_busy';
+  | 'service_busy'
+  | 'api_unavailable';
 
 const RATE_KEY = 'gloriam_contact_submissions';
 const SESSION_RATE_KEY = 'gloriam_contact_session_submissions';
@@ -51,6 +53,40 @@ const DISPOSABLE_DOMAINS = new Set([
   '10minutemail.com',
   'throwaway.email',
   'trashmail.com',
+  'getnada.com',
+  'maildrop.cc',
+  'temp-mail.org',
+]);
+
+/** TLD fréquemment utilisés par le spam automatisé */
+const BLOCKED_EMAIL_TLDS = new Set([
+  'ru',
+  'su',
+  'top',
+  'xyz',
+  'click',
+  'work',
+  'loan',
+  'win',
+  'bid',
+  'stream',
+  'gq',
+  'tk',
+  'ml',
+  'cf',
+  'ga',
+  'pw',
+  'cc',
+]);
+
+/** Fournisseurs e-mail très spammés (hors clients légitimes rares sur ce site) */
+const BLOCKED_EMAIL_DOMAINS = new Set([
+  'mail.ru',
+  'list.ru',
+  'bk.ru',
+  'inbox.ru',
+  'internet.ru',
+  'rambler.ru',
 ]);
 
 function countUrls(text: string): number {
@@ -60,10 +96,22 @@ function countUrls(text: string): number {
 
 export function isValidContactEmail(email: string): boolean {
   const trimmed = email.trim().toLowerCase();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(trimmed)) return false;
-  const domain = trimmed.split('@')[1];
-  if (DISPOSABLE_DOMAINS.has(domain)) return false;
+  if (!/^[^\s@+]+@[^\s@]+\.[^\s@]{2,}$/.test(trimmed)) return false;
+  const at = trimmed.lastIndexOf('@');
+  const domain = trimmed.slice(at + 1);
+  if (DISPOSABLE_DOMAINS.has(domain) || BLOCKED_EMAIL_DOMAINS.has(domain)) return false;
+  const tld = domain.split('.').pop();
+  if (tld && BLOCKED_EMAIL_TLDS.has(tld)) return false;
   return true;
+}
+
+export function isBlockedContactEmail(email: string): boolean {
+  const trimmed = email.trim().toLowerCase();
+  if (!/^[^\s@+]+@[^\s@]+\.[^\s@]{2,}$/.test(trimmed)) return false;
+  const domain = trimmed.slice(trimmed.lastIndexOf('@') + 1);
+  if (DISPOSABLE_DOMAINS.has(domain) || BLOCKED_EMAIL_DOMAINS.has(domain)) return true;
+  const tld = domain.split('.').pop();
+  return !!(tld && BLOCKED_EMAIL_TLDS.has(tld));
 }
 
 function readRateTimestamps(): number[] {
@@ -179,7 +227,10 @@ export function validateContactSpam(input: SpamCheckInput): SpamCheckResult {
   }
 
   if (!isValidContactEmail(input.email)) {
-    return { ok: false, code: 'invalid_email' };
+    return {
+      ok: false,
+      code: isBlockedContactEmail(input.email) ? 'blocked_email' : 'invalid_email',
+    };
   }
 
   const message = input.message.trim();

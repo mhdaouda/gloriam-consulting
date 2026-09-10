@@ -87,6 +87,12 @@ function ContactFormInner() {
     if (lower.includes('anti-spam') || lower.includes('vérification')) {
       return t('form.spam.captcha_required');
     }
+    if (lower.includes('non acceptée') || lower.includes('not accepted')) {
+      return t('form.spam.blocked_email');
+    }
+    if (lower.includes('email invalide') || lower.includes('invalid email')) {
+      return t('form.spam.invalid_email');
+    }
     return t('form.spam.generic');
   }
 
@@ -94,6 +100,12 @@ function ContactFormInner() {
     e.preventDefault();
     setSpamError('');
     setIsSubmitting(true);
+
+    if (!isGloriamApiConfigured()) {
+      setSpamError(t('form.spam.api_unavailable'));
+      setIsSubmitting(false);
+      return;
+    }
 
     const spamCheck = validateContactSpam({
       honeypot,
@@ -133,53 +145,14 @@ function ContactFormInner() {
         turnstile_token: turnstileToken,
       });
 
-      if (!apiResult.ok) {
-        if (isGloriamApiConfigured()) {
-          setSpamError(mapApiSpamError(apiResult.error as string));
-          setIsSubmitting(false);
-          return;
-        }
-      }
-
-      if (isGloriamApiConfigured()) {
-        if (apiResult.ok) {
-          recordContactSubmission();
-          recordContactDuplicate(formData.email, formData.message);
-          setSubmitted(true);
-          setFormData({ name: '', email: '', subject: '', message: '' });
-          setTurnstileToken('');
-        } else {
-          throw new Error('send failed');
-        }
-        return;
-      }
-
-      const form = e.currentTarget;
-      const formDataToSend = new FormData(form);
-      if (turnstileToken) {
-        formDataToSend.append('cf-turnstile-response', turnstileToken);
-      }
-
-      const response = await fetch(
-        'https://formsubmit.co/ajax/contact@gloriam-consulting.com',
-        {
-          method: 'POST',
-          body: formDataToSend,
-        }
-      );
-
-      if (!response.ok && !apiResult.ok) {
-        throw new Error('send failed');
-      }
-
-      if (response.ok || apiResult.ok) {
+      if (apiResult.ok) {
         recordContactSubmission();
         recordContactDuplicate(formData.email, formData.message);
         setSubmitted(true);
         setFormData({ name: '', email: '', subject: '', message: '' });
         setTurnstileToken('');
       } else {
-        throw new Error('send failed');
+        setSpamError(mapApiSpamError(apiResult.error as string));
       }
     } catch {
       setSpamError(t('form.error'));
@@ -341,17 +314,6 @@ function ContactFormInner() {
                   autoComplete="off"
                 />
               </div>
-
-              <input
-                type="hidden"
-                name="_subject"
-                value={
-                  locale === 'fr'
-                    ? 'Nouveau message du site Gloriam Consulting'
-                    : 'New message from Gloriam Consulting website'
-                }
-              />
-              <input type="hidden" name="_template" value="table" />
 
               {(
                 [

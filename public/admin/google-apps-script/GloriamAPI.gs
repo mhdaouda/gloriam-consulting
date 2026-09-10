@@ -673,6 +673,26 @@ function sanitize_(val, maxLen) {
   return s.length > maxLen ? s.substring(0, maxLen) : s;
 }
 
+function isBlockedContactEmail_(email) {
+  var blockedDomains = {
+    'mail.ru': 1, 'list.ru': 1, 'bk.ru': 1, 'inbox.ru': 1, 'internet.ru': 1, 'rambler.ru': 1,
+    'mailinator.com': 1, 'guerrillamail.com': 1, 'tempmail.com': 1, 'yopmail.com': 1,
+    '10minutemail.com': 1, 'throwaway.email': 1, 'trashmail.com': 1, 'getnada.com': 1,
+    'maildrop.cc': 1, 'temp-mail.org': 1
+  };
+  var blockedTlds = {
+    'ru': 1, 'su': 1, 'top': 1, 'xyz': 1, 'click': 1, 'work': 1, 'loan': 1, 'win': 1,
+    'bid': 1, 'stream': 1, 'gq': 1, 'tk': 1, 'ml': 1, 'cf': 1, 'ga': 1, 'pw': 1, 'cc': 1
+  };
+  var at = email.lastIndexOf('@');
+  if (at < 1) return false;
+  var domain = email.slice(at + 1);
+  if (blockedDomains[domain]) return true;
+  var parts = domain.split('.');
+  var tld = parts[parts.length - 1];
+  return !!blockedTlds[tld];
+}
+
 function validateContactSpam_(body) {
   var hp = sanitize_(body.hp_field, 200);
   if (hp) return 'Soumission refusée';
@@ -689,8 +709,13 @@ function validateContactSpam_(body) {
   var subject = sanitize_(body.subject, 300).trim();
 
   if (!name || !email || !message) return 'Champs requis manquants';
-  if (source !== 'chatbot' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-    return 'Email invalide';
+  if (source !== 'chatbot') {
+    if (!/^[^\s@+]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      return 'Email invalide';
+    }
+    if (isBlockedContactEmail_(email)) {
+      return 'Adresse e-mail non acceptée';
+    }
   }
   if (message.length < 10) return 'Message trop court';
 
