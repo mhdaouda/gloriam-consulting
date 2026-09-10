@@ -124,6 +124,7 @@ function actionLogout_(token) {
 }
 
 function actionContact_(body) {
+  body = normalizeContactBody_(body);
   var spamError = validateContactSpam_(body);
   if (spamError) return { error: spamError };
 
@@ -142,7 +143,7 @@ function actionContact_(body) {
     sanitize_(body.project_details, 8000), 'nouveau'
   ]);
 
-  markContactCooldown_(sanitize_(body.email, 200).trim().toLowerCase());
+  markContactCooldown_(body.email);
 
   try {
     notifyContactSubmission_(body);
@@ -673,6 +674,42 @@ function sanitize_(val, maxLen) {
   return s.length > maxLen ? s.substring(0, maxLen) : s;
 }
 
+function normalizeContactField_(value) {
+  return String(value || '')
+    .replace(/[\u200B-\u200D\uFEFF\u00AD\u2060]/g, '')
+    .replace(/\u00A0/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function hasMeaningfulContactText_(value, minLen) {
+  var normalized = normalizeContactField_(value);
+  if (normalized.length < minLen) return false;
+  return /[\p{L}\p{N}]/u.test(normalized);
+}
+
+function normalizeContactBody_(body) {
+  body = body || {};
+  return {
+    source: body.source,
+    name: normalizeContactField_(body.name),
+    email: normalizeContactField_(body.email).toLowerCase(),
+    phone: normalizeContactField_(body.phone),
+    company: normalizeContactField_(body.company),
+    subject: normalizeContactField_(body.subject),
+    message: normalizeContactField_(body.message),
+    location: normalizeContactField_(body.location),
+    service: body.service,
+    budget: body.budget,
+    timeline: body.timeline,
+    project_details: body.project_details,
+    hp_field: body.hp_field,
+    form_ts: body.form_ts,
+    turnstile_token: body.turnstile_token,
+    client_id: body.client_id
+  };
+}
+
 function isBlockedContactEmail_(email) {
   var blockedDomains = {
     'mail.ru': 1, 'list.ru': 1, 'bk.ru': 1, 'inbox.ru': 1, 'internet.ru': 1, 'rambler.ru': 1,
@@ -699,16 +736,25 @@ function validateContactSpam_(body) {
 
   var source = sanitize_(body.source, 20) || 'form';
   var formTs = parseInt(body.form_ts, 10);
-  if (source !== 'chatbot' && formTs && (Date.now() - formTs) < 4000) {
-    return 'Soumission trop rapide';
+  if (source !== 'chatbot') {
+    if (!formTs || isNaN(formTs)) return 'Soumission invalide';
+    var formAge = Date.now() - formTs;
+    if (formAge < 4000) return 'Soumission trop rapide';
+    if (formAge > 7200000) return 'Formulaire expiré, rechargez la page';
   }
 
-  var email = sanitize_(body.email, 200).trim().toLowerCase();
-  var message = sanitize_(body.message, 8000).trim();
-  var name = sanitize_(body.name, 200).trim();
-  var subject = sanitize_(body.subject, 300).trim();
+  var email = body.email;
+  var message = body.message;
+  var name = body.name;
+  var subject = body.subject;
 
-  if (!name || !email || !message) return 'Champs requis manquants';
+  if (!hasMeaningfulContactText_(name, 2)) return 'Champs requis incomplets';
+  if (!email) return 'Champs requis incomplets';
+  if (!hasMeaningfulContactText_(message, 10)) return 'Message trop court';
+  if (source === 'form' && !hasMeaningfulContactText_(subject, 2)) {
+    return 'Champs requis incomplets';
+  }
+
   if (source !== 'chatbot') {
     if (!/^[^\s@+]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
       return 'Email invalide';
@@ -717,7 +763,6 @@ function validateContactSpam_(body) {
       return 'Adresse e-mail non acceptée';
     }
   }
-  if (message.length < 10) return 'Message trop court';
 
   var blob = (name + ' ' + subject + ' ' + message).toLowerCase();
   var urlCount = (blob.match(/https?:\/\/|www\./g) || []).length;
@@ -818,13 +863,19 @@ function markContactCooldown_(email) {
 }
 
 function notifyContactSubmission_(body) {
+  var name = normalizeContactField_(body.name);
+  var email = normalizeContactField_(body.email);
+  var subject = normalizeContactField_(body.subject) || 'Nouveau message — site Gloriam';
+  var message = normalizeContactField_(body.message);
+  var source = sanitize_(body.source, 20) || 'form';
+
+  if (!hasMeaningfulContactText_(name, 2) || !email || !hasMeaningfulContactText_(message, 10)) {
+    Logger.log('notifyContactSubmission_: notification ignorée (champs vides)');
+    return;
+  }
+
   var to = PropertiesService.getScriptProperties().getProperty('CONTACT_NOTIFY_EMAIL')
     || 'contact@gloriam-consulting.com';
-  var name = sanitize_(body.name, 200);
-  var email = sanitize_(body.email, 200);
-  var subject = sanitize_(body.subject, 300) || 'Nouveau message — site Gloriam';
-  var message = sanitize_(body.message, 8000);
-  var source = sanitize_(body.source, 20) || 'form';
   var html = [
     '<p><strong>Nouveau message</strong> (' + source + ')</p>',
     '<p><strong>Nom :</strong> ' + escapeHtml_(name) + '</p>',

@@ -78,15 +78,24 @@ export type ContactPayload = {
   client_id?: string;
 };
 
+import { normalizeContactField, normalizeContactPayload } from '@/app/_lib/formSpamGuard';
+
 export async function insertGloriamContact(payload: ContactPayload): Promise<ApiResult> {
+  const normalized = normalizeContactPayload({
+    name: payload.name,
+    email: payload.email,
+    subject: payload.subject,
+    message: payload.message,
+  });
+
   const row = {
     source: payload.source || 'form',
-    name: payload.name.trim().slice(0, 200),
-    email: payload.email.trim().slice(0, 200),
-    phone: (payload.phone || '').trim().slice(0, 50),
-    company: (payload.company || '').trim().slice(0, 300),
-    subject: (payload.subject || '').trim().slice(0, 300),
-    message: payload.message.trim().slice(0, 8000),
+    name: normalized.name.slice(0, 200),
+    email: normalized.email.slice(0, 200),
+    phone: normalizeContactField(payload.phone || '').slice(0, 50),
+    company: normalizeContactField(payload.company || '').slice(0, 300),
+    subject: normalized.subject.slice(0, 300),
+    message: normalized.message.slice(0, 8000),
     location: (payload.location || '').trim().slice(0, 200),
     service: payload.service || '',
     budget: payload.budget || '',
@@ -95,7 +104,11 @@ export async function insertGloriamContact(payload: ContactPayload): Promise<Api
   };
 
   if (!row.name || !row.email || !row.message) {
-    return { ok: false, error: 'Champs requis manquants' };
+    return { ok: false, error: 'Champs requis incomplets' };
+  }
+
+  if (row.source === 'form' && !row.subject) {
+    return { ok: false, error: 'Champs requis incomplets' };
   }
 
   return request('contact', {

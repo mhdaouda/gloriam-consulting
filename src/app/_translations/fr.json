@@ -271,6 +271,8 @@
         "too_many_links": "Votre message contient trop de liens.",
         "spam_content": "Contenu suspect détecté. Modifiez votre message.",
         "message_short": "Message trop court (minimum 10 caractères).",
+        "missing_fields": "Veuillez remplir tous les champs obligatoires (nom, e-mail, objet, message).",
+        "form_expired": "Session expirée. Rechargez la page puis renvoyez le formulaire.",
         "duplicate": "Ce message a déjà été envoyé récemment.",
         "captcha_required": "Veuillez valider la vérification anti-spam.",
         "service_busy": "Service temporairement saturé. Réessayez dans quelques minutes.",

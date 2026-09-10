@@ -73,6 +73,8 @@ export default function Chatbot() {
   };
 
   const saveChatbotLead = async (question: string, kind: 'question' | 'quote' = 'question') => {
+    const trimmed = question.trim();
+    if (trimmed.length < 3) return;
     if (!canSendChatbotLead()) return;
     const subject =
       kind === 'quote'
@@ -88,7 +90,7 @@ export default function Chatbot() {
       name: locale === 'fr' ? 'Visiteur chatbot' : 'Chatbot visitor',
       email: `chatbot+${Date.now()}@lead.gloriam-consulting.com`,
       subject,
-      message: question,
+      message: trimmed,
       form_ts: Date.now() - 5000,
     });
     recordChatbotLead();

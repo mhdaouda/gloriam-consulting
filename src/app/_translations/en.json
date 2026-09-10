@@ -256,6 +256,8 @@
         "too_many_links": "Your message contains too many links.",
         "spam_content": "Suspicious content detected. Please revise your message.",
         "message_short": "Message too short (minimum 10 characters).",
+        "missing_fields": "Please fill in all required fields (name, email, subject, message).",
+        "form_expired": "Session expired. Reload the page and submit again.",
         "duplicate": "This message was already sent recently.",
         "captcha_required": "Please complete the anti-spam verification.",
         "service_busy": "Service temporarily busy. Please try again in a few minutes.",

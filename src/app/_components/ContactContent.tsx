@@ -15,6 +15,7 @@ import { insertGloriamContact, isGloriamApiConfigured } from '@/app/_lib/gloriam
 import {
   getCooldownRemainingMs,
   isTurnstileEnabled,
+  normalizeContactPayload,
   recordContactDuplicate,
   recordContactSubmission,
   validateContactSpam,
@@ -93,6 +94,16 @@ function ContactFormInner() {
     if (lower.includes('email invalide') || lower.includes('invalid email')) {
       return t('form.spam.invalid_email');
     }
+    if (
+      lower.includes('champs requis') ||
+      lower.includes('incomplet') ||
+      lower.includes('missing')
+    ) {
+      return t('form.spam.missing_fields');
+    }
+    if (lower.includes('expiré') || lower.includes('expired')) {
+      return t('form.spam.form_expired');
+    }
     return t('form.spam.generic');
   }
 
@@ -107,13 +118,15 @@ function ContactFormInner() {
       return;
     }
 
+    const normalized = normalizeContactPayload(formData);
+
     const spamCheck = validateContactSpam({
       honeypot,
       formStartedAt: formStartedAt.current,
-      name: formData.name,
-      email: formData.email,
-      subject: formData.subject,
-      message: formData.message,
+      name: normalized.name,
+      email: normalized.email,
+      subject: normalized.subject,
+      message: normalized.message,
     });
 
     if (!spamCheck.ok) {
@@ -136,10 +149,10 @@ function ContactFormInner() {
     try {
       const apiResult = await insertGloriamContact({
         source: 'form',
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
+        name: normalized.name,
+        email: normalized.email,
+        subject: normalized.subject,
+        message: normalized.message,
         hp_field: honeypot,
         form_ts: formStartedAt.current,
         turnstile_token: turnstileToken,
@@ -147,7 +160,7 @@ function ContactFormInner() {
 
       if (apiResult.ok) {
         recordContactSubmission();
-        recordContactDuplicate(formData.email, formData.message);
+        recordContactDuplicate(normalized.email, normalized.message);
         setSubmitted(true);
         setFormData({ name: '', email: '', subject: '', message: '' });
         setTurnstileToken('');
@@ -341,6 +354,7 @@ function ContactFormInner() {
                       }))
                     }
                     required
+                    minLength={2}
                     className={inputClass}
                   />
                 </div>
@@ -361,6 +375,7 @@ function ContactFormInner() {
                     setFormData((prev) => ({ ...prev, message: e.target.value }))
                   }
                   required
+                  minLength={10}
                   rows={4}
                   className={inputClass}
                 />

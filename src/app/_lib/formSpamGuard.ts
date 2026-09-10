@@ -28,6 +28,7 @@ export type SpamErrorCode =
   | 'too_many_links'
   | 'spam_content'
   | 'message_short'
+  | 'missing_fields'
   | 'duplicate'
   | 'service_busy'
   | 'api_unavailable';
@@ -36,6 +37,37 @@ const RATE_KEY = 'gloriam_contact_submissions';
 const SESSION_RATE_KEY = 'gloriam_contact_session_submissions';
 const COOLDOWN_KEY = 'gloriam_contact_last_submit';
 const DUP_KEY = 'gloriam_last_contact_hash';
+
+const INVISIBLE_CHARS_RE = /[\u200B-\u200D\uFEFF\u00AD\u2060]/g;
+
+/** Retire espaces/invisibles — empêche les champs « vides » trompeurs */
+export function normalizeContactField(value: string): string {
+  return String(value || '')
+    .replace(INVISIBLE_CHARS_RE, '')
+    .replace(/\u00A0/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function hasMeaningfulText(value: string, minLen: number): boolean {
+  const normalized = normalizeContactField(value);
+  if (normalized.length < minLen) return false;
+  return /[\p{L}\p{N}]/u.test(normalized);
+}
+
+export function normalizeContactPayload(input: {
+  name: string;
+  email: string;
+  subject?: string;
+  message: string;
+}) {
+  return {
+    name: normalizeContactField(input.name),
+    email: normalizeContactField(input.email).toLowerCase(),
+    subject: normalizeContactField(input.subject || ''),
+    message: normalizeContactField(input.message),
+  };
+}
 
 const SPAM_PATTERNS = [
   /\b(viagra|cialis|casino|lottery|forex signal|crypto pump|buy followers)\b/i,
@@ -206,6 +238,16 @@ export function validateContactSpam(input: SpamCheckInput): SpamCheckResult {
     return { ok: false, code: 'honeypot' };
   }
 
+  const fields = normalizeContactPayload(input);
+
+  if (!hasMeaningfulText(fields.name, 2)) {
+    return { ok: false, code: 'missing_fields' };
+  }
+
+  if (!hasMeaningfulText(fields.subject, 2)) {
+    return { ok: false, code: 'missing_fields' };
+  }
+
   if (Date.now() - input.formStartedAt < FORM_MIN_MS) {
     return { ok: false, code: 'too_fast' };
   }
@@ -222,23 +264,22 @@ export function validateContactSpam(input: SpamCheckInput): SpamCheckResult {
     return { ok: false, code: 'rate_limit' };
   }
 
-  if (isDuplicateContact(input.email, input.message)) {
+  if (isDuplicateContact(fields.email, fields.message)) {
     return { ok: false, code: 'duplicate' };
   }
 
-  if (!isValidContactEmail(input.email)) {
+  if (!isValidContactEmail(fields.email)) {
     return {
       ok: false,
-      code: isBlockedContactEmail(input.email) ? 'blocked_email' : 'invalid_email',
+      code: isBlockedContactEmail(fields.email) ? 'blocked_email' : 'invalid_email',
     };
   }
 
-  const message = input.message.trim();
-  if (message.length < 10) {
+  if (!hasMeaningfulText(fields.message, 10)) {
     return { ok: false, code: 'message_short' };
   }
 
-  const blob = `${input.name} ${input.subject || ''} ${message}`;
+  const blob = `${fields.name} ${fields.subject} ${fields.message}`;
   if (countUrls(blob) > 4) {
     return { ok: false, code: 'too_many_links' };
   }
